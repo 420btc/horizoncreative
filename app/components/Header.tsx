@@ -49,8 +49,9 @@ export default function Header() {
         <div className="md:hidden flex items-center">
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="inline-flex items-center justify-center p-2 ml-4 rounded-md bg-black border border-yellow-400 hover:bg-yellow-400/10 focus:outline-none"
+            className="inline-flex items-center justify-center p-2 ml-4 focus:outline-none"
             aria-label="Abrir menú"
+            style={{ background: 'none', border: 'none', boxShadow: 'none' }}
           >
             <svg className="h-7 w-7" fill="none" stroke="#FFD600" viewBox="0 0 24 24">
               {menuOpen ? (
