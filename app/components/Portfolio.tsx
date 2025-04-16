@@ -207,50 +207,99 @@ export default function Portfolio() {
         </div>
 
         <div className="relative">
+          {/* Carousel Controls - Left */}
+          {filteredItems.length > itemsPerPage && (
+            <button
+              onClick={handlePrev}
+              disabled={carouselIndex === 0}
+              className={`hidden md:flex items-center justify-center absolute left-0 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-primary text-black font-bold shadow transition-colors border-2 border-primary disabled:opacity-50 disabled:cursor-not-allowed`}
+              aria-label="Anterior"
+              style={{ marginLeft: '-28px' }}
+            >
+              <span className="text-2xl"><span className="text-2xl">&#8592;</span></span>
+            </button>
+          )}
+          {/* Carousel Controls - Right */}
+          {filteredItems.length > itemsPerPage && (
+            <button
+              onClick={handleNext}
+              disabled={carouselIndex === totalPages - 1}
+              className={`hidden md:flex items-center justify-center absolute right-0 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-primary text-black font-bold shadow transition-colors border-2 border-primary disabled:opacity-50 disabled:cursor-not-allowed`}
+              aria-label="Siguiente"
+              style={{ marginRight: '-28px' }}
+            >
+              <span className="text-2xl"><span className="text-2xl">&#8594;</span></span>
+            </button>
+          )}
+          {/* Carousel Controls - Mobile (bottom center) */}
+          {filteredItems.length > itemsPerPage && (
+            <div className="flex md:hidden justify-center items-center gap-4 mt-2 mb-4">
+              <button
+                onClick={handlePrev}
+                disabled={carouselIndex === 0}
+                className={`w-12 h-12 flex items-center justify-center rounded-full bg-primary text-black font-bold shadow transition-colors border-2 border-primary disabled:opacity-50 disabled:cursor-not-allowed`}
+                aria-label="Anterior"
+              >
+                <span className="text-2xl"><span className="text-2xl">&#8592;</span></span>
+              </button>
+              <span className="text-black dark:text-white font-semibold">
+                Página {carouselIndex + 1} de {totalPages}
+              </span>
+              <button
+                onClick={handleNext}
+                disabled={carouselIndex === totalPages - 1}
+                className={`w-12 h-12 flex items-center justify-center rounded-full bg-primary text-black font-bold shadow transition-colors border-2 border-primary disabled:opacity-50 disabled:cursor-not-allowed`}
+                aria-label="Siguiente"
+              >
+                <span className="text-2xl"><span className="text-2xl">&#8594;</span></span>
+              </button>
+            </div>
+          )}
+          {/* Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-8">
             {currentItems.map((item, idx) => (
-  <AnimatedSection key={item.id} direction={idx % 2 === 0 ? "up" : "right"} delay={0.1 * idx}>
-    <motion.div
-      className="group relative rounded-xl overflow-hidden shadow-lg h-80"
-      whileHover={{ scale: 1.03 }}
-      onMouseEnter={() => setHoveredItem(item.id)}
-      onMouseLeave={() => setHoveredItem(null)}
-    >
-      <Image
-        src={item.image || "/placeholder.svg"}
-        alt={item.title}
-        fill
-        className="object-contain transition-transform duration-500 group-hover:scale-105 cursor-zoom-in bg-black"
-        style={{ backgroundColor: 'black' }}
-      />
-      {/* Área invisible para capturar el click, debajo del overlay */}
-      <div
-        className="absolute inset-0 z-10 cursor-zoom-in"
-        style={{ pointerEvents: 'auto' }}
-        onClick={e => {
-          e.stopPropagation();
-          setModalImage(item.image);
-        }}
-      />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-        <h3 className="text-xl font-bold text-white mb-2">{item.title}</h3>
-        <p className="text-gray-200 mb-4">{item.description}</p>
-        <a href="#" className="inline-flex items-center text-primary hover:text-primary/80 transition-colors">
-          <span className="mr-2">Ver proyecto</span>
-          <ArrowRight className="h-4 w-4" />
-        </a>
-      </div>
-      <motion.div
-        className="absolute inset-0 bg-primary/20 pointer-events-none"
-        initial={{ opacity: 0 }}
-        animate={{
-          opacity: hoveredItem === item.id ? 0.2 : 0,
-        }}
-        transition={{ duration: 0.3 }}
-      />
-    </motion.div>
-  </AnimatedSection>
-))}
+              <AnimatedSection key={item.id} direction={idx % 2 === 0 ? "up" : "right"} delay={0.1 * idx}>
+                <motion.div
+                  className="group relative rounded-xl overflow-hidden shadow-lg h-80"
+                  whileHover={{ scale: 1.03 }}
+                  onMouseEnter={() => setHoveredItem(item.id)}
+                  onMouseLeave={() => setHoveredItem(null)}
+                >
+                  <Image
+                    src={item.image || "/placeholder.svg"}
+                    alt={item.title}
+                    fill
+                    className="object-contain transition-transform duration-500 group-hover:scale-105 cursor-zoom-in bg-black"
+                    style={{ backgroundColor: 'black' }}
+                  />
+                  {/* Área invisible para capturar el click, debajo del overlay */}
+                  <div
+                    className="absolute inset-0 z-10 cursor-zoom-in"
+                    style={{ pointerEvents: 'auto' }}
+                    onClick={e => {
+                      e.stopPropagation();
+                      setModalImage(item.image);
+                    }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                    <h3 className="text-xl font-bold text-white mb-2">{item.title}</h3>
+                    <p className="text-gray-200 mb-4">{item.description}</p>
+                    <a href="#" className="inline-flex items-center text-primary hover:text-primary/80 transition-colors">
+                      <span className="mr-2">Ver proyecto</span>
+                      <ArrowRight className="h-4 w-4" />
+                    </a>
+                  </div>
+                  <motion.div
+                    className="absolute inset-0 bg-primary/20 pointer-events-none"
+                    initial={{ opacity: 0 }}
+                    animate={{
+                      opacity: hoveredItem === item.id ? 0.2 : 0,
+                    }}
+                    transition={{ duration: 0.3 }}
+                  />
+                </motion.div>
+              </AnimatedSection>
+            ))}
 
 {/* Modal de imagen ampliada */}
 {modalImage && (
@@ -276,28 +325,7 @@ export default function Portfolio() {
   </div>
 )}
           </div>
-          {/* Carrusel controles */}
-          {filteredItems.length > itemsPerPage && (
-            <div className="flex justify-between items-center mt-4">
-              <button
-                onClick={handlePrev}
-                disabled={carouselIndex === 0}
-                className={`px-4 py-2 rounded-full bg-primary text-black font-bold shadow transition-colors border-2 border-primary disabled:opacity-50 disabled:cursor-not-allowed`}
-              >
-                &#8592;
-              </button>
-              <span className="text-black dark:text-white font-semibold">
-                Página {carouselIndex + 1} de {totalPages}
-              </span>
-              <button
-                onClick={handleNext}
-                disabled={carouselIndex === totalPages - 1}
-                className={`px-4 py-2 rounded-full bg-primary text-black font-bold shadow transition-colors border-2 border-primary disabled:opacity-50 disabled:cursor-not-allowed`}
-              >
-                &#8594;
-              </button>
-            </div>
-          )}
+
         </div>
 
         <div className="text-center mt-12">
