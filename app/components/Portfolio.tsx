@@ -14,6 +14,49 @@ type PortfolioItem = {
 };
 
 const portfolioItems: PortfolioItem[] = [
+  // 13-18: Fotografía
+  {
+    id: 13,
+    title: "Retrato Urbano",
+    description: "Sesión de retrato en exteriores urbanos.",
+    image: "/assets/fotografia-1.jpg",
+    category: "Fotografía",
+  },
+  {
+    id: 14,
+    title: "Producto en Estudio",
+    description: "Fotografía de producto en estudio profesional.",
+    image: "/assets/fotografia-2.jpg",
+    category: "Fotografía",
+  },
+  {
+    id: 15,
+    title: "Evento Corporativo",
+    description: "Cobertura fotográfica de evento empresarial.",
+    image: "/assets/fotografia-3.jpg",
+    category: "Fotografía",
+  },
+  {
+    id: 16,
+    title: "Fotografía Gastronomica",
+    description: "Fotografía de platos para restaurante.",
+    image: "/assets/fotografia-4.jpg",
+    category: "Fotografía",
+  },
+  {
+    id: 17,
+    title: "Moda Editorial",
+    description: "Editorial de moda para catálogo de temporada.",
+    image: "/assets/fotografia-5.jpg",
+    category: "Fotografía",
+  },
+  {
+    id: 18,
+    title: "Moda Editorial",
+    description: "Fotografía de moda.",
+    image: "/assets/fotografia-6.jpg",
+    category: "Fotografía",
+  },
   // 1-6: Golf Club
   {
     id: 1,
@@ -106,6 +149,7 @@ const portfolioItems: PortfolioItem[] = [
 const categories = ["Marketing", "Fotografía", "Diseño Web y Apps"];
 
 export default function Portfolio() {
+  const [modalImage, setModalImage] = useState<string | null>(null);
   const [activeCategory, setActiveCategory] = useState("Marketing")
   const [hoveredItem, setHoveredItem] = useState<number | null>(null)
   const [carouselIndex, setCarouselIndex] = useState(0);
@@ -164,40 +208,73 @@ export default function Portfolio() {
         <div className="relative">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {currentItems.map((item) => (
-              <motion.div
-                key={item.id}
-                className="group relative rounded-xl overflow-hidden shadow-lg h-80"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: item.id * 0.1 }}
-                onMouseEnter={() => setHoveredItem(item.id)}
-                onMouseLeave={() => setHoveredItem(null)}
-              >
-                <Image
-                  src={item.image || "/placeholder.svg"}
-                  alt={item.title}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                  <h3 className="text-xl font-bold text-white mb-2">{item.title}</h3>
-                  <p className="text-gray-200 mb-4">{item.description}</p>
-                  <a href="#" className="inline-flex items-center text-primary hover:text-primary/80 transition-colors">
-                    <span className="mr-2">Ver proyecto</span>
-                    <ArrowRight className="h-4 w-4" />
-                  </a>
-                </div>
+  <motion.div
+    key={item.id}
+    className="group relative rounded-xl overflow-hidden shadow-lg h-80"
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.8, delay: item.id * 0.1 }}
+    onMouseEnter={() => setHoveredItem(item.id)}
+    onMouseLeave={() => setHoveredItem(null)}
+  >
+    <Image
+  src={item.image || "/placeholder.svg"}
+  alt={item.title}
+  fill
+  className="object-cover transition-transform duration-500 group-hover:scale-110 cursor-zoom-in"
+/>
+{/* Área invisible para capturar el click, debajo del overlay */}
+<div
+  className="absolute inset-0 z-10 cursor-zoom-in"
+  style={{ pointerEvents: 'auto' }}
+  onClick={e => {
+    e.stopPropagation();
+    setModalImage(item.image);
+  }}
+/>
 
-                <motion.div
-                  className="absolute inset-0 bg-primary/20 pointer-events-none"
-                  initial={{ opacity: 0 }}
-                  animate={{
-                    opacity: hoveredItem === item.id ? 0.2 : 0,
-                  }}
-                  transition={{ duration: 0.3 }}
-                />
-              </motion.div>
-            ))}
+    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+      <h3 className="text-xl font-bold text-white mb-2">{item.title}</h3>
+      <p className="text-gray-200 mb-4">{item.description}</p>
+      <a href="#" className="inline-flex items-center text-primary hover:text-primary/80 transition-colors">
+        <span className="mr-2">Ver proyecto</span>
+        <ArrowRight className="h-4 w-4" />
+      </a>
+    </div>
+    <motion.div
+      className="absolute inset-0 bg-primary/20 pointer-events-none"
+      initial={{ opacity: 0 }}
+      animate={{
+        opacity: hoveredItem === item.id ? 0.2 : 0,
+      }}
+      transition={{ duration: 0.3 }}
+    />
+  </motion.div>
+))}
+
+{/* Modal de imagen ampliada */}
+{modalImage && (
+  <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm" onClick={() => setModalImage(null)}>
+    <div className="relative max-w-2xl w-full mx-4" onClick={e => e.stopPropagation()}>
+      <button
+        className="absolute top-2 right-2 z-10 bg-black/70 text-white rounded-full w-8 h-8 flex items-center justify-center hover:bg-black/90 transition-colors"
+        onClick={() => setModalImage(null)}
+        aria-label="Cerrar"
+      >
+        ×
+      </button>
+      <div className="w-full aspect-[3/4] bg-black flex items-center justify-center rounded-xl overflow-hidden">
+        <Image
+          src={modalImage}
+          alt="Foto ampliada"
+          fill
+          className="object-contain"
+          style={{ background: 'black' }}
+        />
+      </div>
+    </div>
+  </div>
+)}
           </div>
           {/* Carrusel controles */}
           {filteredItems.length > itemsPerPage && (
