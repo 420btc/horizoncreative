@@ -220,7 +220,8 @@ export default function Portfolio() {
         src={item.image || "/placeholder.svg"}
         alt={item.title}
         fill
-        className="object-cover transition-transform duration-500 group-hover:scale-110 cursor-zoom-in"
+        className="object-contain transition-transform duration-500 group-hover:scale-105 cursor-zoom-in bg-black"
+        style={{ backgroundColor: 'black' }}
       />
       {/* Área invisible para capturar el click, debajo del overlay */}
       <div

@@ -70,7 +70,7 @@ export default function AboutUs() {
           clientes.
         </motion.p>
 
-        <div className="grid md:grid-cols-2 gap-12 items-center">
+        <div className="grid grid-cols-2 md:grid-cols-2 gap-12 items-center">
           <motion.div
             className="relative h-80 order-2 md:order-1"
             initial={{ opacity: 0, x: -50 }}

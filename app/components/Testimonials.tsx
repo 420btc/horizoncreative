@@ -39,7 +39,7 @@ export default function Testimonials() {
         >
           What Our Clients Say
         </motion.h2>
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
           {testimonials.map((testimonial, index) => (
             <motion.div
               key={testimonial.author}

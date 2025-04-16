@@ -50,13 +50,21 @@ export default function ProductShowcase() {
               exit={{ opacity: 0, x: -100 }}
               transition={{ duration: 0.5 }}
             >
-              <div className="md:w-1/2 mb-8 md:mb-0">
-                <h3 className="text-3xl font-bold mb-4">{products[currentProduct].name}</h3>
-                <p className="text-xl text-gray-600 mb-8">{products[currentProduct].description}</p>
-                <button className="apple-button">Learn More</button>
-              </div>
-              <div className="md:w-1/2">
-                <Image
+              <div className="grid grid-cols-2 md:grid-cols-2 gap-8">
+                <div className="md:w-1/2 mb-8 md:mb-0">
+                  <h3 className="text-3xl font-bold mb-4">{products[currentProduct].name}</h3>
+                  <p className="text-xl text-gray-600 mb-8">{products[currentProduct].description}</p>
+                  <button className="apple-button">Learn More</button>
+                </div>
+                <div className="md:w-1/2">
+                  <Image
+                    src={products[currentProduct].image || "/placeholder.svg"}
+                    alt={products[currentProduct].name}
+                    width={600}
+                    height={600}
+                    className="rounded-2xl shadow-lg"
+                  />
+                </div>
                   src={products[currentProduct].image || "/placeholder.svg"}
                   alt={products[currentProduct].name}
                   width={600}
