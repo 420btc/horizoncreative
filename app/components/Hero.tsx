@@ -8,8 +8,8 @@ import TypewriterText from "./TypewriterText"
 export default function Hero() {
   return (
     <div className="relative isolate overflow-hidden bg-white dark:bg-black">
-      <div className="mx-auto max-w-7xl px-6 py-20 lg:flex lg:items-center lg:gap-x-10 lg:px-8">
-        <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-lg lg:flex-shrink-0">
+      <div className="mx-auto max-w-7xl px-4 py-12 flex flex-col-reverse items-center justify-center gap-8 lg:flex-row lg:items-center lg:gap-x-10 lg:px-8 lg:py-20">
+        <div className="w-full max-w-2xl flex flex-col items-center lg:items-start lg:mx-0 lg:max-w-lg lg:flex-shrink-0">
           <motion.h1
             className="mt-10 text-4xl font-bold tracking-tight text-black dark:text-white sm:text-6xl"
             initial={{ opacity: 0, y: 20 }}
@@ -49,18 +49,18 @@ export default function Hero() {
           </motion.div>
         </div>
         <motion.div
-          className="mx-auto mt-16 lg:mt-0"
+          className="mx-auto mb-8 lg:mb-0 lg:mt-0 flex items-center justify-center"
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
         >
-          <div className="relative">
+          <div className="relative flex items-center justify-center">
             <Image
               src="/logotipo.png"
               alt="Horizon Creative Logotipo"
-              width={500}
-              height={500}
-              className="w-[300px] md:w-[500px] rounded-2xl shadow-xl"
+              width={200}
+              height={200}
+              className="w-80 h-80 md:w-[300px] md:h-[300px] lg:w-[500px] lg:h-[500px] rounded-2xl shadow-xl object-contain mt-8"
               priority
             />
           </div>
