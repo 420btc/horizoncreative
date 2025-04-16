@@ -10,21 +10,25 @@ const services = [
     icon: <Paintbrush className="w-12 h-12 mb-4 text-primary" />,
     title: "Diseño Web",
     description: "Creamos sitios web atractivos y funcionales que representan la identidad de tu marca.",
+    slug: "diseno-web",
   },
   {
     icon: <Code className="w-12 h-12 mb-4 text-primary" />,
     title: "Desarrollo Web",
     description: "Construimos plataformas robustas, escalables y de alto rendimiento para tu negocio.",
+    slug: "desarrollo-web",
   },
   {
     icon: <Megaphone className="w-12 h-12 mb-4 text-primary" />,
     title: "Marketing Digital",
     description: "Desarrollamos estrategias que aumentan la visibilidad de tu marca y generan conversiones.",
+    slug: "marketing-digital",
   },
   {
     icon: <Smartphone className="w-12 h-12 mb-4 text-primary" />,
     title: "Aplicaciones Móviles",
     description: "Creamos aplicaciones innovadoras para plataformas iOS y Android.",
+    slug: "aplicaciones-moviles",
   },
 ]
 
@@ -50,34 +54,22 @@ export default function Services() {
                   {service.icon}
                   <h3 className="text-xl font-bold mb-2 text-black dark:text-white">{service.title}</h3>
                   <p className="text-gray-700 dark:text-gray-300">{service.description}</p>
+<a
+  href={`/servicios/${service.slug}`}
+  className="inline-flex items-center mt-4 text-primary hover:text-primary/80 transition-colors font-semibold"
+>
+  <span className="mr-2">Ver más</span>
+  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+    <path fillRule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
+  </svg>
+</a>
                 </div>
               </AnimatedSection>
             )); })()}
           </div>
         </div>
 
-        {/* Botón de contacto adaptativo */}
-        <div className="w-full flex justify-center mt-8">
-          {/* Botón SOLO para móvil */}
-          <a
-            href="/contacto"
-            className="flex sm:hidden items-center justify-center bg-yellow-400 hover:bg-yellow-500 text-black w-12 h-12 rounded-full shadow-lg transition-all duration-200 mx-auto"
-            aria-label="Contactar"
-          >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M21 10.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7A8.38 8.38 0 013 13.5c0-4.7 3.8-8.5 8.5-8.5S20 8.8 20 13.5z" />
-              <circle cx="12" cy="13.5" r="2.5" />
-            </svg>
-          </a>
-          {/* Botón SOLO para desktop */}
-          <a
-            href="/contacto"
-            className="hidden sm:inline-block bg-yellow-400 hover:bg-yellow-500 text-black font-bold px-8 py-4 rounded-full shadow-lg transition-all duration-200 text-lg text-center"
-            style={{ wordBreak: 'break-word', whiteSpace: 'normal' }}
-          >
-            Contáctanos para un presupuesto personalizado
-          </a>
-        </div>
+
       </div>
     </section>
   )
