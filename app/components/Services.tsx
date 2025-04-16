@@ -56,6 +56,16 @@ export default function Services() {
           </div>
         </div>
 
+        {/* Botón de contacto adaptativo */}
+        <div className="w-full flex justify-center mt-8">
+          <a
+            href="/contacto"
+            className="bg-yellow-400 hover:bg-yellow-500 text-black font-bold px-4 py-3 sm:px-8 sm:py-4 rounded-full shadow-lg transition-all duration-200 w-full sm:w-auto text-center text-sm sm:text-lg break-words whitespace-normal"
+            style={{ wordBreak: 'break-word', whiteSpace: 'normal' }}
+          >
+            Contáctanos para un presupuesto personalizado
+          </a>
+        </div>
       </div>
     </section>
   )

@@ -8,10 +8,10 @@ import TypewriterText from "./TypewriterText"
 export default function Hero() {
   return (
     <div className="relative isolate overflow-hidden bg-white dark:bg-black">
-      <div className="mx-auto max-w-7xl px-4 py-12 flex flex-col-reverse items-center justify-center gap-8 lg:flex-row lg:items-center lg:gap-x-10 lg:px-8 lg:py-20">
+      <div className="mx-auto max-w-7xl px-4 py-12 flex flex-col-reverse items-center justify-center gap-2 lg:flex-row lg:items-center lg:gap-x-10 lg:px-8 lg:py-20 lg:gap-8">
         <div className="w-full max-w-2xl flex flex-col items-center lg:items-start lg:mx-0 lg:max-w-lg lg:flex-shrink-0">
           <motion.h1
-            className="mt-10 text-4xl font-bold tracking-tight text-black dark:text-white sm:text-6xl"
+            className="mt-0 md:mt-10 text-4xl font-bold tracking-tight text-black dark:text-white sm:text-6xl"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -60,7 +60,7 @@ export default function Hero() {
               alt="Horizon Creative Logotipo"
               width={200}
               height={200}
-              className="w-80 h-80 md:w-[300px] md:h-[300px] lg:w-[500px] lg:h-[500px] rounded-2xl shadow-xl object-contain mt-8"
+              className="w-80 h-80 md:w-[300px] md:h-[300px] lg:w-[500px] lg:h-[500px] rounded-2xl shadow-xl object-contain mt-0 md:mt-8"
               priority
             />
           </div>

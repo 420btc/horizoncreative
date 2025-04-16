@@ -180,12 +180,12 @@ export default function Portfolio() {
           </h1>
         </div>
         <motion.div
-          className="text-center mb-12 mt-28"
+          className="text-center mb-4 md:mb-8 mt-4 md:mt-12"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="text-4xl font-bold text-black dark:text-white mb-4">Nuestro Portfolio</h2>
+          <h2 className="text-3xl font-bold tracking-tight text-black dark:text-white sm:text-4xl mt-4 md:mt-12 mb-4 md:mb-8">Nuestro Portfolio</h2>
           <p className="text-lg text-gray-700 dark:text-gray-300 max-w-3xl mx-auto">
             Descubre algunos de nuestros proyectos más destacados, donde combinamos creatividad y estrategia para lograr
             resultados excepcionales.
