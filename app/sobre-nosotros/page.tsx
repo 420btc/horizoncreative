@@ -145,9 +145,31 @@ export default function SobreNosotros() {
               alt="Equipo colaborando en proyectos"
               fill
               className="object-cover"
-              style={{ objectPosition: 'center 30%' }}
             />
           </motion.div>
+        </div>
+        {/* Galería de fotos grandes al final */}
+        <div className="mt-20 mb-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="relative w-full h-[500px] rounded-2xl overflow-hidden shadow-2xl">
+              <Image
+                src="/assets/studio1.jpg"
+                alt="Eric en el estudio"
+                fill
+                className="object-cover object-center"
+                priority
+              />
+            </div>
+            <div className="relative w-full h-[500px] rounded-2xl overflow-hidden shadow-2xl">
+              <Image
+                src="/assets/studio2.jpg"
+                alt="Ivan en el estudio"
+                fill
+                className="object-cover object-center"
+                priority
+              />
+            </div>
+          </div>
         </div>
       </div>
     </div>

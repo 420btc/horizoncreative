@@ -76,7 +76,7 @@ const portfolioItems: PortfolioItem[] = [
     id: 3,
     title: "Golf Club Invitación",
     description: "Invitación a experiencia en The Golf Club Marbella.",
-    image: "/assets/golfclub-3.jpg",
+    image: "/assets/golfclub-6.jpg",
     category: "Marketing",
   },
   {
@@ -97,7 +97,7 @@ const portfolioItems: PortfolioItem[] = [
     id: 6,
     title: "Golf Club Aérea",
     description: "Vista aérea y branding de The Golf Club.",
-    image: "/assets/golfclub-6.jpg",
+    image: "/assets/golfclub-3.jpg",
     category: "Marketing",
   },
   // 7-12: Inventadas
