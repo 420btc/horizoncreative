@@ -1,6 +1,8 @@
 "use client"
 
 import { motion } from "framer-motion"
+import AnimatedSection from "./AnimatedSection"
+import type { Direction } from "./AnimatedSection"
 import { Code, Paintbrush, Megaphone, Smartphone } from "lucide-react"
 
 const services = [
@@ -31,28 +33,26 @@ export default function Services() {
     <section id="services" className="py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-black">
       <div className="container mx-auto relative flex flex-col md:flex-row items-start md:items-center">
         <div className="flex-1">
-          <motion.h2
-            className="text-5xl font-black mb-8 text-center text-black dark:text-white"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            Nuestros Servicios
-          </motion.h2>
+          <AnimatedSection direction="up">
+            <h2 className="text-5xl font-black mb-8 text-center text-black dark:text-white">
+              Nuestros Servicios
+            </h2>
+          </AnimatedSection>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {services.map((service, index) => (
-              <motion.div
+            {(() => { const directions: Direction[] = ["up","right","left","down"]; return services.map((service, index) => (
+              <AnimatedSection
                 key={service.title}
-                className="bg-gray-50 dark:bg-black border border-gray-200 dark:border-gray-800 p-6 rounded-lg"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: index * 0.1 }}
+                direction={directions[index%4]}
+                delay={index * 0.15}
+                className="h-full"
               >
-                {service.icon}
-                <h3 className="text-xl font-bold mb-2 text-black dark:text-white">{service.title}</h3>
-                <p className="text-gray-700 dark:text-gray-300">{service.description}</p>
-              </motion.div>
-            ))}
+                <div className="bg-gray-50 dark:bg-black border border-gray-200 dark:border-gray-800 p-6 rounded-lg h-full">
+                  {service.icon}
+                  <h3 className="text-xl font-bold mb-2 text-black dark:text-white">{service.title}</h3>
+                  <p className="text-gray-700 dark:text-gray-300">{service.description}</p>
+                </div>
+              </AnimatedSection>
+            )); })()}
           </div>
         </div>
 

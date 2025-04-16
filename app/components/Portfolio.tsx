@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
+import AnimatedSection from "./AnimatedSection"
 import Image from "next/image"
 import { ArrowRight } from "lucide-react"
 
@@ -207,49 +208,47 @@ export default function Portfolio() {
 
         <div className="relative">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {currentItems.map((item) => (
-  <motion.div
-    key={item.id}
-    className="group relative rounded-xl overflow-hidden shadow-lg h-80"
-    initial={{ opacity: 0, y: 20 }}
-    animate={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.8, delay: item.id * 0.1 }}
-    onMouseEnter={() => setHoveredItem(item.id)}
-    onMouseLeave={() => setHoveredItem(null)}
-  >
-    <Image
-  src={item.image || "/placeholder.svg"}
-  alt={item.title}
-  fill
-  className="object-cover transition-transform duration-500 group-hover:scale-110 cursor-zoom-in"
-/>
-{/* Área invisible para capturar el click, debajo del overlay */}
-<div
-  className="absolute inset-0 z-10 cursor-zoom-in"
-  style={{ pointerEvents: 'auto' }}
-  onClick={e => {
-    e.stopPropagation();
-    setModalImage(item.image);
-  }}
-/>
-
-    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-      <h3 className="text-xl font-bold text-white mb-2">{item.title}</h3>
-      <p className="text-gray-200 mb-4">{item.description}</p>
-      <a href="#" className="inline-flex items-center text-primary hover:text-primary/80 transition-colors">
-        <span className="mr-2">Ver proyecto</span>
-        <ArrowRight className="h-4 w-4" />
-      </a>
-    </div>
+            {currentItems.map((item, idx) => (
+  <AnimatedSection key={item.id} direction={idx % 2 === 0 ? "up" : "right"} delay={0.1 * idx}>
     <motion.div
-      className="absolute inset-0 bg-primary/20 pointer-events-none"
-      initial={{ opacity: 0 }}
-      animate={{
-        opacity: hoveredItem === item.id ? 0.2 : 0,
-      }}
-      transition={{ duration: 0.3 }}
-    />
-  </motion.div>
+      className="group relative rounded-xl overflow-hidden shadow-lg h-80"
+      whileHover={{ scale: 1.03 }}
+      onMouseEnter={() => setHoveredItem(item.id)}
+      onMouseLeave={() => setHoveredItem(null)}
+    >
+      <Image
+        src={item.image || "/placeholder.svg"}
+        alt={item.title}
+        fill
+        className="object-cover transition-transform duration-500 group-hover:scale-110 cursor-zoom-in"
+      />
+      {/* Área invisible para capturar el click, debajo del overlay */}
+      <div
+        className="absolute inset-0 z-10 cursor-zoom-in"
+        style={{ pointerEvents: 'auto' }}
+        onClick={e => {
+          e.stopPropagation();
+          setModalImage(item.image);
+        }}
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+        <h3 className="text-xl font-bold text-white mb-2">{item.title}</h3>
+        <p className="text-gray-200 mb-4">{item.description}</p>
+        <a href="#" className="inline-flex items-center text-primary hover:text-primary/80 transition-colors">
+          <span className="mr-2">Ver proyecto</span>
+          <ArrowRight className="h-4 w-4" />
+        </a>
+      </div>
+      <motion.div
+        className="absolute inset-0 bg-primary/20 pointer-events-none"
+        initial={{ opacity: 0 }}
+        animate={{
+          opacity: hoveredItem === item.id ? 0.2 : 0,
+        }}
+        transition={{ duration: 0.3 }}
+      />
+    </motion.div>
+  </AnimatedSection>
 ))}
 
 {/* Modal de imagen ampliada */}

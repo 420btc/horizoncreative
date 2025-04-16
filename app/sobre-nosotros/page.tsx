@@ -1,6 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
+import AnimatedSection from "../components/AnimatedSection"
 import Image from "next/image"
 import { useTheme } from "next-themes"
 import { useEffect, useState } from "react"

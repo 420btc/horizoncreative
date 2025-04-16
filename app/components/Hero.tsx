@@ -1,6 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
+import AnimatedSection from "./AnimatedSection"
 import Image from "next/image"
 import TypewriterText from "./TypewriterText"
 

@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import Link from "next/link"
 import { useTheme } from "next-themes"
 import { motion } from "framer-motion"
+import AnimatedSection from "./AnimatedSection"
 import { MoonIcon, SunIcon } from "lucide-react"
 import Image from "next/image"
 
