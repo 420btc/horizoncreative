@@ -191,40 +191,14 @@ export default function Portfolio() {
   return (
     <section className="py-20 bg-white dark:bg-black">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="w-full flex justify-center items-center mt-4 mb-6">
-          <h1 className="text-5xl md:text-6xl font-extrabold text-black dark:text-white text-center leading-tight">
-            <span style={{
-              display: 'flex',
-              alignItems: 'baseline',
-              justifyContent: 'center',
-              gap: '0.25ch',
-              width: '100%',
-              flexWrap: 'nowrap',
-              whiteSpace: 'nowrap',
-            }}>
-              <span style={{display:'inline', flexShrink:0}}>Transformamos tu</span>
-              <span style={{
-                display:'inline-block',
-                position:'relative',
-                verticalAlign:'baseline',
-                textAlign:'left',
-                minHeight:'1em',
-                flexShrink:0,
-                whiteSpace:'nowrap',
-              }}>
-                {/* Medidor invisible para el ancho máximo */}
-                <span style={{
-                  visibility:'hidden',
-                  position:'absolute',
-                  pointerEvents:'none',
-                  fontWeight:'inherit',
-                  fontSize:'inherit',
-                  fontFamily:'inherit',
-                  lineHeight:'inherit',
-                  whiteSpace:'nowrap',
-                }}>
-                  {palabrasClave.reduce((a, b) => a.length > b.length ? a : b)}
-                </span>
+        <div className="w-full flex justify-start items-center mt-4 mb-6">
+          <div className="flex justify-start items-end ml-0 sm:ml-[9rem]">
+            <h1 className="text-5xl md:text-6xl font-extrabold text-black dark:text-white leading-tight text-left relative inline-block">
+              <span className="block sm:inline">Transformamos tu</span>
+              <span
+                className="block mt-2 sm:mt-0 sm:inline sm:absolute sm:left-full sm:top-0 sm:ml-[0.25ch] sm:whitespace-nowrap text-center sm:text-left w-full sm:w-auto"
+                style={{ height: '100%', display: 'inline-block' }}
+              >
                 <AnimatePresence mode="wait">
                   <motion.span
                     key={palabraIndex}
@@ -248,8 +222,8 @@ export default function Portfolio() {
                   </motion.span>
                 </AnimatePresence>
               </span>
-            </span>
-          </h1>
+            </h1>
+          </div>
         </div>
         <motion.div
           className="text-center mb-4 md:mb-8 mt-4 md:mt-12"
