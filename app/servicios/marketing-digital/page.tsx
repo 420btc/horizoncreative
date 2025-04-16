@@ -5,15 +5,19 @@ import Image from "next/image";
 export default function MarketingDigitalGaleria() {
   return (
     <section className="py-16 px-4 max-w-4xl mx-auto">
-      <h1 className="text-4xl font-bold mb-8 text-center text-black dark:text-white">Marketing Digital - Galería</h1>
-      <div className="grid gap-8">
-        <div className="w-full flex flex-col items-center">
-          <Image src="/galeria/marketing1.jpg" alt="Campaña marketing 1" width={900} height={600} className="rounded-2xl shadow-2xl mb-4 object-cover w-full max-w-2xl" />
-          <p className="text-lg text-gray-700 dark:text-gray-300 text-center">Campaña de marketing digital con resultados medibles y creativos.</p>
+      <h1 className="text-4xl font-bold mb-8 text-center text-black dark:text-white">Marketing Digital</h1>
+      <div className="grid grid-cols-2 gap-4 sm:gap-8 items-start">
+        <div className="flex flex-col items-center">
+          <div className="w-full aspect-[2/3] relative">
+            <Image src="/assets/publi1.jpg" alt="Publicidad Marketing Digital 1" fill className="rounded-2xl shadow-2xl mb-2 object-cover" style={{objectPosition:'top'}} />
+          </div>
+          <p className="text-sm sm:text-lg text-gray-700 dark:text-gray-300 text-center"></p>
         </div>
-        <div className="w-full flex flex-col items-center">
-          <Image src="/galeria/marketing2.jpg" alt="Campaña marketing 2" width={900} height={600} className="rounded-2xl shadow-2xl mb-4 object-cover w-full max-w-2xl" />
-          <p className="text-lg text-gray-700 dark:text-gray-300 text-center">Estrategia de redes sociales para crecimiento de marca.</p>
+        <div className="flex flex-col items-center">
+          <div className="w-full aspect-[2/3] relative">
+            <Image src="/assets/publi2.jpg" alt="Publicidad Marketing Digital 2" fill className="rounded-2xl shadow-2xl mb-2 object-cover" style={{objectPosition:'top'}} />
+          </div>
+          <p className="text-sm sm:text-lg text-gray-700 dark:text-gray-300 text-center"></p>
         </div>
       </div>
     </section>
