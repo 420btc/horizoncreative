@@ -147,7 +147,7 @@ const portfolioItems: PortfolioItem[] = [
 ];
 
 
-const categories = ["Marketing", "Fotografía", "Diseño Web y Apps"];
+const categories = ["Marketing", "Fotografía", "Diseño Web/Apps"];
 
 export default function Portfolio() {
   const [modalImage, setModalImage] = useState<string | null>(null);
@@ -198,9 +198,12 @@ export default function Portfolio() {
               <button
                 key={category}
                 onClick={() => setActiveCategory(category)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors border-2 ${activeCategory === category ? "bg-primary text-black border-primary" : "bg-yellow-100 text-gray-700 border-primary hover:bg-primary/80 hover:text-black"}`}
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${activeCategory === category ? "bg-primary text-black border-4 border-black shadow font-bold" : "bg-primary text-gray-700 border-2 border-black"}`}
               >
                 {category}
+                {activeCategory === category && (
+                  <span className="sr-only">(seleccionado)</span>
+                )}
               </button>
             ))}
           </div>
