@@ -58,9 +58,21 @@ export default function Services() {
 
         {/* Botón de contacto adaptativo */}
         <div className="w-full flex justify-center mt-8">
+          {/* Botón SOLO para móvil */}
           <a
             href="/contacto"
-            className="bg-yellow-400 hover:bg-yellow-500 text-black font-bold px-4 py-3 sm:px-8 sm:py-4 rounded-full shadow-lg transition-all duration-200 w-full sm:w-auto text-center text-sm sm:text-lg break-words whitespace-normal"
+            className="flex sm:hidden items-center justify-center bg-yellow-400 hover:bg-yellow-500 text-black w-12 h-12 rounded-full shadow-lg transition-all duration-200 mx-auto"
+            aria-label="Contactar"
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M21 10.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7A8.38 8.38 0 013 13.5c0-4.7 3.8-8.5 8.5-8.5S20 8.8 20 13.5z" />
+              <circle cx="12" cy="13.5" r="2.5" />
+            </svg>
+          </a>
+          {/* Botón SOLO para desktop */}
+          <a
+            href="/contacto"
+            className="hidden sm:inline-block bg-yellow-400 hover:bg-yellow-500 text-black font-bold px-8 py-4 rounded-full shadow-lg transition-all duration-200 text-lg text-center"
             style={{ wordBreak: 'break-word', whiteSpace: 'normal' }}
           >
             Contáctanos para un presupuesto personalizado
