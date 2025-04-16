@@ -173,13 +173,13 @@ export default function Portfolio() {
   return (
     <section className="py-20 bg-white dark:bg-black">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="w-full flex justify-center items-center mb-10">
+        <div className="w-full flex justify-center items-center mt-4 mb-6">
           <h1 className="text-5xl md:text-6xl font-extrabold text-black dark:text-white text-center leading-tight">
             Transformamos tu presencia digital
           </h1>
         </div>
         <motion.div
-          className="text-center mb-12"
+          className="text-center mb-12 mt-28"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
