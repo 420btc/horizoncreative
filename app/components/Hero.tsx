@@ -7,7 +7,7 @@ import TypewriterText from "./TypewriterText"
 
 export default function Hero() {
   return (
-    <div className="relative isolate overflow-hidden bg-white dark:bg-black">
+    <div className="relative isolate overflow-hidden bg-black">
       <div className="mx-auto max-w-7xl px-4 py-12 flex flex-col-reverse items-center justify-center gap-2 lg:flex-row lg:items-center lg:gap-x-10 lg:px-8 lg:py-20 lg:gap-8">
         <div className="w-full max-w-2xl flex flex-col items-center lg:items-start lg:mx-0 lg:max-w-lg lg:flex-shrink-0">
           <motion.h1

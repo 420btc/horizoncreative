@@ -189,7 +189,7 @@ export default function Portfolio() {
   }, [activeCategory]);
 
   return (
-    <section className="py-20 bg-white dark:bg-black">
+    <section className="py-20 bg-black">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="w-full flex justify-start items-center mt-4 mb-6">
           <div className="flex justify-start items-end ml-0 sm:ml-[9rem]">

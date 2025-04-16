@@ -34,7 +34,7 @@ const services = [
 
 export default function Services() {
   return (
-    <section id="services" className="py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-black">
+    <section id="services" className="py-20 px-4 sm:px-6 lg:px-8 bg-black">
       <div className="container mx-auto relative flex flex-col md:flex-row items-start md:items-center">
         <div className="flex-1">
           <AnimatedSection direction="up">

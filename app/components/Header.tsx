@@ -10,14 +10,13 @@ import Image from "next/image"
 
 export default function Header() {
   const [mounted, setMounted] = useState(false)
-  const { theme, setTheme } = useTheme()
   const [menuOpen, setMenuOpen] = useState(false)
 
   useEffect(() => setMounted(true), [])
 
   return (
     <motion.header
-      className="sticky top-0 z-50 bg-white dark:bg-black border-b border-gray-100 dark:border-gray-800"
+      className="sticky top-0 z-50 bg-black border-b border-gray-800"
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6 }}
@@ -72,14 +71,7 @@ export default function Header() {
           </div>
         )}
         <div className="flex flex-1 justify-end">
-          {mounted && (
-            <button
-              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              className="rounded-full p-2 bg-primary/10 text-black dark:text-primary hover:bg-primary/20 transition-colors"
-            >
-              {theme === "dark" ? <SunIcon className="h-5 w-5" /> : <MoonIcon className="h-5 w-5" />}
-            </button>
-          )}
+          {/* Botón de tema eliminado, sólo espacio para alinear menú */}
         </div>
       </nav>
     </motion.header>
