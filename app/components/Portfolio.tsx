@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { motion } from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion";
 import AnimatedSection from "./AnimatedSection"
 import Image from "next/image"
 import { ArrowRight } from "lucide-react"
@@ -150,6 +150,23 @@ const portfolioItems: PortfolioItem[] = [
 const categories = ["Marketing", "Fotografía", "Diseño Web/Apps"];
 
 export default function Portfolio() {
+  const palabrasClave = [
+    "presencia digital",
+    "éxito online",
+    "impacto digital",
+    "marca virtual",
+    "visibilidad web",
+    "negocio digital",
+    "audiencia online"
+  ];
+  const [palabraIndex, setPalabraIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setPalabraIndex((prev) => (prev + 1) % palabrasClave.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
   const [modalImage, setModalImage] = useState<string | null>(null);
   const [activeCategory, setActiveCategory] = useState("Marketing")
   const [hoveredItem, setHoveredItem] = useState<number | null>(null)
@@ -176,7 +193,62 @@ export default function Portfolio() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="w-full flex justify-center items-center mt-4 mb-6">
           <h1 className="text-5xl md:text-6xl font-extrabold text-black dark:text-white text-center leading-tight">
-            Transformamos tu presencia digital
+            <span style={{
+              display: 'flex',
+              alignItems: 'baseline',
+              justifyContent: 'center',
+              gap: '0.25ch',
+              width: '100%',
+              flexWrap: 'nowrap',
+              whiteSpace: 'nowrap',
+            }}>
+              <span style={{display:'inline', flexShrink:0}}>Transformamos tu</span>
+              <span style={{
+                display:'inline-block',
+                position:'relative',
+                verticalAlign:'baseline',
+                textAlign:'left',
+                minHeight:'1em',
+                flexShrink:0,
+                whiteSpace:'nowrap',
+              }}>
+                {/* Medidor invisible para el ancho máximo */}
+                <span style={{
+                  visibility:'hidden',
+                  position:'absolute',
+                  pointerEvents:'none',
+                  fontWeight:'inherit',
+                  fontSize:'inherit',
+                  fontFamily:'inherit',
+                  lineHeight:'inherit',
+                  whiteSpace:'nowrap',
+                }}>
+                  {palabrasClave.reduce((a, b) => a.length > b.length ? a : b)}
+                </span>
+                <AnimatePresence mode="wait">
+                  <motion.span
+                    key={palabraIndex}
+                    initial={{ y: 30, opacity: 0, backgroundSize: '0% 100%' }}
+                    animate={{ y: 0, opacity: 1, backgroundSize: '100% 100%' }}
+                    exit={{ y: -30, opacity: 0 }}
+                    transition={{ duration: 0.5, ease: 'easeInOut' }}
+                    style={{
+                      backgroundImage: 'linear-gradient(90deg, #ffe600 0%, #ffe600 100%)',
+                      backgroundRepeat: 'no-repeat',
+                      backgroundPosition: 'left',
+                      backgroundSize: '100% 100%',
+                      color: '#ffe600',
+                      WebkitBackgroundClip: 'text',
+                      WebkitTextFillColor: '#ffe600',
+                      display: 'inline-block',
+                      transition: 'color 0.3s',
+                    }}
+                  >
+                    {palabrasClave[palabraIndex]}
+                  </motion.span>
+                </AnimatePresence>
+              </span>
+            </span>
           </h1>
         </div>
         <motion.div
