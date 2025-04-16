@@ -44,7 +44,13 @@ export default function Servicios() {
 
   return (
     <div className="bg-white dark:bg-black min-h-screen">
-      <div className="container mx-auto py-20 px-4 sm:px-6 lg:px-8">
+      <div className="container mx-auto py-20 px-4 sm:px-6 lg:px-8 relative">
+        {/* Flyer pegatina flotante, esquina superior derecha, solo visible en md+ */}
+        <img
+          src="/flyer.png"
+          alt="Flyer Horizon Pegatina"
+          className="hidden md:block absolute top-6 right-10 w-44 md:w-52 rotate-[15deg] z-10 pointer-events-none select-none"
+        />
         <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0, y: 20 }}
@@ -52,6 +58,8 @@ export default function Servicios() {
           transition={{ duration: 0.8 }}
         >
           <h1 className="text-5xl font-black mb-4 text-black dark:text-white">Nuestros Servicios</h1>
+          {/* Imagen flyer tipo pegatina, solo visible en md+ */}
+
           <p className="text-2xl text-gray-700 dark:text-gray-300 mb-8">Esto es todo lo que podemos hacer por ti</p>
           <div className="max-w-3xl mx-auto">
             <h2 className="text-3xl font-bold mb-4 text-black dark:text-white">

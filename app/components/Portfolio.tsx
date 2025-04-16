@@ -1,65 +1,139 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import Image from "next/image"
 import { ArrowRight } from "lucide-react"
 
-const portfolioItems = [
+type PortfolioItem = {
+  id: number;
+  title: string;
+  description: string;
+  image: string;
+  category: string;
+};
+
+const portfolioItems: PortfolioItem[] = [
+  // 1-6: Golf Club
   {
     id: 1,
-    title: "Diseño de Interiores",
-    description: "Proyecto de diseño interior para restaurante en Málaga",
-    image:
-      "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1%20%281%29.jpg-wcotWWsKstxl146q8T902XWKQwPF3I.jpeg",
-    category: "Diseño",
+    title: "Golf Club Poster",
+    description: "Diseño de póster para The Golf Club Marbella.",
+    image: "/assets/golfclub-1.jpg",
+    category: "Marketing",
   },
   {
     id: 2,
-    title: "Espacios Gastronómicos",
-    description: "Creación de ambientes únicos para experiencias culinarias",
-    image:
-      "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1%20%282%29.jpg-gCgdQi6qxhZnnrpbxU7ZMjHSSRH254.jpeg",
-    category: "Diseño",
+    title: "Golf Club Colores",
+    description: "Paleta de colores corporativa para The Golf Club.",
+    image: "/assets/golfclub-2.jpg",
+    category: "Marketing",
   },
   {
     id: 3,
-    title: "Decoración Moderna",
-    description: "Combinación de elementos contemporáneos y funcionales",
-    image:
-      "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1%20%283%29.jpg-iPKYWkgmbKjlJXjMIoe4KnwGCFevUw.jpeg",
-    category: "Diseño",
+    title: "Golf Club Invitación",
+    description: "Invitación a experiencia en The Golf Club Marbella.",
+    image: "/assets/golfclub-3.jpg",
+    category: "Marketing",
   },
   {
     id: 4,
-    title: "Marketing Inmobiliario",
-    description: "Estrategia de marca para propiedades de lujo en Benalmádena",
-    image:
-      "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1%20%285%29.jpg-H4mhfoNf6Aet5jQRHGmVbTPtgW40ei.jpeg",
+    title: "Golf Club Grand Opening",
+    description: "Cartel de apertura y torneo de The Golf Club.",
+    image: "/assets/golfclub-4.jpg",
     category: "Marketing",
   },
   {
     id: 5,
-    title: "Propiedades Vacacionales",
-    description: "Promoción digital para villas exclusivas en la Costa del Sol",
-    image:
-      "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1%20%284%29.jpg-QrZeBllB3qJekI9YMS7j0DOvVK9n8z.jpeg",
+    title: "Golf Club Branding",
+    description: "Branding y personaje para The Golf Club Marbella.",
+    image: "/assets/golfclub-5.jpg",
     category: "Marketing",
   },
-]
+  {
+    id: 6,
+    title: "Golf Club Aérea",
+    description: "Vista aérea y branding de The Golf Club.",
+    image: "/assets/golfclub-6.jpg",
+    category: "Marketing",
+  },
+  // 7-12: Inventadas
+  {
+    id: 7,
+    title: "Campaña Primavera",
+    description: "Campaña de marketing para la colección primavera.",
+    image: "/assets/marketing-1.jpg",
+    category: "Marketing",
+  },
+  {
+    id: 8,
+    title: "Rediseño Logo",
+    description: "Nuevo logo para cliente internacional.",
+    image: "/assets/marketing-2.jpg",
+    category: "Marketing",
+  },
+  {
+    id: 9,
+    title: "Evento Creativo",
+    description: "Cobertura de evento creativo para cliente.",
+    image: "/assets/marketing-3.jpg",
+    category: "Marketing",
+  },
+  {
+    id: 10,
+    title: "Anuncio Verano",
+    description: "Creatividad para campaña de verano.",
+    image: "/assets/marketing-4.jpg",
+    category: "Marketing",
+  },
+  {
+    id: 11,
+    title: "Packaging Gourmet",
+    description: "Diseño de packaging para productos gourmet.",
+    image: "/assets/marketing-5.jpg",
+    category: "Marketing",
+  },
+  {
+    id: 12,
+    title: "Flyer Digital",
+    description: "Flyer digital para lanzamiento de app.",
+    image: "/assets/marketing-6.jpg",
+    category: "Marketing",
+  },
+];
 
-const categories = ["Todos", ...Array.from(new Set(portfolioItems.map((item) => item.category)))]
+
+const categories = ["Marketing", "Fotografía", "Diseño Web y Apps"];
 
 export default function Portfolio() {
-  const [activeCategory, setActiveCategory] = useState("Todos")
+  const [activeCategory, setActiveCategory] = useState("Marketing")
   const [hoveredItem, setHoveredItem] = useState<number | null>(null)
+  const [carouselIndex, setCarouselIndex] = useState(0);
 
-  const filteredItems =
-    activeCategory === "Todos" ? portfolioItems : portfolioItems.filter((item) => item.category === activeCategory)
+  const filteredItems = portfolioItems.filter((item) => item.category === activeCategory);
+  const itemsPerPage = 6;
+  const totalPages = Math.ceil(filteredItems.length / itemsPerPage);
+  const currentItems = filteredItems.slice(carouselIndex * itemsPerPage, (carouselIndex + 1) * itemsPerPage);
+
+  const handlePrev = () => {
+    setCarouselIndex((prev) => Math.max(prev - 1, 0));
+  };
+  const handleNext = () => {
+    setCarouselIndex((prev) => Math.min(prev + 1, totalPages - 1));
+  };
+
+  useEffect(() => {
+    setCarouselIndex(0); // Reset al cambiar de sección
+  }, [activeCategory]);
 
   return (
     <section className="py-20 bg-white dark:bg-black">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="w-full flex justify-center items-center mb-10">
+          <h1 className="text-5xl md:text-6xl font-extrabold text-black dark:text-white text-center leading-tight">
+            Transformamos tu presencia digital
+          </h1>
+        </div>
         <motion.div
           className="text-center mb-12"
           initial={{ opacity: 0, y: 20 }}
@@ -79,11 +153,7 @@ export default function Portfolio() {
               <button
                 key={category}
                 onClick={() => setActiveCategory(category)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-                  activeCategory === category
-                    ? "bg-primary text-black"
-                    : "bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-700"
-                }`}
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors border-2 ${activeCategory === category ? "bg-primary text-black border-primary" : "bg-yellow-100 text-gray-700 border-primary hover:bg-primary/80 hover:text-black"}`}
               >
                 {category}
               </button>
@@ -91,42 +161,66 @@ export default function Portfolio() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredItems.map((item) => (
-            <motion.div
-              key={item.id}
-              className="group relative rounded-xl overflow-hidden shadow-lg h-80"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: item.id * 0.1 }}
-              onMouseEnter={() => setHoveredItem(item.id)}
-              onMouseLeave={() => setHoveredItem(null)}
-            >
-              <Image
-                src={item.image || "/placeholder.svg"}
-                alt={item.title}
-                fill
-                className="object-cover transition-transform duration-500 group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                <h3 className="text-xl font-bold text-white mb-2">{item.title}</h3>
-                <p className="text-gray-200 mb-4">{item.description}</p>
-                <a href="#" className="inline-flex items-center text-primary hover:text-primary/80 transition-colors">
-                  <span className="mr-2">Ver proyecto</span>
-                  <ArrowRight className="h-4 w-4" />
-                </a>
-              </div>
-
+        <div className="relative">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {currentItems.map((item) => (
               <motion.div
-                className="absolute inset-0 bg-primary/20 pointer-events-none"
-                initial={{ opacity: 0 }}
-                animate={{
-                  opacity: hoveredItem === item.id ? 0.2 : 0,
-                }}
-                transition={{ duration: 0.3 }}
-              />
-            </motion.div>
-          ))}
+                key={item.id}
+                className="group relative rounded-xl overflow-hidden shadow-lg h-80"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: item.id * 0.1 }}
+                onMouseEnter={() => setHoveredItem(item.id)}
+                onMouseLeave={() => setHoveredItem(null)}
+              >
+                <Image
+                  src={item.image || "/placeholder.svg"}
+                  alt={item.title}
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                  <h3 className="text-xl font-bold text-white mb-2">{item.title}</h3>
+                  <p className="text-gray-200 mb-4">{item.description}</p>
+                  <a href="#" className="inline-flex items-center text-primary hover:text-primary/80 transition-colors">
+                    <span className="mr-2">Ver proyecto</span>
+                    <ArrowRight className="h-4 w-4" />
+                  </a>
+                </div>
+
+                <motion.div
+                  className="absolute inset-0 bg-primary/20 pointer-events-none"
+                  initial={{ opacity: 0 }}
+                  animate={{
+                    opacity: hoveredItem === item.id ? 0.2 : 0,
+                  }}
+                  transition={{ duration: 0.3 }}
+                />
+              </motion.div>
+            ))}
+          </div>
+          {/* Carrusel controles */}
+          {filteredItems.length > itemsPerPage && (
+            <div className="flex justify-between items-center mt-4">
+              <button
+                onClick={handlePrev}
+                disabled={carouselIndex === 0}
+                className={`px-4 py-2 rounded-full bg-primary text-black font-bold shadow transition-colors border-2 border-primary disabled:opacity-50 disabled:cursor-not-allowed`}
+              >
+                &#8592;
+              </button>
+              <span className="text-black dark:text-white font-semibold">
+                Página {carouselIndex + 1} de {totalPages}
+              </span>
+              <button
+                onClick={handleNext}
+                disabled={carouselIndex === totalPages - 1}
+                className={`px-4 py-2 rounded-full bg-primary text-black font-bold shadow transition-colors border-2 border-primary disabled:opacity-50 disabled:cursor-not-allowed`}
+              >
+                &#8594;
+              </button>
+            </div>
+          )}
         </div>
 
         <div className="text-center mt-12">
@@ -139,5 +233,5 @@ export default function Portfolio() {
         </div>
       </div>
     </section>
-  )
+  );
 }

@@ -145,6 +145,7 @@ export default function SobreNosotros() {
               alt="Equipo colaborando en proyectos"
               fill
               className="object-cover"
+              style={{ objectPosition: 'center 30%' }}
             />
           </motion.div>
         </div>
