@@ -60,7 +60,7 @@ export default function Hero() {
               alt="Horizon Creative Logotipo"
               width={222}
               height={222}
-              className="w-[355px] h-[355px] md:w-[370px] md:h-[370px] lg:w-[616px] lg:h-[616px] rounded-2xl shadow-xl object-contain mt-0 md:mt-8"
+              className="w-[337px] h-[337px] md:w-[352px] md:h-[352px] lg:w-[585px] lg:h-[585px] rounded-2xl shadow-xl object-contain mt-0 md:mt-8"
               style={{ transform: 'rotate(5deg)' }}
               priority
             />

@@ -191,7 +191,7 @@ export default function Portfolio() {
   return (
     <section className="py-20 bg-black">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="w-full flex justify-start items-center mt-4 mb-6">
+        <div className="w-full flex justify-start items-center mt-[-4rem] mb-6 md:mt-[-5rem]">
           <div className="flex justify-start items-end ml-0 sm:ml-[9rem]">
             <h1 className="text-5xl md:text-6xl font-extrabold text-black dark:text-white leading-tight text-left relative inline-block">
               <span className="block sm:inline">Transformamos tu</span>
