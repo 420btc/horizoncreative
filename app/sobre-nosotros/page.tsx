@@ -176,7 +176,7 @@ export default function SobreNosotros() {
       <div className="w-full mt-8 mb-4">
         <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-1">
           <div className="flex justify-center items-center">
-            <img src="/assets/telescopio.png" alt="Telescopio" className="w-[405px] max-w-full h-auto" />
+            <img src="/assets/telescopio.png" alt="Telescopio" className="w-[400px] max-w-full h-auto" />
           </div>
           <div className="flex flex-col justify-center items-center md:justify-end md:items-start gap-2 mt-[-20px] md:-ml-8 md:mt-[-40px] max-w-xl w-full md:pr-4">
             <p className="text-xl text-gray-800 dark:text-gray-200 text-center md:text-left w-full">
