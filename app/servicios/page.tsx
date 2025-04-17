@@ -110,7 +110,7 @@ export default function Servicios() {
             <button
               type="button"
               aria-label="Siguiente imagen"
-              className="absolute right-[-22px] top-1/2 -translate-y-1/2 bg-yellow-400 hover:bg-yellow-500 rounded-full w-8 h-8 flex items-center justify-center shadow-md transition-colors"
+              className="absolute right-[-44px] top-1/2 -translate-y-1/2 bg-yellow-400 hover:bg-yellow-500 rounded-full w-8 h-8 flex items-center justify-center shadow-md transition-colors"
               onClick={() => setCarouselIndex((carouselIndex + 1) % 2)}
               style={{ outline: 'none', border: 'none' }}
             >
@@ -119,7 +119,7 @@ export default function Servicios() {
             <button
               type="button"
               aria-label="Imagen anterior"
-              className="absolute left-[-22px] top-1/2 -translate-y-1/2 bg-yellow-400 hover:bg-yellow-500 rounded-full w-8 h-8 flex items-center justify-center shadow-md transition-colors"
+              className="absolute left-[-44px] top-1/2 -translate-y-1/2 bg-yellow-400 hover:bg-yellow-500 rounded-full w-8 h-8 flex items-center justify-center shadow-md transition-colors"
               onClick={() => setCarouselIndex((carouselIndex + 1) % 2)}
               style={{ outline: 'none', border: 'none' }}
             >

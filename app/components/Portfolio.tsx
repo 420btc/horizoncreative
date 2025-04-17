@@ -381,7 +381,7 @@ export default function Portfolio() {
 
         <div className="text-center mt-12">
           <a
-            href="#"
+            href="/proyectos"
             className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-primary text-black font-medium hover:bg-primary/90 transition-colors"
           >
             Ver todos los proyectos
