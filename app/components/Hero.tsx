@@ -7,7 +7,7 @@ import TypewriterText from "./TypewriterText"
 export default function Hero() {
   return (
     <div className="relative isolate overflow-hidden bg-white dark:bg-black">
-      <div className="mx-auto max-w-7xl px-6 py-8 flex flex-col-reverse lg:flex-row lg:items-center lg:gap-x-10 lg:px-8 lg:py-20">
+      <div className="mx-auto max-w-7xl px-6 py-20 lg:flex lg:items-center lg:gap-x-10 lg:px-8">
         <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-lg lg:flex-shrink-0">
           <motion.h1
             className="mt-10 text-4xl font-bold tracking-tight text-black dark:text-white sm:text-6xl"
@@ -56,7 +56,7 @@ export default function Hero() {
           </motion.div>
         </div>
         <motion.div
-          className="mx-auto mb-1 mt-2 lg:mt-0 lg:mb-0"
+          className="mx-auto mt-16 lg:mt-0"
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
@@ -67,7 +67,7 @@ export default function Hero() {
               alt="Horizon Creative Logotipo"
               width={500}
               height={500}
-              className="w-[360px] sm:w-[384px] md:w-[500px] lg:w-[500px] rounded-2xl shadow-xl"
+              className="w-[300px] md:w-[500px] rounded-2xl shadow-xl"
               priority
             />
           </div>

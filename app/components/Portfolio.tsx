@@ -194,7 +194,14 @@ export default function Portfolio() {
         <div className="w-full flex justify-start items-center mt-[-4rem] mb-6 md:mt-[-5rem]">
           <div className="flex justify-start items-end ml-0 sm:ml-[9rem]">
             <h1 className="text-5xl md:text-6xl font-extrabold text-black dark:text-white leading-tight text-left relative inline-block">
-              <span className="block sm:inline">Transformamos tu</span>
+              <motion.span
+                initial={{ opacity: 0, x: -100 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ type: 'spring', bounce: 0.45, duration: 1.2, delay: 0 }}
+                className="block sm:inline"
+              >
+                Transformamos tu
+              </motion.span>
               <span
                 className="block mt-2 sm:mt-0 sm:inline sm:absolute sm:left-full sm:top-0 sm:ml-[0.25ch] sm:whitespace-nowrap text-center sm:text-left w-full sm:w-auto"
                 style={{ height: '100%', display: 'inline-block' }}
@@ -202,10 +209,10 @@ export default function Portfolio() {
                 <AnimatePresence mode="wait">
                   <motion.span
                     key={palabraIndex}
-                    initial={{ y: 30, opacity: 0, backgroundSize: '0% 100%' }}
-                    animate={{ y: 0, opacity: 1, backgroundSize: '100% 100%' }}
+                    initial={palabraIndex === 0 ? { y: 30, opacity: 0, x: 100, backgroundSize: '0% 100%' } : { y: 30, opacity: 0, backgroundSize: '0% 100%' }}
+                    animate={palabraIndex === 0 ? { y: 0, opacity: 1, x: 0, backgroundSize: '100% 100%' } : { y: 0, opacity: 1, backgroundSize: '100% 100%' }}
                     exit={{ y: -30, opacity: 0 }}
-                    transition={{ duration: 0.5, ease: 'easeInOut' }}
+                    transition={palabraIndex === 0 ? { duration: 0.5, ease: 'easeInOut', delay: 0.7 } : { duration: 0.5, ease: 'easeInOut' }}
                     style={{
                       backgroundImage: 'linear-gradient(90deg, #ffe600 0%, #ffe600 100%)',
                       backgroundRepeat: 'no-repeat',
