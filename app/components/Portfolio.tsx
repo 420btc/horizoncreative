@@ -225,18 +225,13 @@ export default function Portfolio() {
             </h1>
           </div>
         </div>
-        <motion.div
-          className="text-center mb-4 md:mb-8 mt-4 md:mt-12"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
+        <div className="text-center mb-4 md:mb-8 mt-6 md:mt-40">
           <h2 className="text-3xl font-bold tracking-tight text-black dark:text-white sm:text-4xl mt-4 md:mt-12 mb-4 md:mb-8">Nuestro Portfolio</h2>
           <p className="text-lg text-gray-700 dark:text-gray-300 max-w-3xl mx-auto">
             Descubre algunos de nuestros proyectos más destacados, donde combinamos creatividad y estrategia para lograr
             resultados excepcionales.
           </p>
-        </motion.div>
+        </div>
 
         <div className="flex justify-center mb-10">
           <div className="flex flex-wrap gap-2 justify-center">
@@ -255,7 +250,7 @@ export default function Portfolio() {
           </div>
         </div>
 
-        <div className="relative">
+        <div className="relative mt-0">
           {/* Carousel Controls - Left */}
           {filteredItems.length > itemsPerPage && (
             <button
