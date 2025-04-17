@@ -34,7 +34,7 @@ const services = [
 
 export default function Services() {
   return (
-    <section id="services" className="py-20 px-4 sm:px-6 lg:px-8 bg-black">
+    <section id="services" className="py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-black">
       <div className="container mx-auto relative flex flex-col md:flex-row items-start md:items-center">
         <div className="flex-1">
           <AnimatedSection direction="up">
@@ -42,7 +42,7 @@ export default function Services() {
               Nuestros Servicios
             </h2>
           </AnimatedSection>
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
             {(() => { const directions: Direction[] = ["up","right","left","down"]; return services.map((service, index) => (
               <AnimatedSection
                 key={service.title}

@@ -34,6 +34,7 @@ const servicios = [
 export default function Servicios() {
   const [mounted, setMounted] = useState(false)
   const { theme } = useTheme()
+  const [carouselIndex, setCarouselIndex] = useState(0);
 
   useEffect(() => setMounted(true), [])
 
@@ -67,11 +68,12 @@ export default function Servicios() {
           </div>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-8">
+
+        <div className="grid md:grid-cols-2 gap-9">
           {servicios.map((service, index) => (
             <motion.div
               key={service.title}
-              className="bg-black rounded-xl p-8 shadow-lg border border-primary/20 hover:border-primary/50 transition-all duration-300"
+              className="bg-black rounded-xl p-5 shadow-lg border border-primary/20 hover:border-primary/50 transition-all duration-300"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: index * 0.1 }}
@@ -96,6 +98,35 @@ export default function Servicios() {
           ))}
         </div>
 
+
+        <div className="flex justify-center mb-9 mt-10 md:mt-16">
+          <div className="relative w-full max-w-2xl flex items-center justify-center">
+            <img
+              src={carouselIndex === 0 ? "/assets/dossier1.jpg" : "/assets/dossier2.jpg"}
+              alt={carouselIndex === 0 ? "Banner dossier 1" : "Banner dossier 2"}
+              className="w-full max-w-2xl rounded-xl shadow-lg"
+              loading="lazy"
+            />
+            <button
+              type="button"
+              aria-label="Siguiente imagen"
+              className="absolute right-[-22px] top-1/2 -translate-y-1/2 bg-yellow-400 hover:bg-yellow-500 rounded-full w-8 h-8 flex items-center justify-center shadow-md transition-colors"
+              onClick={() => setCarouselIndex((carouselIndex + 1) % 2)}
+              style={{ outline: 'none', border: 'none' }}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+            </button>
+            <button
+              type="button"
+              aria-label="Imagen anterior"
+              className="absolute left-[-22px] top-1/2 -translate-y-1/2 bg-yellow-400 hover:bg-yellow-500 rounded-full w-8 h-8 flex items-center justify-center shadow-md transition-colors"
+              onClick={() => setCarouselIndex((carouselIndex + 1) % 2)}
+              style={{ outline: 'none', border: 'none' }}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 text-black rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+            </button>
+          </div>
+        </div>
         {/* Botón de contacto adaptativo */}
         <div className="w-full flex justify-center mt-16">
           {/* Botón SOLO para móvil */}
@@ -104,7 +135,7 @@ export default function Servicios() {
             className="flex sm:hidden items-center justify-center bg-yellow-400 hover:bg-yellow-500 text-black w-40 h-12 rounded-full shadow-lg transition-all duration-200 mx-auto font-bold text-lg"
             aria-label="Contactar"
           >
-            Contáctame
+            Contáctanos
           </a>
           {/* Botón SOLO para desktop */}
           <a
@@ -112,7 +143,7 @@ export default function Servicios() {
             className="hidden sm:inline-block bg-yellow-400 hover:bg-yellow-500 text-black font-bold px-8 py-4 rounded-full shadow-lg transition-all duration-200 text-lg text-center"
             style={{ wordBreak: 'break-word', whiteSpace: 'normal' }}
           >
-            Contáctanos para un presupuesto personalizado
+            Contáctanos
           </a>
         </div>
       </div>
