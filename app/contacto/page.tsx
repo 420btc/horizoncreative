@@ -116,10 +116,10 @@ export default function Contacto() {
 
       {/* Main Content */}
       <div className="container mx-auto py-0 px-3 sm:px-3 lg:px-6">
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid md:grid-cols-2 gap-6 min-h-[300px] items-stretch">
           {/* Contact Info */}
           <motion.div initial={{ opacity: 0, x: -50 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }}>
-            <div className="bg-black border border-primary/20 rounded-xl p-8 shadow-lg relative overflow-hidden">
+            <div className="bg-black border border-primary/20 rounded-xl p-8 shadow-lg relative overflow-hidden h-full">
               <div className="absolute top-0 right-0 w-33 h-32">
                 <Sunrise className="w-full h-full text-primary/10" />
               </div>
@@ -160,12 +160,12 @@ export default function Contacto() {
                 </div>
               </div>
 
-              <div className="mt-6">
-                <p className="text-lg text-gray-300">
-                  Haz crecer tu negocio con nuestras soluciones digitales. Estamos aquí para ayudarte a alcanzar nuevos
-                  horizontes.
-                </p>
-              </div>
+              <div className="mt-6 flex flex-col items-center">
+  <p className="text-lg text-gray-300 mb-6 text-center">
+    Haz crecer tu negocio con nuestras soluciones digitales. Estamos aquí para ayudarte a alcanzar nuevos horizontes.
+  </p>
+  <img src="/assets/logoubi.png" alt="Logo ubicación" className="w-96 h-96 mx-auto" />
+</div>
             </div>
           </motion.div>
 
