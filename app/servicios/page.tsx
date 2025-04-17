@@ -24,7 +24,14 @@ const servicios = [
     slug: "aplicaciones-moviles",
   },
   {
-    icon: <svg xmlns="http://www.w3.org/2000/svg" className="lucide lucide-paintbrush w-12 h-12 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M2 18c0-2.5 2-4.5 4.5-4.5S11 15.5 11 18c0 2-1.5 4-4.5 4S2 20 2 18z"></path><path d="M6.5 2v13"></path><path d="M6.5 2a2.5 2.5 0 0 1 5 0v13"></path></svg>,
+    icon: (
+  <svg xmlns="http://www.w3.org/2000/svg" className="w-12 h-12 text-primary" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+    <rect x="11" y="14" width="26" height="18" rx="2.5" fill="none" stroke="currentColor"/>
+    <rect x="8" y="36" width="32" height="4" rx="1.5" fill="none" stroke="currentColor"/>
+    <path d="M14 36V32a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v4" stroke="currentColor"/>
+    <rect x="18" y="18" width="13" height="8" rx="1.5" fill="none" stroke="currentColor"/>
+  </svg>
+),
     title: "Diseño & Desarrollo Web",
     description: "Diseñamos y desarrollamos sitios web que destacan y marcan la diferencia, optimizando la experiencia del usuario y garantizando resultados.",
     slug: "diseno-web",
@@ -99,83 +106,27 @@ export default function Servicios() {
         </div>
 
 
-        <div className="flex justify-center mb-9 mt-10 md:mt-16">
-  <div className="relative w-full max-w-2xl flex items-center justify-center">
-    <img
-      src={carouselIndex === 0 ? "/assets/dossier1.jpg" : "/assets/dossier2.jpg"}
-      alt={carouselIndex === 0 ? "Banner dossier 1" : "Banner dossier 2"}
-      className="w-full max-w-2xl rounded-xl shadow-lg"
-      loading="lazy"
-    />
-    {/* Botones de flecha laterales solo en desktop */}
-    <button
-      type="button"
-      aria-label="Imagen anterior"
-      className="hidden sm:flex absolute left-[-60px] top-1/2 -translate-y-1/2 bg-transparent p-0"
-      onClick={() => setCarouselIndex((carouselIndex + 1) % 2)}
-      style={{ outline: 'none', border: 'none' }}
-    >
-      <svg xmlns="http://www.w3.org/2000/svg" className="w-10 h-10 text-yellow-400 rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-      </svg>
-    </button>
-    <button
-      type="button"
-      aria-label="Siguiente imagen"
-      className="hidden sm:flex absolute right-[-60px] top-1/2 -translate-y-1/2 bg-transparent p-0"
-      onClick={() => setCarouselIndex((carouselIndex + 1) % 2)}
-      style={{ outline: 'none', border: 'none' }}
-    >
-      <svg xmlns="http://www.w3.org/2000/svg" className="w-10 h-10 text-yellow-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-      </svg>
-    </button>
-    {/* Botones de flecha simples solo en mobile */}
-    <div className="flex sm:hidden justify-center gap-8 absolute left-0 right-0 -bottom-10">
-      <button
-        type="button"
-        aria-label="Imagen anterior"
-        className="bg-transparent p-0"
-        onClick={() => setCarouselIndex((carouselIndex + 1) % 2)}
-        style={{ outline: 'none', border: 'none' }}
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" className="w-9 h-9 text-yellow-400 rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-        </svg>
-      </button>
-      <button
-        type="button"
-        aria-label="Siguiente imagen"
-        className="bg-transparent p-0"
-        onClick={() => setCarouselIndex((carouselIndex + 1) % 2)}
-        style={{ outline: 'none', border: 'none' }}
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" className="w-9 h-9 text-yellow-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-        </svg>
-      </button>
-    </div>
-  </div>
-</div>
+        
         {/* Botón de contacto adaptativo */}
-        <div className="w-full flex justify-center mt-16">
-          {/* Botón SOLO para móvil */}
-          <a
-            href="/contacto"
-            className="flex sm:hidden items-center justify-center bg-yellow-400 hover:bg-yellow-500 text-black w-40 h-12 rounded-full shadow-lg transition-all duration-200 mx-auto font-bold text-lg"
-            aria-label="Contactar"
-          >
-            Contáctanos
-          </a>
-          {/* Botón SOLO para desktop */}
-          <a
-            href="/contacto"
-            className="hidden sm:inline-block bg-yellow-400 hover:bg-yellow-500 text-black font-bold px-8 py-4 rounded-full shadow-lg transition-all duration-200 text-lg text-center"
-            style={{ wordBreak: 'break-word', whiteSpace: 'normal' }}
-          >
-            Contáctanos
-          </a>
-        </div>
+        <div className="w-full flex flex-col items-center justify-center mt-12 mb-2">
+  {/* Botón SOLO para móvil */}
+  <a
+    href="/contacto"
+    className="flex sm:hidden items-center justify-center bg-yellow-400 hover:bg-yellow-500 text-black w-40 h-12 rounded-full shadow-lg transition-all duration-200 mx-auto font-bold text-lg"
+    aria-label="Contactar"
+  >
+    Contáctanos
+  </a>
+  {/* Botón SOLO para desktop */}
+  <a
+    href="/contacto"
+    className="hidden sm:inline-block bg-yellow-400 hover:bg-yellow-500 text-black font-bold px-8 py-3 rounded-full shadow-lg transition-all duration-200 text-lg text-center"
+    style={{ wordBreak: 'break-word', whiteSpace: 'normal' }}
+  >
+    Contáctanos
+  </a>
+
+</div>
       </div>
     </div>
   )
