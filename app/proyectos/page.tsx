@@ -68,14 +68,14 @@ export default function Proyectos() {
     </Link>
     {/* Tarjeta 3 (placeholder) */}
     <Link
-      href="/proyectos/proyecto-ejemplo"
+      href="/proyectos/tennis-club-marbella"
       className="group relative bg-gradient-to-br from-yellow-100/80 via-white/90 to-yellow-200/60 dark:from-yellow-900/40 dark:via-black/90 dark:to-yellow-900/20 rounded-3xl shadow-2xl overflow-hidden w-[300px] lg:w-[350px] xl:w-[410px] transition-transform hover:scale-[1.035] hover:shadow-yellow-200/40"
       style={{ minHeight: 420 }}
     >
       <div className="absolute top-0 left-0 w-full h-56 bg-gradient-to-t from-black/60 to-transparent z-10 rounded-t-3xl" />
       <Image
-        src="/assets/placeholder.jpg"
-        alt="Proyecto Ejemplo"
+        src="/assets/golfclub-2.jpg"
+        alt="Tennis Club Marbella Branding"
         width={410}
         height={240}
         className="w-full h-56 object-cover rounded-t-3xl group-hover:scale-105 transition-transform duration-300"
@@ -83,10 +83,10 @@ export default function Proyectos() {
       />
       <div className="relative z-20 p-6 flex flex-col justify-between h-[160px]">
         <h2 className="text-2xl font-bold mb-2 text-black dark:text-yellow-300 group-hover:text-yellow-600 transition-colors">
-          Proyecto Ejemplo
+          Tennis Club Marbella
         </h2>
         <p className="text-gray-700 dark:text-gray-200 text-base mb-1">
-          Descripción breve del proyecto ejemplo.
+          Branding y publicidad de Club de Tennis, Marbella.
         </p>
         <span className="inline-block mt-2 text-sm font-semibold text-yellow-600 dark:text-yellow-400 group-hover:underline">
           Ver proyecto →
@@ -98,7 +98,7 @@ export default function Proyectos() {
   </div>
 
   {/* Imagen decorativa al final, arriba del footer */}
-  <div className="w-full flex justify-center mt-16 mb-4">
+  <div className="w-full flex justify-center mt-[30rem] mb-8">
     <Image
       src="/assets/prod1.png"
       alt="Proyecto destacado"
