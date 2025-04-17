@@ -374,7 +374,7 @@ export default function Portfolio() {
               <button
                 key={category}
                 onClick={() => setActiveCategory(category)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${activeCategory === category ? "bg-primary text-black border-4 border-black shadow font-bold" : "bg-primary text-gray-700 border-2 border-black"}`}
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors bg-primary text-black active:scale-95 ${activeCategory === category ? 'font-bold shadow-[0_0_12px_4px_rgba(255,255,0,0.7),0_0_32px_8px_rgba(255,255,0,0.5)]' : 'border-2 border-black'}`}
               >
                 {category}
                 {activeCategory === category && (
@@ -451,7 +451,7 @@ export default function Portfolio() {
                       muted
                       loop
                       playsInline
-                      className="object-contain transition-transform duration-500 group-hover:scale-105 cursor-zoom-in bg-black absolute inset-0 w-full h-full"
+                      className="object-contain rounded-xl transition-transform duration-500 group-hover:scale-105 cursor-zoom-in bg-black absolute inset-0 w-full h-full"
                       style={{ backgroundColor: 'black' }}
                     />
                   ) : (
@@ -459,7 +459,7 @@ export default function Portfolio() {
                       src={item.image || "/placeholder.svg"}
                       alt={item.title}
                       fill
-                      className="object-contain transition-transform duration-500 group-hover:scale-105 cursor-zoom-in bg-black"
+                      className="object-contain rounded-xl transition-transform duration-500 group-hover:scale-105 cursor-zoom-in bg-black"
                       style={{ backgroundColor: 'black' }}
                     />
                   )}
