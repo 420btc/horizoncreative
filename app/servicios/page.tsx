@@ -53,7 +53,7 @@ export default function Servicios() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h1 className="text-5xl font-black mb-4 text-black dark:text-white">Nuestros Servicios</h1>
+          <h1 className="text-5xl font-black mb-4 text-black dark:text-white">Nuestros <span className="text-yellow-400">Servicios</span></h1>
           {/* Imagen flyer tipo pegatina, solo visible en md+ */}
 
           <p className="text-2xl text-gray-700 dark:text-gray-300 mb-8">Esto es todo lo que podemos hacer por ti</p>
@@ -62,7 +62,7 @@ export default function Servicios() {
               Descubre Nuestros Servicios Destacados
             </h2>
             <p className="text-lg text-gray-700 dark:text-gray-300">
-              En Horizon, ofrecemos soluciones personalizadas para impulsar tu presencia digital y conectar realmente
+              En <span className="text-yellow-400">Horizon</span>, ofrecemos soluciones personalizadas para impulsar <span className="text-yellow-400">tu presencia digital</span> y conectar realmente
               con tu audiencia.
             </p>
           </div>
