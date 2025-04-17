@@ -4,8 +4,10 @@ import Link from "next/link";
 export default function Proyectos() {
   return (
     <div className="min-h-screen bg-white dark:bg-black flex flex-col items-center pt-10 sm:pt-16">
-  <h1 className="text-5xl font-black mb-8 text-black dark:text-white text-center mt-2">Nuestros <span className="text-yellow-400">Proyectos</span></h1>
-
+  <h1 className="text-5xl font-black mb-8 text-black dark:text-white text-center mt-2">
+    Nuestros <span className="text-yellow-400">Proyectos</span>
+  </h1>
+  <div className="mt-2"></div>
   {/* Tarjetas de proyectos únicas para esta página */}
   <div className="w-full max-w-7xl flex flex-wrap lg:flex-nowrap justify-center gap-6 min-h-[350px]">
     {/* Tarjeta 1 */}
@@ -97,8 +99,16 @@ export default function Proyectos() {
     </Link>
   </div>
 
-  {/* Imagen decorativa al final, arriba del footer */}
-  <div className="w-full flex justify-center mt-[30rem] mb-8">
+  {/* Imágenes decorativas al final, arriba del footer */}
+  <div className="w-full flex flex-col items-center justify-center mt-[38rem] mb-8">
+    <Image
+      src="/assets/globito.png"
+      alt="Globito decorativo"
+      width={270}
+      height={270}
+      className="mb-8 scale-110 md:scale-150"
+      priority
+    />
     <Image
       src="/assets/prod1.png"
       alt="Proyecto destacado"
