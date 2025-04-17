@@ -125,7 +125,7 @@ export default function Contacto() {
               </div>
 
               <h2 className="text-3xl font-bold mb-8 text-white">
-                La estrategia digital que tu marca <span className="text-primary">necesita</span>
+                La <span className="text-yellow-400">estrategia</span> digital que tu marca <span className="text-white">necesita</span>
               </h2>
 
               <div className="space-y-6">
