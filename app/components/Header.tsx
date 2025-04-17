@@ -39,10 +39,10 @@ export default function Header() {
         </div>
         {/* Desktop nav */}
         <div className="hidden md:flex gap-x-8 lg:gap-x-12">
-          <Link href="/" className="text-sm font-bold leading-6 text-black dark:text-white hover:text-primary transition-colors">Inicio</Link>
-          <Link href="/sobre-nosotros" className="text-sm font-bold leading-6 text-black dark:text-white hover:text-primary transition-colors">Sobre Nosotros</Link>
-          <Link href="/servicios" className="text-sm font-bold leading-6 text-black dark:text-white hover:text-primary transition-colors">Nuestros Servicios</Link>
-          <Link href="/contacto" className="text-sm font-bold leading-6 text-black dark:text-white hover:text-primary transition-colors">Contacto</Link>
+          <Link href="/" className="text-sm font-bold leading-6 text-white hover:text-[#FFD600] focus:text-[#FFD600] active:text-[#FFD600] transition-colors">Inicio</Link>
+          <Link href="/sobre-nosotros" className="text-sm font-bold leading-6 text-white hover:text-[#FFD600] focus:text-[#FFD600] active:text-[#FFD600] transition-colors">Sobre Nosotros</Link>
+          <Link href="/servicios" className="text-sm font-bold leading-6 text-white hover:text-[#FFD600] focus:text-[#FFD600] active:text-[#FFD600] transition-colors">Nuestros Servicios</Link>
+          <Link href="/contacto" className="text-sm font-bold leading-6 text-white hover:text-[#FFD600] focus:text-[#FFD600] active:text-[#FFD600] transition-colors">Contacto</Link>
         </div>
         {/* Mobile hamburger */}
         <div className="md:hidden flex items-center">
@@ -64,10 +64,10 @@ export default function Header() {
         {/* Mobile nav menu */}
         {menuOpen && (
           <div className="absolute top-full left-0 w-full bg-white dark:bg-black shadow-md py-4 flex flex-col items-center md:hidden animate-fade-in z-40 border-b border-gray-100 dark:border-gray-800">
-            <Link href="/" className="py-2 text-base font-semibold text-black dark:text-white hover:text-primary w-full text-center" onClick={() => setMenuOpen(false)}>Inicio</Link>
-            <Link href="/sobre-nosotros" className="py-2 text-base font-semibold text-black dark:text-white hover:text-primary w-full text-center" onClick={() => setMenuOpen(false)}>Sobre Nosotros</Link>
-            <Link href="/servicios" className="py-2 text-base font-semibold text-black dark:text-white hover:text-primary w-full text-center" onClick={() => setMenuOpen(false)}>Nuestros Servicios</Link>
-            <Link href="/contacto" className="py-2 text-base font-semibold text-black dark:text-white hover:text-primary w-full text-center" onClick={() => setMenuOpen(false)}>Contacto</Link>
+            <Link href="/" className="py-2 text-base font-semibold text-white hover:text-[#FFD600] focus:text-[#FFD600] active:text-[#FFD600] w-full text-center transition-colors" onClick={() => setMenuOpen(false)}>Inicio</Link>
+            <Link href="/sobre-nosotros" className="py-2 text-base font-semibold text-white hover:text-[#FFD600] focus:text-[#FFD600] active:text-[#FFD600] w-full text-center transition-colors" onClick={() => setMenuOpen(false)}>Sobre Nosotros</Link>
+            <Link href="/servicios" className="py-2 text-base font-semibold text-white hover:text-[#FFD600] focus:text-[#FFD600] active:text-[#FFD600] w-full text-center transition-colors" onClick={() => setMenuOpen(false)}>Nuestros Servicios</Link>
+            <Link href="/contacto" className="py-2 text-base font-semibold text-white hover:text-[#FFD600] focus:text-[#FFD600] active:text-[#FFD600] w-full text-center transition-colors" onClick={() => setMenuOpen(false)}>Contacto</Link>
           </div>
         )}
         <div className="flex flex-1 justify-end">
