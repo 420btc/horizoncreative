@@ -56,8 +56,7 @@ export default function Servicios() {
           <h1 className="text-5xl font-black mb-4 text-black dark:text-white">Nuestros <span className="text-yellow-400">Servicios</span></h1>
           {/* Imagen flyer tipo pegatina, solo visible en md+ */}
 
-          <p className="text-2xl text-gray-700 dark:text-gray-300 mb-8">Esto es todo lo que podemos hacer por ti</p>
-          <div className="max-w-3xl mx-auto">
+                    <div className="max-w-3xl mx-auto">
             <h2 className="text-3xl font-bold mb-4 text-black dark:text-white">
               Descubre Nuestros Servicios Destacados
             </h2>
