@@ -161,7 +161,7 @@ export default function Contacto() {
   <p className="text-lg text-gray-300 mb-6 text-center">
     Haz crecer tu negocio con nuestras soluciones digitales. Estamos aquí para ayudarte a alcanzar nuevos horizontes.
   </p>
-  <img src="/assets/logoubi.png" alt="Logo ubicación" className="w-96 h-96 mx-auto" />
+  <img src="/assets/logoubi.png" alt="Logo ubicación" className="w-full max-w-xs mx-auto" />
 </div>
             </div>
           </motion.div>
