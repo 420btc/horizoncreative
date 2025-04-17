@@ -106,7 +106,7 @@ export default function Contacto() {
             <h1 className="text-5xl font-black mb-4 text-white">
               Conecta con <span className="text-primary">nosotros</span>
             </h1>
-            <p className="text-xl text-gray-300 mb-8">El primer paso hacia el éxito empieza con un mensaje.</p>
+            <p className="text-xl text-gray-300 mb-4">El primer paso hacia el éxito empieza con un mensaje.</p>
           </motion.div>
         </div>
         <div className="absolute inset-0 z-0">
@@ -115,12 +115,12 @@ export default function Contacto() {
       </div>
 
       {/* Main Content */}
-      <div className="container mx-auto py-16 px-4 sm:px-6 lg:px-8">
-        <div className="grid md:grid-cols-2 gap-12">
+      <div className="container mx-auto py-0 px-3 sm:px-3 lg:px-6">
+        <div className="grid md:grid-cols-2 gap-6">
           {/* Contact Info */}
           <motion.div initial={{ opacity: 0, x: -50 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }}>
             <div className="bg-black border border-primary/20 rounded-xl p-8 shadow-lg relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-32 h-32">
+              <div className="absolute top-0 right-0 w-33 h-32">
                 <Sunrise className="w-full h-full text-primary/10" />
               </div>
 
@@ -160,7 +160,7 @@ export default function Contacto() {
                 </div>
               </div>
 
-              <div className="mt-12">
+              <div className="mt-6">
                 <p className="text-lg text-gray-300">
                   Haz crecer tu negocio con nuestras soluciones digitales. Estamos aquí para ayudarte a alcanzar nuevos
                   horizontes.
@@ -272,13 +272,13 @@ export default function Contacto() {
 
       {/* Bottom Banner */}
       <motion.div
-        className="bg-primary py-16 px-4"
+        className="bg-primary py-6 px-8 mt-14"
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.4 }}
       >
         <div className="container mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-black mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-black mb-5">
             Alcanza nuevos horizontes con Horizon Creative
           </h2>
           <p className="text-xl text-black/80 max-w-3xl mx-auto">
