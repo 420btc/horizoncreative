@@ -111,7 +111,7 @@ export default function Servicios() {
     <button
       type="button"
       aria-label="Imagen anterior"
-      className="hidden sm:flex absolute left-[-32px] top-1/2 -translate-y-1/2 bg-transparent p-0"
+      className="hidden sm:flex absolute left-[-60px] top-1/2 -translate-y-1/2 bg-transparent p-0"
       onClick={() => setCarouselIndex((carouselIndex + 1) % 2)}
       style={{ outline: 'none', border: 'none' }}
     >
@@ -122,7 +122,7 @@ export default function Servicios() {
     <button
       type="button"
       aria-label="Siguiente imagen"
-      className="hidden sm:flex absolute right-[-32px] top-1/2 -translate-y-1/2 bg-transparent p-0"
+      className="hidden sm:flex absolute right-[-60px] top-1/2 -translate-y-1/2 bg-transparent p-0"
       onClick={() => setCarouselIndex((carouselIndex + 1) % 2)}
       style={{ outline: 'none', border: 'none' }}
     >
@@ -131,7 +131,7 @@ export default function Servicios() {
       </svg>
     </button>
     {/* Botones de flecha simples solo en mobile */}
-    <div className="flex sm:hidden justify-center gap-8 absolute left-0 right-0 -bottom-8">
+    <div className="flex sm:hidden justify-center gap-8 absolute left-0 right-0 -bottom-10">
       <button
         type="button"
         aria-label="Imagen anterior"
