@@ -25,7 +25,7 @@ export default function Hero() {
             </motion.span>
             <motion.span
               className="block text-primary text-7xl md:text-8xl mt-1 text-left"
-              initial={{ opacity: 0, x: '-100vw' }}
+              initial={{ opacity: 0, x: '-50vw' }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ type: 'spring', bounce: 0.55, duration: 2.2, delay: 1.5 }}
             >
