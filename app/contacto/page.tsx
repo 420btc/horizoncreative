@@ -202,7 +202,7 @@ export default function Contacto() {
                           <Input
                             placeholder="Tu nombre"
                             {...field}
-                            className="bg-gray-900 border-gray-700 text-white"
+                            className="bg-black border-gray-700 text-white placeholder-gray-400"
                           />
                         </FormControl>
                         <FormMessage />
@@ -220,7 +220,7 @@ export default function Contacto() {
                           <Input
                             placeholder="tu@email.com"
                             {...field}
-                            className="bg-gray-900 border-gray-700 text-white"
+                            className="bg-black border-gray-700 text-white placeholder-gray-400"
                           />
                         </FormControl>
                         <FormMessage />
@@ -237,7 +237,7 @@ export default function Contacto() {
                         <FormControl>
                           <Textarea
                             placeholder="¿Cómo podemos ayudarte?"
-                            className="min-h-[120px] bg-gray-900 border-gray-700 text-white"
+                            className="min-h-[120px] bg-black border-gray-700 text-white placeholder-gray-400"
                             {...field}
                           />
                         </FormControl>
