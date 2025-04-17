@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
 import AnimatedSection from "./AnimatedSection"
 import Image from "next/image"
 import { ArrowRight } from "lucide-react"
@@ -191,17 +192,10 @@ export default function Portfolio() {
   return (
     <section className="py-20 bg-black">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="w-full flex justify-start items-center mt-[-4rem] mb-6 md:mt-[-5rem]">
+        <div className="w-full flex justify-start items-center mt-4 mb-6">
           <div className="flex justify-start items-end ml-0 sm:ml-[9rem]">
             <h1 className="text-5xl md:text-6xl font-extrabold text-black dark:text-white leading-tight text-left relative inline-block">
-              <motion.span
-                initial={{ opacity: 0, x: -100 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ type: 'spring', bounce: 0.45, duration: 1.2, delay: 0 }}
-                className="block sm:inline"
-              >
-                Transformamos tu
-              </motion.span>
+              <span className="block sm:inline">Transformamos tu</span>
               <span
                 className="block mt-2 sm:mt-0 sm:inline sm:absolute sm:left-full sm:top-0 sm:ml-[0.25ch] sm:whitespace-nowrap text-center sm:text-left w-full sm:w-auto"
                 style={{ height: '100%', display: 'inline-block' }}
@@ -209,10 +203,10 @@ export default function Portfolio() {
                 <AnimatePresence mode="wait">
                   <motion.span
                     key={palabraIndex}
-                    initial={palabraIndex === 0 ? { y: 30, opacity: 0, x: 100, backgroundSize: '0% 100%' } : { y: 30, opacity: 0, backgroundSize: '0% 100%' }}
-                    animate={palabraIndex === 0 ? { y: 0, opacity: 1, x: 0, backgroundSize: '100% 100%' } : { y: 0, opacity: 1, backgroundSize: '100% 100%' }}
+                    initial={{ y: 30, opacity: 0, backgroundSize: '0% 100%' }}
+                    animate={{ y: 0, opacity: 1, backgroundSize: '100% 100%' }}
                     exit={{ y: -30, opacity: 0 }}
-                    transition={palabraIndex === 0 ? { duration: 0.5, ease: 'easeInOut', delay: 0.7 } : { duration: 0.5, ease: 'easeInOut' }}
+                    transition={{ duration: 0.5, ease: 'easeInOut' }}
                     style={{
                       backgroundImage: 'linear-gradient(90deg, #ffe600 0%, #ffe600 100%)',
                       backgroundRepeat: 'no-repeat',
@@ -232,13 +226,18 @@ export default function Portfolio() {
             </h1>
           </div>
         </div>
-        <div className="text-center mb-4 md:mb-8 mt-6 md:mt-40">
+        <motion.div
+          className="text-center mb-4 md:mb-8 mt-4 md:mt-12"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
           <h2 className="text-3xl font-bold tracking-tight text-black dark:text-white sm:text-4xl mt-4 md:mt-12 mb-4 md:mb-8">Nuestro Portfolio</h2>
           <p className="text-lg text-gray-700 dark:text-gray-300 max-w-3xl mx-auto">
             Descubre algunos de nuestros proyectos más destacados, donde combinamos creatividad y estrategia para lograr
             resultados excepcionales.
           </p>
-        </div>
+        </motion.div>
 
         <div className="flex justify-center mb-10">
           <div className="flex flex-wrap gap-2 justify-center">
@@ -257,7 +256,7 @@ export default function Portfolio() {
           </div>
         </div>
 
-        <div className="relative mt-0">
+        <div className="relative">
           {/* Carousel Controls - Left */}
           {filteredItems.length > itemsPerPage && (
             <button
@@ -380,12 +379,12 @@ export default function Portfolio() {
         </div>
 
         <div className="text-center mt-12">
-          <a
+          <Link
             href="/proyectos"
             className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-primary text-black font-medium hover:bg-primary/90 transition-colors"
           >
             Ver todos los proyectos
-          </a>
+          </Link>
         </div>
       </div>
     </section>
