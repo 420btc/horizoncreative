@@ -8,6 +8,22 @@ export default function Hero() {
   return (
     <div className="relative isolate overflow-hidden bg-white dark:bg-black">
       <div className="mx-auto max-w-7xl px-6 py-20 lg:flex lg:items-center lg:gap-x-10 lg:px-8">
+        {/* Logo móvil arriba, desktop a la derecha */}
+        <motion.div
+          className="flex justify-center lg:hidden mb-[3px]"
+          initial={{ opacity: 0, y: -40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.1, type: 'spring', bounce: 0.38, delay: 0 }}
+        >
+          <Image
+            src="/logotipo.png"
+            alt="Horizon Creative Logotipo"
+            width={300}
+            height={300}
+            className="w-[300px] h-auto"
+            priority
+          />
+        </motion.div>
         <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-lg lg:flex-shrink-0">
           <motion.h1
             className="mt-10 text-4xl font-bold tracking-tight text-black dark:text-white sm:text-6xl"
@@ -15,22 +31,7 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <motion.span
-              className="block text-primary text-7xl md:text-8xl mb-0 text-left"
-              initial={{ opacity: 0, x: '-100vw' }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ type: 'spring', bounce: 0.45, duration: 2.2, delay: 0 }}
-            >
-              Horizon
-            </motion.span>
-            <motion.span
-              className="block text-primary text-7xl md:text-8xl mt-1 text-left"
-              initial={{ opacity: 0, x: '-50vw' }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ type: 'spring', bounce: 0.55, duration: 2.2, delay: 1.5 }}
-            >
-              Creative
-            </motion.span>
+            <span className="text-primary text-7xl md:text-8xl mb-4 block">Horizon Creative</span>
           </motion.h1>
           <div className="mt-6 text-lg leading-8 text-black dark:text-gray-300 h-24">
             <TypewriterText
@@ -56,7 +57,7 @@ export default function Hero() {
           </motion.div>
         </div>
         <motion.div
-          className="mx-auto mt-16 lg:mt-0"
+          className="hidden lg:block mx-auto mt-0"
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
