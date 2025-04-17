@@ -102,7 +102,7 @@ const portfolioItems: PortfolioItem[] = [
     image: "/assets/comida3.jpg",
     category: "Fotografía",
   },
-  // Tercera página: las antiguas restantes
+  // Tercera página: las antiguas restantes y nuevas imágenes
   {
     id: 17,
     title: "Moda Editorial",
@@ -115,6 +115,34 @@ const portfolioItems: PortfolioItem[] = [
     title: "Moda Editorial",
     description: "Fotografía de moda.",
     image: "/assets/fotografia-6.jpg",
+    category: "Fotografía",
+  },
+  {
+    id: 33,
+    title: "Retrato Masculino",
+    description: "Sesión con modelo masculino: chico1.jpg",
+    image: "/assets/chico1.jpg",
+    category: "Fotografía",
+  },
+  {
+    id: 34,
+    title: "Moda Urbana",
+    description: "Editorial de ropa urbana: ropa1.jpg",
+    image: "/assets/ropa1.jpg",
+    category: "Fotografía",
+  },
+  {
+    id: 35,
+    title: "Retrato Femenino",
+    description: "Sesión con modelo femenina: chica1.jpg",
+    image: "/assets/chica1.jpg",
+    category: "Fotografía",
+  },
+  {
+    id: 36,
+    title: "Moda Creativa",
+    description: "Editorial creativa: ropa2.jpg",
+    image: "/assets/ropa2.jpg",
     category: "Fotografía",
   },
   // Nuevas fotos para la segunda página del carrusel de Fotografía
