@@ -39,10 +39,10 @@ export default function Header() {
         </div>
         {/* Desktop nav */}
         <div className="hidden md:flex gap-x-8 lg:gap-x-12">
-          <Link href="/" className="text-sm font-semibold leading-6 text-black dark:text-white hover:text-primary transition-colors">Inicio</Link>
-          <Link href="/sobre-nosotros" className="text-sm font-semibold leading-6 text-black dark:text-white hover:text-primary transition-colors">Sobre Nosotros</Link>
-          <Link href="/servicios" className="text-sm font-semibold leading-6 text-black dark:text-white hover:text-primary transition-colors">Nuestros Servicios</Link>
-          <Link href="/contacto" className="text-sm font-semibold leading-6 text-black dark:text-white hover:text-primary transition-colors">Contacto</Link>
+          <Link href="/" className="text-sm font-bold leading-6 text-black dark:text-white hover:text-primary transition-colors">Inicio</Link>
+          <Link href="/sobre-nosotros" className="text-sm font-bold leading-6 text-black dark:text-white hover:text-primary transition-colors">Sobre Nosotros</Link>
+          <Link href="/servicios" className="text-sm font-bold leading-6 text-black dark:text-white hover:text-primary transition-colors">Nuestros Servicios</Link>
+          <Link href="/contacto" className="text-sm font-bold leading-6 text-black dark:text-white hover:text-primary transition-colors">Contacto</Link>
         </div>
         {/* Mobile hamburger */}
         <div className="md:hidden flex items-center">
