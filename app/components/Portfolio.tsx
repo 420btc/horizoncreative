@@ -16,7 +16,7 @@ type PortfolioItem = {
 };
 
 const portfolioItems: PortfolioItem[] = [
-  // 13-18: Fotografía
+  // 13-18: Fotografía (Primera página: nuevas fotos primero)
   {
     id: 13,
     title: "Retrato Urbano",
@@ -32,6 +32,35 @@ const portfolioItems: PortfolioItem[] = [
     category: "Fotografía",
   },
   {
+    id: 25,
+    title: "Exterior 1",
+    description: "Fotografía de exteriores: exterior1.jpg",
+    image: "/assets/exterior1.jpg",
+    category: "Fotografía",
+  },
+  {
+    id: 26,
+    title: "Exterior 2",
+    description: "Fotografía de exteriores: exterior2.jpg",
+    image: "/assets/exterior2.jpg",
+    category: "Fotografía",
+  },
+  {
+    id: 27,
+    title: "Interior 1",
+    description: "Fotografía de interiores: interior1.jpg",
+    image: "/assets/interior1.jpg",
+    category: "Fotografía",
+  },
+  {
+    id: 28,
+    title: "Interior 2",
+    description: "Fotografía de interiores: interior2.jpg",
+    image: "/assets/interior2.jpg",
+    category: "Fotografía",
+  },
+  // Segunda página: las dos primeras antiguas y las nuevas de comida
+  {
     id: 15,
     title: "Evento Corporativo",
     description: "Cobertura fotográfica de evento empresarial.",
@@ -46,6 +75,35 @@ const portfolioItems: PortfolioItem[] = [
     category: "Fotografía",
   },
   {
+    id: 29,
+    title: "Comida 1",
+    description: "Fotografía gastronómica: comida1.jpg",
+    image: "/assets/comida1.jpg",
+    category: "Fotografía",
+  },
+  {
+    id: 30,
+    title: "Comida 2",
+    description: "Fotografía gastronómica: comida2.jpg",
+    image: "/assets/comida2.jpg",
+    category: "Fotografía",
+  },
+  {
+    id: 31,
+    title: "Comida 4",
+    description: "Video gastronómico: comida4.mp4",
+    image: "/assets/comida4.mp4",
+    category: "Fotografía",
+  },
+  {
+    id: 32,
+    title: "Comida 3",
+    description: "Fotografía gastronómica: comida3.jpg",
+    image: "/assets/comida3.jpg",
+    category: "Fotografía",
+  },
+  // Tercera página: las antiguas restantes
+  {
     id: 17,
     title: "Moda Editorial",
     description: "Editorial de moda para catálogo de temporada.",
@@ -57,6 +115,49 @@ const portfolioItems: PortfolioItem[] = [
     title: "Moda Editorial",
     description: "Fotografía de moda.",
     image: "/assets/fotografia-6.jpg",
+    category: "Fotografía",
+  },
+  // Nuevas fotos para la segunda página del carrusel de Fotografía
+  {
+    id: 19,
+    title: "Fotografía Lifestyle",
+    description: "Sesión lifestyle en exteriores naturales.",
+    image: "/assets/fotografia-7.jpg",
+    category: "Fotografía",
+  },
+  {
+    id: 20,
+    title: "Fotografía Arquitectónica",
+    description: "Captura de espacios y arquitectura moderna.",
+    image: "/assets/fotografia-8.jpg",
+    category: "Fotografía",
+  },
+  {
+    id: 21,
+    title: "Fotografía de Producto Creativa",
+    description: "Composición creativa para catálogo de productos.",
+    image: "/assets/fotografia-9.jpg",
+    category: "Fotografía",
+  },
+  {
+    id: 22,
+    title: "Fotografía Editorial Urbana",
+    description: "Editorial realizada en entorno urbano.",
+    image: "/assets/fotografia-10.jpg",
+    category: "Fotografía",
+  },
+  {
+    id: 23,
+    title: "Fotografía de Retrato Creativo",
+    description: "Retrato artístico con iluminación especial.",
+    image: "/assets/fotografia-11.jpg",
+    category: "Fotografía",
+  },
+  {
+    id: 24,
+    title: "Fotografía de Viajes",
+    description: "Paisajes y momentos de viaje.",
+    image: "/assets/fotografia-12.jpg",
     category: "Fotografía",
   },
   // 1-6: Golf Club
@@ -315,13 +416,25 @@ export default function Portfolio() {
                   onMouseEnter={() => setHoveredItem(item.id)}
                   onMouseLeave={() => setHoveredItem(null)}
                 >
-                  <Image
-                    src={item.image || "/placeholder.svg"}
-                    alt={item.title}
-                    fill
-                    className="object-contain transition-transform duration-500 group-hover:scale-105 cursor-zoom-in bg-black"
-                    style={{ backgroundColor: 'black' }}
-                  />
+                  {item.image.endsWith('.mp4') ? (
+                    <video
+                      src={item.image}
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      className="object-contain transition-transform duration-500 group-hover:scale-105 cursor-zoom-in bg-black absolute inset-0 w-full h-full"
+                      style={{ backgroundColor: 'black' }}
+                    />
+                  ) : (
+                    <Image
+                      src={item.image || "/placeholder.svg"}
+                      alt={item.title}
+                      fill
+                      className="object-contain transition-transform duration-500 group-hover:scale-105 cursor-zoom-in bg-black"
+                      style={{ backgroundColor: 'black' }}
+                    />
+                  )}
                   {/* Área invisible para capturar el click, debajo del overlay */}
                   <div
                     className="absolute inset-0 z-10 cursor-zoom-in"
