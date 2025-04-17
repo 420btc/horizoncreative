@@ -21,7 +21,7 @@ export default function SobreNosotros() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          Sobre Nosotros
+          Sobre <span className="text-yellow-400">Nosotros</span>
         </motion.h1>
 
         <motion.h2
@@ -65,7 +65,7 @@ export default function SobreNosotros() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
         >
-          Nuestro Equipo Creativo
+          Nuestro <span className="text-yellow-400">Equipo</span> Creativo
         </motion.h2>
 
         <motion.p
