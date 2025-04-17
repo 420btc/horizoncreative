@@ -56,11 +56,12 @@ export default function Services() {
                   <p className="text-gray-700 dark:text-gray-300">{service.description}</p>
 <a
   href={`/servicios/${service.slug}`}
-  className="inline-flex items-center mt-4 text-primary hover:text-primary/80 transition-colors font-semibold"
+  className="flex items-center justify-center mt-6 w-9 h-9 rounded-full bg-primary text-black hover:bg-primary/80 transition-colors shadow-lg mx-auto"
+  aria-label={`Ver detalles de ${service.title}`}
 >
-  <span className="mr-2">Ver más</span>
-  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-    <path fillRule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
+  <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
+    <circle cx="10" cy="10" r="9" fill="none" />
+    <path d="M10 6v8M6 10h8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
   </svg>
 </a>
                 </div>

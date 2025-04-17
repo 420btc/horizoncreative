@@ -85,11 +85,12 @@ export default function Servicios() {
               <motion.div className="mt-6" whileHover={{ scale: 1.05 }} transition={{ duration: 0.2 }}>
                 <a
                   href={`/servicios/${service.slug}`}
-                  className="inline-flex items-center mt-4 text-primary hover:text-primary/80 transition-colors font-semibold"
+                  className="flex items-center justify-center mt-6 w-9 h-9 rounded-full bg-primary text-black hover:bg-primary/80 transition-colors shadow-lg mx-auto"
+                  aria-label={`Ver detalles de ${service.title}`}
                 >
-                  <span className="mr-2">Ver más</span>
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                    <path fillRule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                  <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
+                    <circle cx="10" cy="10" r="9" fill="none" />
+                    <path d="M10 6v8M6 10h8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
                   </svg>
                 </a>
               </motion.div>
@@ -99,33 +100,63 @@ export default function Servicios() {
 
 
         <div className="flex justify-center mb-9 mt-10 md:mt-16">
-          <div className="relative w-full max-w-2xl flex items-center justify-center">
-            <img
-              src={carouselIndex === 0 ? "/assets/dossier1.jpg" : "/assets/dossier2.jpg"}
-              alt={carouselIndex === 0 ? "Banner dossier 1" : "Banner dossier 2"}
-              className="w-full max-w-2xl rounded-xl shadow-lg"
-              loading="lazy"
-            />
-            <button
-              type="button"
-              aria-label="Siguiente imagen"
-              className="absolute right-[-44px] top-1/2 -translate-y-1/2 bg-yellow-400 hover:bg-yellow-500 rounded-full w-8 h-8 flex items-center justify-center shadow-md transition-colors"
-              onClick={() => setCarouselIndex((carouselIndex + 1) % 2)}
-              style={{ outline: 'none', border: 'none' }}
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
-            </button>
-            <button
-              type="button"
-              aria-label="Imagen anterior"
-              className="absolute left-[-44px] top-1/2 -translate-y-1/2 bg-yellow-400 hover:bg-yellow-500 rounded-full w-8 h-8 flex items-center justify-center shadow-md transition-colors"
-              onClick={() => setCarouselIndex((carouselIndex + 1) % 2)}
-              style={{ outline: 'none', border: 'none' }}
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 text-black rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
-            </button>
-          </div>
-        </div>
+  <div className="relative w-full max-w-2xl flex items-center justify-center">
+    <img
+      src={carouselIndex === 0 ? "/assets/dossier1.jpg" : "/assets/dossier2.jpg"}
+      alt={carouselIndex === 0 ? "Banner dossier 1" : "Banner dossier 2"}
+      className="w-full max-w-2xl rounded-xl shadow-lg"
+      loading="lazy"
+    />
+    {/* Botones de flecha laterales solo en desktop */}
+    <button
+      type="button"
+      aria-label="Imagen anterior"
+      className="hidden sm:flex absolute left-[-32px] top-1/2 -translate-y-1/2 bg-transparent p-0"
+      onClick={() => setCarouselIndex((carouselIndex + 1) % 2)}
+      style={{ outline: 'none', border: 'none' }}
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" className="w-10 h-10 text-yellow-400 rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+      </svg>
+    </button>
+    <button
+      type="button"
+      aria-label="Siguiente imagen"
+      className="hidden sm:flex absolute right-[-32px] top-1/2 -translate-y-1/2 bg-transparent p-0"
+      onClick={() => setCarouselIndex((carouselIndex + 1) % 2)}
+      style={{ outline: 'none', border: 'none' }}
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" className="w-10 h-10 text-yellow-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+      </svg>
+    </button>
+    {/* Botones de flecha simples solo en mobile */}
+    <div className="flex sm:hidden justify-center gap-8 absolute left-0 right-0 -bottom-8">
+      <button
+        type="button"
+        aria-label="Imagen anterior"
+        className="bg-transparent p-0"
+        onClick={() => setCarouselIndex((carouselIndex + 1) % 2)}
+        style={{ outline: 'none', border: 'none' }}
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" className="w-9 h-9 text-yellow-400 rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+      <button
+        type="button"
+        aria-label="Siguiente imagen"
+        className="bg-transparent p-0"
+        onClick={() => setCarouselIndex((carouselIndex + 1) % 2)}
+        style={{ outline: 'none', border: 'none' }}
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" className="w-9 h-9 text-yellow-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>
         {/* Botón de contacto adaptativo */}
         <div className="w-full flex justify-center mt-16">
           {/* Botón SOLO para móvil */}
