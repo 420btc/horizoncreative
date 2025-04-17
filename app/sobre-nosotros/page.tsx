@@ -173,6 +173,7 @@ export default function SobreNosotros() {
           </div>
         </div>
       </div>
+      <img src="/assets/telescopio.png" alt="Telescopio" className="w-[440px] max-w-full h-auto mx-auto mb-4" />
     </div>
   )
 }
