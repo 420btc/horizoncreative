@@ -3,8 +3,12 @@
 import { motion } from "framer-motion"
 import Image from "next/image"
 import TypewriterText from "./TypewriterText"
+import { useRouter } from "next/navigation"
+import { useState } from "react"
 
 export default function Hero() {
+  const [buttonAnimating, setButtonAnimating] = useState(false);
+  const router = useRouter();
   return (
     <div className="relative isolate overflow-hidden bg-white dark:bg-black">
       <div className="mx-auto max-w-7xl px-6 py-20 lg:flex lg:items-center lg:gap-x-10 lg:px-8">
@@ -55,12 +59,22 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            <a
-              href="/contacto"
+            <motion.button
               className="rounded-full bg-primary px-6 py-3 text-sm font-semibold text-black shadow-sm hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary"
+              initial={false}
+              animate={buttonAnimating ? { scale: 0.8, opacity: 0 } : { scale: 1, opacity: 1 }}
+              transition={{ duration: 0.35, ease: "easeInOut" }}
+              onClick={async () => {
+                setButtonAnimating(true);
+                setTimeout(() => {
+                  router.push("/contacto");
+                  setButtonAnimating(false);
+                }, 350);
+              }}
+              disabled={buttonAnimating}
             >
               Contáctanos
-            </a>
+            </motion.button>
             <a href="/servicios" className="text-sm font-semibold leading-6 text-black dark:text-white">
               Nuestros Servicios <span aria-hidden="true">→</span>
             </a>

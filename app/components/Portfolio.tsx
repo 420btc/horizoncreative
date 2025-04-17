@@ -1,8 +1,9 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import AnimatedSection from "./AnimatedSection"
 import Image from "next/image"
 import { ArrowRight } from "lucide-react"
@@ -280,6 +281,10 @@ const portfolioItems: PortfolioItem[] = [
 const categories = ["Marketing", "Fotografía", "Diseño Web/Apps"];
 
 export default function Portfolio() {
+  const router = useRouter();
+  const [buttonAnimating, setButtonAnimating] = useState(false);
+  // const buttonRef = useRef<HTMLButtonElement>(null); // Not needed unless focusing or measuring
+
   const palabrasClave = [
     "presencia digital",
     "éxito online",
@@ -513,13 +518,22 @@ export default function Portfolio() {
         </div>
 
         <div className="text-center mt-12">
-          <Link
-            href="/proyectos"
-            className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-primary text-black font-medium hover:bg-primary/90 transition-colors"
-          >
-            Ver todos los proyectos
-          </Link>
-        </div>
+  <motion.button
+    type="button"
+    className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-primary text-black font-medium hover:bg-primary/90 transition-colors focus:outline-none"
+    initial={{ scale: 1, opacity: 1 }}
+    animate={buttonAnimating ? { scale: 0.7, opacity: 0, transition: { duration: 0.32 } } : { scale: 1, opacity: 1 }}
+    whileTap={{ scale: 0.92 }}
+    onClick={() => setButtonAnimating(true)}
+    onAnimationComplete={() => {
+      if (buttonAnimating) router.push('/proyectos');
+    }}
+    style={{ pointerEvents: buttonAnimating ? 'none' : 'auto' }}
+    aria-label="Ver todos los proyectos"
+  >
+    Ver todos los proyectos
+  </motion.button>
+</div>
       </div>
     </section>
   );

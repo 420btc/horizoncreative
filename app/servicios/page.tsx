@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion"
 import { useTheme } from "next-themes"
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 
 const servicios = [
   {
@@ -38,10 +38,16 @@ const servicios = [
   },
 ]
 
+import { useRouter } from "next/navigation"
+import { useState } from "react"
+
 export default function Servicios() {
   const [mounted, setMounted] = useState(false)
   const { theme } = useTheme()
   const [carouselIndex, setCarouselIndex] = useState(0);
+  const [buttonAnimatingMobile, setButtonAnimatingMobile] = useState(false);
+  const [buttonAnimatingDesktop, setButtonAnimatingDesktop] = useState(false);
+  const router = useRouter();
 
   useEffect(() => setMounted(true), [])
 
@@ -110,21 +116,46 @@ export default function Servicios() {
         {/* Botón de contacto adaptativo */}
         <div className="w-full flex flex-col items-center justify-center mt-12 mb-2">
   {/* Botón SOLO para móvil */}
-  <a
-    href="/contacto"
+  {/* Botón SOLO para móvil */}
+  <motion.a
     className="flex sm:hidden items-center justify-center bg-yellow-400 hover:bg-yellow-500 text-black w-40 h-12 rounded-full shadow-lg transition-all duration-200 mx-auto font-bold text-lg"
     aria-label="Contactar"
+    initial={false}
+    animate={buttonAnimatingMobile ? { scale: 0.8, opacity: 0 } : { scale: 1, opacity: 1 }}
+    transition={{ duration: 0.35, ease: "easeInOut" }}
+    onClick={async (e) => {
+      e.preventDefault();
+      setButtonAnimatingMobile(true);
+      setTimeout(() => {
+        router.push("/contacto");
+        setButtonAnimatingMobile(false);
+      }, 350);
+    }}
+    href="/contacto"
+    style={{ cursor: buttonAnimatingMobile ? 'not-allowed' : undefined }}
   >
     Contáctanos
-  </a>
+  </motion.a>
   {/* Botón SOLO para desktop */}
-  <a
+  {/* Botón SOLO para desktop */}
+  <motion.a
     href="/contacto"
     className="hidden sm:inline-block bg-yellow-400 hover:bg-yellow-500 text-black font-bold px-8 py-3 rounded-full shadow-lg transition-all duration-200 text-lg text-center"
-    style={{ wordBreak: 'break-word', whiteSpace: 'normal' }}
+    style={{ wordBreak: 'break-word', whiteSpace: 'normal', cursor: buttonAnimatingDesktop ? 'not-allowed' : undefined }}
+    initial={false}
+    animate={buttonAnimatingDesktop ? { scale: 0.8, opacity: 0 } : { scale: 1, opacity: 1 }}
+    transition={{ duration: 0.35, ease: "easeInOut" }}
+    onClick={async (e) => {
+      e.preventDefault();
+      setButtonAnimatingDesktop(true);
+      setTimeout(() => {
+        router.push("/contacto");
+        setButtonAnimatingDesktop(false);
+      }, 350);
+    }}
   >
     Contáctanos
-  </a>
+  </motion.a>
 
 </div>
       </div>
