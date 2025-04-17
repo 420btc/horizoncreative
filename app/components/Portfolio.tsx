@@ -331,14 +331,7 @@ export default function Portfolio() {
                       setModalImage(item.image);
                     }}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                    <h3 className="text-xl font-bold text-white mb-2">{item.title}</h3>
-                    <p className="text-gray-200 mb-4">{item.description}</p>
-                    <a href="#" className="inline-flex items-center text-primary hover:text-primary/80 transition-colors">
-                      <span className="mr-2">Ver proyecto</span>
-                      <ArrowRight className="h-4 w-4" />
-                    </a>
-                  </div>
+
                   <motion.div
                     className="absolute inset-0 bg-primary/20 pointer-events-none"
                     initial={{ opacity: 0 }}
