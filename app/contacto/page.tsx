@@ -120,9 +120,6 @@ export default function Contacto() {
           {/* Contact Info */}
           <motion.div initial={{ opacity: 0, x: -50 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }}>
             <div className="bg-black border border-primary/20 rounded-xl p-8 shadow-lg relative overflow-hidden h-full">
-              <div className="absolute top-0 right-0 w-33 h-32">
-                <Sunrise className="w-full h-full text-primary/10" />
-              </div>
 
               <h2 className="text-3xl font-bold mb-8 text-white">
                 La <span className="text-yellow-400">estrategia</span> digital que tu marca <span className="text-white">necesita</span>
