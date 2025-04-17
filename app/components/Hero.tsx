@@ -15,7 +15,22 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <span className="text-primary text-7xl md:text-8xl mb-4 block">Horizon Creative</span>
+            <motion.span
+              className="block text-primary text-7xl md:text-8xl mb-0 text-left"
+              initial={{ opacity: 0, x: '-100vw' }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ type: 'spring', bounce: 0.45, duration: 2.2, delay: 0 }}
+            >
+              Horizon
+            </motion.span>
+            <motion.span
+              className="block text-primary text-7xl md:text-8xl mt-1 text-left"
+              initial={{ opacity: 0, x: '-100vw' }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ type: 'spring', bounce: 0.55, duration: 2.2, delay: 1.5 }}
+            >
+              Creative
+            </motion.span>
           </motion.h1>
           <div className="mt-6 text-lg leading-8 text-black dark:text-gray-300 h-24">
             <TypewriterText
