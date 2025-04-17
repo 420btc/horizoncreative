@@ -173,7 +173,18 @@ export default function SobreNosotros() {
           </div>
         </div>
       </div>
-      <img src="/assets/telescopio.png" alt="Telescopio" className="w-[440px] max-w-full h-auto mx-auto mb-4" />
+      <div className="w-full mt-8 mb-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-1">
+          <div className="flex justify-center items-center">
+            <img src="/assets/telescopio.png" alt="Telescopio" className="w-[405px] max-w-full h-auto" />
+          </div>
+          <div className="flex flex-col justify-center items-center md:justify-end md:items-start gap-2 mt-[-20px] md:-ml-8 md:mt-[-40px] max-w-xl w-full md:pr-4">
+            <p className="text-xl text-gray-800 dark:text-gray-200 text-center md:text-left w-full">
+              <span className="text-yellow-400 font-bold">Horizon Creative</span>, surgida de la amistad, conecta marcas con audiencias mediante creatividad, colaboración, autenticidad e innovación, impulsando su <span className="text-yellow-400 font-bold">crecimiento digital</span>.
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   )
 }
