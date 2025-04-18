@@ -106,7 +106,7 @@ export default function Contacto() {
             <h1 className="text-5xl font-black text-white">
               Conecta con <span className="text-primary">nosotros</span>
             </h1>
-            <p className="text-xl text-gray-300 mb-4">El primer paso hacia el éxito empieza con un mensaje.</p>
+            <p className="text-xl text-white mb-4">El primer paso hacia el éxito empieza con un mensaje.</p>
           </motion.div>
         </div>
         <div className="absolute inset-0 z-0">
@@ -202,10 +202,10 @@ export default function Contacto() {
                           <Input
                             placeholder="Tu nombre"
                             {...field}
-                            className="bg-[#222] border-gray-700 text-white placeholder-white"
+                            className="bg-[#222] !text-white !placeholder-white border-gray-700"
                           />
                         </FormControl>
-                        <FormMessage />
+                        <FormMessage className="text-white" />
                       </FormItem>
                     )}
                   />
@@ -220,10 +220,10 @@ export default function Contacto() {
                           <Input
                             placeholder="tu@email.com"
                             {...field}
-                            className="bg-[#222] border-gray-700 text-white placeholder-white"
+                            className="bg-[#222] !text-white !placeholder-white border-gray-700"
                           />
                         </FormControl>
-                        <FormMessage />
+                        <FormMessage className="text-white" />
                       </FormItem>
                     )}
                   />
@@ -237,11 +237,11 @@ export default function Contacto() {
                         <FormControl>
                           <Textarea
                             placeholder="¿Cómo podemos ayudarte?"
-                            className="min-h-[120px] bg-[#222] border-gray-700 text-white placeholder-white"
+                            className="min-h-[120px] bg-[#222] !text-white !placeholder-white border-gray-700"
                             {...field}
                           />
                         </FormControl>
-                        <FormMessage />
+                        <FormMessage className="text-white" />
                       </FormItem>
                     )}
                   />
