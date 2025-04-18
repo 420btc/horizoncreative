@@ -13,7 +13,7 @@ export default function SobreNosotros() {
   useEffect(() => setMounted(true), [])
 
   return (
-    <div className="bg-white dark:bg-black min-h-screen">
+    <div className="bg-black min-h-screen">
       <div className="container mx-auto py-20 px-4 sm:px-6 lg:px-8">
         <motion.h1
           className="text-5xl font-black mb-12 text-center text-black dark:text-white"

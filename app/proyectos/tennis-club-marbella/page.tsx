@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function TennisClubMarbella() {
   return (
-    <div className="min-h-screen bg-white dark:bg-black flex flex-col items-center pt-10 sm:pt-16">
+    <div className="min-h-screen bg-black flex flex-col items-center pt-10 sm:pt-16">
       <h1 className="text-5xl font-black mb-8 text-black dark:text-white text-center mt-2">
         Tennis Club Marbella
       </h1>

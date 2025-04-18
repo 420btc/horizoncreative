@@ -34,7 +34,7 @@ const services = [
 
 export default function Services() {
   return (
-    <section id="services" className="py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-black">
+    <section id="services" className="py-20 px-4 sm:px-6 lg:px-8 bg-black">
       <div className="container mx-auto relative flex flex-col md:flex-row items-start md:items-center">
         <div className="flex-1">
           <AnimatedSection direction="up">
@@ -50,7 +50,7 @@ export default function Services() {
                 delay={index * 0.15}
                 className="h-full"
               >
-                <div className="bg-gray-50 dark:bg-black border border-gray-200 dark:border-gray-800 p-6 rounded-lg h-full">
+                <div className="bg-black border border-gray-800 p-6 rounded-lg h-full">
                   {service.icon}
                   <h3 className="text-xl font-bold mb-2 text-black dark:text-white">{service.title}</h3>
                   <p className="text-gray-700 dark:text-gray-300">{service.description}</p>

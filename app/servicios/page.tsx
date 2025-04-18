@@ -58,7 +58,7 @@ export default function Servicios() {
   useEffect(() => setMounted(true), [])
 
   return (
-    <div className="bg-white dark:bg-black min-h-screen">
+    <div className="bg-black min-h-screen">
       <div className="container mx-auto py-20 px-4 sm:px-6 lg:px-8 relative">
         {/* Flyer pegatina flotante, esquina superior derecha, solo visible en md+ */}
         <img

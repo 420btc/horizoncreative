@@ -13,7 +13,7 @@ interface ProjectCardProps {
 export default function ProjectCard({ title, description, image, size }: ProjectCardProps) {
   return (
     <motion.div
-      className={`relative overflow-hidden rounded-2xl shadow-lg bg-white ${
+      className={`relative overflow-hidden rounded-2xl shadow-lg bg-black ${
         size === "wide" ? "aspect-[2/1]" : "aspect-square"
       }`}
       whileHover={{ scale: 1.05 }}

@@ -10,7 +10,7 @@ export default function Hero() {
   const [buttonAnimating, setButtonAnimating] = useState(false);
   const router = useRouter();
   return (
-    <div className="relative isolate overflow-hidden bg-white dark:bg-black">
+    <div className="relative isolate overflow-hidden bg-black">
       <div className="mx-auto max-w-7xl px-6 py-20 lg:flex lg:items-center lg:gap-x-10 lg:px-8">
         {/* Logo móvil arriba, desktop a la derecha */}
         <motion.div

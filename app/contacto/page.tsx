@@ -92,7 +92,7 @@ export default function Contacto() {
   }, [mapLoaded])
 
   return (
-    <div className="bg-white dark:bg-black min-h-screen overflow-x-hidden">
+    <div className="bg-black min-h-screen overflow-x-hidden">
       {/* Hero Section */}
       <div className="relative">
         <div className="absolute inset-0 bg-gradient-to-r from-black to-transparent z-10"></div>

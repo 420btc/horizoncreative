@@ -65,23 +65,17 @@ export default function ProductShowcase() {
                     className="rounded-2xl shadow-lg"
                   />
                 </div>
-                  src={products[currentProduct].image || "/placeholder.svg"}
-                  alt={products[currentProduct].name}
-                  width={600}
-                  height={600}
-                  className="rounded-2xl shadow-lg"
-                />
               </div>
             </motion.div>
           </AnimatePresence>
           <button
-            className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-lg"
+            className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-black p-2 rounded-full shadow-lg"
             onClick={prevProduct}
           >
             ←
           </button>
           <button
-            className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-lg"
+            className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-black p-2 rounded-full shadow-lg"
             onClick={nextProduct}
           >
             →

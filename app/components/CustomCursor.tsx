@@ -24,7 +24,7 @@ export default function CustomCursor() {
       animate={{ x: mousePosition.x - 5, y: mousePosition.y - 5 }}
       transition={{ type: "spring", stiffness: 500, damping: 28 }}
     >
-      <div className="w-3 h-3 bg-white rounded-full" />
+      <div className="w-3 h-3 bg-black rounded-full" />
     </motion.div>
   )
 }
