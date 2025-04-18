@@ -85,21 +85,21 @@ export default function Proyectos() {
   </div>
 
   {/* Imágenes decorativas al final, arriba del footer */}
-  <div className="w-full flex flex-col items-center justify-center mt-[38rem] mb-8">
+  <div className="w-full flex flex-col items-center justify-center mt-12 sm:mt-[38rem] mb-2">
     <Image
       src="/assets/globito.png"
       alt="Globito decorativo"
-      width={270}
-      height={270}
-      className="mb-8 scale-110 md:scale-150"
+      width={230}
+      height={230}
+      className="mb-6 scale-110 md:scale-150"
       priority
     />
     <Image
       src="/assets/prod1.png"
       alt="Proyecto destacado"
-      width={660}
-      height={440}
-      className="rounded-xl shadow-lg object-cover scale-[1.10]"
+      width={900}
+      height={600}
+      className="rounded-xl shadow-lg object-cover w-[95vw] max-w-2xl sm:max-w-3xl h-auto mb-2"
       priority
     />
   </div>
