@@ -396,11 +396,14 @@ export default function Portfolio() {
             <button
               onClick={handlePrev}
               disabled={carouselIndex === 0}
-              className={`hidden md:flex items-center justify-center absolute left-0 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-primary text-black font-bold shadow transition-colors border-2 border-primary disabled:opacity-50 disabled:cursor-not-allowed`}
+              className={`hidden md:flex items-center justify-center absolute left-0 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-primary text-black font-bold shadow transition-colors border-2 border-primary disabled:opacity-50 disabled:cursor-not-allowed`}
               aria-label="Anterior"
-              style={{ marginLeft: '-28px' }}
+              style={{ marginLeft: '-20px' }}
             >
-              <span className="text-2xl"><span className="text-2xl">&#8592;</span></span>
+              {/* SVG flecha izquierda, más fina */}
+              <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M14 5L8 11L14 17" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
             </button>
           )}
           {/* Carousel Controls - Right */}
@@ -408,34 +411,43 @@ export default function Portfolio() {
             <button
               onClick={handleNext}
               disabled={carouselIndex === totalPages - 1}
-              className={`hidden md:flex items-center justify-center absolute right-0 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-primary text-black font-bold shadow transition-colors border-2 border-primary disabled:opacity-50 disabled:cursor-not-allowed`}
+              className={`hidden md:flex items-center justify-center absolute right-0 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-primary text-black font-bold shadow transition-colors border-2 border-primary disabled:opacity-50 disabled:cursor-not-allowed`}
               aria-label="Siguiente"
-              style={{ marginRight: '-28px' }}
+              style={{ marginRight: '-20px' }}
             >
-              <span className="text-2xl"><span className="text-2xl">&#8594;</span></span>
+              {/* SVG flecha derecha, más fina */}
+              <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 5L14 11L8 17" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
             </button>
           )}
           {/* Carousel Controls - Mobile (bottom center) */}
           {filteredItems.length > itemsPerPage && (
-            <div className="flex md:hidden justify-center items-center gap-4 mt-2 mb-4">
+            <div className="flex md:hidden justify-center items-center gap-3 mt-2 mb-4">
               <button
                 onClick={handlePrev}
                 disabled={carouselIndex === 0}
-                className={`w-12 h-12 flex items-center justify-center rounded-full bg-primary text-black font-bold shadow transition-colors border-2 border-primary disabled:opacity-50 disabled:cursor-not-allowed`}
+                className={`w-8 h-8 flex items-center justify-center rounded-full bg-primary text-black font-bold shadow transition-colors border-2 border-primary disabled:opacity-50 disabled:cursor-not-allowed`}
                 aria-label="Anterior"
               >
-                <span className="text-2xl"><span className="text-2xl">&#8592;</span></span>
+                {/* SVG flecha izquierda, más pequeña */}
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M10.5 3L6 8L10.5 13" stroke="black" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
               </button>
-              <span className="text-black dark:text-white font-semibold">
+              <span className="text-black dark:text-white font-semibold text-sm">
                 Página {carouselIndex + 1} de {totalPages}
               </span>
               <button
                 onClick={handleNext}
                 disabled={carouselIndex === totalPages - 1}
-                className={`w-12 h-12 flex items-center justify-center rounded-full bg-primary text-black font-bold shadow transition-colors border-2 border-primary disabled:opacity-50 disabled:cursor-not-allowed`}
+                className={`w-8 h-8 flex items-center justify-center rounded-full bg-primary text-black font-bold shadow transition-colors border-2 border-primary disabled:opacity-50 disabled:cursor-not-allowed`}
                 aria-label="Siguiente"
               >
-                <span className="text-2xl"><span className="text-2xl">&#8594;</span></span>
+                {/* SVG flecha derecha, más pequeña */}
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M6 3L10.5 8L6 13" stroke="black" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
               </button>
             </div>
           )}
