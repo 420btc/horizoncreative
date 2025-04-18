@@ -92,7 +92,7 @@ export default function Contacto() {
   }, [mapLoaded])
 
   return (
-    <div className="bg-white dark:bg-black min-h-screen">
+    <div className="bg-white dark:bg-black min-h-screen overflow-x-hidden">
       {/* Hero Section */}
       <div className="relative">
         <div className="absolute inset-0 bg-gradient-to-r from-black to-transparent z-10"></div>
@@ -116,10 +116,10 @@ export default function Contacto() {
 
       {/* Main Content */}
       <div className="container mx-auto py-0 px-3 sm:px-3 lg:px-6">
-        <div className="grid md:grid-cols-2 gap-6 min-h-[300px] items-stretch">
+        <div className="grid md:grid-cols-2 gap-4 md:gap-6 min-h-[300px] items-stretch">
           {/* Contact Info */}
           <motion.div initial={{ opacity: 0, x: -50 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }}>
-            <div className="bg-black border border-primary/20 rounded-xl p-8 shadow-lg relative overflow-hidden h-full">
+            <div className="bg-black border border-primary/20 rounded-xl p-4 sm:p-8 shadow-lg relative overflow-hidden h-full">
 
               <h2 className="text-3xl font-bold mb-8 text-white">
                 La <span className="text-yellow-400">estrategia</span> digital que tu marca <span className="text-white">necesita</span>
@@ -187,7 +187,7 @@ export default function Contacto() {
             </div>
 
             {/* Form */}
-            <div className="bg-black border border-primary/20 rounded-xl p-8 shadow-lg">
+            <div className="bg-black border border-primary/20 rounded-xl p-4 sm:p-8 shadow-lg">
               <h3 className="text-2xl font-bold mb-6 text-white">Envíanos un mensaje</h3>
 
               <Form {...form}>
