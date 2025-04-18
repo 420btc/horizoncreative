@@ -18,7 +18,7 @@ export default function Header() {
 
   return (
     <motion.header
-      className="sticky top-0 z-50 bg-black border-b border-gray-300"
+      className="sticky top-0 z-50 bg-black border-b border-gray-700"
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6 }}
@@ -66,7 +66,7 @@ export default function Header() {
         </div>
         {/* Mobile nav menu */}
         {menuOpen && (
-          <div className="absolute top-full left-0 w-full bg-black shadow-md py-4 flex flex-col items-center md:hidden animate-fade-in z-40 border-b border-gray-300">
+          <div className="absolute top-full left-0 w-full bg-black shadow-md py-4 flex flex-col items-center md:hidden animate-fade-in z-40 border-b border-gray-700">
             <Link href="/" className={`py-2 text-base font-semibold w-full text-center transition-colors ${pathname === '/' ? 'text-white hover:text-[#FFD600] focus:text-[#FFD600] active:text-[#FFD600]' : 'text-white hover:text-[#FFD600] focus:text-[#FFD600] active:text-[#FFD600]'}`} onClick={() => setMenuOpen(false)}>Inicio</Link>
             <Link href="/servicios" className={`py-2 text-base font-semibold w-full text-center transition-colors ${pathname === '/servicios' ? 'text-white hover:text-[#FFD600] focus:text-[#FFD600] active:text-[#FFD600]' : 'text-white hover:text-[#FFD600] focus:text-[#FFD600] active:text-[#FFD600]'}`} onClick={() => setMenuOpen(false)}>Servicios</Link>
             <Link href="/proyectos" className={`py-2 text-base font-semibold w-full text-center transition-colors ${pathname === '/proyectos' ? 'text-white hover:text-[#FFD600] focus:text-[#FFD600] active:text-[#FFD600]' : 'text-white hover:text-[#FFD600] focus:text-[#FFD600] active:text-[#FFD600]'}`} onClick={() => setMenuOpen(false)}>Proyectos</Link>
