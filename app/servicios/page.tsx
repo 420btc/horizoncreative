@@ -7,7 +7,7 @@ import { useEffect } from "react"
 const servicios = [
   {
     icon: <svg xmlns="http://www.w3.org/2000/svg" className="lucide lucide-camera w-12 h-12 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"></path><circle cx="12" cy="13" r="3"></circle></svg>,
-    title: "Fotografía",
+    title: "Fotografía y Video",
     description: "Creamos contenido visual de alta calidad, con imágenes y videos diseñados para contar tu historia de manera auténtica, conectar con tu audiencia y fortalecer tu presencia en el mercado.",
     slug: "fotografia",
   },
@@ -35,6 +35,12 @@ const servicios = [
     title: "Diseño & Desarrollo Web",
     description: "Diseñamos y desarrollamos sitios web que destacan y marcan la diferencia, optimizando la experiencia del usuario y garantizando resultados.",
     slug: "diseno-web",
+  },
+  {
+    icon: <svg xmlns="http://www.w3.org/2000/svg" className="w-12 h-12 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M17 8c0-1.657-1.343-3-3-3H7C5.343 5 4 6.343 4 8v8c0 1.657 1.343 3 3 3h7c1.657 0 3-1.343 3-3V8z"/><path strokeLinecap="round" strokeLinejoin="round" d="M8 12h4m-2-2v4"/></svg>,
+    title: "Gestión de Redes Sociales",
+    description: "Gestionamos tus redes sociales con estrategias personalizadas, creando contenido atractivo y relevante para fortalecer tu comunidad, aumentar tu alcance y consolidar tu presencia digital.",
+    slug: "gestion-redes-sociales",
   },
 ]
 
@@ -82,7 +88,7 @@ export default function Servicios() {
 
 
         <div className="grid md:grid-cols-2 gap-9">
-          {servicios.map((service, index) => (
+          {servicios.slice(0,4).map((service, index) => (
             <motion.div
               key={service.title}
               className="bg-black rounded-xl p-5 shadow-lg border border-primary/20 hover:border-primary/50 transition-all duration-300"
@@ -109,6 +115,34 @@ export default function Servicios() {
               </motion.div>
             </motion.div>
           ))}
+          {/* Quinta tarjeta centrada */}
+          <div className="col-span-2 flex justify-center">
+            <motion.div
+              key={servicios[4].title}
+              className="bg-black rounded-xl p-5 shadow-lg border border-primary/20 hover:border-primary/50 transition-all duration-300 max-w-md w-full mt-4"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+            >
+              <div className="flex items-center mb-4">
+                {servicios[4].icon}
+                <h3 className="text-2xl font-bold ml-4 text-white">{servicios[4].title}</h3>
+              </div>
+              <p className="text-gray-300 mb-4">{servicios[4].description}</p>
+              <motion.div className="mt-6" whileHover={{ scale: 1.05 }} transition={{ duration: 0.2 }}>
+                <a
+                  href={`/servicios/${servicios[4].slug}`}
+                  className="flex items-center justify-center mt-6 w-9 h-9 rounded-full bg-primary text-black hover:bg-primary/80 transition-colors shadow-lg mx-auto"
+                  aria-label={`Ver detalles de ${servicios[4].title}`}
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
+                    <circle cx="10" cy="10" r="9" fill="none" />
+                    <path d="M10 6v8M6 10h8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                  </svg>
+                </a>
+              </motion.div>
+            </motion.div>
+          </div>
         </div>
 
 
