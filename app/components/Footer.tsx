@@ -4,7 +4,7 @@ import AnimatedSection from "./AnimatedSection"
 
 export default function Footer() {
   return (
-    <footer className="bg-black border-t border-black">
+    <footer className="bg-black border-t-0">
       <div className="mx-auto max-w-7xl overflow-hidden px-4 py-4 sm:py-10 lg:px-8">
         <AnimatedSection direction='up' delay={0.2}>
           {/* Logo arriba en móvil */}

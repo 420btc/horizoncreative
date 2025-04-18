@@ -1,0 +1,9 @@
+.white-line-debug * {
+  outline: 1px solid red !important;
+}
+
+#white-line-fix {
+  background: #000 !important;
+  border: none !important;
+  box-shadow: none !important;
+}

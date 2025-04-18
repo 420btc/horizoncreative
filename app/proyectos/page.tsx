@@ -43,7 +43,7 @@ export default function Proyectos() {
       return (
         <motion.div
           key={proy.href}
-          className="group relative bg-gradient-to-br from-yellow-100/80 via-white/90 to-yellow-200/60 dark:from-yellow-900/40 dark:via-black/90 dark:to-yellow-900/20 rounded-3xl shadow-2xl overflow-hidden w-[300px] lg:w-[350px] xl:w-[410px] transition-transform hover:scale-[1.035] hover:shadow-yellow-200/40 cursor-pointer"
+          className="group relative bg-black rounded-3xl shadow-2xl overflow-hidden w-[300px] lg:w-[350px] xl:w-[410px] transition-transform hover:scale-[1.035] hover:shadow-yellow-200/40 cursor-pointer"
           style={{ minHeight: 420 }}
           initial={false}
           animate={animating ? { scale: 0.92, opacity: 0 } : { scale: 1, opacity: 1 }}
@@ -67,10 +67,10 @@ export default function Proyectos() {
             priority
           />
           <div className="relative z-20 p-6 flex flex-col justify-between h-[160px]">
-            <h2 className="text-2xl font-bold mb-2 text-black dark:text-yellow-300 group-hover:text-yellow-600 transition-colors">
+            <h2 className="text-2xl font-bold mb-2 text-white group-hover:text-yellow-400 transition-colors">
               {proy.title}
             </h2>
-            <p className="text-gray-700 dark:text-gray-200 text-base mb-1">
+            <p className="text-gray-200 text-base mb-1">
               {proy.desc}
             </p>
             <span className="inline-block mt-2 text-sm font-semibold text-yellow-600 dark:text-yellow-400 group-hover:underline">

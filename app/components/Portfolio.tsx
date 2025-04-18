@@ -357,8 +357,8 @@ export default function Portfolio() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="text-3xl font-bold tracking-tight text-black dark:text-white sm:text-4xl mt-4 md:mt-12 mb-4 md:mb-8">Nuestro Portfolio</h2>
-          <p className="text-lg text-gray-700 dark:text-gray-300 max-w-3xl mx-auto">
+          <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl mt-4 md:mt-12 mb-4 md:mb-8">Nuestro Portfolio</h2>
+          <p className="text-lg text-white mb-8 max-w-2xl mx-auto text-center">
             Descubre algunos de nuestros proyectos más destacados, donde combinamos creatividad y estrategia para lograr
             resultados excepcionales.
           </p>

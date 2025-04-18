@@ -52,8 +52,8 @@ export default function ContactForm() {
           transition={{ duration: 0.8 }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl font-bold text-black dark:text-white sm:text-4xl mb-4">Contacto</h2>
-          <p className="text-lg text-gray-700 dark:text-gray-300">
+          <h2 className="text-3xl font-bold text-white sm:text-4xl mb-4">Contacto</h2>
+          <p className="text-lg text-white">
             Nos encantaría saber de ti. Completa el formulario a continuación y nos pondremos en contacto contigo lo
             antes posible.
           </p>
@@ -70,11 +70,11 @@ export default function ContactForm() {
                 name="name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Nombre</FormLabel>
+                    <FormLabel className="text-white">Nombre</FormLabel>
                     <FormControl>
-                      <Input placeholder="Juan Pérez" {...field} />
+                      <Input placeholder="Juan Pérez" {...field} className="bg-[#222] !text-white !placeholder-white" />
                     </FormControl>
-                    <FormMessage />
+                    <FormMessage className="text-white" />
                   </FormItem>
                 )}
               />
@@ -83,11 +83,11 @@ export default function ContactForm() {
                 name="email"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Correo Electrónico</FormLabel>
+                    <FormLabel className="text-white">Correo Electrónico</FormLabel>
                     <FormControl>
-                      <Input placeholder="juan@ejemplo.com" {...field} />
+                      <Input placeholder="juan@ejemplo.com" {...field} className="bg-[#222] !text-white !placeholder-white" />
                     </FormControl>
-                    <FormMessage />
+                    <FormMessage className="text-white" />
                   </FormItem>
                 )}
               />
@@ -96,11 +96,11 @@ export default function ContactForm() {
                 name="phoneNumber"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Número de Teléfono</FormLabel>
+                    <FormLabel className="text-white">Número de Teléfono</FormLabel>
                     <FormControl>
-                      <Input placeholder="+34 600 000 000" {...field} />
+                      <Input placeholder="+34 600 000 000" {...field} className="bg-[#222] !text-white !placeholder-white" />
                     </FormControl>
-                    <FormMessage />
+                    <FormMessage className="text-white" />
                   </FormItem>
                 )}
               />
@@ -109,11 +109,11 @@ export default function ContactForm() {
                 name="budget"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Presupuesto</FormLabel>
+                    <FormLabel className="text-white">Presupuesto</FormLabel>
                     <FormControl>
-                      <Input placeholder="1.000€ - 5.000€" {...field} />
+                      <Input placeholder="500€ - 2000€" {...field} className="bg-[#222] !text-white !placeholder-white" />
                     </FormControl>
-                    <FormMessage />
+                    <FormMessage className="text-white" />
                   </FormItem>
                 )}
               />
@@ -122,11 +122,11 @@ export default function ContactForm() {
                 name="message"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Mensaje</FormLabel>
+                    <FormLabel className="text-white">Mensaje</FormLabel>
                     <FormControl>
-                      <Textarea placeholder="Cuéntanos sobre tu proyecto..." className="min-h-[120px]" {...field} />
+                      <Textarea placeholder="Cuéntanos sobre tu proyecto..." className="min-h-[120px] bg-[#222] !text-white !placeholder-white" {...field} />
                     </FormControl>
-                    <FormMessage />
+                    <FormMessage className="text-white" />
                   </FormItem>
                 )}
               />

@@ -1,0 +1,15 @@
+#white-line-fix, #white-line-fix * {
+  background: #000 !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+footer, footer * {
+  background: #000 !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+body, html {
+  background: #000 !important;
+}

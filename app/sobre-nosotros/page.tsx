@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion"
 import AnimatedSection from "../components/AnimatedSection"
+import "./white-line-fix.css"
 import Image from "next/image"
 import { useTheme } from "next-themes"
 import { useEffect, useState } from "react"
@@ -13,7 +14,7 @@ export default function SobreNosotros() {
   useEffect(() => setMounted(true), [])
 
   return (
-    <div className="bg-black min-h-screen">
+    <div className="bg-black min-h-screen white-line-debug">
       <div className="container mx-auto py-20 px-4 sm:px-6 lg:px-8">
         <motion.h1
           className="text-5xl font-black mb-12 text-center text-white"
@@ -173,9 +174,9 @@ export default function SobreNosotros() {
           </div>
         </div>
       </div>
-      <div className="w-full mt-8 mb-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-1">
-          <div className="flex justify-center items-center">
+      <div id="white-line-fix" className="w-full mt-8 mb-4 bg-black border-none shadow-none">
+        <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-1 border-none">
+          <div className="flex justify-center items-center border-none">
             <img src="/assets/telescopio.png" alt="Telescopio" className="w-[400px] max-w-full h-auto" />
           </div>
           <div className="flex flex-col justify-center items-center md:justify-end md:items-start gap-2 mt-[-20px] md:-ml-8 md:mt-[-40px] max-w-xl w-full md:pr-4">

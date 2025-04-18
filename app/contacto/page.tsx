@@ -202,7 +202,7 @@ export default function Contacto() {
                           <Input
                             placeholder="Tu nombre"
                             {...field}
-                            className="bg-black border-gray-700 text-white placeholder-gray-400"
+                            className="bg-[#222] border-gray-700 text-white placeholder-white"
                           />
                         </FormControl>
                         <FormMessage />
@@ -220,7 +220,7 @@ export default function Contacto() {
                           <Input
                             placeholder="tu@email.com"
                             {...field}
-                            className="bg-black border-gray-700 text-white placeholder-gray-400"
+                            className="bg-[#222] border-gray-700 text-white placeholder-white"
                           />
                         </FormControl>
                         <FormMessage />
@@ -237,7 +237,7 @@ export default function Contacto() {
                         <FormControl>
                           <Textarea
                             placeholder="¿Cómo podemos ayudarte?"
-                            className="min-h-[120px] bg-black border-gray-700 text-white placeholder-gray-400"
+                            className="min-h-[120px] bg-[#222] border-gray-700 text-white placeholder-white"
                             {...field}
                           />
                         </FormControl>
@@ -269,7 +269,7 @@ export default function Contacto() {
 
       {/* Bottom Banner */}
       <motion.div
-        className="bg-primary py-6 px-8 mt-14"
+        className="bg-primary py-6 px-8 mt-14 border-t-0"
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.4 }}
