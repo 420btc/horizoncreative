@@ -38,7 +38,7 @@ export default function Services() {
       <div className="container mx-auto relative flex flex-col md:flex-row items-start md:items-center">
         <div className="flex-1">
           <AnimatedSection direction="up">
-            <h2 className="text-5xl font-black mb-8 text-center text-black dark:text-white">
+            <h2 className="text-5xl font-black mb-8 text-center text-white">
               Nuestros Servicios
             </h2>
           </AnimatedSection>
@@ -52,8 +52,8 @@ export default function Services() {
               >
                 <div className="bg-black border border-gray-800 p-6 rounded-lg h-full">
                   {service.icon}
-                  <h3 className="text-xl font-bold mb-2 text-black dark:text-white">{service.title}</h3>
-                  <p className="text-gray-700 dark:text-gray-300">{service.description}</p>
+                  <h3 className="text-xl font-bold mb-2 text-white">{service.title}</h3>
+                  <p className="text-gray-300">{service.description}</p>
 <a
   href={`/servicios/${service.slug}`}
   className="flex items-center justify-center mt-6 w-9 h-9 rounded-full bg-primary text-black hover:bg-primary/80 transition-colors shadow-lg mx-auto"

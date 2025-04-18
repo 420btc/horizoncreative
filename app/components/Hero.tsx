@@ -29,7 +29,7 @@ export default function Hero() {
           />
         </motion.div>
         <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-lg lg:flex-shrink-0">
-          <div className="mt-10 font-bold tracking-tight text-black dark:text-white text-7xl md:text-8xl sm:text-6xl">
+          <div className="mt-10 font-bold tracking-tight text-white text-7xl md:text-8xl sm:text-6xl">
             <motion.span
               className="block text-primary"
               initial={{ opacity: 0, x: '-100vw' }}
@@ -47,7 +47,7 @@ export default function Hero() {
               Creative
             </motion.span>
           </div>
-          <div className="mt-6 text-lg leading-8 text-black dark:text-gray-300 h-24">
+          <div className="mt-6 text-lg leading-8 text-gray-300 h-24">
             <TypewriterText
               text="Agencia de marketing online especializada en estrategias digitales que impulsan el crecimiento de tu negocio."
               delay={30}
@@ -75,7 +75,7 @@ export default function Hero() {
             >
               Contáctanos
             </motion.button>
-            <a href="/servicios" className="text-sm font-semibold leading-6 text-black dark:text-white">
+            <a href="/servicios" className="text-sm font-semibold leading-6 text-white">
               Nuestros Servicios <span aria-hidden="true">→</span>
             </a>
           </motion.div>

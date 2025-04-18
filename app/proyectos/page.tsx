@@ -31,7 +31,7 @@ const proyectos = [
 export default function Proyectos() {
   return (
     <div className="min-h-screen bg-black flex flex-col items-center pt-10 sm:pt-16">
-  <h1 className="text-5xl font-black mb-8 text-black dark:text-white text-center mt-2">
+  <h1 className="text-5xl font-black mb-8 text-white text-center mt-2">
     Nuestros <span className="text-yellow-400">Proyectos</span>
   </h1>
   <div className="mt-2"></div>

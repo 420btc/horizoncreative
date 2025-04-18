@@ -103,7 +103,7 @@ export default function Contacto() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-5xl font-black mb-4 text-white">
+            <h1 className="text-5xl font-black text-white">
               Conecta con <span className="text-primary">nosotros</span>
             </h1>
             <p className="text-xl text-gray-300 mb-4">El primer paso hacia el éxito empieza con un mensaje.</p>

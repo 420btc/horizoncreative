@@ -3,7 +3,7 @@ import Image from "next/image";
 export default function VacationBenalmadena() {
   return (
     <div className="min-h-screen bg-black flex flex-col items-center pt-10 sm:pt-16">
-      <h1 className="text-5xl font-black mb-8 text-black dark:text-white text-center mt-2">
+      <h1 className="text-5xl font-black mb-8 text-white text-center mt-2">
         Vacation Benalmádena
       </h1>
       <div className="w-full max-w-2xl flex flex-col items-center mt-2">
