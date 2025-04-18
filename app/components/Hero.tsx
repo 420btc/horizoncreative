@@ -25,14 +25,24 @@ export default function Hero() {
           />
         </motion.div>
         <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-lg lg:flex-shrink-0">
-          <motion.h1
-            className="mt-10 text-4xl font-bold tracking-tight text-white sm:text-6xl"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <span className="text-primary text-7xl md:text-8xl mb-4 block">Horizon Creative</span>
-          </motion.h1>
+          <motion.h1 className="mt-10 text-4xl font-bold tracking-tight text-white sm:text-6xl flex flex-col items-start md:items-start gap-0">
+  <motion.span
+    className="text-primary text-7xl md:text-8xl mb-0 block"
+    initial={{ x: '-100vw', opacity: 0 }}
+    animate={{ x: 0, opacity: 1 }}
+    transition={{ duration: 1.7, type: 'spring', bounce: 0.3, delay: 0 }}
+  >
+    Horizon
+  </motion.span>
+  <motion.span
+    className="text-primary text-7xl md:text-8xl block"
+    initial={{ x: '-100vw', opacity: 0 }}
+    animate={{ x: 0, opacity: 1 }}
+    transition={{ duration: 2.1, type: 'spring', bounce: 0.3, delay: 0.85 }}
+  >
+    Creative
+  </motion.span>
+</motion.h1>
           <div className="mt-6 text-lg leading-8 text-gray-300 h-24">
             <TypewriterText
               text="Agencia de marketing online especializada en estrategias digitales que impulsan el crecimiento de tu negocio."
