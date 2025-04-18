@@ -119,7 +119,7 @@ export default function Servicios() {
           <div className="col-span-2 flex justify-center">
             <motion.div
               key={servicios[4].title}
-              className="bg-black rounded-xl p-5 shadow-lg border border-primary/20 hover:border-primary/50 transition-all duration-300 max-w-md w-full mt-4"
+              className="bg-black rounded-xl p-5 shadow-lg border border-primary/20 hover:border-primary/50 transition-all duration-300 max-w-lg md:w-[57.5%] w-full mt-4"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.5 }}
