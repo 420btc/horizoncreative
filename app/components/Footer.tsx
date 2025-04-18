@@ -4,7 +4,7 @@ import AnimatedSection from "./AnimatedSection"
 
 export default function Footer() {
   return (
-    <footer className="bg-black border-t border-gray-800">
+    <footer className="bg-black border-t border-black">
       <div className="mx-auto max-w-7xl overflow-hidden px-4 py-4 sm:py-10 lg:px-8">
         <AnimatedSection direction='up' delay={0.2}>
           {/* Logo arriba en móvil */}
@@ -21,14 +21,14 @@ export default function Footer() {
               <div key={item} className="pb-2 sm:pb-6">
                 <Link
                   href={`#${item.toLowerCase().replace(/\s+/g, "-")}`}
-                  className="text-sm leading-6 text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white"
+                  className="text-sm leading-6 text-gray-400 hover:text-white"
                 >
                   {item}
                 </Link>
               </div>
             ))}
           </nav>
-          <p className="text-center text-xs sm:text-sm leading-5 text-gray-500 dark:text-gray-400 mt-2">
+          <p className="text-center text-xs sm:text-sm leading-5 text-gray-400 mt-2">
             &copy; {new Date().getFullYear()} Horizon Creative. Todos los derechos reservados.
           </p>
         </AnimatedSection>

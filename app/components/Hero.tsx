@@ -3,12 +3,8 @@
 import { motion } from "framer-motion"
 import Image from "next/image"
 import TypewriterText from "./TypewriterText"
-import { useRouter } from "next/navigation"
-import { useState } from "react"
 
 export default function Hero() {
-  const [buttonAnimating, setButtonAnimating] = useState(false);
-  const router = useRouter();
   return (
     <div className="relative isolate overflow-hidden bg-black">
       <div className="mx-auto max-w-7xl px-6 py-20 lg:flex lg:items-center lg:gap-x-10 lg:px-8">
@@ -29,24 +25,14 @@ export default function Hero() {
           />
         </motion.div>
         <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-lg lg:flex-shrink-0">
-          <div className="mt-10 font-bold tracking-tight text-white text-7xl md:text-8xl sm:text-6xl">
-            <motion.span
-              className="block text-primary"
-              initial={{ opacity: 0, x: '-100vw' }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ type: 'spring', bounce: 0.45, duration: 2.2, delay: 0 }}
-            >
-              Horizon
-            </motion.span>
-            <motion.span
-              className="block text-primary mt-1"
-              initial={{ opacity: 0, x: '-50vw' }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ type: 'spring', bounce: 0.55, duration: 2.2, delay: 1.5 }}
-            >
-              Creative
-            </motion.span>
-          </div>
+          <motion.h1
+            className="mt-10 text-4xl font-bold tracking-tight text-white sm:text-6xl"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <span className="text-primary text-7xl md:text-8xl mb-4 block">Horizon Creative</span>
+          </motion.h1>
           <div className="mt-6 text-lg leading-8 text-gray-300 h-24">
             <TypewriterText
               text="Agencia de marketing online especializada en estrategias digitales que impulsan el crecimiento de tu negocio."
@@ -59,22 +45,12 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            <motion.button
+            <a
+              href="#contact"
               className="rounded-full bg-primary px-6 py-3 text-sm font-semibold text-black shadow-sm hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary"
-              initial={false}
-              animate={buttonAnimating ? { scale: 0.8, opacity: 0 } : { scale: 1, opacity: 1 }}
-              transition={{ duration: 0.35, ease: "easeInOut" }}
-              onClick={async () => {
-                setButtonAnimating(true);
-                setTimeout(() => {
-                  router.push("/contacto");
-                  setButtonAnimating(false);
-                }, 350);
-              }}
-              disabled={buttonAnimating}
             >
               Contáctanos
-            </motion.button>
+            </a>
             <a href="/servicios" className="text-sm font-semibold leading-6 text-white">
               Nuestros Servicios <span aria-hidden="true">→</span>
             </a>

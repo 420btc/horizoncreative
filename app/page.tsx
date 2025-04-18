@@ -4,11 +4,10 @@ import Portfolio from "./components/Portfolio"
 
 export default function Home() {
   return (
-    <>
+    <div className="min-h-screen bg-black">
       <Hero />
       <Portfolio />
-
-      <div className="w-full flex justify-center my-2">
+      <div className="w-full flex justify-center my-2 bg-black border-0 shadow-none">
         <img
           src="/assets/logomano.png"
           alt="Logo Mano Horizon Creative"
@@ -17,6 +16,6 @@ export default function Home() {
         />
       </div>
       <ContactForm />
-    </>
-  )
+    </div>
+  );
 }

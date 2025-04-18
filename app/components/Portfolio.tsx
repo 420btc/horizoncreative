@@ -325,11 +325,11 @@ export default function Portfolio() {
 
   return (
     <section className="py-20 bg-black">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 bg-black">
         <div className="w-full flex justify-start items-center mt-4 mb-6">
           <div className="flex justify-start items-end ml-0 sm:ml-[9rem]">
-            <h1 className="text-5xl md:text-6xl font-extrabold text-black dark:text-white leading-tight text-left relative inline-block">
-              <span className="block sm:inline">Transformamos tu</span>
+            <h1 className="text-5xl md:text-6xl font-extrabold text-white leading-tight text-left relative inline-block">
+              <span className="block sm:inline text-white">Transformamos tu</span>
               <span
                 className="block mt-2 sm:mt-0 sm:inline sm:absolute sm:left-full sm:top-0 sm:ml-[0.25ch] sm:whitespace-nowrap text-center sm:text-left w-full sm:w-auto"
                 style={{ height: '100%', display: 'inline-block' }}
@@ -337,21 +337,12 @@ export default function Portfolio() {
                 <AnimatePresence mode="wait">
                   <motion.span
                     key={palabraIndex}
-                    initial={{ y: 30, opacity: 0, backgroundSize: '0% 100%' }}
-                    animate={{ y: 0, opacity: 1, backgroundSize: '100% 100%' }}
+                    initial={{ y: 30, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
                     exit={{ y: -30, opacity: 0 }}
                     transition={{ duration: 0.5, ease: 'easeInOut' }}
-                    style={{
-                      backgroundImage: 'linear-gradient(90deg, #ffe600 0%, #ffe600 100%)',
-                      backgroundRepeat: 'no-repeat',
-                      backgroundPosition: 'left',
-                      backgroundSize: '100% 100%',
-                      color: '#ffe600',
-                      WebkitBackgroundClip: 'text',
-                      WebkitTextFillColor: '#ffe600',
-                      display: 'inline-block',
-                      transition: 'color 0.3s',
-                    }}
+                    className="text-yellow-400 font-extrabold"
+                    style={{ color: '#ffe600', display: 'inline-block', transition: 'color 0.3s' }}
                   >
                     {palabrasClave[palabraIndex]}
                   </motion.span>
