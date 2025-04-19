@@ -217,18 +217,20 @@ const handleDelete = (id: string) => {
           {testimonials.map((t, i) => (
             <motion.div
               key={t.id}
-              className="relative rounded-xl p-4 pr-10 flex flex-col min-w-[260px] md:min-w-0 border border-primary bg-black/60 shadow-2xl transition-transform hover:scale-[1.03] hover:shadow-yellow-400/40"
+              className="relative rounded-xl p-4 pr-10 pb-8 flex flex-col min-w-[260px] min-h-[120px] md:min-w-0 border border-primary bg-black/60 shadow-2xl transition-transform hover:scale-[1.03] hover:shadow-yellow-400/40"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.1, type: 'spring', bounce: 0.2, duration: 0.7 }}
             >
               <span className="font-bold text-primary text-lg mb-1">{t.name}</span>
-              <span className="text-base leading-snug">
-  <span className="text-primary">“</span>
-  <span className="text-white">{t.text}</span>
-  <span className="text-primary">”</span>
-</span>
-              <span className="text-xs text-gray-400 mt-2">{t.date}</span>
+              <div className="flex-1 flex flex-col">
+                <span className="text-base leading-snug flex-1">
+                  <span className="text-primary">“</span>
+                  <span className="text-white">{t.text}</span>
+                  <span className="text-primary">”</span>
+                </span>
+              </div>
+              <span className="absolute right-4 bottom-4 text-xs text-gray-400">{t.date}</span>
               {t.canDelete === false ? (
                 <span
                   className="absolute top-2 right-2 rounded-full p-1 w-7 h-7 flex items-center justify-center bg-neutral-700 text-neutral-400 cursor-not-allowed"
