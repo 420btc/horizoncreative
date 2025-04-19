@@ -12,6 +12,7 @@ import Testimonials from "../components/Testimonials"
 import { Button } from "@/components/ui/button"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import Image from "next/image"
+import emailjs from '@emailjs/browser';
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "El nombre debe tener al menos 2 caracteres." }),
@@ -20,6 +21,8 @@ const formSchema = z.object({
 })
 
 export default function Contacto() {
+  // Estado para mensajes de éxito/error del formulario
+  const [formMessage, setFormMessage] = useState<{ type: 'success' | 'error', text: string } | null>(null);
   const mapContainer = useRef<HTMLDivElement>(null)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [mapLoaded, setMapLoaded] = useState(false)
@@ -33,15 +36,47 @@ export default function Contacto() {
     },
   })
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    setIsSubmitting(true)
-    // Simulate API call
-    setTimeout(() => {
-      console.log(values)
-      setIsSubmitting(false)
-      form.reset()
-      alert("¡Gracias por tu mensaje! Nos pondremos en contacto contigo pronto.")
-    }, 2000)
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    setIsSubmitting(true);
+    try {
+
+
+      // ENVÍO AL USUARIO (le llega el template)
+      await emailjs.send(
+        'service_06mwro7',
+        'template_fbh9vyx', // CORRECTO: Template para el cliente
+        {
+          from_name: values.name,
+          from_email: values.email,
+          message: values.message,
+          reply_to: values.email,
+          to_email: values.email, // <-- Añadido para que funcione el envío al cliente
+        },
+        'crT-xgI3BjGddLEgY'
+      );
+
+      // ENVÍO A LA EMPRESA
+      await emailjs.send(
+        'service_06mwro7',
+        'template_o8x6wug', // Template para la empresa
+        {
+          from_name: values.name,
+          from_email: values.email,
+          message: values.message,
+          reply_to: values.email,
+          to_email: 'info.horizoncreative@gmail.com',
+        },
+        'crT-xgI3BjGddLEgY'
+      );
+
+      setIsSubmitting(false);
+      form.reset();
+      setFormMessage({ type: 'success', text: '¡Mensaje enviado correctamente! Te contactaremos pronto.' });
+    } catch (error) {
+      setIsSubmitting(false);
+      setFormMessage({ type: 'error', text: 'Error al enviar el mensaje. Inténtalo de nuevo.' });
+      console.error(error);
+    }
   }
 
   useEffect(() => {
@@ -192,6 +227,12 @@ export default function Contacto() {
             <div className="bg-black border border-primary/20 rounded-xl p-4 sm:p-8 shadow-lg">
               <h3 className="text-2xl font-bold mb-6 text-white">Envíanos un mensaje</h3>
 
+              {/* Mensajes de éxito/error */}
+              {formMessage && (
+                <div className={`rounded-lg px-4 py-3 mb-4 font-semibold text-center ${formMessage.type === 'success' ? 'bg-yellow-300 text-black border border-yellow-400' : 'bg-red-200 text-red-800 border border-red-400'}`}>
+                  {formMessage.text}
+                </div>
+              )}
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                   <FormField

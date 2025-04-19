@@ -12,7 +12,21 @@ function randomDate() {
   start.setFullYear(start.getFullYear() - 2);
   const end = new Date();
   const date = new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
-  return date.toLocaleDateString('es-ES');
+  return date.toISOString().slice(0, 10); // "YYYY-MM-DD"
+}
+
+// Componente para mostrar la fecha formateada solo en cliente
+function FechaTestimonio({ dateStr }: { dateStr: string }) {
+  const [formatted, setFormatted] = useState(dateStr);
+  useEffect(() => {
+    try {
+      const d = new Date(dateStr);
+      setFormatted(d.toLocaleDateString('es-ES'));
+    } catch {
+      setFormatted(dateStr);
+    }
+  }, [dateStr]);
+  return <span className="absolute right-4 bottom-4 text-xs text-gray-400">{formatted}</span>;
 }
 
 const defaultTestimonials = [
@@ -230,7 +244,7 @@ const handleDelete = (id: string) => {
                   <span className="text-primary">”</span>
                 </span>
               </div>
-              <span className="absolute right-4 bottom-4 text-xs text-gray-400">{t.date}</span>
+              <FechaTestimonio dateStr={t.date} />
               {t.canDelete === false ? (
                 <span
                   className="absolute top-2 right-2 rounded-full p-1 w-7 h-7 flex items-center justify-center bg-neutral-700 text-neutral-400 cursor-not-allowed"
