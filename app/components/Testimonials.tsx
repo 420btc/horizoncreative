@@ -153,44 +153,66 @@ const handleDelete = (id: string) => {
   }
 
   return (
-    <section className="w-full mt-12 px-2 md:px-0">
-      <div className="max-w-4xl mx-auto bg-neutral-900 rounded-2xl p-6 md:p-8 shadow-xl">
-        <h3 className="text-2xl font-bold text-white mb-2 flex items-center gap-2">
-          <span className="inline-block w-2 h-2 rounded-full bg-primary animate-pulse"></span>
-          Opiniones de clientes
-        </h3>
-        <form
-          className="flex flex-col md:flex-row gap-2 md:gap-4 items-stretch mb-6"
-          onSubmit={handleAdd}
+    <section className="relative w-full bg-black py-20 px-4 md:px-0 overflow-hidden">
+      <div className="max-w-4xl md:max-w-5xl mx-auto flex flex-col items-center gap-8">
+        <motion.h2
+          className="text-4xl sm:text-5xl md:text-6xl font-black text-primary mb-2 text-center drop-shadow-lg"
+          initial={{ opacity: 0, y: -40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1.1, type: 'spring', bounce: 0.38 }}
         >
-          <input
-            type="text"
-            className="rounded-full px-4 py-2 bg-[#222] text-white placeholder-white border border-primary/60 focus:ring-2 focus:ring-primary outline-none flex-1 min-w-0"
-            placeholder="Tu nombre"
-            value={name}
-            onChange={e => setName(e.target.value)}
-            maxLength={32}
-          />
-          <textarea
-            className="rounded-2xl px-4 py-2 bg-[#222] text-white placeholder-white border border-primary/60 focus:ring-2 focus:ring-primary outline-none flex-[2] min-w-0 resize-none"
-            placeholder="¡Escribe tu opinión aquí!"
-            value={text}
-            onChange={e => {
-              setText(e.target.value);
-              setCharCount(e.target.value.length);
-            }}
-            maxLength={333}
-            rows={1}
-          />
-          <span className="text-xs text-gray-400 mt-1 ml-1">{charCount}/333</span>
-          <button
-            type="submit"
-            className="flex items-center justify-center rounded-full bg-primary hover:bg-primary/90 text-black w-12 h-12 transition-colors shadow-md"
-            title="Publicar opinión"
+          Testimonios
+        </motion.h2>
+        <motion.p
+          className="text-lg sm:text-xl text-gray-300 mb-4 text-center max-w-2xl"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
+          Descubre lo que opinan nuestros clientes sobre trabajar con Horizon Creative.
+        </motion.p>
+        <motion.div
+          className="w-full flex flex-col gap-6 items-center"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.9, delay: 0.1 }}
+        >
+          <form
+            className="flex flex-col md:flex-row gap-3 w-full items-stretch mb-4"
+            onSubmit={handleAdd}
           >
-            <PaperAirplaneIcon className="w-6 h-6" />
-          </button>
-        </form>
+            <input
+              type="text"
+              className="rounded-full px-4 py-2 bg-[#222] text-white placeholder-white border border-primary/60 focus:ring-2 focus:ring-primary outline-none flex-1 min-w-0"
+              placeholder="Tu nombre"
+              value={name}
+              onChange={e => setName((e.target as HTMLInputElement).value)}
+              maxLength={32}
+            />
+            <textarea
+              className="rounded-2xl px-4 py-2 bg-[#222] text-white placeholder-white border border-primary/60 focus:ring-2 focus:ring-primary outline-none flex-[2] min-w-0 resize-none"
+              placeholder="¡Escribe tu opinión aquí!"
+              value={text}
+              onChange={e => {
+                const value = (e.target as HTMLTextAreaElement).value;
+                setText(value);
+                setCharCount(value.length);
+              }}
+              maxLength={333}
+              rows={1}
+            />
+            <span className="text-xs text-gray-400 mt-1 ml-1">{charCount}/333</span>
+            <button
+              type="submit"
+              className="flex items-center justify-center rounded-full bg-primary hover:bg-primary/90 text-black w-12 h-12 transition-colors shadow-md"
+              title="Publicar opinión"
+            >
+              <PaperAirplaneIcon className="w-6 h-6" />
+            </button>
+          </form>
         <div className="flex gap-3 overflow-x-auto md:grid md:grid-cols-2 md:gap-4">
           {testimonials.map((t, i) => (
             <motion.div
@@ -244,6 +266,7 @@ const handleDelete = (id: string) => {
             </div>
           )}
         </div>
+        </motion.div>
       </div>
     </section>
   )
