@@ -213,11 +213,11 @@ const handleDelete = (id: string) => {
               <PaperAirplaneIcon className="w-6 h-6" />
             </button>
           </form>
-        <div className="flex gap-3 overflow-x-auto md:grid md:grid-cols-2 md:gap-4">
+        <div className="flex flex-col gap-4 w-full md:grid md:grid-cols-2 md:gap-4">
           {testimonials.map((t, i) => (
             <motion.div
               key={t.id}
-              className="relative rounded-xl p-4 pr-10 pb-8 flex flex-col min-w-[260px] min-h-[120px] md:min-w-0 border border-primary bg-black/60 shadow-2xl transition-transform hover:scale-[1.03] hover:shadow-yellow-400/40"
+              className="relative rounded-xl p-4 pr-10 pb-8 flex flex-col w-full min-h-[120px] md:min-w-0 border border-primary bg-black/60 shadow-2xl transition-transform hover:scale-[1.03] hover:shadow-yellow-400/40"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.1, type: 'spring', bounce: 0.2, duration: 0.7 }}
