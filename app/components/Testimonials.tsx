@@ -207,7 +207,7 @@ const handleDelete = (id: string) => {
             <span className="text-xs text-gray-400 mt-1 ml-1">{charCount}/333</span>
             <button
               type="submit"
-              className="flex items-center justify-center rounded-full bg-primary hover:bg-primary/90 text-black w-12 h-12 transition-colors shadow-md"
+              className="flex items-center justify-center rounded-full bg-primary hover:bg-primary/90 text-black w-12 h-12 transition-colors shadow-md mx-auto md:mx-0"
               title="Publicar opinión"
             >
               <PaperAirplaneIcon className="w-6 h-6" />
