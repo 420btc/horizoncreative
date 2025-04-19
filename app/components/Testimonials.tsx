@@ -20,7 +20,7 @@ const defaultTestimonials = [
     id: "default-1",
     name: "Laura Fernández",
     text:
-      "La agencia creó un sitio web increíble y contenido para redes sociales que conectó con nuestra audiencia, ¡superaron nuestras expectativas con gran profesionalismo!",
+      "La agencia creó un sitio web increíble y contenido para redes sociales que conectó con nuestra audiencia. Superaron nuestras expectativas con gran profesionalismo.",
     canDelete: false,
     date: randomDate(),
   },
@@ -28,7 +28,7 @@ const defaultTestimonials = [
     id: "default-2",
     name: "Carlos Ramírez",
     text:
-      "Desarrollaron una app funcional y gestionaron nuestras redes con creatividad, aumentando nuestro alcance; ¡un trabajo excelente y puntual!",
+      "Desarrollaron una app funcional y gestionaron nuestras redes con creatividad, aumentando nuestro alcance. Un trabajo excelente y puntual.",
     canDelete: false,
     date: randomDate(),
   },
