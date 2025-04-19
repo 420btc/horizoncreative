@@ -34,15 +34,16 @@ export default function Hero() {
   const [textAnimated, setTextAnimated] = useState(false);
   const videoTimeout = useRef<NodeJS.Timeout | null>(null);
 
-  // Limpia el flag al salir de la home (solo si no es reload) y ANTES de recargar la home
+  // Limpia el flag al salir de la home SOLO cuando la navegación termina (más robusto)
   useEffect(() => {
     if (!isClient) return;
-    const handleRouteChange = (url: string) => {
+    const handleRouteChange = (e: any) => {
+      const url = e.detail;
       if (url !== '/' && sessionStorage.getItem('heroAnimationPlayed')) {
         sessionStorage.removeItem('heroAnimationPlayed');
       }
     };
-    window.addEventListener('nextRouteChangeStart', (e: any) => handleRouteChange(e.detail));
+    window.addEventListener('nextRouteChangeComplete', handleRouteChange);
     // Limpia el flag justo antes de recargar la home
     const handleBeforeUnload = () => {
       if (window.location.pathname === '/') {
@@ -51,7 +52,7 @@ export default function Hero() {
     };
     window.addEventListener('beforeunload', handleBeforeUnload);
     return () => {
-      window.removeEventListener('nextRouteChangeStart', (e: any) => handleRouteChange(e.detail));
+      window.removeEventListener('nextRouteChangeComplete', handleRouteChange);
       window.removeEventListener('beforeunload', handleBeforeUnload);
     };
   }, [isClient]);
@@ -112,14 +113,15 @@ export default function Hero() {
             transition={{ duration: 1 }}
             style={{ pointerEvents: 'none' }}
           >
-            <Image
-              src="/assets/fondohero.jpg"
-              alt="Fondo Hero"
-              fill
-              sizes="100vw"
-              className="object-cover object-center w-full h-full blur-[2px]"
-              priority
-            />
+            <div className="absolute inset-0 w-full h-full blur-[2px]">
+              <Image
+                src="/assets/fondohero.jpg"
+                alt="Fondo Hero"
+                fill
+                className="object-cover object-center w-full h-full opacity-100 transition-all duration-700"
+                priority
+              />
+            </div>
             <div className="absolute inset-0 bg-black/30" />
           </motion.div>
         )}
