@@ -144,7 +144,7 @@ export default function Contacto() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-white mb-1">EMAIL</h3>
-                    <p className="text-gray-300">Polaris.agenciacreativa@gmail.com</p>
+                    <p className="text-gray-300">info.horizoncreative@gmail.com</p>
                   </div>
                 </div>
 

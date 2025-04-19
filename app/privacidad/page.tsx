@@ -79,8 +79,8 @@ export default function Privacidad() {
         <div>
           <h2 className="text-xl font-semibold">EMAIL</h2>
           <p>
-            <a href="mailto:Polaris.agenciacreativa@gmail.com" className="text-primary">
-              Polaris.agenciacreativa@gmail.com
+            <a href="mailto:info.horizoncreative@gmail.com" className="text-primary">
+              info.horizoncreative@gmail.com
             </a>
           </p>
         </div>

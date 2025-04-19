@@ -13,7 +13,7 @@ export default function AvisoLegal() {
           La titularidad de este sitio web la ostenta: <b>Horizon Creative</b>, y cuyos datos de contacto son:<br/>
           <b>Dirección:</b> Málaga, Benalmádena<br/>
           <b>Teléfono de contacto:</b> 656314757<br/>
-          <b>Email de contacto:</b> <a href="mailto:Polaris.agenciacreativa@gmail.com" className="text-primary">Polaris.agenciacreativa@gmail.com</a>
+          <b>Email de contacto:</b> <a href="mailto:info.horizoncreative@gmail.com" className="text-primary">info.horizoncreative@gmail.com</a>
         </p>
         <h2 className="text-2xl font-semibold mt-6">II. TÉRMINOS Y CONDICIONES GENERALES DE USO</h2>
         <p>El objeto de las presentes Condiciones Generales de Uso (en adelante, Condiciones) es regular el acceso y la utilización del Sitio Web.</p>
@@ -45,8 +45,8 @@ export default function AvisoLegal() {
         <div>
           <h2 className="text-xl font-semibold">EMAIL</h2>
           <p>
-            <a href="mailto:Polaris.agenciacreativa@gmail.com" className="text-primary">
-              Polaris.agenciacreativa@gmail.com
+            <a href="mailto:info.horizoncreative@gmail.com" className="text-primary">
+              info.horizoncreative@gmail.com
             </a>
           </p>
         </div>

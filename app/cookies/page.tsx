@@ -63,7 +63,7 @@ export default function Cookies() {
         <div>
           <h2 className="text-xl font-semibold">EMAIL</h2>
           <p>
-            <a href="mailto:Polaris.agenciacreativa@gmail.com" className="text-primary">
+            <a href="mailto:info.horizoncreative@gmail.com" className="text-primary">
               Polaris.agenciacreativa@gmail.com
             </a>
           </p>
