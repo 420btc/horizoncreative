@@ -8,6 +8,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
+import Testimonials from "../components/Testimonials"
 import { Button } from "@/components/ui/button"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import Image from "next/image"
@@ -158,11 +159,11 @@ export default function Contacto() {
               </div>
 
               <div className="mt-6 flex flex-col items-center">
-  <p className="text-lg text-gray-300 mb-6 text-center">
-    Haz crecer tu negocio con nuestras soluciones digitales. Estamos aquí para ayudarte a alcanzar nuevos horizontes.
-  </p>
-  <img src="/assets/logoubi.png" alt="Logo ubicación" className="w-full max-w-xs mx-auto" />
-</div>
+                <p className="text-lg text-gray-300 mb-6 text-center">
+                  Haz crecer tu negocio con nuestras soluciones digitales. Estamos aquí para ayudarte a alcanzar nuevos horizontes.
+                </p>
+                <img src="/assets/logoubi.png" alt="Logo ubicación" className="w-full max-w-xs mx-auto" />
+              </div>
             </div>
           </motion.div>
 
@@ -267,7 +268,8 @@ export default function Contacto() {
         </div>
       </div>
 
-      {/* Bottom Banner */}
+      <Testimonials />
+      {/* Banner amarillo */}
       <motion.div
         className="bg-primary py-6 px-8 mt-14 border-t-0"
         initial={{ opacity: 0, y: 50 }}
