@@ -57,6 +57,7 @@ export default function Contacto() {
           mapboxgl = mapboxModule.default
 
           // Importar los estilos de mapbox-gl
+          // @ts-ignore: Ignore CSS module type missing
           await import("mapbox-gl/dist/mapbox-gl.css")
 
           // Configurar el token de Mapbox
@@ -271,16 +272,16 @@ export default function Contacto() {
       <Testimonials />
       {/* Banner amarillo */}
       <motion.div
-        className="bg-primary py-6 px-8 mt-14 border-t-0"
+        className="bg-primary py-2 sm:py-6 px-2 sm:px-8 mt-8 sm:mt-14 border-t-0"
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.4 }}
       >
         <div className="container mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-black mb-5">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-black mb-5 tracking-tight md:tracking-normal">
             Alcanza nuevos horizontes con Horizon Creative
           </h2>
-          <p className="text-xl text-black/80 max-w-3xl mx-auto">
+          <p className="text-base sm:text-xl text-black/80 max-w-3xl mx-auto tracking-tight md:tracking-normal">
             Transformamos ideas en estrategias digitales efectivas que impulsan el crecimiento de tu negocio.
           </p>
         </div>
