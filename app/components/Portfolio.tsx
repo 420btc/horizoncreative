@@ -329,7 +329,8 @@ export default function Portfolio() {
         <div className="w-full flex justify-start items-center mt-4 mb-6">
           <div className="flex justify-start items-end ml-0 sm:ml-[9rem]">
             <h1 className="text-5xl md:text-6xl font-extrabold text-white leading-tight text-left relative inline-block">
-              <span className="block sm:inline text-white">Transformamos tu</span>
+              <span className="block sm:hidden text-white text-center w-full">Transformamos<br /><span className="text-white">tu</span></span>
+<span className="hidden sm:inline text-white">Transformamos tu</span>
               <span
                 className="block mt-2 sm:mt-0 sm:inline sm:absolute sm:left-full sm:top-0 sm:ml-[0.25ch] sm:whitespace-nowrap text-center sm:text-left w-full sm:w-auto"
                 style={{ height: '100%', display: 'inline-block' }}
