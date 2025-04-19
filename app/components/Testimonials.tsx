@@ -53,6 +53,7 @@ export default function Testimonials() {
   })
   const [name, setName] = useState("")
   const [text, setText] = useState("")
+  const [charCount, setCharCount] = useState(0);
   const userToken = useRef<string>("")
 
   useEffect(() => {
@@ -68,6 +69,54 @@ export default function Testimonials() {
   const handleAdd = (e?: React.FormEvent) => {
     if (e) e.preventDefault()
     if (!name.trim() || !text.trim()) return
+    if (text.length > 333) {
+      setErrorMsg("El testimonio no puede superar los 333 caracteres.");
+      setShowError(true);
+      return;
+    }
+    // Filtrar testimonios del usuario actual
+    const userTestimonials = testimonials.filter(t => t.canDelete === userToken.current);
+    // Ordenar por fecha (más reciente primero)
+    const userTestimonialsSorted = userTestimonials
+      .map(t => ({...t, _ts: parseDate(t.date)}))
+      .sort((a, b) => b._ts - a._ts);
+    const now = new Date();
+    // Restricción 24h
+    if (userTestimonialsSorted.length > 0) {
+      const last = userTestimonialsSorted[0];
+      if (now.getTime() - last._ts < 24 * 60 * 60 * 1000) {
+        setErrorMsg("Solo puedes publicar un testimonio cada 24 horas.");
+        setShowError(true);
+        return;
+      }
+    }
+    // Restricción 4 en total o 3 muy seguidos
+    if (userTestimonialsSorted.length >= 4) {
+      const last = userTestimonialsSorted[0];
+      if (now.getTime() - last._ts < 48 * 60 * 60 * 1000) {
+        setErrorMsg("Has alcanzado el límite de 4 testimonios. Espera 48h desde el último para publicar otro.");
+        setShowError(true);
+        return;
+      }
+    }
+    if (userTestimonialsSorted.length >= 3) {
+      // Si los 3 últimos han sido muy seguidos (<10min entre sí)
+      let tooFast = true;
+      for (let i = 0; i < 2; i++) {
+        if (userTestimonialsSorted[i]._ts - userTestimonialsSorted[i+1]._ts > 10 * 60 * 1000) {
+          tooFast = false;
+          break;
+        }
+      }
+      if (tooFast) {
+        const last = userTestimonialsSorted[0];
+        if (now.getTime() - last._ts < 48 * 60 * 60 * 1000) {
+          setErrorMsg("Has publicado 3 testimonios muy seguidos. Espera 48h para publicar otro.");
+          setShowError(true);
+          return;
+        }
+      }
+    }
     setTestimonials([
       ...testimonials,
       {
@@ -80,7 +129,14 @@ export default function Testimonials() {
     ])
     setName("")
     setText("")
+    setCharCount(0)
   }
+
+// Utilidad para parsear fecha DD/MM/YYYY a timestamp
+function parseDate(dateStr: string) {
+  const [d, m, y] = dateStr.split("/").map(Number);
+  return new Date(y, m - 1, d).getTime();
+}
 
   const [showError, setShowError] = useState(false);
 const [errorMsg, setErrorMsg] = useState("");
@@ -119,10 +175,14 @@ const handleDelete = (id: string) => {
             className="rounded-2xl px-4 py-2 bg-[#222] text-white placeholder-white border border-primary/60 focus:ring-2 focus:ring-primary outline-none flex-[2] min-w-0 resize-none"
             placeholder="¡Escribe tu opinión aquí!"
             value={text}
-            onChange={e => setText(e.target.value)}
-            maxLength={180}
+            onChange={e => {
+              setText(e.target.value);
+              setCharCount(e.target.value.length);
+            }}
+            maxLength={333}
             rows={1}
           />
+          <span className="text-xs text-gray-400 mt-1 ml-1">{charCount}/333</span>
           <button
             type="submit"
             className="flex items-center justify-center rounded-full bg-primary hover:bg-primary/90 text-black w-12 h-12 transition-colors shadow-md"
@@ -141,7 +201,11 @@ const handleDelete = (id: string) => {
               transition={{ delay: i * 0.1, type: 'spring', bounce: 0.2, duration: 0.7 }}
             >
               <span className="font-bold text-primary text-lg mb-1">{t.name}</span>
-              <span className="text-white text-base leading-snug">"{t.text}"</span>
+              <span className="text-base leading-snug">
+  <span className="text-primary">“</span>
+  <span className="text-white">{t.text}</span>
+  <span className="text-primary">”</span>
+</span>
               <span className="text-xs text-gray-400 mt-2">{t.date}</span>
               {t.canDelete === false ? (
                 <span
