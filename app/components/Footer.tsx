@@ -16,14 +16,16 @@ export default function Footer() {
           {/* Menú más compacto en móvil */}
           <nav className="grid grid-cols-2 gap-y-1 gap-x-3 justify-items-center sm:flex sm:justify-center sm:space-x-12 mt-1 sm:mt-2 mb-2 sm:mb-4 lg:mt-2 lg:mb-1" aria-label="Footer">
             {[
-              "Inicio", "Sobre Nosotros", "Nuestros Servicios", "Contacto", "Privacidad", "Términos"
-            ].map((item) => (
-              <div key={item} className="pb-2 sm:pb-6">
-                <Link
-                  href={`#${item.toLowerCase().replace(/\s+/g, "-")}`}
-                  className="text-sm leading-6 text-gray-400 hover:text-white"
-                >
-                  {item}
+              { label: "Inicio", href: "/" },
+              { label: "Sobre Nosotros", href: "/sobre-nosotros" },
+              { label: "Nuestros Servicios", href: "/servicios" },
+              { label: "Contacto", href: "/contacto" },
+              { label: "Privacidad", href: "/privacidad" },
+              { label: "Términos", href: "/terminos" },
+            ].map(({ label, href }) => (
+              <div key={label} className="pb-2 sm:pb-6">
+                <Link href={href} className="text-sm leading-6 text-gray-400 hover:text-white">
+                  {label}
                 </Link>
               </div>
             ))}
