@@ -21,7 +21,7 @@ export default function Footer() {
               { label: "Nuestros Servicios", href: "/servicios" },
               { label: "Contacto", href: "/contacto" },
               { label: "Privacidad", href: "/privacidad" },
-              { label: "Términos", href: "/terminos" },
+              { label: "Aviso Legal", href: "/aviso-legal" },
             ].map(({ label, href }) => (
               <div key={label} className="pb-2 sm:pb-6">
                 <Link href={href} className="text-sm leading-6 text-gray-400 hover:text-white">
