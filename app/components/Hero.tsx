@@ -31,7 +31,7 @@ export default function Hero() {
         setVideoFinished(true);
         setTimeout(() => setLogoVisible(false), 600); // animación salida logo
       }, 3000);
-    }, 2000);
+    }, 3200);
     return () => {
       clearTimeout(timer);
       if (videoTimeout.current) clearTimeout(videoTimeout.current);
@@ -74,13 +74,13 @@ export default function Hero() {
         {/* Logo grande y video, móvil */}
         <div className="flex justify-center lg:hidden mb-2 mt-2 relative z-10">
           <AnimatePresence>
-            {logoVisible && (
+            {logoVisible && !videoFinished && (
               <motion.div
                 className="relative"
                 initial={{ opacity: 1, y: 0 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -40 }}
-                transition={{ duration: 0.6 }}
+                transition={{ duration: 0.18 }}
                 style={{ zIndex: 2 }}
               >
                 <Image
@@ -184,7 +184,7 @@ export default function Hero() {
         {/* Logo grande y video, desktop */}
         <div className="hidden lg:block mx-auto mt-0">
           <AnimatePresence>
-            {logoVisible && (
+            {logoVisible && !videoFinished && (
               <motion.div
                 className="relative"
                 initial={{ opacity: 1, x: 0 }}
