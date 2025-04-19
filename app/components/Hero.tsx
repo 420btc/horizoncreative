@@ -6,56 +6,34 @@ import { motion } from "framer-motion"
 import Image from "next/image"
 import TypewriterText from "./TypewriterText"
 
-import { useRouter } from 'next/navigation';
+
 
 export default function Hero() {
-  const router = useRouter();
   const isClient = typeof window !== 'undefined';
-  // Limpia el flag SI la navegación es reload (antes de calcular el estado inicial)
+
+  const [hasPlayedAnimation, setHasPlayedAnimation] = useState(false);
+
+  // Solo sincroniza el estado con sessionStorage/timestamp en el primer render
   useEffect(() => {
-    if (typeof window !== 'undefined' && window.location.pathname === '/') {
-      const navEntries = window.performance.getEntriesByType('navigation');
-      const isReload = navEntries.length > 0 ? navEntries[0].type === 'reload' : window.performance.navigation.type === 1;
-      if (isReload) {
-        sessionStorage.removeItem('heroAnimationPlayed');
+    if (typeof window !== 'undefined') {
+      const played = localStorage.getItem('heroAnimationPlayed') === '1';
+      const lastTime = parseInt(localStorage.getItem('heroAnimationTimestamp') || '0', 10);
+      const now = Date.now();
+      // Si nunca se ha visto la animación, o han pasado más de 10 minutos (600_000 ms), reproducirla
+      if (!played || !lastTime || (now - lastTime > 600000)) {
+        setHasPlayedAnimation(false);
+        localStorage.removeItem('heroAnimationPlayed'); // resetea flag si expiró
+      } else {
+        setHasPlayedAnimation(true);
       }
     }
   }, []);
 
-  const [hasPlayedAnimation, setHasPlayedAnimation] = useState(() => {
-    if (isClient) {
-      return sessionStorage.getItem('heroAnimationPlayed') === 'true';
-    }
-    return false;
-  });
   const [showVideo, setShowVideo] = useState(() => !hasPlayedAnimation);
   const [videoFinished, setVideoFinished] = useState(() => hasPlayedAnimation);
   const [logoVisible, setLogoVisible] = useState(() => !hasPlayedAnimation);
   const [textAnimated, setTextAnimated] = useState(false);
   const videoTimeout = useRef<NodeJS.Timeout | null>(null);
-
-  // Limpia el flag al salir de la home SOLO cuando la navegación termina (más robusto)
-  useEffect(() => {
-    if (!isClient) return;
-    const handleRouteChange = (e: any) => {
-      const url = e.detail;
-      if (url !== '/' && sessionStorage.getItem('heroAnimationPlayed')) {
-        sessionStorage.removeItem('heroAnimationPlayed');
-      }
-    };
-    window.addEventListener('nextRouteChangeComplete', handleRouteChange);
-    // Limpia el flag justo antes de recargar la home
-    const handleBeforeUnload = () => {
-      if (window.location.pathname === '/') {
-        sessionStorage.removeItem('heroAnimationPlayed');
-      }
-    };
-    window.addEventListener('beforeunload', handleBeforeUnload);
-    return () => {
-      window.removeEventListener('nextRouteChangeComplete', handleRouteChange);
-      window.removeEventListener('beforeunload', handleBeforeUnload);
-    };
-  }, [isClient]);
 
   useEffect(() => {
     if (hasPlayedAnimation) {
@@ -79,7 +57,10 @@ export default function Hero() {
         setTimeout(() => {
           setLogoVisible(false);
           setHasPlayedAnimation(true);
-          if (isClient) sessionStorage.setItem('heroAnimationPlayed', 'true');
+          if (isClient) {
+            localStorage.setItem('heroAnimationPlayed', '1');
+            localStorage.setItem('heroAnimationTimestamp', Date.now().toString());
+          }
         }, 600); // animación salida logo
       }, 3000);
     }, 3200);
@@ -96,7 +77,10 @@ export default function Hero() {
     setTimeout(() => {
       setLogoVisible(false);
       setHasPlayedAnimation(true);
-      if (isClient) sessionStorage.setItem('heroAnimationPlayed', 'true');
+      if (isClient) {
+        localStorage.setItem('heroAnimationPlayed', '1');
+        localStorage.setItem('heroAnimationTimestamp', Date.now().toString());
+      }
     }, 600);
   };
 
