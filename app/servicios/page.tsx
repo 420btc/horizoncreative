@@ -87,11 +87,11 @@ export default function Servicios() {
         </motion.div>
 
 
-        <div className="grid md:grid-cols-2 gap-9">
+        <div className="flex flex-col gap-8 md:grid md:grid-cols-2 md:gap-9 md:gap-y-8 w-full">
           {servicios.slice(0,4).map((service, index) => (
             <motion.div
               key={service.title}
-              className="bg-black rounded-xl p-5 shadow-lg border border-primary/20 hover:border-primary/50 transition-all duration-300"
+              className="bg-black rounded-xl p-5 shadow-lg border border-primary/20 hover:border-primary/50 transition-all duration-300 min-h-[180px] w-full max-w-sm md:max-w-full mx-auto"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: index * 0.1 }}
@@ -116,10 +116,10 @@ export default function Servicios() {
             </motion.div>
           ))}
           {/* Quinta tarjeta centrada */}
-          <div className="col-span-2 flex justify-center">
+          <div className="col-span-2 w-full flex justify-center mt-4">
             <motion.div
               key={servicios[4].title}
-              className="bg-black rounded-xl p-5 shadow-lg border border-primary/20 hover:border-primary/50 transition-all duration-300 max-w-lg md:w-[57.5%] w-full mt-4"
+              className="bg-black rounded-xl p-5 shadow-lg border border-primary/20 hover:border-primary/50 transition-all duration-300 min-h-[180px] max-w-lg md:w-[57.5%] w-full"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.5 }}

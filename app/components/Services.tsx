@@ -42,7 +42,7 @@ export default function Services() {
               Nuestros Servicios
             </h2>
           </AnimatedSection>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 gap-y-8 w-full">
             {(() => { const directions: Direction[] = ["up","right","left","down"]; return services.map((service, index) => (
               <AnimatedSection
                 key={service.title}
@@ -50,7 +50,7 @@ export default function Services() {
                 delay={index * 0.15}
                 className="h-full"
               >
-                <div className="bg-black border border-gray-800 p-6 rounded-lg h-full">
+                <div className="bg-black border border-gray-800 p-6 rounded-lg h-full min-h-[180px]">
                   {service.icon}
                   <h3 className="text-xl font-bold mb-2 text-white">{service.title}</h3>
                   <p className="text-gray-300">{service.description}</p>
