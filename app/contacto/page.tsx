@@ -23,6 +23,14 @@ const formSchema = z.object({
 export default function Contacto() {
   // Estado para mensajes de éxito/error del formulario
   const [formMessage, setFormMessage] = useState<{ type: 'success' | 'error', text: string } | null>(null);
+
+  // Oculta automáticamente el mensaje de éxito tras 4 segundos
+  useEffect(() => {
+    if (formMessage && formMessage.type === 'success') {
+      const timer = setTimeout(() => setFormMessage(null), 4000);
+      return () => clearTimeout(timer);
+    }
+  }, [formMessage]);
   const mapContainer = useRef<HTMLDivElement>(null)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [mapLoaded, setMapLoaded] = useState(false)
@@ -133,18 +141,22 @@ export default function Contacto() {
       {/* Hero Section */}
       <div className="relative">
         <div className="absolute inset-0 bg-gradient-to-r from-black to-transparent z-10"></div>
-        <div className="container mx-auto relative z-20 py-20 px-4 sm:px-6 lg:px-8">
-          <motion.div
-            className="max-w-3xl"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <h1 className="text-5xl font-black text-white">
-              Conecta con <span className="text-primary">nosotros</span>
-            </h1>
-            <p className="text-xl text-white mb-4">El primer paso hacia el éxito empieza con un mensaje.</p>
-          </motion.div>
+        <div className="container mx-auto relative z-20 py-6 sm:py-10 px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-center w-full">
+            <motion.div
+              className="max-w-3xl w-full"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+            >
+              <h1 className="text-4xl sm:text-6xl font-extrabold mb-2 text-white text-center">
+                Conecta con <span className="text-yellow-400">nosotros</span>
+              </h1>
+              <p className="text-lg sm:text-xl text-gray-400 mb-6 text-center">
+                El primer paso hacia el éxito empieza con un mensaje.
+              </p>
+            </motion.div>
+          </div>
         </div>
         <div className="absolute inset-0 z-0">
           <div className="w-full h-full bg-black opacity-70"></div>
@@ -153,7 +165,7 @@ export default function Contacto() {
 
       {/* Main Content */}
       <div className="container mx-auto py-0 px-3 sm:px-3 lg:px-6">
-        <div className="grid md:grid-cols-2 gap-4 md:gap-6 min-h-[300px] items-stretch">
+        <div className="grid md:grid-cols-2 gap-3 md:gap-4 min-h-[220px] items-stretch">
           {/* Contact Info */}
           <motion.div initial={{ opacity: 0, x: -50 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }}>
             <div className="bg-black border border-primary/20 rounded-xl p-4 sm:p-8 shadow-lg relative overflow-hidden h-full">
@@ -229,9 +241,15 @@ export default function Contacto() {
 
               {/* Mensajes de éxito/error */}
               {formMessage && (
-                <div className={`rounded-lg px-4 py-3 mb-4 font-semibold text-center ${formMessage.type === 'success' ? 'bg-yellow-300 text-black border border-yellow-400' : 'bg-red-200 text-red-800 border border-red-400'}`}>
+                <motion.div
+                  initial={{ opacity: 0, y: 40 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -40 }}
+                  transition={{ duration: 0.5 }}
+                  className="bg-yellow-300 text-black font-semibold px-6 py-3 rounded-xl mb-6 text-center shadow-lg border border-yellow-500"
+                >
                   {formMessage.text}
-                </div>
+                </motion.div>
               )}
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
@@ -313,7 +331,7 @@ export default function Contacto() {
       <Testimonials />
       {/* Banner amarillo */}
       <motion.div
-        className="bg-primary py-2 sm:py-6 px-2 sm:px-8 mt-8 sm:mt-14 border-t-0"
+        className="bg-primary py-2 sm:py-3 px-2 sm:px-6 mt-4 sm:mt-8 border-t-0"
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.4 }}
