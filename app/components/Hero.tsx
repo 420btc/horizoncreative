@@ -6,21 +6,67 @@ import { motion } from "framer-motion"
 import Image from "next/image"
 import TypewriterText from "./TypewriterText"
 
+import { useRouter } from 'next/navigation';
+
 export default function Hero() {
-  const [showVideo, setShowVideo] = useState(false);
-  const [videoFinished, setVideoFinished] = useState(false);
-  const [logoVisible, setLogoVisible] = useState(true);
+  const router = useRouter();
+  const isClient = typeof window !== 'undefined';
+  // Limpia el flag SI la navegación es reload (antes de calcular el estado inicial)
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.location.pathname === '/') {
+      const navEntries = window.performance.getEntriesByType('navigation');
+      const isReload = navEntries.length > 0 ? navEntries[0].type === 'reload' : window.performance.navigation.type === 1;
+      if (isReload) {
+        sessionStorage.removeItem('heroAnimationPlayed');
+      }
+    }
+  }, []);
+
+  const [hasPlayedAnimation, setHasPlayedAnimation] = useState(() => {
+    if (isClient) {
+      return sessionStorage.getItem('heroAnimationPlayed') === 'true';
+    }
+    return false;
+  });
+  const [showVideo, setShowVideo] = useState(() => !hasPlayedAnimation);
+  const [videoFinished, setVideoFinished] = useState(() => hasPlayedAnimation);
+  const [logoVisible, setLogoVisible] = useState(() => !hasPlayedAnimation);
+  const [textAnimated, setTextAnimated] = useState(false);
   const videoTimeout = useRef<NodeJS.Timeout | null>(null);
 
-  // Animar texto/botones solo una vez
-  const [textAnimated, setTextAnimated] = useState(false);
+  // Limpia el flag al salir de la home (solo si no es reload) y ANTES de recargar la home
+  useEffect(() => {
+    if (!isClient) return;
+    const handleRouteChange = (url: string) => {
+      if (url !== '/' && sessionStorage.getItem('heroAnimationPlayed')) {
+        sessionStorage.removeItem('heroAnimationPlayed');
+      }
+    };
+    window.addEventListener('nextRouteChangeStart', (e: any) => handleRouteChange(e.detail));
+    // Limpia el flag justo antes de recargar la home
+    const handleBeforeUnload = () => {
+      if (window.location.pathname === '/') {
+        sessionStorage.removeItem('heroAnimationPlayed');
+      }
+    };
+    window.addEventListener('beforeunload', handleBeforeUnload);
+    return () => {
+      window.removeEventListener('nextRouteChangeStart', (e: any) => handleRouteChange(e.detail));
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    };
+  }, [isClient]);
 
   useEffect(() => {
-    // Al cargar, inicia el flujo normal SIEMPRE
+    if (hasPlayedAnimation) {
+      setLogoVisible(false);
+      setShowVideo(false);
+      setVideoFinished(true);
+      return;
+    }
     setLogoVisible(true);
     setShowVideo(false);
     setVideoFinished(false);
-    // Autoplay video 2s después de cargar
+    // Autoplay video 3.2s después de cargar
     const timer = setTimeout(() => {
       setShowVideo(true);
       setVideoFinished(false);
@@ -29,24 +75,32 @@ export default function Hero() {
       videoTimeout.current = setTimeout(() => {
         setShowVideo(false);
         setVideoFinished(true);
-        setTimeout(() => setLogoVisible(false), 600); // animación salida logo
+        setTimeout(() => {
+          setLogoVisible(false);
+          setHasPlayedAnimation(true);
+          if (isClient) sessionStorage.setItem('heroAnimationPlayed', 'true');
+        }, 600); // animación salida logo
       }, 3000);
     }, 3200);
     return () => {
       clearTimeout(timer);
       if (videoTimeout.current) clearTimeout(videoTimeout.current);
     };
-  }, []);
+  }, [hasPlayedAnimation, isClient]);
 
   // Cuando el video termina manualmente (por seguridad)
   const handleVideoEnd = () => {
     setShowVideo(false);
     setVideoFinished(true);
-    setTimeout(() => setLogoVisible(false), 600);
+    setTimeout(() => {
+      setLogoVisible(false);
+      setHasPlayedAnimation(true);
+      if (isClient) sessionStorage.setItem('heroAnimationPlayed', 'true');
+    }, 600);
   };
 
   return (
-    <div className="relative isolate overflow-hidden bg-black">
+    <div className="relative isolate w-full h-screen lg:h-[63vh] overflow-hidden overflow-x-hidden bg-black">
       {/* Fondo desenfocado solo si el video terminó tras autoplay */}
       <AnimatePresence>
         {videoFinished && (
@@ -63,16 +117,16 @@ export default function Hero() {
               alt="Fondo Hero"
               fill
               sizes="100vw"
-              className="object-cover w-full h-full blur-[2px] scale-105"
+              className="object-cover object-center w-full h-full blur-[2px]"
               priority
             />
             <div className="absolute inset-0 bg-black/30" />
           </motion.div>
         )}
       </AnimatePresence>
-      <div className="mx-auto max-w-7xl px-6 pt-8 pb-2 sm:pb-8 md:py-20 lg:flex lg:items-center lg:gap-x-10 lg:px-8">
+      <div className="mx-auto max-w-7xl px-6 pt-8 pb-0 sm:pb-4 lg:pb-2 md:py-12 lg:flex lg:items-center lg:gap-x-10 lg:px-8">
         {/* Logo grande y video, móvil */}
-        <div className="flex justify-center lg:hidden mb-2 mt-2 relative z-10">
+        <div className="flex items-center justify-center lg:hidden mb-2 mt-2 pt-[64px] relative z-10 w-full min-h-[180px] h-[42vw] sm:h-[180px] overflow-visible">
           <AnimatePresence>
             {logoVisible && !videoFinished && (
               <motion.div
@@ -88,7 +142,7 @@ export default function Hero() {
                   alt="Horizon Creative Logotipo"
                   width={320}
                   height={320}
-                  className="w-[90vw] max-w-[340px] h-auto cursor-pointer"
+                  className="w-auto max-w-[90vw] max-h-[40vh] h-auto mx-auto block cursor-pointer"
                   priority
                 />
                 {/* Video superpuesto en móvil */}
@@ -112,7 +166,7 @@ export default function Hero() {
           {!textAnimated ? (
             <>
               <motion.h1
-                className="mt-10 text-4xl font-bold tracking-tight text-white sm:text-6xl flex flex-col items-start md:items-start gap-0"
+                className="mt-8 sm:mt-10 text-4xl font-bold tracking-tight text-white sm:text-6xl flex flex-col items-start md:items-start gap-0"
                 onAnimationComplete={() => setTextAnimated(true)}
               >
                 <motion.span
@@ -157,7 +211,7 @@ export default function Hero() {
             </>
           ) : (
             <>
-              <h1 className="mt-10 text-4xl font-bold tracking-tight text-white sm:text-6xl flex flex-col items-start md:items-start gap-0">
+              <h1 className="mt-8 sm:mt-10 text-4xl font-bold tracking-tight text-white sm:text-6xl flex flex-col items-start md:items-start gap-0">
                 <span className="text-primary text-7xl md:text-8xl mb-0 block">Horizon</span>
                 <span className="text-primary text-7xl md:text-8xl block">Creative</span>
               </h1>
