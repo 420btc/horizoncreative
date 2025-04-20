@@ -71,16 +71,16 @@ export default function Proyectos() {
             const router = useRouter();
             return (
               <motion.div
+                key={proy.href}
+                className="group relative bg-[#101014] rounded-3xl shadow-2xl overflow-hidden w-[312px] lg:w-[364px] xl:w-[426px] transition-transform hover:scale-[1.035] cursor-pointer"
+                style={{ minHeight: 437 }}
+                initial={false}
+                animate={animating ? { scale: 0.92, opacity: 0 } : { scale: 1, opacity: 1 }}
+                transition={{ duration: 0.33, ease: 'easeInOut' }}
                 onMouseEnter={() => setHovered(true)}
                 onMouseLeave={() => setHovered(false)}
                 onTouchStart={() => setHovered(true)}
                 onTouchEnd={() => setHovered(false)}
-                key={proy.href}
-                className="group relative bg-[#101014] rounded-3xl shadow-2xl overflow-hidden w-[300px] lg:w-[350px] xl:w-[410px] transition-transform hover:scale-[1.035] cursor-pointer"
-                style={{ minHeight: 420 }}
-                initial={false}
-                animate={animating ? { scale: 0.92, opacity: 0 } : { scale: 1, opacity: 1 }}
-                transition={{ duration: 0.33, ease: 'easeInOut' }}
                 onClick={() => {
                   if (animating) return;
                   setAnimating(true);
@@ -92,7 +92,7 @@ export default function Proyectos() {
               >
                 {/* SVG Animated Snake Border */}
                 <motion.svg
-  className="pointer-events-none absolute inset-0 w-full h-full z-10"
+  className="pointer-events-none absolute inset-0 w-full h-full z-30"
   viewBox="0 0 100 100"
   fill="none"
   xmlns="http://www.w3.org/2000/svg"
@@ -114,20 +114,20 @@ export default function Proyectos() {
   />
 </motion.svg>
                 <div className="absolute inset-0 w-full h-full bg-gradient-to-b from-transparent via-transparent to-black opacity-80 z-10 rounded-3xl pointer-events-none" />
-                <div className="absolute top-0 left-0 w-full h-56 bg-gradient-to-t from-black/60 to-transparent z-20 rounded-t-3xl" />
+                <div className="absolute top-0 left-0 w-full h-[233px] bg-gradient-to-t from-black/60 to-transparent z-20 rounded-t-3xl" />
                 {proy.image ? (
                   <Image
                     src={proy.image}
                     alt={proy.alt}
                     width={410}
                     height={240}
-                    className="w-full h-56 object-cover object-center rounded-t-3xl group-hover:scale-105 transition-transform duration-300"
+                    className="w-full h-[233px] object-cover object-center rounded-t-3xl group-hover:scale-105 transition-transform duration-300"
                     priority
                   />
                 ) : (
-                  <div className="w-full h-56 flex items-center justify-center bg-black rounded-t-3xl">
-  <span className="text-gray-400 text-lg">Próximamente</span>
-</div>
+                  <div className="w-full h-[233px] flex items-center justify-center bg-[#000] rounded-t-3xl">
+                    <span className="text-gray-300 text-lg">Próximamente</span>
+                  </div>
                 )}
                 <div className="relative z-20 p-6 flex flex-col justify-between h-[160px]">
                   <h2 className="text-2xl font-bold mb-2 text-white group-hover:text-yellow-400 transition-colors">
@@ -152,16 +152,16 @@ export default function Proyectos() {
             const router = useRouter();
             return (
               <motion.div
+                key={proy.href}
+                className="group relative bg-[#101014] rounded-3xl shadow-2xl overflow-hidden w-[312px] lg:w-[364px] xl:w-[426px] transition-transform hover:scale-[1.035] cursor-pointer"
+                style={{ minHeight: 437 }}
+                initial={false}
+                animate={animating ? { scale: 0.92, opacity: 0 } : { scale: 1, opacity: 1 }}
+                transition={{ duration: 0.33, ease: 'easeInOut' }}
                 onMouseEnter={() => setHovered(true)}
                 onMouseLeave={() => setHovered(false)}
                 onTouchStart={() => setHovered(true)}
                 onTouchEnd={() => setHovered(false)}
-                key={proy.href}
-                className="group relative bg-[#101014] rounded-3xl shadow-2xl overflow-hidden w-[300px] lg:w-[350px] xl:w-[410px] transition-transform hover:scale-[1.035] cursor-pointer"
-                style={{ minHeight: 420 }}
-                initial={false}
-                animate={animating ? { scale: 0.92, opacity: 0 } : { scale: 1, opacity: 1 }}
-                transition={{ duration: 0.33, ease: 'easeInOut' }}
                 onClick={() => {
                   if (animating) return;
                   setAnimating(true);
@@ -173,7 +173,7 @@ export default function Proyectos() {
               >
                 {/* SVG Animated Snake Border */}
                 <motion.svg
-  className="pointer-events-none absolute inset-0 w-full h-full z-10"
+  className="pointer-events-none absolute inset-0 w-full h-full z-30"
   viewBox="0 0 100 100"
   fill="none"
   xmlns="http://www.w3.org/2000/svg"
@@ -195,20 +195,20 @@ export default function Proyectos() {
   />
 </motion.svg>
                 <div className="absolute inset-0 w-full h-full bg-gradient-to-b from-transparent via-transparent to-black opacity-80 z-10 rounded-3xl pointer-events-none" />
-                <div className="absolute top-0 left-0 w-full h-56 bg-gradient-to-t from-black/60 to-transparent z-20 rounded-t-3xl" />
+                <div className="absolute top-0 left-0 w-full h-[233px] bg-gradient-to-t from-black/60 to-transparent z-20 rounded-t-3xl" />
                 {proy.image ? (
                   <Image
                     src={proy.image}
                     alt={proy.alt}
                     width={410}
                     height={240}
-                    className="w-full h-56 object-cover object-center rounded-t-3xl group-hover:scale-105 transition-transform duration-300"
+                    className="w-full h-[233px] object-cover object-center rounded-t-3xl group-hover:scale-105 transition-transform duration-300"
                     priority
                   />
                 ) : (
-                  <div className="w-full h-56 flex items-center justify-center bg-black rounded-t-3xl">
-  <span className="text-gray-400 text-lg">Próximamente</span>
-</div>
+                  <div className="w-full h-[233px] flex items-center justify-center bg-[#000] rounded-t-3xl">
+                    <span className="text-gray-300 text-lg">Próximamente</span>
+                  </div>
                 )}
                 <div className="relative z-20 p-6 flex flex-col justify-between h-[160px]">
                   <h2 className="text-2xl font-bold mb-2 text-white group-hover:text-yellow-400 transition-colors">
