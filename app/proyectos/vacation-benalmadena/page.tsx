@@ -97,6 +97,24 @@ export default function VacationBenalmadena() {
         </p>
         <span className="inline-block mt-2 text-base font-bold text-yellow-400">¡Contáctanos!</span>
       </div>
+
+      {/* Galería de imágenes */}
+      <div className="w-full max-w-5xl mx-auto px-2 mb-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+          {[1,2,3,4,5,6].map((n) => (
+            <div key={n} className="flex items-center justify-center">
+              <Image
+                src={`/assets/vacation${n}.jpg`}
+                alt={`Vacation Benalmádena ${n}`}
+                width={400}
+                height={260}
+                className="rounded-2xl shadow-xl object-cover w-full h-56 sm:h-60 md:h-52 lg:h-56 bg-black"
+                style={{objectPosition:'center'}}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
