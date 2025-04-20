@@ -108,24 +108,40 @@ export default function Contacto() {
             "pk.eyJ1IjoiNDIwYnRjIiwiYSI6ImNtOTN3ejBhdzByNjgycHF6dnVmeHl2ZTUifQ.Utq_q5wN6DHwpkn6rcpZdw"
 
           if (mapContainer.current && !mapLoaded) {
+            const initialZoom = 1.5;
+            const targetZoom = 13;
+            const center = [-4.5166, 36.5983]; // Málaga, Benalmádena
             const map = new mapboxgl.Map({
               container: mapContainer.current,
               style: "mapbox://styles/mapbox/satellite-v9",
-              center: [-4.5166, 36.5983], // Málaga, Benalmádena
-              zoom: 13,
-            })
-
-            // Añadir marcador
-            new mapboxgl.Marker({
-              color: "#FFD700",
-            })
-              .setLngLat([-4.5166, 36.5983])
-              .addTo(map)
+              center: center,
+              zoom: initialZoom,
+            });
 
             // Añadir controles de navegación
-            map.addControl(new mapboxgl.NavigationControl())
+            map.addControl(new mapboxgl.NavigationControl());
 
-            setMapLoaded(true)
+            map.on('load', () => {
+              // Animar el zoom hasta Málaga
+              map.flyTo({
+                center: center,
+                zoom: targetZoom,
+                speed: 0.8, // más bajo = más lento
+                curve: 1.7, // curva de animación suave
+                essential: true,
+              });
+
+              // Añadir marcador después de la animación
+              setTimeout(() => {
+                new mapboxgl.Marker({
+                  color: "#FFD700",
+                })
+                  .setLngLat(center)
+                  .addTo(map);
+              }, 3000); // Espera a que termine el vuelo
+
+              setMapLoaded(true);
+            });
           }
         } catch (error) {
           console.error("Error al cargar Mapbox:", error)
