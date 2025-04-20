@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import { useState } from "react";
+import CarouselGallery from "../../components/CarouselGallery";
 
 export default function TennisClubMarbella() {
   const [modalImg, setModalImg] = useState<string|null>(null);

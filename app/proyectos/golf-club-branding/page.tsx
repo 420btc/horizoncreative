@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import { useState } from "react";
+import CarouselGallery from "../../components/CarouselGallery";
 
 export default function BrandingClubGolf() {
   const [modalImg, setModalImg] = useState<string|null>(null);
@@ -93,54 +94,13 @@ export default function BrandingClubGolf() {
       </div>
       {/* Galería de imágenes */}
       <div className="w-full max-w-3xl mx-auto px-2 mb-16">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-          {[1,2,3].map((n) => (
-            <div
-              key={n}
-              className="flex items-center justify-center cursor-zoom-in group relative"
-              onClick={() => setModalImg(`/assets/golfclub-${n}.jpg`)}
-            >
-              <Image
-                src={`/assets/golfclub-${n}.jpg`}
-                alt={`Golf Club ${n}`}
-                width={400}
-                height={260}
-                className="rounded-2xl shadow-xl object-cover w-full h-56 sm:h-60 md:h-52 lg:h-56 bg-black transition duration-200 group-hover:brightness-75"
-                style={{objectPosition:'center'}}
-              />
-              {/* Overlay lupa en hover */}
-              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition bg-black/20 rounded-2xl">
-                <svg className="w-12 h-12 text-yellow-400" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                  <circle cx="11" cy="11" r="8" />
-                  <line x1="21" y1="21" x2="16.65" y2="16.65" />
-                </svg>
-              </div>
-            </div>
-          ))}
-          {/* Modal de imagen */}
-          {modalImg && (
-            <div
-              className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm"
-              onClick={() => setModalImg(null)}
-            >
-              <div className="relative max-w-3xl w-full flex flex-col items-center" onClick={e => e.stopPropagation()}>
-                <button
-                  className="absolute top-2 right-2 text-white text-3xl font-bold bg-black/40 rounded-full px-3 py-0.5 hover:bg-yellow-400 hover:text-black transition"
-                  onClick={() => setModalImg(null)}
-                  aria-label="Cerrar"
-                >
-                  ×
-                </button>
-                <img
-                  src={modalImg}
-                  alt="Vista ampliada"
-                  className="max-h-[80vh] w-auto rounded-2xl shadow-2xl"
-                  style={{objectFit:'contain'}}
-                />
-              </div>
-            </div>
-          )}
-        </div>
+        <CarouselGallery
+          images={[
+            { src: "/assets/golfclub-1.jpg", alt: "Golf Club 1" },
+            { src: "/assets/golfclub-2.jpg", alt: "Golf Club 2" },
+            { src: "/assets/golfclub-3.jpg", alt: "Golf Club 3" }
+          ]}
+        />
       </div>
     </div>
   );
