@@ -20,7 +20,7 @@ export default function VacationBenalmadena() {
 
         {/* TARJETAS ESTILO METRO */}
         {/* Desktop: tarjeta principal destacada y línea amarilla SVG interconectando */}
-        <div className="hidden md:grid grid-cols-3 gap-x-8 gap-y-16 w-full pt-8 pb-28 relative z-10">
+        <div className="hidden md:grid grid-cols-3 gap-x-8 items-stretch gap-y-16 w-full pt-8 pb-28 relative z-10">
           {/* Tarjeta principal destacada */}
           <div className="col-span-3 flex flex-col items-center mb-8">
             <div className="bg-zinc-900/90 rounded-3xl shadow-xl p-8 w-full max-w-2xl">
@@ -40,59 +40,61 @@ export default function VacationBenalmadena() {
             </svg>
           </div>
           {/* Tarjetas secundarias en la segunda fila */}
-          <div className="col-span-3 grid grid-cols-3 gap-x-8">
+          <div className="col-span-3 grid grid-cols-3 gap-x-8 items-stretch">
             <div className="flex flex-col items-center">
-              <div className="bg-zinc-900/90 rounded-3xl shadow-xl p-7 w-full max-w-xs min-h-[410px] flex flex-col justify-between pb-2">
+              <div>
                 <h3 className="text-xl font-bold text-yellow-400 mb-2 tracking-wide text-center">
-                  IDENTIDAD VISUAL & <span className="text-white">REDES SOCIALES</span>
-                </h3>
-                <p className="text-base text-gray-200 text-center mb-2">
-                  Creamos una identidad visual fresca y profesional, alineada con el estilo mediterráneo. En redes sociales, transmitimos confianza y calidad, generando una comunidad activa y fiel.
-                </p>
-                <ul className="list-disc list-inside text-gray-200 mb-2 text-left">
-                  <li><span className="text-yellow-400 font-semibold">Imagen coherente</span> en todos los canales digitales.</li>
-                  <li>Diseño de publicaciones y recursos visuales personalizados.</li>
-                  <li><span className="text-yellow-400 font-semibold">Estrategias de engagement</span> para aumentar la interacción y el alcance.</li>
-                </ul>
-                <p className="text-base text-gray-200 text-center">
-                  Mostramos lo mejor de cada propiedad con un enfoque visual atractivo, conectando con viajeros de todo el mundo y posicionando la marca como referente en el sector vacacional.
-                </p>
+  IDENTIDAD VISUAL & <span className="text-white">REDES SOCIALES</span>
+</h3>
+<p className="text-base text-gray-200 text-center mb-2">
+  Imagen profesional y coherente.<br />Confianza y calidad en redes.
+</p>
+<ul className="list-disc list-inside text-gray-200 mb-2 text-left">
+  <li><span className="text-yellow-400 font-semibold">Imagen clara</span> en canales.</li>
+  <li>Recursos visuales únicos.</li>
+  <li><span className="text-yellow-400 font-semibold">Engagement</span> y comunidad.</li>
+</ul>
+<p className="text-base text-gray-200 text-center">
+  Marca referente vacacional.
+</p>
+                
+                
               </div>
             </div>
             <div className="flex flex-col items-center">
-              <div className="bg-zinc-900/90 rounded-3xl shadow-xl p-7 w-full max-w-xs min-h-[410px] flex flex-col justify-between pb-2">
+              <div>
                 <h3 className="text-xl font-bold text-yellow-400 mb-2 tracking-wide text-center">
-                  FOTOGRAFÍA & <span className="text-white">VIDEO PROFESIONAL</span>
-                </h3>
-                <p className="text-base text-gray-200 text-center mb-2">
-                  Fotografías y videos profesionales que capturan la esencia de cada apartamento, mostrando desde los detalles interiores hasta el entorno y estilo de vida mediterráneo. Cada imagen transmite sensaciones y experiencias únicas.
-                </p>
-                <ul className="list-disc list-inside text-gray-200 mb-2 text-left">
-                  <li><span className="text-yellow-400 font-semibold">Fotografía de alta calidad</span> para destacar cada espacio.</li>
-                  <li>Videos promocionales que muestran la experiencia completa.</li>
-                  <li><span className="text-yellow-400 font-semibold">Edición profesional</span> adaptada a cada plataforma.</li>
-                </ul>
-                <p className="text-base text-gray-200 text-center">
-                  El material visual es clave para aumentar reservas y posicionar la marca. Sabemos que las primeras impresiones lo son todo y por eso cuidamos cada toma y cada segundo de vídeo.
-                </p>
+  FOTOGRAFÍA & <span className="text-white">VIDEO PROFESIONAL</span>
+</h3>
+<p className="text-base text-gray-200 text-center mb-2">
+  Fotos y videos de detalle.<br />Experiencia y estilo visual.
+</p>
+<ul className="list-disc list-inside text-gray-200 mb-2 text-left">
+  <li><span className="text-yellow-400 font-semibold">Alta calidad</span> en imagen.</li>
+  <li>Videos promocionales breves.</li>
+  <li><span className="text-yellow-400 font-semibold">Edición</span> profesional.</li>
+</ul>
+<p className="text-base text-gray-200 text-center">
+  Reservas con impacto visual.
+</p>
               </div>
             </div>
             <div className="flex flex-col items-center">
-              <div className="bg-zinc-900/90 rounded-3xl shadow-xl p-7 w-full max-w-xs min-h-[410px] flex flex-col justify-between pb-2">
+              <div>
                 <h3 className="text-xl font-bold text-yellow-400 mb-2 tracking-wide text-center">
-                  ESTRATEGIA DE <span className="text-white">MARKETING DIGITAL</span>
-                </h3>
-                <p className="text-base text-gray-200 text-center mb-2">
-                  Creamos campañas digitales personalizadas para aumentar la visibilidad, reservas y reputación online de tu agencia vacacional. Utilizamos creatividad, análisis de datos y tecnología para lograr resultados sostenibles.
-                </p>
-                <ul className="list-disc list-inside text-gray-200 mb-2 text-left">
-                  <li><span className="text-yellow-400 font-semibold">SEO y posicionamiento</span> para captar tráfico cualificado.</li>
-                  <li>Publicidad segmentada y campañas en redes sociales.</li>
-                  <li><span className="text-yellow-400 font-semibold">Optimización continua</span> basada en métricas y resultados.</li>
-                </ul>
-                <p className="text-base text-gray-200 text-center">
-                  Nuestro objetivo es que tu propuesta destaque, conecte con el viajero ideal y se convierta en referente en la Costa del Sol, asegurando el éxito de cada propiedad de Vacation Benalmádena.
-                </p>
+  ESTRATEGIA DE <span className="text-white">MARKETING DIGITAL</span>
+</h3>
+<p className="text-base text-gray-200 text-center mb-2">
+  Más visibilidad digital.<br />Crecimiento con creatividad.
+</p>
+<ul className="list-disc list-inside text-gray-200 mb-2 text-left">
+  <li><span className="text-yellow-400 font-semibold">SEO</span> y posicionamiento.</li>
+  <li>Publicidad en redes sociales.</li>
+  <li><span className="text-yellow-400 font-semibold">Optimización</span> continua.</li>
+</ul>
+<p className="text-base text-gray-200 text-center">
+  Conecta con tu público ideal.
+</p>
               </div>
             </div>
           </div>
