@@ -2,7 +2,10 @@
 
 import { motion } from "framer-motion"
 import { useTheme } from "next-themes"
-import { useEffect } from "react"
+import React, { useEffect, useState } from "react"
+import { useRouter } from "next/navigation"
+import Link from "next/link"
+// Si usas TypeScript, asegúrate de tener instalado @types/react para evitar errores de JSX.
 
 const servicios = [
   {
@@ -29,23 +32,27 @@ const servicios = [
     <rect x="11" y="14" width="26" height="18" rx="2.5" fill="none" stroke="currentColor"/>
     <rect x="8" y="36" width="32" height="4" rx="1.5" fill="none" stroke="currentColor"/>
     <path d="M14 36V32a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v4" stroke="currentColor"/>
-    <rect x="18" y="18" width="13" height="8" rx="1.5" fill="none" stroke="currentColor"/>
   </svg>
 ),
-    title: "Diseño & Desarrollo Web",
-    description: "Diseñamos y desarrollamos sitios web que destacan y marcan la diferencia, optimizando la experiencia del usuario y garantizando resultados.",
+    title: "Diseño Web",
+    description: "Creamos sitios web modernos, atractivos y funcionales, adaptados a tu marca y objetivos de negocio.",
     slug: "diseno-web",
   },
   {
-    icon: <svg xmlns="http://www.w3.org/2000/svg" className="w-12 h-12 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M17 8c0-1.657-1.343-3-3-3H7C5.343 5 4 6.343 4 8v8c0 1.657 1.343 3 3 3h7c1.657 0 3-1.343 3-3V8z"/><path strokeLinecap="round" strokeLinejoin="round" d="M8 12h4m-2-2v4"/></svg>,
+    icon: (
+      <svg xmlns="http://www.w3.org/2000/svg" className="w-12 h-12 text-primary" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="8" y="8" width="32" height="32" rx="8" fill="none" stroke="currentColor"/>
+        <path d="M16 20h16M16 24h16M16 28h10" stroke="currentColor"/>
+        <circle cx="36" cy="36" r="4" fill="#FFD600" stroke="none"/>
+        <circle cx="12" cy="36" r="4" fill="#FFD600" stroke="none"/>
+        <circle cx="36" cy="12" r="4" fill="#FFD600" stroke="none"/>
+      </svg>
+    ),
     title: "Gestión de Redes Sociales",
-    description: "Gestionamos tus redes sociales con estrategias personalizadas, creando contenido atractivo y relevante para fortalecer tu comunidad, aumentar tu alcance y consolidar tu presencia digital.",
+    description: "Impulsa tu marca en redes sociales con contenido atractivo y estrategias personalizadas.",
     slug: "gestion-redes-sociales",
-  },
+  }
 ]
-
-import { useRouter } from "next/navigation"
-import { useState } from "react"
 
 export default function Servicios() {
   const [mounted, setMounted] = useState(false)
@@ -87,112 +94,213 @@ export default function Servicios() {
         </motion.div>
 
 
-        <div className="flex flex-col gap-8 md:grid md:grid-cols-2 md:gap-9 md:gap-y-8 w-full">
-          {servicios.slice(0,4).map((service, index) => (
-            <motion.div
-              key={service.title}
-              className="bg-black rounded-xl p-5 shadow-lg border border-primary/20 hover:border-primary/50 transition-all duration-300 min-h-[180px] w-full max-w-sm md:max-w-full mx-auto"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: index * 0.1 }}
-            >
-              <div className="flex items-center mb-4">
-                {service.icon}
-                <h3 className="text-2xl font-bold ml-4 text-white">{service.title}</h3>
-              </div>
-              <p className="text-gray-300 mb-4">{service.description}</p>
-              <motion.div className="mt-6" whileHover={{ scale: 1.05 }} transition={{ duration: 0.2 }}>
-                <a
-                  href={`/servicios/${service.slug}`}
-                  className="flex items-center justify-center mt-6 w-9 h-9 rounded-full bg-primary text-black hover:bg-primary/80 transition-colors shadow-lg mx-auto"
-                  aria-label={`Ver detalles de ${service.title}`}
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
-                    <circle cx="10" cy="10" r="9" fill="none" />
-                    <path d="M10 6v8M6 10h8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                  </svg>
-                </a>
-              </motion.div>
-            </motion.div>
-          ))}
-          {/* Quinta tarjeta centrada */}
-          <div className="col-span-2 w-full flex justify-center mt-4">
-            <motion.div
+        <div className="flex flex-col gap-8 w-full">
+          {/* Primera fila: dos tarjetas */}
+          <div className="md:grid md:grid-cols-2 md:gap-9 md:gap-y-8 flex flex-col gap-8 w-full">
+            {servicios.slice(0,2).map((service, index) => (
+              <Link
+                key={service.title}
+                href={`/servicios/${service.slug}`}
+                className="group relative bg-black rounded-xl p-5 shadow-lg border border-primary/20 min-h-[180px] w-full max-w-sm md:max-w-full mx-auto flex flex-col justify-between outline-none focus-visible:ring-2 focus-visible:ring-yellow-400 transition-all duration-300"
+                tabIndex={0}
+              >
+                {/* Glow/Neón animado */}
+                <span className="pointer-events-none absolute inset-0 rounded-xl z-0 transition-all duration-500 group-hover:shadow-[0_0_24px_8px_#FFD600,0_0_0_4px_#FFD600] group-focus-visible:shadow-[0_0_24px_8px_#FFD600,0_0_0_4px_#FFD600] after:content-[''] after:absolute after:inset-0 after:rounded-xl after:border-2 after:border-yellow-400 after:opacity-0 group-hover:after:opacity-100 group-hover:after:animate-glow-border group-focus-visible:after:opacity-100 group-focus-visible:after:animate-glow-border"></span>
+                <div className="flex items-center mb-4 relative z-10">
+                  {service.icon}
+                  <h3 className="text-2xl font-bold ml-4 text-white">{service.title}</h3>
+                </div>
+                <p className="text-gray-300 mb-4 relative z-10">{service.description}</p>
+                <div className="mt-6 flex items-center justify-center relative z-10">
+                  <span className="flex items-center justify-center w-9 h-9 rounded-full bg-primary text-black group-hover:bg-primary/80 transition-colors shadow-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
+                      <circle cx="10" cy="10" r="9" fill="none" />
+                      <path d="M10 6v8M6 10h8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                    </svg>
+                  </span>
+                </div>
+              </Link>
+            ))}
+          </div>
+          {/* Segunda fila: dos tarjetas */}
+          <div className="md:grid md:grid-cols-2 md:gap-9 md:gap-y-8 flex flex-col gap-8 w-full">
+            {servicios.slice(2,4).map((service, index) => (
+              <Link
+                key={service.title}
+                href={`/servicios/${service.slug}`}
+                className="group relative bg-black rounded-xl p-5 shadow-lg border border-primary/20 min-h-[180px] w-full max-w-sm md:max-w-full mx-auto flex flex-col justify-between outline-none focus-visible:ring-2 focus-visible:ring-yellow-400 transition-all duration-300"
+                tabIndex={0}
+              >
+                {/* Glow/Neón animado */}
+                <span className="pointer-events-none absolute inset-0 rounded-xl z-0 transition-all duration-500 group-hover:shadow-[0_0_24px_8px_#FFD600,0_0_0_4px_#FFD600] group-focus-visible:shadow-[0_0_24px_8px_#FFD600,0_0_0_4px_#FFD600] after:content-[''] after:absolute after:inset-0 after:rounded-xl after:border-2 after:border-yellow-400 after:opacity-0 group-hover:after:opacity-100 group-hover:after:animate-glow-border group-focus-visible:after:opacity-100 group-focus-visible:after:animate-glow-border"></span>
+                <div className="flex items-center mb-4 relative z-10">
+                  {service.icon}
+                  <h3 className="text-2xl font-bold ml-4 text-white">{service.title}</h3>
+                </div>
+                <p className="text-gray-300 mb-4 relative z-10">{service.description}</p>
+                <div className="mt-6 flex items-center justify-center relative z-10">
+                  <span className="flex items-center justify-center w-9 h-9 rounded-full bg-primary text-black group-hover:bg-primary/80 transition-colors shadow-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
+                      <circle cx="10" cy="10" r="9" fill="none" />
+                      <path d="M10 6v8M6 10h8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                    </svg>
+                  </span>
+                </div>
+              </Link>
+            ))}
+          </div>
+          {/* Tercera fila: una tarjeta centrada */}
+          <div className="flex justify-center w-full">
+            <Link
               key={servicios[4].title}
-              className="bg-black rounded-xl p-5 shadow-lg border border-primary/20 hover:border-primary/50 transition-all duration-300 min-h-[180px] max-w-lg md:w-[57.5%] w-full"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.5 }}
+              href={`/servicios/${servicios[4].slug}`}
+              className="group relative bg-black rounded-xl p-5 shadow-lg border border-primary/20 min-h-[180px] w-full max-w-sm mx-auto flex flex-col justify-between outline-none focus-visible:ring-2 focus-visible:ring-yellow-400 transition-all duration-300"
+              tabIndex={0}
             >
-              <div className="flex items-center mb-4">
+              {/* Glow/Neón animado */}
+              <span className="pointer-events-none absolute inset-0 rounded-xl z-0 transition-all duration-500 group-hover:shadow-[0_0_24px_8px_#FFD600,0_0_0_4px_#FFD600] group-focus-visible:shadow-[0_0_24px_8px_#FFD600,0_0_0_4px_#FFD600] after:content-[''] after:absolute after:inset-0 after:rounded-xl after:border-2 after:border-yellow-400 after:opacity-0 group-hover:after:opacity-100 group-hover:after:animate-glow-border group-focus-visible:after:opacity-100 group-focus-visible:after:animate-glow-border"></span>
+              <div className="flex items-center mb-4 relative z-10">
                 {servicios[4].icon}
                 <h3 className="text-2xl font-bold ml-4 text-white">{servicios[4].title}</h3>
               </div>
-              <p className="text-gray-300 mb-4">{servicios[4].description}</p>
-              <motion.div className="mt-6" whileHover={{ scale: 1.05 }} transition={{ duration: 0.2 }}>
-                <a
-                  href={`/servicios/${servicios[4].slug}`}
-                  className="flex items-center justify-center mt-6 w-9 h-9 rounded-full bg-primary text-black hover:bg-primary/80 transition-colors shadow-lg mx-auto"
-                  aria-label={`Ver detalles de ${servicios[4].title}`}
-                >
+              <p className="text-gray-300 mb-4 relative z-10">{servicios[4].description}</p>
+              <div className="mt-6 flex items-center justify-center relative z-10">
+                <span className="flex items-center justify-center w-9 h-9 rounded-full bg-primary text-black group-hover:bg-primary/80 transition-colors shadow-lg">
                   <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
                     <circle cx="10" cy="10" r="9" fill="none" />
                     <path d="M10 6v8M6 10h8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
                   </svg>
-                </a>
-              </motion.div>
-            </motion.div>
+                </span>
+              </div>
+            </Link>
           </div>
         </div>
 
+        {/* Línea amarilla animada y metodología (versión especial servicios, con pulso automático) */}
+        {(() => {
+          const puntos = [
+            "Descubrimiento",
+            "Estrategia",
+            "Creatividad",
+            "Desarrollo",
+            "Lanzamiento",
+            "Soporte"
+          ];
+          const [activeIdx, setActiveIdx] = useState(0);
+          useEffect(() => {
+            const interval = setInterval(() => {
+              setActiveIdx((prev: number) => (prev + 1) % puntos.length);
+            }, 5000);
+            return () => clearInterval(interval);
+          }, [puntos.length]);
+          return (
+            <div className="w-full flex flex-col items-center py-40 bg-transparent mb-32 md:mb-48">
+              <div className="max-w-5xl w-full flex flex-col items-center">
+                <div className="relative w-full flex flex-col gap-8 md:gap-12">
+                  {/* Línea amarilla animada fina y más marcada */}
+                  <motion.div
+                    className="absolute z-0 left-[3.5%] right-[3.5%] top-4 hidden md:block"
+                    initial={{ width: 0 }}
+                    animate={{ width: '93%' }}
+                    transition={{ duration: 1 }}
+                    style={{ height: 2 }}
+                  >
+                    <div className="h-[2px] w-full bg-[#FFD600]" style={{filter: 'drop-shadow(0 0 12px #FFD600) drop-shadow(0 0 24px #FFD600AA)'}} />
+                  </motion.div>
+                  {/* Puntos y frases */}
+                  <div className="relative w-full flex items-center justify-between z-10">
+                    {puntos.map((txt, idx) => (
+                      <div key={idx} className="flex flex-col items-center group md:w-1/6 w-full">
+                        {/* Bola con glow sutil y pulso automático */}
+                        <motion.div
+                          className="w-6 h-6 md:w-7 md:h-7 rounded-full bg-[#FFD600] border-4 border-black shadow-[0_0_8px_2px_#FFD600,0_0_12px_4px_#FFD60044] mb-2"
+                          style={{ boxShadow: '0 0 8px 2px #FFD600, 0 0 12px 4px #FFD60044' }}
+                          animate={activeIdx === idx ? { scale: 1.25, boxShadow: '0 0 16px 6px #FFD600, 0 0 24px 10px #FFD60044' } : { scale: 1, boxShadow: '0 0 8px 2px #FFD600, 0 0 12px 4px #FFD60044' }}
+                          transition={{ type: 'spring', stiffness: 350, damping: 18 }}
+                        />
+                        <span
+                          className={`text-xs md:text-sm text-center break-words leading-tight max-w-[6.5rem] md:max-w-[8rem] text-gray-200 md:font-semibold mt-2 drop-shadow-md ${activeIdx === idx ? 'text-yellow-300 scale-110 font-bold' : ''}`}
+                        >
+                          {txt}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          );
+        })()}
 
-        
+
         {/* Botón de contacto adaptativo */}
         <div className="w-full flex flex-col items-center justify-center mt-12 mb-2">
-  {/* Botón SOLO para móvil */}
-  {/* Botón SOLO para móvil */}
-  <motion.a
-    className="flex sm:hidden items-center justify-center bg-yellow-400 hover:bg-yellow-500 text-black w-40 h-12 rounded-full shadow-lg transition-all duration-200 mx-auto font-bold text-lg"
-    aria-label="Contactar"
-    initial={false}
-    animate={buttonAnimatingMobile ? { scale: 0.8, opacity: 0 } : { scale: 1, opacity: 1 }}
-    transition={{ duration: 0.35, ease: "easeInOut" }}
-    onClick={async (e) => {
-      e.preventDefault();
-      setButtonAnimatingMobile(true);
-      setTimeout(() => {
-        router.push("/contacto");
-        setButtonAnimatingMobile(false);
-      }, 350);
-    }}
-    href="/contacto"
-    style={{ cursor: buttonAnimatingMobile ? 'not-allowed' : undefined }}
-  >
-    Contáctanos
-  </motion.a>
-  {/* Botón SOLO para desktop */}
-  {/* Botón SOLO para desktop */}
-  <motion.a
-    href="/contacto"
-    className="hidden sm:inline-block bg-yellow-400 hover:bg-yellow-500 text-black font-bold px-8 py-3 rounded-full shadow-lg transition-all duration-200 text-lg text-center"
-    style={{ wordBreak: 'break-word', whiteSpace: 'normal', cursor: buttonAnimatingDesktop ? 'not-allowed' : undefined }}
-    initial={false}
-    animate={buttonAnimatingDesktop ? { scale: 0.8, opacity: 0 } : { scale: 1, opacity: 1 }}
-    transition={{ duration: 0.35, ease: "easeInOut" }}
-    onClick={async (e) => {
-      e.preventDefault();
-      setButtonAnimatingDesktop(true);
-      setTimeout(() => {
-        router.push("/contacto");
-        setButtonAnimatingDesktop(false);
-      }, 350);
-    }}
-  >
-    Contáctanos
-  </motion.a>
-
-</div>
+          {/* Botón SOLO para móvil */}
+          <motion.a
+            className="flex sm:hidden items-center justify-center bg-yellow-400 hover:bg-yellow-500 text-black w-40 h-12 rounded-full shadow-lg transition-all duration-200 mx-auto font-bold text-lg"
+            aria-label="Contactar"
+            initial={false}
+            animate={buttonAnimatingMobile ? { scale: 0.8, opacity: 0 } : { scale: 1, opacity: 1 }}
+            transition={{ duration: 0.35, ease: "easeInOut" }}
+            onClick={async (e) => {
+              e.preventDefault();
+              setButtonAnimatingMobile(true);
+              setTimeout(() => {
+                router.push("/contacto");
+                setButtonAnimatingMobile(false);
+              }, 350);
+            }}
+            href="/contacto"
+            style={{ cursor: buttonAnimatingMobile ? 'not-allowed' : undefined }}
+          >
+            Contáctanos
+          </motion.a>
+          {/* Botón SOLO para desktop */}
+          <motion.a
+            href="/contacto"
+            className="hidden sm:inline-block bg-yellow-400 hover:bg-yellow-500 text-black font-bold px-8 py-3 rounded-full shadow-lg transition-all duration-200 text-lg text-center"
+            style={{ wordBreak: 'break-word', whiteSpace: 'normal', cursor: buttonAnimatingDesktop ? 'not-allowed' : undefined }}
+            initial={false}
+            animate={buttonAnimatingDesktop ? { scale: 0.8, opacity: 0 } : { scale: 1, opacity: 1 }}
+            transition={{ duration: 0.35, ease: "easeInOut" }}
+            onClick={async (e) => {
+              e.preventDefault();
+              setButtonAnimatingDesktop(true);
+              setTimeout(() => {
+                router.push("/contacto");
+                setButtonAnimatingDesktop(false);
+              }, 350);
+            }}
+          >
+            Contáctanos
+          </motion.a>
+        </div>
       </div>
     </div>
-  )
+  );
+}
+
+// Animación global para el glow/neón
+if (typeof window !== "undefined") {
+  const style = document.createElement("style");
+  style.innerHTML = `
+  @keyframes glow-border {
+    0% {
+      box-shadow: 0 0 0 0 #FFD600, 0 0 0 0 #FFD600;
+      border-color: transparent;
+      opacity: 1;
+    }
+    40% {
+      box-shadow: 0 0 24px 8px #FFD600, 0 0 0 4px #FFD600;
+      border-color: #FFD600;
+      opacity: 1;
+    }
+    100% {
+      box-shadow: 0 0 0 0 #FFD600, 0 0 0 0 #FFD600;
+      border-color: transparent;
+      opacity: 0;
+    }
+  }
+  `;
+  document.head.appendChild(style);
 }

@@ -137,10 +137,10 @@ export default function Contacto() {
   }, [mapLoaded])
 
   return (
-    <div className="bg-black min-h-screen overflow-x-hidden">
+    <div className="bg-white dark:bg-black min-h-screen overflow-x-hidden">
       {/* Hero Section */}
       <div className="relative">
-        <div className="absolute inset-0 bg-gradient-to-r from-black to-transparent z-10"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-white dark:from-black to-transparent z-10"></div>
         <div className="container mx-auto relative z-20 py-6 sm:py-10 px-4 sm:px-6 lg:px-8">
           <div className="flex justify-center w-full">
             <motion.div
@@ -158,9 +158,7 @@ export default function Contacto() {
             </motion.div>
           </div>
         </div>
-        <div className="absolute inset-0 z-0">
-          <div className="w-full h-full bg-black opacity-70"></div>
-        </div>
+        
       </div>
 
       {/* Main Content */}
@@ -168,10 +166,10 @@ export default function Contacto() {
         <div className="grid md:grid-cols-2 gap-3 md:gap-4 min-h-[220px] items-stretch">
           {/* Contact Info */}
           <motion.div initial={{ opacity: 0, x: -50 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }}>
-            <div className="bg-black border border-primary/20 rounded-xl p-4 sm:p-8 shadow-lg relative overflow-hidden h-full">
+            <div className="bg-white dark:bg-neutral-900 border border-primary/20 rounded-xl p-4 sm:p-8 shadow-lg relative overflow-hidden h-full">
 
-              <h2 className="text-3xl font-bold mb-8 text-white">
-                La <span className="text-yellow-400">estrategia</span> digital que tu marca <span className="text-white">necesita</span>
+              <h2 className="text-3xl font-bold mb-8 text-gray-900 dark:text-white">
+                La <span className="text-yellow-400">estrategia</span> digital que tu marca <span className="text-gray-900 dark:text-white">necesita</span>
               </h2>
 
               <div className="space-y-6">
@@ -258,15 +256,15 @@ export default function Contacto() {
                     name="name"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-white">Nombre</FormLabel>
+                        <FormLabel className="text-gray-800 dark:text-gray-200">Nombre</FormLabel>
                         <FormControl>
                           <Input
                             placeholder="Tu nombre"
                             {...field}
-                            className="bg-[#222] !text-white !placeholder-white border-gray-700"
+                            className="bg-white dark:bg-neutral-900 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-400 border-gray-300 dark:border-neutral-700"
                           />
                         </FormControl>
-                        <FormMessage className="text-white" />
+                        <FormMessage className="text-gray-600 dark:text-gray-400" />
                       </FormItem>
                     )}
                   />
@@ -276,15 +274,15 @@ export default function Contacto() {
                     name="email"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-white">Email</FormLabel>
+                        <FormLabel className="text-gray-800 dark:text-gray-200">Email</FormLabel>
                         <FormControl>
                           <Input
                             placeholder="tu@email.com"
                             {...field}
-                            className="bg-[#222] !text-white !placeholder-white border-gray-700"
+                            className="bg-white dark:bg-neutral-900 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-400 border-gray-300 dark:border-neutral-700"
                           />
                         </FormControl>
-                        <FormMessage className="text-white" />
+                        <FormMessage className="text-gray-600 dark:text-gray-400" />
                       </FormItem>
                     )}
                   />
@@ -294,15 +292,15 @@ export default function Contacto() {
                     name="message"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-white">Mensaje</FormLabel>
+                        <FormLabel className="text-gray-800 dark:text-gray-200">Mensaje</FormLabel>
                         <FormControl>
                           <Textarea
                             placeholder="¿Cómo podemos ayudarte?"
-                            className="min-h-[120px] bg-[#222] !text-white !placeholder-white border-gray-700"
+                            className="min-h-[120px] bg-white dark:bg-neutral-900 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-400 border-gray-300 dark:border-neutral-700"
                             {...field}
                           />
                         </FormControl>
-                        <FormMessage className="text-white" />
+                        <FormMessage className="text-gray-600 dark:text-gray-400" />
                       </FormItem>
                     )}
                   />
