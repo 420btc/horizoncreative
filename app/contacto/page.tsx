@@ -110,7 +110,7 @@ export default function Contacto() {
           if (mapContainer.current && !mapLoaded) {
             const initialZoom = 1.5;
             const targetZoom = 13;
-            const center = [-4.5166, 36.5983]; // Málaga, Benalmádena
+            const center = [-4.51326, 36.59949]; // Nueva ubicación solicitada
             const map = new mapboxgl.Map({
               container: mapContainer.current,
               style: "mapbox://styles/mapbox/satellite-v9",
