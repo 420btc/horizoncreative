@@ -21,6 +21,14 @@ const formSchema = z.object({
 })
 
 export default function Contacto() {
+  const [eggCount, setEggCount] = useState(0);
+  const [showEgg, setShowEgg] = useState(false);
+  useEffect(() => {
+    if (eggCount >= 6) {
+      setShowEgg(true);
+      setEggCount(0);
+    }
+  }, [eggCount]);
   // Estado para mensajes de éxito/error del formulario
   const [formMessage, setFormMessage] = useState<{ type: 'success' | 'error', text: string } | null>(null);
 
@@ -150,6 +158,24 @@ export default function Contacto() {
 
   return (
     <div className="bg-black min-h-screen overflow-x-hidden">
+      {/* Easter Egg Modal */}
+      {showEgg && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm" onClick={() => setShowEgg(false)}>
+          <div className="relative max-w-lg w-full flex flex-col items-center bg-black/90 rounded-2xl shadow-2xl p-6" onClick={e => e.stopPropagation()}>
+            <button
+              className="absolute top-2 right-2 text-white text-3xl font-bold bg-black/40 rounded-full px-3 py-0.5 hover:bg-yellow-400 hover:text-black transition"
+              onClick={() => setShowEgg(false)}
+              aria-label="Cerrar"
+            >×</button>
+            <Image src="/assets/easteregg.png" alt="Carlos Pastor Freire" width={220} height={220} className="rounded-full shadow-lg mb-4 object-cover" />
+            <p className="text-lg text-white text-center">
+              Esta página ha sido creada con todo el amor y pasión por <span className="text-yellow-400 font-bold">Carlos</span> Pastor <span className="text-yellow-400 font-bold">Freire</span> y la colaboración de LLMs.<br/>
+              <span className="block mt-2">¡Espero que te guste!</span>
+            </p>
+          </div>
+        </div>
+      )}
+
       {/* Hero Section */}
       <div className="relative">
         <div className="absolute inset-0 bg-gradient-to-r from-black to-transparent z-10"></div>
@@ -161,8 +187,13 @@ export default function Contacto() {
             transition={{ duration: 0.8 }}
           >
             <h1 className="text-5xl font-black text-white">
-              Conecta con <span className="text-primary">nosotros</span>
-            </h1>
+  Conecta con <button
+    type="button"
+    className="text-primary font-black focus:outline-none focus:ring-0 p-0 m-0 bg-transparent border-none cursor-pointer select-none"
+    style={{appearance:'none'}}
+    onClick={() => setEggCount(c => c+1)}
+  >nosotros</button>
+</h1>
             <p className="text-xl text-white mb-4">El primer paso hacia el éxito empieza con un mensaje.</p>
           </motion.div>
         </div>
