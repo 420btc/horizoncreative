@@ -15,6 +15,7 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
 
   const [isForcedLight, setIsForcedLight] = useState(false);
+const [logoSpin, setLogoSpin] = useState(false);
   useEffect(() => setMounted(true), [])
 
   // Sincroniza clase forced-light con localStorage al cargar y actualiza estado
@@ -43,14 +44,38 @@ export default function Header() {
           <Link href="/" className="-m-1.5 p-1.5">
             <span className="sr-only">Horizon Creative</span>
             <div className="relative h-12 w-auto overflow-hidden">
-              <Image
-                src="/logohorizon.png"
-                alt="Horizon Creative Logo"
-                width={120}
-                height={48}
-                className="h-12 w-auto object-contain mx-auto"
-                priority
-              />
+              <>
+  <style jsx>{`
+    .logo-rotating-z {
+      animation: logo-spin-z 8s linear infinite;
+      transform-style: preserve-3d;
+      will-change: transform;
+    }
+    @keyframes logo-spin-z {
+      0% { transform: rotateZ(0deg); }
+      100% { transform: rotateZ(360deg); }
+    }
+    .logo-spin-y {
+      animation: logo-flip-y 0.8s cubic-bezier(.8,.2,.2,1) 1;
+    }
+    @keyframes logo-flip-y {
+      0% { transform: rotateZ(0deg) rotateY(0deg); }
+      100% { transform: rotateZ(0deg) rotateY(360deg); }
+    }
+  `}</style>
+  <img
+    src="/logohorizon.png"
+    alt="Horizon Creative Logo"
+    width={120}
+    height={48}
+    className={`h-12 w-auto object-contain mx-auto logo-rotating-z${logoSpin ? ' logo-spin-y' : ''}`}
+    onMouseEnter={() => setLogoSpin(true)}
+    onMouseLeave={() => setLogoSpin(false)}
+    onTouchStart={() => setLogoSpin(true)}
+    onAnimationEnd={() => logoSpin && setLogoSpin(false)}
+    style={{ display: 'block', margin: '0 auto' }}
+  />
+</>
             </div>
           </Link>
         </div>
@@ -111,10 +136,10 @@ export default function Header() {
             {/* Icono sol/luna amarillo */}
             {isForcedLight ? (
               // Sol
-              <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="#FFD600" strokeWidth="2"><circle cx="12" cy="12" r="5" fill="#FFD600"/><path stroke="#FFD600" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 1v2m0 18v2m11-11h-2M3 12H1m16.95 7.07l-1.41-1.41M6.34 6.34L4.93 4.93m12.02 0l-1.41 1.41M6.34 17.66l-1.41 1.41"/></svg>
+              <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="#FFD600" strokeWidth="2"><circle cx="12" cy="12" r="5" fill="#FFD600"/><path stroke="#FFD600" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 1v2m0 18v2m11-11h-2M3 12H1m16.95 7.07l-1.41-1.41M6.34 6.34L4.93 4.93m12.02 0l-1.41 1.41M6.34 17.66l-1.41 1.41"/></svg>
             ) : (
               // Luna (oscuro por defecto)
-              <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="#FFD600" strokeWidth="2"><path stroke="#FFD600" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 12.79A9 9 0 1111.21 3a7 7 0 109.79 9.79z"/></svg>
+              <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="#FFD600" strokeWidth="2"><path stroke="#FFD600" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 12.79A9 9 0 1111.21 3a7 7 0 109.79 9.79z"/></svg>
             )}
           </button>
         </div>
