@@ -1,6 +1,55 @@
 "use client";
 
 import Image from "next/image";
+import React, { useState } from "react";
+
+function MetodoInteractivoFoto() {
+  const points = [
+    "Briefing y concepto visual",
+    "Planificación y pre-producción",
+    "Sesión de fotos/video profesional",
+    "Edición, entrega y optimización"
+  ];
+  const [activeIdx, setActiveIdx] = useState(0);
+  const [autoPlay, setAutoPlay] = useState(true);
+
+  React.useEffect(() => {
+    if (!autoPlay) return;
+    const interval = setInterval(() => {
+      setActiveIdx(prev => (prev + 1) % points.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [autoPlay, points.length]);
+
+  const handleClick = (idx: number) => {
+    setActiveIdx(idx);
+    setAutoPlay(false);
+  };
+
+  return (
+    <div className="flex flex-col md:flex-row items-center md:items-start justify-between w-full relative z-10 gap-8 md:gap-16">
+      {points.map((txt, idx) => (
+        <div key={idx} className="flex flex-col items-center md:w-1/4 w-full">
+          <button
+            type="button"
+            aria-label={txt}
+            className={`w-5 h-5 rounded-full bg-[#FFD600] border-4 border-black mb-2 transition-transform duration-200 ${activeIdx === idx ? 'scale-125 ring-2 ring-[#FFD600]' : ''}`}
+            onClick={() => handleClick(idx)}
+            tabIndex={0}
+          />
+          <span
+            className={`text-gray-900 dark:text-gray-200 text-xs md:text-sm text-center break-words leading-tight max-w-[9.5rem] md:max-w-[11rem] transition-all duration-300 ${activeIdx === idx ? 'text-xl md:text-2xl font-bold scale-110 text-[#FFD600] drop-shadow-lg' : ''}`}
+            style={{cursor:'pointer'}}
+            onClick={() => handleClick(idx)}
+          >
+            {txt}
+          </span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 
 export default function FotografiaGaleria() {
   return (
@@ -25,28 +74,12 @@ export default function FotografiaGaleria() {
           {/* Línea conectora con puntos y frases */}
           <div className="relative w-full flex flex-col gap-8 md:gap-12">
             {/* Línea amarilla conectando los puntos SOLO en desktop, perfectamente alineada */}
-            <div className="hidden md:block absolute z-0" style={{top: '8px', left: '12.5%', right: '12.5%', height: '2px'}}>
+            <div className="hidden md:block absolute z-0" style={{top: '8px', left: '4%', right: '4%', height: '2px'}}>
               <div className="h-1 w-full bg-[#FFD600]" style={{height:2}} />
             </div>
-            {/* Puntos y frases */}
-            <div className="flex flex-col md:flex-row items-center justify-between w-full relative z-10">
-              <div className="flex flex-col items-center md:w-1/4 w-full">
-                <div className="w-5 h-5 rounded-full bg-[#FFD600] border-4 border-black mb-2" />
-                <span className="text-gray-900 dark:text-gray-200 text-xs md:text-sm text-center break-words leading-tight max-w-[9.5rem] md:max-w-[11rem]">Briefing y concepto visual</span>
-              </div>
-              <div className="flex flex-col items-center md:w-1/4 w-full">
-                <div className="w-5 h-5 rounded-full bg-[#FFD600] border-4 border-black mb-2" />
-                <span className="text-gray-900 dark:text-gray-200 text-xs md:text-sm text-center break-words leading-tight max-w-[9.5rem] md:max-w-[11rem]">Planificación y pre-producción</span>
-              </div>
-              <div className="flex flex-col items-center md:w-1/4 w-full">
-                <div className="w-5 h-5 rounded-full bg-[#FFD600] border-4 border-black mb-2" />
-                <span className="text-gray-900 dark:text-gray-200 text-xs md:text-sm text-center break-words leading-tight max-w-[9.5rem] md:max-w-[11rem]">Sesión de fotos/video profesional</span>
-              </div>
-              <div className="flex flex-col items-center md:w-1/4 w-full">
-                <div className="w-5 h-5 rounded-full bg-[#FFD600] border-4 border-black mb-2" />
-                <span className="text-gray-900 dark:text-gray-200 text-xs md:text-sm text-center break-words leading-tight max-w-[9.5rem] md:max-w-[11rem]">Edición, entrega y optimización</span>
-              </div>
-            </div>
+            {/* Puntos y frases interactivos */}
+            <MetodoInteractivoFoto />
+
           </div>
         </div>
       </div>
