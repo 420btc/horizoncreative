@@ -521,7 +521,7 @@ export default function Portfolio() {
 
         </div>
 
-        <div className="text-center mt-12">
+        <div className="text-center mt-12 flex flex-col sm:flex-row gap-4 justify-center items-center">
   <motion.button
     type="button"
     className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-primary text-black font-medium hover:bg-primary/90 transition-colors focus:outline-none"
@@ -536,6 +536,16 @@ export default function Portfolio() {
     aria-label="Ver todos los proyectos"
   >
     Ver todos los proyectos
+  </motion.button>
+  <motion.button
+    type="button"
+    className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-black border-2 border-primary text-primary font-medium hover:bg-primary hover:text-black transition-colors focus:outline-none"
+    initial={{ scale: 1, opacity: 1 }}
+    whileTap={{ scale: 0.92 }}
+    onClick={() => router.push('/servicios')}
+    aria-label="Ver todos los servicios"
+  >
+    Ver todos los Servicios
   </motion.button>
 </div>
       </div>
