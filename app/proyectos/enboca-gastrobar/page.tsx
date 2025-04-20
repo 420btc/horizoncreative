@@ -13,7 +13,7 @@ export default function EnbocaGastrobar() {
           alt="Enboca Gastrobar principal"
           width={900}
           height={500}
-          className="rounded-3xl shadow-2xl object-cover w-full max-h-[400px] mb-8"
+          className="rounded-3xl shadow-2xl object-contain w-full mb-8"
           priority
         />
         <p className="text-lg text-gray-200 text-center mb-6">
