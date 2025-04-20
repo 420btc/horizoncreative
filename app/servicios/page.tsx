@@ -65,7 +65,21 @@ export default function Servicios() {
   useEffect(() => setMounted(true), [])
 
   return (
-    <div className="bg-black min-h-screen">
+    <div className="bg-black min-h-screen relative">
+      {/* Mano esquina inferior izquierda */}
+      <img
+        src="/assets/esquina.png"
+        alt="Mano esquina Horizon"
+        className="hidden sm:block pointer-events-none select-none"
+        style={{
+          position: 'fixed',
+          left: 0,
+          bottom: 0,
+          zIndex: 10,
+          width: '170px', // Ajusta el tamaño según la imagen
+          height: 'auto',
+        }}
+      />
       <div className="container mx-auto py-20 px-4 sm:px-6 lg:px-8 relative">
         {/* Flyer pegatina flotante, esquina superior derecha, solo visible en md+ */}
         <img
@@ -208,23 +222,27 @@ export default function Servicios() {
                     <div className="h-[2px] w-full bg-[#FFD600]" style={{filter: 'drop-shadow(0 0 12px #FFD600) drop-shadow(0 0 24px #FFD600AA)'}} />
                   </motion.div>
                   {/* Puntos y frases */}
-                  <div className="relative w-full flex items-center justify-between z-10">
+                  <div className="relative w-full flex flex-col md:flex-row items-center justify-between z-10">
                     {puntos.map((txt, idx) => (
-                      <div key={idx} className="flex flex-col items-center group md:w-1/6 w-full">
-                        {/* Bola con glow sutil y pulso automático */}
-                        <motion.div
-                          className="w-6 h-6 md:w-7 md:h-7 rounded-full bg-[#FFD600] border-4 border-black shadow-[0_0_8px_2px_#FFD600,0_0_12px_4px_#FFD60044] mb-2"
-                          style={{ boxShadow: '0 0 8px 2px #FFD600, 0 0 12px 4px #FFD60044' }}
-                          animate={activeIdx === idx ? { scale: 1.25, boxShadow: '0 0 16px 6px #FFD600, 0 0 24px 10px #FFD60044' } : { scale: 1, boxShadow: '0 0 8px 2px #FFD600, 0 0 12px 4px #FFD60044' }}
-                          transition={{ type: 'spring', stiffness: 350, damping: 18 }}
-                        />
-                        <span
-                          className={`text-xs md:text-sm text-center break-words leading-tight max-w-[6.5rem] md:max-w-[8rem] text-gray-200 md:font-semibold mt-2 drop-shadow-md ${activeIdx === idx ? 'text-yellow-300 scale-110 font-bold' : ''}`}
-                        >
-                          {txt}
-                        </span>
-                      </div>
-                    ))}
+  <div
+    key={idx}
+    className="flex flex-col items-center group md:w-1/6 w-full gap-0 mb-6 md:mb-0 last:mb-0 md:last:mb-0"
+    style={{ gap: 0 }}
+  >
+    {/* Bola con glow sutil y pulso automático */}
+    <motion.div
+      className="w-6 h-6 md:w-7 md:h-7 rounded-full bg-[#FFD600] border-4 border-black shadow-[0_0_8px_2px_#FFD600,0_0_12px_4px_#FFD60044]"
+      style={{ boxShadow: '0 0 8px 2px #FFD600, 0 0 12px 4px #FFD60044' }}
+      animate={activeIdx === idx ? { scale: 1.25, boxShadow: '0 0 16px 6px #FFD600, 0 0 24px 10px #FFD60044' } : { scale: 1, boxShadow: '0 0 8px 2px #FFD600, 0 0 12px 4px #FFD60044' }}
+      transition={{ type: 'spring', stiffness: 350, damping: 18 }}
+    />
+    <span
+      className={`text-xs md:text-sm text-center break-words leading-tight max-w-[6.5rem] md:max-w-[8rem] text-gray-200 md:font-semibold mt-3 md:mt-2 drop-shadow-md ${activeIdx === idx ? 'text-yellow-300 scale-110 font-bold' : ''}`}
+    >
+      {txt}
+    </span>
+  </div>
+))}
                   </div>
                 </div>
               </div>
