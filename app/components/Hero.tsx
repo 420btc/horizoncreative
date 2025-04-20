@@ -97,12 +97,12 @@ export default function Hero() {
             transition={{ duration: 1 }}
             style={{ pointerEvents: 'none' }}
           >
-            <div className="absolute inset-0 w-full h-full blur-[2px]">
+            <div className="absolute inset-0 w-full h-full blur-[1px]">
               <Image
                 src="/assets/fondohero.jpg"
                 alt="Fondo Hero"
                 fill
-                className="object-cover object-center w-full h-full opacity-100 transition-all duration-700"
+                className="object-cover object-center w-full h-full opacity-100 transition-all duration-700 scale-x-[-1]"
                 priority
               />
             </div>
@@ -198,8 +198,12 @@ export default function Hero() {
           ) : (
             <>
               <h1 className="mt-8 sm:mt-10 text-4xl font-bold tracking-tight text-white sm:text-6xl flex flex-col items-start md:items-start gap-0">
-                <span className="text-primary text-7xl md:text-8xl mb-0 block">Horizon</span>
-                <span className="text-primary text-7xl md:text-8xl block">Creative</span>
+                <span className="text-primary text-7xl md:text-8xl mb-0 block" style={{textShadow: '0 6px 32px rgba(0,0,0,0.85), 0 1px 0 #fff8'}}>
+                  Horizon
+                </span>
+                <span className="text-primary text-7xl md:text-8xl block" style={{textShadow: '0 6px 32px rgba(0,0,0,0.85), 0 1px 0 #fff8'}}>
+                  Creative
+                </span>
               </h1>
               <div className="mt-6 text-lg leading-8 text-gray-300 h-24">
                 <TypewriterText
