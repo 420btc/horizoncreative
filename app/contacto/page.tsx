@@ -160,21 +160,32 @@ export default function Contacto() {
     <div className="bg-black min-h-screen overflow-x-hidden">
       {/* Easter Egg Modal */}
       {showEgg && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm" onClick={() => setShowEgg(false)}>
-          <div className="relative max-w-lg w-full flex flex-col items-center bg-black/90 rounded-2xl shadow-2xl p-6" onClick={e => e.stopPropagation()}>
-            <button
-              className="absolute top-2 right-2 text-white text-3xl font-bold bg-black/40 rounded-full px-3 py-0.5 hover:bg-yellow-400 hover:text-black transition"
-              onClick={() => setShowEgg(false)}
-              aria-label="Cerrar"
-            >×</button>
-            <Image src="/assets/easteregg.png" alt="Carlos Pastor Freire" width={220} height={220} className="rounded-full shadow-lg mb-4 object-cover" />
-            <p className="text-lg text-white text-center">
-              Esta página ha sido creada con todo el amor y pasión por <span className="text-yellow-400 font-bold">Carlos</span> Pastor <span className="text-yellow-400 font-bold">Freire</span> y la colaboración de LLMs.<br/>
-              <span className="block mt-2">¡Espero que te guste!</span>
-            </p>
-          </div>
-        </div>
-      )}
+  <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm" onClick={() => setShowEgg(false)}>
+    <div
+      className="relative w-full max-w-2xl flex flex-col items-center bg-black/90 rounded-2xl shadow-2xl p-8 md:p-12 mx-2"
+      style={{maxWidth: '48rem'}} // 2xl
+      onClick={e => e.stopPropagation()}
+    >
+      <button
+        className="absolute top-2 right-2 text-white text-3xl font-bold bg-black/40 rounded-full px-3 py-0.5 hover:bg-yellow-400 hover:text-black transition"
+        onClick={() => setShowEgg(false)}
+        aria-label="Cerrar"
+      >×</button>
+      <Image
+        src="/assets/easteregg.png"
+        alt="Carlos Pastor Freire"
+        width={440}
+        height={440}
+        className="rounded-full shadow-lg mb-6 object-cover w-48 h-48 md:w-80 md:h-80"
+        style={{maxWidth:'100%',height:'auto'}}
+      />
+      <p className="text-xl md:text-2xl text-white text-center leading-snug">
+        Esta página ha sido creada con todo el amor y pasión por <span className="text-yellow-400 font-bold">Carlos</span> Pastor <span className="text-yellow-400 font-bold">Freire</span> y la colaboración de LLMs.<br/>
+        <span className="block mt-4">¡Espero que te guste!</span>
+      </p>
+    </div>
+  </div>
+)}
 
       {/* Hero Section */}
       <div className="relative">
