@@ -96,8 +96,8 @@ export default function Proyectos() {
                 priority
               />
             ) : (
-              <div className="w-full h-56 flex items-center justify-center bg-gray-800 rounded-t-3xl">
-                <span className="text-gray-400 text-lg">Sin imagen</span>
+              <div className="w-full h-56 flex items-center justify-center bg-black rounded-t-3xl">
+                <span className="text-gray-400 text-lg">Coming Soon</span>
               </div>
             )}
             <div className="relative z-20 p-6 flex flex-col justify-between h-[160px]">
@@ -151,8 +151,8 @@ export default function Proyectos() {
                 priority
               />
             ) : (
-              <div className="w-full h-56 flex items-center justify-center bg-gray-800 rounded-t-3xl">
-                <span className="text-gray-400 text-lg">Sin imagen</span>
+              <div className="w-full h-56 flex items-center justify-center bg-black rounded-t-3xl">
+                <span className="text-gray-400 text-lg">Coming Soon</span>
               </div>
             )}
             <div className="relative z-20 p-6 flex flex-col justify-between h-[160px]">
