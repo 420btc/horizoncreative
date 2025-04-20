@@ -535,7 +535,7 @@ export default function Portfolio() {
     style={{ pointerEvents: buttonAnimating ? 'none' : 'auto' }}
     aria-label="Ver todos los proyectos"
   >
-    Ver todos los proyectos
+    Ver todos los Proyectos
   </motion.button>
   <motion.button
     type="button"
