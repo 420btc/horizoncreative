@@ -71,7 +71,7 @@ export default function Proyectos() {
             const router = useRouter();
             return (
               <motion.div
-                key={proy.href}
+                key={proy.href + '-' + idx}
                 className="group relative bg-[#101014] rounded-3xl shadow-2xl overflow-hidden w-[312px] lg:w-[364px] xl:w-[426px] transition-transform hover:scale-[1.035] cursor-pointer"
                 style={{ minHeight: 437 }}
                 initial={false}
@@ -152,7 +152,7 @@ export default function Proyectos() {
             const router = useRouter();
             return (
               <motion.div
-                key={proy.href}
+                key={proy.href + '-' + idx}
                 className="group relative bg-[#101014] rounded-3xl shadow-2xl overflow-hidden w-[312px] lg:w-[364px] xl:w-[426px] transition-transform hover:scale-[1.035] cursor-pointer"
                 style={{ minHeight: 437 }}
                 initial={false}
