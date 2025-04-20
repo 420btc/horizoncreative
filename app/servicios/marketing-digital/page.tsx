@@ -88,7 +88,7 @@ export default function MarketingDigitalGaleria() {
         </div>
       </div>
       {/* Sección final: Foto full display y texto a la izquierda */}
-      <div className="w-full mt-8 md:mt-14 flex flex-col md:flex-row items-stretch rounded-xl md:rounded-3xl overflow-hidden shadow-2xl">
+      <div className="w-full mt-8 md:mt-14 flex flex-col md:flex-row items-stretch rounded-xl md:rounded-3xl overflow-hidden shadow-2xl min-h-[180px]">
         {/* Bloque de texto sobre fondo blanco */}
         <div className="w-full md:w-1/2 bg-white flex items-center justify-center p-6 md:p-12 rounded-t-xl md:rounded-l-3xl md:rounded-tr-none">
           <div>
