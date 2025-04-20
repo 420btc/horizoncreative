@@ -8,11 +8,13 @@ export default function Footer() {
       <div className="mx-auto max-w-7xl overflow-hidden px-4 py-4 sm:py-10 lg:px-8">
         <AnimatedSection direction='up' delay={0.2}>
           {/* Logo arriba en móvil */}
-          <div className="flex justify-center mb-2 sm:mb-4 lg:mt-8">
-            <a href="https://www.instagram.com/horizoncreative.agency/" target="_blank" rel="noopener noreferrer" aria-label="Instagram Horizon Creative">
-              <img src="/assets/logoig.png" alt="Instagram Horizon Creative" className="w-8 h-8 sm:w-10 sm:h-10 mx-auto" />
-            </a>
-          </div>
+          <div className="flex justify-center items-center gap-2 mb-2 sm:mb-4 lg:mt-8">
+  <a href="https://www.instagram.com/horizoncreative.agency/" target="_blank" rel="noopener noreferrer" aria-label="Instagram Horizon Creative">
+    <img src="/assets/logoig.png" alt="Instagram Horizon Creative" className="w-8 h-8 sm:w-10 sm:h-10" />
+  </a>
+  <img src="/assets/logofc.png" alt="Logo FC Horizon Creative" className="w-5 h-5 sm:w-6 h-6" />
+  <img src="/assets/twitt.png" alt="Logo Twitter Horizon Creative" className="w-7 h-7 sm:w-8 h-8 relative top-0.5" />
+</div>
           {/* Menú más compacto en móvil */}
           <nav className="grid grid-cols-2 gap-y-1 gap-x-3 justify-items-center sm:flex sm:justify-center sm:space-x-12 mt-1 sm:mt-2 mb-2 sm:mb-4 lg:mt-2 lg:mb-1" aria-label="Footer">
             {[
