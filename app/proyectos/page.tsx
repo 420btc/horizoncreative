@@ -7,7 +7,7 @@ import { useState } from "react";
 const proyectos = [
   {
     href: "/proyectos/golf-club-branding",
-    image: "/assets/golfclub-5.jpg",
+    image: "/assets/por1.jpeg",
     alt: "Golf Club Marbella Branding",
     title: "Golf Club Branding",
     desc: "Branding y personaje de Club de Golf, Marbella.",
@@ -21,7 +21,7 @@ const proyectos = [
   },
   {
     href: "/proyectos/tennis-club-marbella",
-    image: "/assets/golfclub-2.jpg",
+    image: "/assets/por2.jpeg",
     alt: "Tennis Club Marbella Branding",
     title: "Tennis Club Marbella",
     desc: "Branding y publicidad de Club de Tennis, Marbella.",
