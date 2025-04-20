@@ -157,6 +157,10 @@ export default function Hero() {
               >
                 <motion.span
                   className="text-primary text-7xl md:text-8xl mb-0 block"
+                  style={{
+                    textShadow: '0 10px 40px #000, 0 1px 0 #fff8',
+                    
+                  }}
                   initial={{ x: '-100vw', opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
                   transition={{ duration: 1.7, type: 'spring', bounce: 0.3, delay: 0 }}
@@ -165,6 +169,10 @@ export default function Hero() {
                 </motion.span>
                 <motion.span
                   className="text-primary text-7xl md:text-8xl block"
+                  style={{
+                    textShadow: '0 10px 40px #000, 0 1px 0 #fff8',
+                    
+                  }}
                   initial={{ x: '-100vw', opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
                   transition={{ duration: 2.1, type: 'spring', bounce: 0.3, delay: 0.85 }}
@@ -198,10 +206,24 @@ export default function Hero() {
           ) : (
             <>
               <h1 className="mt-8 sm:mt-10 text-4xl font-bold tracking-tight text-white sm:text-6xl flex flex-col items-start md:items-start gap-0">
-                <span className="text-primary text-7xl md:text-8xl mb-0 block" style={{textShadow: '0 6px 32px rgba(0,0,0,0.85), 0 1px 0 #fff8'}}>
+                <span
+                  className="text-primary text-7xl md:text-8xl mb-0 block hero-blur-text"
+                  style={{
+                    textShadow: '0 8px 36px rgba(0,0,0,0.85), 0 2px 8px #FFD600aa, 0 1px 0 #fff8',
+                    mixBlendMode: 'lighten',
+                    filter: 'brightness(1.08) drop-shadow(0 2px 16px #FFD60044)'
+                  }}
+                >
                   Horizon
                 </span>
-                <span className="text-primary text-7xl md:text-8xl block" style={{textShadow: '0 6px 32px rgba(0,0,0,0.85), 0 1px 0 #fff8'}}>
+                <span
+                  className="text-primary text-7xl md:text-8xl block hero-blur-text"
+                  style={{
+                    textShadow: '0 8px 36px rgba(0,0,0,0.85), 0 2px 8px #FFD600aa, 0 1px 0 #fff8',
+                    mixBlendMode: 'lighten',
+                    filter: 'brightness(1.08) drop-shadow(0 2px 16px #FFD60044)'
+                  }}
+                >
                   Creative
                 </span>
               </h1>
