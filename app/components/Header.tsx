@@ -14,15 +14,19 @@ export default function Header() {
   const [mounted, setMounted] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
 
+  const [isForcedLight, setIsForcedLight] = useState(false);
   useEffect(() => setMounted(true), [])
 
-  // Sincroniza clase forced-light con localStorage al cargar
+  // Sincroniza clase forced-light con localStorage al cargar y actualiza estado
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      if (localStorage.getItem('forcedLightMode')) {
+      const forced = localStorage.getItem('forcedLightMode');
+      if (forced) {
         document.documentElement.classList.add('forced-light');
+        setIsForcedLight(true);
       } else {
         document.documentElement.classList.remove('forced-light');
+        setIsForcedLight(false);
       }
     }
   }, []);
@@ -96,16 +100,20 @@ export default function Header() {
               if (forced) {
                 html.classList.remove('forced-light');
                 localStorage.removeItem('forcedLightMode');
+                setIsForcedLight(false);
               } else {
                 html.classList.add('forced-light');
                 localStorage.setItem('forcedLightMode', '1');
+                setIsForcedLight(true);
               }
             }}
           >
             {/* Icono sol/luna amarillo */}
-            {typeof window !== 'undefined' && document.documentElement.classList.contains('forced-light') ? (
+            {isForcedLight ? (
+              // Sol
               <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="#FFD600" strokeWidth="2"><circle cx="12" cy="12" r="5" fill="#FFD600"/><path stroke="#FFD600" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 1v2m0 18v2m11-11h-2M3 12H1m16.95 7.07l-1.41-1.41M6.34 6.34L4.93 4.93m12.02 0l-1.41 1.41M6.34 17.66l-1.41 1.41"/></svg>
             ) : (
+              // Luna (oscuro por defecto)
               <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="#FFD600" strokeWidth="2"><path stroke="#FFD600" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 12.79A9 9 0 1111.21 3a7 7 0 109.79 9.79z"/></svg>
             )}
           </button>

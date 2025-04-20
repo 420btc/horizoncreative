@@ -14,7 +14,7 @@ const proyectos = [
   },
   {
     href: "/proyectos/vacation-benalmadena",
-    image: "/assets/marketing-1.jpg",
+    image: "/assets/vacationproject.jpeg",
     alt: "Vacation Benalmádena Social Media y Web",
     title: "Vacation Benalmádena",
     desc: "Gestión de red social y web, Vacation Benalmádena.",
@@ -63,7 +63,7 @@ export default function Proyectos() {
             alt={proy.alt}
             width={410}
             height={240}
-            className="w-full h-56 object-cover rounded-t-3xl group-hover:scale-105 transition-transform duration-300"
+            className="w-full h-56 object-cover object-center rounded-t-3xl group-hover:scale-105 transition-transform duration-300"
             priority
           />
           <div className="relative z-20 p-6 flex flex-col justify-between h-[160px]">
