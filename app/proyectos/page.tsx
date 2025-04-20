@@ -60,7 +60,7 @@ export default function Proyectos() {
       <h1 className="text-5xl font-black mb-8 text-white text-center mt-2">
         Nuestros <span className="text-yellow-400">Proyectos</span>
       </h1>
-      <div className="mt-2"></div>
+      
       {/* Tarjetas de proyectos únicas para esta página */}
       <div className="w-full max-w-7xl grid grid-cols-1 md:grid-cols-1 gap-10">
         {/* Primera fila de 3 proyectos */}
@@ -227,7 +227,7 @@ export default function Proyectos() {
         </div>
       </div>
       {/* Imágenes decorativas al final, arriba del footer */}
-      <div className="w-full flex flex-col items-center justify-center mt-12 sm:mt-[38rem] mb-2">
+      <div className="w-full flex flex-col items-center justify-center mt-16 sm:mt-32 mb-2">
         <Image
           src="/assets/globito.png"
           alt="Globito decorativo"
