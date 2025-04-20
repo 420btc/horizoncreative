@@ -108,40 +108,36 @@ export default function Contacto() {
             "pk.eyJ1IjoiNDIwYnRjIiwiYSI6ImNtOTN3ejBhdzByNjgycHF6dnVmeHl2ZTUifQ.Utq_q5wN6DHwpkn6rcpZdw"
 
           if (mapContainer.current && !mapLoaded) {
-            const initialZoom = 1.5;
-            const targetZoom = 13;
-            const center = [-4.51326, 36.59949]; // Nueva ubicación solicitada
+            // Inicializa vista global
             const map = new mapboxgl.Map({
               container: mapContainer.current,
               style: "mapbox://styles/mapbox/satellite-v9",
-              center: center,
-              zoom: initialZoom,
+              center: [0, 20], // Vista global
+              zoom: 1,
+            })
+
+            // Animación flyTo a Málaga
+            map.on('load', () => {
+              map.flyTo({
+                center: [-4.5166, 36.5983],
+                zoom: 13,
+                speed: 1.2,
+                curve: 1.7,
+                essential: true
+              });
             });
+
+            // Añadir marcador
+            new mapboxgl.Marker({
+              color: "#FFD700",
+            })
+              .setLngLat([-4.5166, 36.5983])
+              .addTo(map)
 
             // Añadir controles de navegación
-            map.addControl(new mapboxgl.NavigationControl());
+            map.addControl(new mapboxgl.NavigationControl())
 
-            map.on('load', () => {
-              // Animar el zoom hasta Málaga
-              map.flyTo({
-                center: center,
-                zoom: targetZoom,
-                speed: 0.8, // más bajo = más lento
-                curve: 1.7, // curva de animación suave
-                essential: true,
-              });
-
-              // Añadir marcador después de la animación
-              setTimeout(() => {
-                new mapboxgl.Marker({
-                  color: "#FFD700",
-                })
-                  .setLngLat(center)
-                  .addTo(map);
-              }, 3000); // Espera a que termine el vuelo
-
-              setMapLoaded(true);
-            });
+            setMapLoaded(true)
           }
         } catch (error) {
           console.error("Error al cargar Mapbox:", error)
@@ -153,39 +149,37 @@ export default function Contacto() {
   }, [mapLoaded])
 
   return (
-    <div className="bg-white dark:bg-black min-h-screen overflow-x-hidden">
+    <div className="bg-black min-h-screen overflow-x-hidden">
       {/* Hero Section */}
       <div className="relative">
-        <div className="absolute inset-0 bg-gradient-to-r from-white dark:from-black to-transparent z-10"></div>
-        <div className="container mx-auto relative z-20 py-6 sm:py-10 px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-center w-full">
-            <motion.div
-              className="max-w-3xl w-full"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              <h1 className="text-4xl sm:text-6xl font-extrabold mb-2 text-white text-center">
-                Conecta con <span className="text-yellow-400">nosotros</span>
-              </h1>
-              <p className="text-lg sm:text-xl text-gray-400 mb-6 text-center">
-                El primer paso hacia el éxito empieza con un mensaje.
-              </p>
-            </motion.div>
-          </div>
+        <div className="absolute inset-0 bg-gradient-to-r from-black to-transparent z-10"></div>
+        <div className="container mx-auto relative z-20 py-20 px-4 sm:px-6 lg:px-8">
+          <motion.div
+            className="max-w-3xl"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <h1 className="text-5xl font-black text-white">
+              Conecta con <span className="text-primary">nosotros</span>
+            </h1>
+            <p className="text-xl text-white mb-4">El primer paso hacia el éxito empieza con un mensaje.</p>
+          </motion.div>
         </div>
-        
+        <div className="absolute inset-0 z-0">
+          <div className="w-full h-full bg-black opacity-70"></div>
+        </div>
       </div>
 
       {/* Main Content */}
       <div className="container mx-auto py-0 px-3 sm:px-3 lg:px-6">
-        <div className="grid md:grid-cols-2 gap-3 md:gap-4 min-h-[220px] items-stretch">
+        <div className="grid md:grid-cols-2 gap-4 md:gap-6 min-h-[300px] items-stretch">
           {/* Contact Info */}
           <motion.div initial={{ opacity: 0, x: -50 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }}>
-            <div className="bg-white dark:bg-neutral-900 border border-primary/20 rounded-xl p-4 sm:p-8 shadow-lg relative overflow-hidden h-full">
+            <div className="bg-black border border-primary/20 rounded-xl p-4 sm:p-8 shadow-lg relative overflow-hidden h-full">
 
-              <h2 className="text-3xl font-bold mb-8 text-gray-900 dark:text-white">
-                La <span className="text-yellow-400">estrategia</span> digital que tu marca <span className="text-gray-900 dark:text-white">necesita</span>
+              <h2 className="text-3xl font-bold mb-8 text-white">
+                La <span className="text-yellow-400">estrategia</span> digital que tu marca <span className="text-white">necesita</span>
               </h2>
 
               <div className="space-y-6">
@@ -272,15 +266,15 @@ export default function Contacto() {
                     name="name"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-gray-800 dark:text-gray-200">Nombre</FormLabel>
+                        <FormLabel className="text-white">Nombre</FormLabel>
                         <FormControl>
                           <Input
                             placeholder="Tu nombre"
                             {...field}
-                            className="bg-white dark:bg-neutral-900 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-400 border-gray-300 dark:border-neutral-700"
+                            className="bg-[#222] !text-white !placeholder-white border-gray-700"
                           />
                         </FormControl>
-                        <FormMessage className="text-gray-600 dark:text-gray-400" />
+                        <FormMessage className="text-white" />
                       </FormItem>
                     )}
                   />
@@ -290,15 +284,15 @@ export default function Contacto() {
                     name="email"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-gray-800 dark:text-gray-200">Email</FormLabel>
+                        <FormLabel className="text-white">Email</FormLabel>
                         <FormControl>
                           <Input
                             placeholder="tu@email.com"
                             {...field}
-                            className="bg-white dark:bg-neutral-900 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-400 border-gray-300 dark:border-neutral-700"
+                            className="bg-[#222] !text-white !placeholder-white border-gray-700"
                           />
                         </FormControl>
-                        <FormMessage className="text-gray-600 dark:text-gray-400" />
+                        <FormMessage className="text-white" />
                       </FormItem>
                     )}
                   />
@@ -308,15 +302,15 @@ export default function Contacto() {
                     name="message"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-gray-800 dark:text-gray-200">Mensaje</FormLabel>
+                        <FormLabel className="text-white">Mensaje</FormLabel>
                         <FormControl>
                           <Textarea
                             placeholder="¿Cómo podemos ayudarte?"
-                            className="min-h-[120px] bg-white dark:bg-neutral-900 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-400 border-gray-300 dark:border-neutral-700"
+                            className="min-h-[120px] bg-[#222] !text-white !placeholder-white border-gray-700"
                             {...field}
                           />
                         </FormControl>
-                        <FormMessage className="text-gray-600 dark:text-gray-400" />
+                        <FormMessage className="text-white" />
                       </FormItem>
                     )}
                   />
@@ -345,7 +339,7 @@ export default function Contacto() {
       <Testimonials />
       {/* Banner amarillo */}
       <motion.div
-        className="bg-primary py-2 sm:py-3 px-2 sm:px-6 mt-4 sm:mt-8 border-t-0"
+        className="bg-primary py-2 sm:py-6 px-2 sm:px-8 mt-8 sm:mt-14 border-t-0"
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.4 }}
