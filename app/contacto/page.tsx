@@ -24,7 +24,7 @@ export default function Contacto() {
   const [eggCount, setEggCount] = useState(0);
   const [showEgg, setShowEgg] = useState(false);
   useEffect(() => {
-    if (eggCount >= 6) {
+    if (eggCount >= 3) {
       setShowEgg(true);
       setEggCount(0);
     }
