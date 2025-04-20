@@ -49,7 +49,7 @@ const servicios = [
       </svg>
     ),
     title: "Gestión de Redes Sociales",
-    description: "Impulsa tu marca en redes sociales con contenido atractivo y estrategias personalizadas.",
+    description: "Impulsa tu marca en redes sociales con contenido atractivo y estrategias personalizadas. Gestionamos tus perfiles, creamos campañas y conectamos con tu audiencia para asegurar el crecimiento y la reputación de tu marca.",
     slug: "gestion-redes-sociales",
   }
 ]
@@ -168,7 +168,7 @@ export default function Servicios() {
             <Link
               key={servicios[4].title}
               href={`/servicios/${servicios[4].slug}`}
-              className="group relative bg-black rounded-xl p-5 shadow-lg border border-primary/20 min-h-[180px] w-full max-w-sm mx-auto flex flex-col justify-between outline-none focus-visible:ring-2 focus-visible:ring-yellow-400 transition-all duration-300"
+              className="group relative bg-black rounded-xl p-5 shadow-lg border border-primary/20 min-h-[180px] w-full max-w-2xl mx-auto flex flex-col justify-between outline-none focus-visible:ring-2 focus-visible:ring-yellow-400 transition-all duration-300"
               tabIndex={0}
             >
               {/* Glow/Neón animado */}
