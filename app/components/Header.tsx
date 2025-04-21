@@ -46,15 +46,7 @@ const [logoSpin, setLogoSpin] = useState(false);
             <div className="relative h-12 w-auto overflow-hidden">
               <>
   <style jsx>{`
-    .logo-rotating-z {
-      animation: logo-spin-z 8s linear infinite;
-      transform-style: preserve-3d;
-      will-change: transform;
-    }
-    @keyframes logo-spin-z {
-      0% { transform: rotateZ(0deg); }
-      100% { transform: rotateZ(360deg); }
-    }
+    
     .logo-spin-y {
       animation: logo-flip-y 0.8s cubic-bezier(.8,.2,.2,1) 1;
     }
@@ -68,7 +60,7 @@ const [logoSpin, setLogoSpin] = useState(false);
     alt="Horizon Creative Logo"
     width={120}
     height={48}
-    className={`h-12 w-auto object-contain mx-auto logo-rotating-z${logoSpin ? ' logo-spin-y' : ''}`}
+    className={`h-12 w-auto object-contain mx-auto${logoSpin ? ' logo-spin-y' : ''}`}
     onMouseEnter={() => setLogoSpin(true)}
     onMouseLeave={() => setLogoSpin(false)}
     onTouchStart={() => setLogoSpin(true)}
