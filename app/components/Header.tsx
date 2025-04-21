@@ -16,6 +16,7 @@ export default function Header() {
 
   const [isForcedLight, setIsForcedLight] = useState(false);
 const [logoSpin, setLogoSpin] = useState(false);
+const [logoFlip, setLogoFlip] = useState(false);
   useEffect(() => setMounted(true), [])
 
   // Sincroniza clase forced-light con localStorage al cargar y actualiza estado
@@ -47,24 +48,38 @@ const [logoSpin, setLogoSpin] = useState(false);
               <>
   <style jsx>{`
     
-    .logo-spin-y {
-      animation: logo-flip-y 0.8s cubic-bezier(.8,.2,.2,1) 1;
-    }
-    @keyframes logo-flip-y {
-      0% { transform: rotateZ(0deg) rotateY(0deg); }
-      100% { transform: rotateZ(0deg) rotateY(360deg); }
-    }
+    .logo-rotating-z {
+  animation: logo-spin-z 1.2s linear infinite;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+@keyframes logo-spin-z {
+  0% { transform: rotateZ(0deg); }
+  100% { transform: rotateZ(360deg); }
+}
+.logo-flip-y {
+  animation: logo-flip-y 0.8s cubic-bezier(.8,.2,.2,1) 1;
+}
+@keyframes logo-flip-y {
+  0% { transform: rotateZ(0deg) rotateY(0deg); }
+  100% { transform: rotateZ(0deg) rotateY(360deg); }
+}
+
   `}</style>
   <img
     src="/logohorizon.png"
     alt="Horizon Creative Logo"
     width={120}
     height={48}
-    className={`h-12 w-auto object-contain mx-auto${logoSpin ? ' logo-spin-y' : ''}`}
+    className={`h-12 w-auto object-contain mx-auto${logoSpin ? ' logo-rotating-z' : ''}${logoFlip ? ' logo-flip-y' : ''}`}
     onMouseEnter={() => setLogoSpin(true)}
-    onMouseLeave={() => setLogoSpin(false)}
-    onTouchStart={() => setLogoSpin(true)}
-    onAnimationEnd={() => logoSpin && setLogoSpin(false)}
+onMouseLeave={() => setLogoSpin(false)}
+onTouchStart={() => setLogoSpin(true)}
+onTouchEnd={() => setLogoSpin(false)}
+onClick={() => setLogoFlip(true)}
+onAnimationEnd={e => {
+  if (e.animationName === 'logo-flip-y') setLogoFlip(false);
+}}
     style={{ display: 'block', margin: '0 auto' }}
   />
 </>
