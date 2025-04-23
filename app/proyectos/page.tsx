@@ -42,14 +42,13 @@ const proyectos = [
     title: "UAC – Hospital Virgen de la Victoria",
     desc: "Desarrollo de app UAC y branding para el Hospital Virgen de la Victoria.",
   },
-  // Proyecto pendiente
+  // Nuevo proyecto: Mosh Fun Kitchen
   {
-    href: "#",
-    image: "",
-    alt: "Proyecto Pendiente",
-    title: "Proyecto Pendiente",
-    desc: "Próximamente nuevo proyecto destacado.",
-    pending: true,
+    href: "/proyectos/mosh-fun-kitchen",
+    image: "/assets/mosh.jpeg",
+    alt: "Mosh Fun Kitchen",
+    title: "Mosh Fun Kitchen",
+    desc: "Sesión creativa y fotografía gastronómica para Mosh Fun Kitchen.",
   },
 ];
 
