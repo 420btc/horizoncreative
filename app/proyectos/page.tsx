@@ -34,16 +34,15 @@ const proyectos = [
     title: "Enboca Gastrobar",
     desc: "Branding y comunicación digital para Enboca Gastrobar.",
   },
-  // Proyecto pendiente 1
+  // Nuevo proyecto: Hospital Virgen de la Victoria x Horizon
   {
-    href: "#",
-    image: "",
-    alt: "Proyecto Pendiente",
-    title: "Proyecto Pendiente",
-    desc: "Próximamente nuevo proyecto destacado.",
-    pending: true,
+    href: "/proyectos/hospital-virgen-victoria",
+    image: "/assets/hospital.jpeg",
+    alt: "UAC – Hospital Virgen de la Victoria",
+    title: "UAC – Hospital Virgen de la Victoria",
+    desc: "Desarrollo de app UAC y branding para el Hospital Virgen de la Victoria.",
   },
-  // Proyecto pendiente 2
+  // Proyecto pendiente
   {
     href: "#",
     image: "",

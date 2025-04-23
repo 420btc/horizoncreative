@@ -1,5 +1,6 @@
 import Hero from "./components/Hero"
 import Portfolio from "./components/Portfolio"
+import InspirationTag from "./components/InspirationTag"
 
 export default function Home() {
   return (
@@ -15,6 +16,7 @@ export default function Home() {
         />
       </div>
       
+      <InspirationTag />
     </div>
   );
 }
