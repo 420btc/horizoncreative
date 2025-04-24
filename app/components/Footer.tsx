@@ -50,7 +50,7 @@ export default function Footer() {
                 <div key="newsletter" className="pb-2 sm:pb-6">
                   <button
                     type="button"
-                    className="text-sm leading-6 text-gray-900 bg-yellow-400 px-4 py-1 rounded-full font-semibold shadow hover:bg-yellow-300 transition-colors dark:text-black"
+                    className="text-sm leading-6 bg-yellow-400 text-black px-4 py-1 rounded-full font-semibold shadow hover:bg-yellow-300 transition-colors dark:text-black"
                     onClick={() => setShowNewsletter(true)}
                   >
                     Newsletter

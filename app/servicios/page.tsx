@@ -66,7 +66,7 @@ export default function Servicios() {
   useEffect(() => setMounted(true), [])
 
   return (
-    <div className="bg-black min-h-screen relative">
+    <div className="min-h-screen relative bg-background">
       {/* Mano esquina inferior izquierda */}
       <Image
         src="/assets/esquina.png"
@@ -100,14 +100,14 @@ export default function Servicios() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h1 className="text-5xl font-black mb-4 text-white">Nuestros <span className="text-yellow-400">Servicios</span></h1>
+          <h1 className="text-5xl font-black mb-4 text-foreground">Nuestros <span className="text-yellow-400">Servicios</span></h1>
           {/* Imagen flyer tipo pegatina, solo visible en md+ */}
 
                     <div className="max-w-3xl mx-auto">
-            <h2 className="text-3xl font-bold mb-4 text-white">
+            <h2 className="text-3xl font-bold mb-4 text-foreground">
               Descubre Nuestros Servicios Destacados
             </h2>
-            <p className="text-lg text-gray-300">
+            <p className="text-lg text-foreground">
               En <span className="text-yellow-400">Horizon</span>, ofrecemos soluciones personalizadas para impulsar <span className="text-yellow-400">tu presencia digital</span> y conectar realmente
               con tu audiencia.
             </p>
@@ -122,7 +122,7 @@ export default function Servicios() {
   <Link
     key={service.title}
     href={`/servicios/${service.slug}`}
-    className="group relative bg-black rounded-xl p-5 shadow-lg border border-primary/20 min-h-[180px] w-full max-w-sm md:max-w-full mx-auto flex flex-col justify-between outline-none focus-visible:ring-2 focus-visible:ring-yellow-400 transition-all duration-300"
+    className="group relative rounded-xl p-5 shadow-lg border border-primary/20 min-h-[180px] w-full max-w-sm md:max-w-full mx-auto flex flex-col justify-between outline-none focus-visible:ring-2 focus-visible:ring-yellow-400 transition-all duration-300"
     tabIndex={0}
   >
     {/* Solo la tarjeta de Fotografía y Video lleva fondo */}
@@ -161,9 +161,9 @@ export default function Servicios() {
 ) }
                 <div className="flex items-center mb-4 relative z-10">
                   {service.icon}
-                  <h3 className="text-2xl font-bold ml-4 text-white">{service.title}</h3>
+                  <h3 className="text-2xl font-bold ml-4 text-foreground">{service.title}</h3>
                 </div>
-                <p className="text-gray-300 mb-4 relative z-10">{service.description}</p>
+                <p className="mb-4 relative z-10 text-foreground">{service.description}</p>
                 <div className="mt-6 flex items-center justify-center relative z-10">
                   <span className="flex items-center justify-center w-9 h-9 rounded-full bg-primary text-black group-hover:bg-primary/80 transition-colors shadow-lg">
                     <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
@@ -181,7 +181,7 @@ export default function Servicios() {
   <Link
     key={service.title}
     href={`/servicios/${service.slug}`}
-    className="group relative bg-black rounded-xl p-5 shadow-lg border border-primary/20 min-h-[180px] w-full max-w-sm md:max-w-full mx-auto flex flex-col justify-between outline-none focus-visible:ring-2 focus-visible:ring-yellow-400 transition-all duration-300"
+    className="group relative rounded-xl p-5 shadow-lg border border-primary/20 min-h-[180px] w-full max-w-sm md:max-w-full mx-auto flex flex-col justify-between outline-none focus-visible:ring-2 focus-visible:ring-yellow-400 transition-all duration-300"
     tabIndex={0}
   >
     {/* Fondo solo para Diseño & Desarrollo de App */}
@@ -208,9 +208,9 @@ export default function Servicios() {
     )}
                 <div className="flex items-center mb-4 relative z-10">
                   {service.icon}
-                  <h3 className="text-2xl font-bold ml-4 text-white">{service.title}</h3>
+                  <h3 className="text-2xl font-bold ml-4 text-foreground">{service.title}</h3>
                 </div>
-                <p className="text-gray-300 mb-4 relative z-10">{service.description}</p>
+                <p className="mb-4 relative z-10 text-foreground">{service.description}</p>
                 <div className="mt-6 flex items-center justify-center relative z-10">
                   <span className="flex items-center justify-center w-9 h-9 rounded-full bg-primary text-black group-hover:bg-primary/80 transition-colors shadow-lg">
                     <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
@@ -227,7 +227,7 @@ export default function Servicios() {
             <Link
               key={servicios[4].title}
               href={`/servicios/${servicios[4].slug}`}
-              className="group relative bg-black rounded-xl p-5 shadow-lg border border-primary/20 min-h-[180px] w-full max-w-2xl mx-auto flex flex-col justify-between outline-none focus-visible:ring-2 focus-visible:ring-yellow-400 transition-all duration-300"
+              className="group relative rounded-xl p-5 shadow-lg border border-primary/20 min-h-[180px] w-full max-w-2xl mx-auto flex flex-col justify-between outline-none focus-visible:ring-2 focus-visible:ring-yellow-400 transition-all duration-300"
               tabIndex={0}
             >
               {/* Glow/Neón animado */}
@@ -237,9 +237,9 @@ export default function Servicios() {
 </span>
               <div className="flex items-center mb-4 relative z-10">
                 {servicios[4].icon}
-                <h3 className="text-2xl font-bold ml-4 text-white">{servicios[4].title}</h3>
+                <h3 className="text-2xl font-bold ml-4 text-black dark:text-white">{servicios[4].title}</h3>
               </div>
-              <p className="text-gray-300 mb-4 relative z-10">{servicios[4].description}</p>
+              <p className="mb-4 relative z-10 text-black dark:text-white">{servicios[4].description}</p>
               <div className="mt-6 flex items-center justify-center relative z-10">
                 <span className="flex items-center justify-center w-9 h-9 rounded-full bg-primary text-black group-hover:bg-primary/80 transition-colors shadow-lg">
                   <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
@@ -270,7 +270,7 @@ export default function Servicios() {
             return () => clearInterval(interval);
           }, [puntos.length]);
           return (
-            <div className="w-full flex flex-col items-center py-40 bg-transparent mb-32 md:mb-48">
+            <div className="w-full flex flex-col items-center py-16 bg-transparent mb-10 md:mb-16 mt-10 md:mt-16">
               <div className="max-w-5xl w-full flex flex-col items-center">
                 <div className="relative w-full flex flex-col gap-8 md:gap-12">
                   {/* Línea amarilla animada fina y más marcada */}
@@ -299,7 +299,7 @@ export default function Servicios() {
       transition={{ type: 'spring', stiffness: 350, damping: 18 }}
     />
     <span
-      className={`text-xs md:text-sm text-center break-words leading-tight max-w-[6.5rem] md:max-w-[8rem] text-gray-200 md:font-semibold mt-3 md:mt-2 drop-shadow-md ${activeIdx === idx ? 'text-yellow-300 scale-110 font-bold' : ''}`}
+      className={`text-xs md:text-sm text-center break-words leading-tight max-w-[6.5rem] md:max-w-[8rem] text-black dark:text-gray-200 md:font-semibold mt-3 md:mt-2 drop-shadow-md ${activeIdx === idx ? 'text-yellow-300 scale-110 font-bold' : ''}`}
     >
       {txt}
     </span>
