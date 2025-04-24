@@ -409,7 +409,7 @@ export default function Portfolio() {
               <button
                 key={category}
                 onClick={() => setActiveCategory(category)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors bg-primary text-black active:scale-95 ${activeCategory === category ? 'font-bold shadow-[0_0_12px_4px_rgba(255,255,0,0.7),0_0_32px_8px_rgba(255,255,0,0.5)]' : 'border-2 border-black'}`}
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors bg-primary text-black active:scale-95 ${activeCategory === category ? 'font-bold shadow-[0_0_12px_4px_rgba(255,255,0,0.7),0_0_32px_8px_rgba(255,255,0,0.5)]' : 'border-2 border-black'} w-auto min-w-[110px] text-center` }
               >
                 {category}
                 {activeCategory === category && (
