@@ -5,6 +5,7 @@ import { useTheme } from "next-themes"
 import React, { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
+import Image from "next/image"
 // Si usas TypeScript, asegúrate de tener instalado @types/react para evitar errores de JSX.
 
 const servicios = [
@@ -67,7 +68,7 @@ export default function Servicios() {
   return (
     <div className="bg-black min-h-screen relative">
       {/* Mano esquina inferior izquierda */}
-      <img
+      <Image
         src="/assets/esquina.png"
         alt="Mano esquina Horizon"
         className="hidden sm:block pointer-events-none select-none"
@@ -79,13 +80,19 @@ export default function Servicios() {
           width: '170px', // Ajusta el tamaño según la imagen
           height: 'auto',
         }}
+        width={170}
+        height={120}
+        priority
       />
       <div className="container mx-auto py-20 px-4 sm:px-6 lg:px-8 relative">
         {/* Flyer pegatina flotante, esquina superior derecha, solo visible en md+ */}
-        <img
+        <Image
           src="/flyer.png"
           alt="Flyer Horizon Pegatina"
           className="hidden md:block absolute top-6 right-10 w-44 md:w-52 rotate-[15deg] z-10 pointer-events-none select-none"
+          width={208}
+          height={208}
+          priority
         />
         <motion.div
           className="text-center mb-16"
@@ -121,31 +128,31 @@ export default function Servicios() {
     {/* Solo la tarjeta de Fotografía y Video lleva fondo */}
     {service.slug === 'fotografia' && (
   <span className="pointer-events-none absolute inset-0 rounded-xl z-0 overflow-hidden">
-    <img src="/assets/fondo1.JPG" alt="Fondo servicio" className="absolute inset-0 w-full h-full object-cover rounded-xl scale-105" style={{ opacity: 0.22, filter: 'blur(1px)' }} />
+    <Image src="/assets/fondo1.JPG" alt="Fondo servicio" fill className="absolute inset-0 w-full h-full object-cover rounded-xl scale-105" style={{ opacity: 0.22, filter: 'blur(1px)' }} sizes="100vw" priority={false} />
     <span className="absolute inset-0 rounded-xl z-10 transition-all duration-500 group-hover:shadow-[0_0_24px_8px_#FFD600,0_0_0_4px_#FFD600] group-focus-visible:shadow-[0_0_24px_8px_#FFD600,0_0_0_4px_#FFD600] after:content-[''] after:absolute after:inset-0 after:rounded-xl after:border-2 after:border-yellow-400 after:opacity-0 group-hover:after:opacity-100 group-hover:after:animate-glow-border group-focus-visible:after:opacity-100 group-focus-visible:after:animate-glow-border"></span>
   </span>
 )}
 {service.slug === 'marketing-digital' && (
   <span className="pointer-events-none absolute inset-0 rounded-xl z-0 overflow-hidden">
-    <img src="/assets/fondo2.JPG" alt="Fondo servicio" className="absolute inset-0 w-full h-full object-cover rounded-xl scale-105" style={{ opacity: 0.22, filter: 'blur(1px)' }} />
+    <Image src="/assets/fondo2.JPG" alt="Fondo servicio" fill className="absolute inset-0 w-full h-full object-cover rounded-xl scale-105" style={{ opacity: 0.22, filter: 'blur(1px)' }} sizes="100vw" priority={false} />
     <span className="absolute inset-0 rounded-xl z-10 transition-all duration-500 group-hover:shadow-[0_0_24px_8px_#FFD600,0_0_0_4px_#FFD600] group-focus-visible:shadow-[0_0_24px_8px_#FFD600,0_0_0_4px_#FFD600] after:content-[''] after:absolute after:inset-0 after:rounded-xl after:border-2 after:border-yellow-400 after:opacity-0 group-hover:after:opacity-100 group-hover:after:animate-glow-border group-focus-visible:after:opacity-100 group-focus-visible:after:animate-glow-border"></span>
   </span>
 )}
 {service.slug === 'aplicaciones-moviles' && (
   <span className="pointer-events-none absolute inset-0 rounded-xl z-0 overflow-hidden">
-    <img src="/assets/fondo3.JPG" alt="Fondo servicio" className="absolute inset-0 w-full h-full object-cover rounded-xl scale-105" style={{ opacity: 0.22, filter: 'blur(1px)' }} />
+    <Image src="/assets/fondo3.JPG" alt="Fondo servicio" fill className="absolute inset-0 w-full h-full object-cover rounded-xl scale-105" style={{ opacity: 0.22, filter: 'blur(1px)' }} sizes="100vw" priority={false} />
     <span className="absolute inset-0 rounded-xl z-10 transition-all duration-500 group-hover:shadow-[0_0_24px_8px_#FFD600,0_0_0_4px_#FFD600] group-focus-visible:shadow-[0_0_24px_8px_#FFD600,0_0_0_4px_#FFD600] after:content-[''] after:absolute after:inset-0 after:rounded-xl after:border-2 after:border-yellow-400 after:opacity-0 group-hover:after:opacity-100 group-hover:after:animate-glow-border group-focus-visible:after:opacity-100 group-focus-visible:after:animate-glow-border"></span>
   </span>
 )}
 {service.slug === 'diseno-web' && (
   <span className="pointer-events-none absolute inset-0 rounded-xl z-0 overflow-hidden">
-    <img src="/assets/fondo4.JPG" alt="Fondo servicio" className="absolute inset-0 w-full h-full object-cover rounded-xl scale-105" style={{ opacity: 0.22, filter: 'blur(1px)' }} />
+    <Image src="/assets/fondo4.JPG" alt="Fondo servicio" fill className="absolute inset-0 w-full h-full object-cover rounded-xl scale-105" style={{ opacity: 0.22, filter: 'blur(1px)' }} sizes="100vw" priority={false} />
     <span className="absolute inset-0 rounded-xl z-10 transition-all duration-500 group-hover:shadow-[0_0_24px_8px_#FFD600,0_0_0_4px_#FFD600] group-focus-visible:shadow-[0_0_24px_8px_#FFD600,0_0_0_4px_#FFD600] after:content-[''] after:absolute after:inset-0 after:rounded-xl after:border-2 after:border-yellow-400 after:opacity-0 group-hover:after:opacity-100 group-hover:after:animate-glow-border group-focus-visible:after:opacity-100 group-focus-visible:after:animate-glow-border"></span>
   </span>
 )}
 {service.slug === 'gestion-redes-sociales' && (
   <span className="pointer-events-none absolute inset-0 rounded-xl z-0 overflow-hidden">
-    <img src="/assets/fondo5.JPG" alt="Fondo servicio" className="absolute inset-0 w-full h-full object-cover rounded-xl scale-105" style={{ opacity: 0.22, filter: 'blur(1px)' }} />
+    <Image src="/assets/fondo5.JPG" alt="Fondo servicio" fill className="absolute inset-0 w-full h-full object-cover rounded-xl scale-105" style={{ opacity: 0.22, filter: 'blur(1px)' }} sizes="100vw" priority={false} />
     <span className="absolute inset-0 rounded-xl z-10 transition-all duration-500 group-hover:shadow-[0_0_24px_8px_#FFD600,0_0_0_4px_#FFD600] group-focus-visible:shadow-[0_0_24px_8px_#FFD600,0_0_0_4px_#FFD600] after:content-[''] after:absolute after:inset-0 after:rounded-xl after:border-2 after:border-yellow-400 after:opacity-0 group-hover:after:opacity-100 group-hover:after:animate-glow-border group-focus-visible:after:opacity-100 group-focus-visible:after:animate-glow-border"></span>
   </span>
 )}
@@ -180,19 +187,19 @@ export default function Servicios() {
     {/* Fondo solo para Diseño & Desarrollo de App */}
     {service.title === 'Diseño & Desarrollo de App' && (
       <span className="pointer-events-none absolute inset-0 rounded-xl z-0 overflow-hidden">
-        <img src="/assets/fondo3.JPG" alt="Fondo servicio" className="absolute inset-0 w-full h-full object-cover rounded-xl scale-105" style={{ opacity: 0.22, filter: 'blur(1px)' }} />
+        <Image src="/assets/fondo3.JPG" alt="Fondo servicio" fill className="absolute inset-0 w-full h-full object-cover rounded-xl scale-105" style={{ opacity: 0.22, filter: 'blur(1px)' }} sizes="100vw" priority={false} />
         <span className="absolute inset-0 rounded-xl z-10 transition-all duration-500 group-hover:shadow-[0_0_24px_8px_#FFD600,0_0_0_4px_#FFD600] group-focus-visible:shadow-[0_0_24px_8px_#FFD600,0_0_0_4px_#FFD600] after:content-[''] after:absolute after:inset-0 after:rounded-xl after:border-2 after:border-yellow-400 after:opacity-0 group-hover:after:opacity-100 group-hover:after:animate-glow-border group-focus-visible:after:opacity-100 group-focus-visible:after:animate-glow-border"></span>
       </span>
     )}
     {service.title === 'Diseño Web' && (
       <span className="pointer-events-none absolute inset-0 rounded-xl z-0 overflow-hidden">
-        <img src="/assets/fondo4.JPG" alt="Fondo servicio" className="absolute inset-0 w-full h-full object-cover rounded-xl scale-105" style={{ opacity: 0.22, filter: 'blur(1px)' }} />
+        <Image src="/assets/fondo4.JPG" alt="Fondo servicio" fill className="absolute inset-0 w-full h-full object-cover rounded-xl scale-105" style={{ opacity: 0.22, filter: 'blur(1px)' }} sizes="100vw" priority={false} />
         <span className="absolute inset-0 rounded-xl z-10 transition-all duration-500 group-hover:shadow-[0_0_24px_8px_#FFD600,0_0_0_4px_#FFD600] group-focus-visible:shadow-[0_0_24px_8px_#FFD600,0_0_0_4px_#FFD600] after:content-[''] after:absolute after:inset-0 after:rounded-xl after:border-2 after:border-yellow-400 after:opacity-0 group-hover:after:opacity-100 group-hover:after:animate-glow-border group-focus-visible:after:opacity-100 group-focus-visible:after:animate-glow-border"></span>
       </span>
     )}
     {service.title === 'Gestión de Redes Sociales' && (
       <span className="pointer-events-none absolute inset-0 rounded-xl z-0 overflow-hidden">
-        <img src="/assets/fondo5.JPG" alt="Fondo servicio" className="absolute inset-0 w-full h-full object-cover rounded-xl scale-105" style={{ opacity: 0.22, filter: 'blur(1px)' }} />
+        <Image src="/assets/fondo5.JPG" alt="Fondo servicio" fill className="absolute inset-0 w-full h-full object-cover rounded-xl scale-105" style={{ opacity: 0.22, filter: 'blur(1px)' }} sizes="100vw" priority={false} />
         <span className="absolute inset-0 rounded-xl z-10 transition-all duration-500 group-hover:shadow-[0_0_24px_8px_#FFD600,0_0_0_4px_#FFD600] group-focus-visible:shadow-[0_0_24px_8px_#FFD600,0_0_0_4px_#FFD600] after:content-[''] after:absolute after:inset-0 after:rounded-xl after:border-2 after:border-yellow-400 after:opacity-0 group-hover:after:opacity-100 group-hover:after:animate-glow-border group-focus-visible:after:opacity-100 group-focus-visible:after:animate-glow-border"></span>
       </span>
     )}
@@ -225,7 +232,7 @@ export default function Servicios() {
             >
               {/* Glow/Neón animado */}
               <span className="pointer-events-none absolute inset-0 rounded-xl z-0 overflow-hidden">
-  <img src="/assets/fondo5.JPG" alt="Fondo servicio" className="absolute inset-0 w-full h-full object-cover rounded-xl scale-105" style={{ opacity: 0.22, filter: 'blur(1px)' }} />
+  <Image src="/assets/fondo5.JPG" alt="Fondo servicio" fill className="absolute inset-0 w-full h-full object-cover rounded-xl scale-105" style={{ opacity: 0.22, filter: 'blur(1px)' }} sizes="100vw" priority={false} />
   <span className="absolute inset-0 rounded-xl z-10 transition-all duration-500 group-hover:shadow-[0_0_24px_8px_#FFD600,0_0_0_4px_#FFD600] group-focus-visible:shadow-[0_0_24px_8px_#FFD600,0_0_0_4px_#FFD600] after:content-[''] after:absolute after:inset-0 after:rounded-xl after:border-2 after:border-yellow-400 after:opacity-0 group-hover:after:opacity-100 group-hover:after:animate-glow-border group-focus-visible:after:opacity-100 group-focus-visible:after:animate-glow-border"></span>
 </span>
               <div className="flex items-center mb-4 relative z-10">
