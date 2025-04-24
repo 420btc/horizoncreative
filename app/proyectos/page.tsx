@@ -55,7 +55,7 @@ const proyectos = [
 export default function Proyectos() {
   return (
     <div className="min-h-screen bg-black flex flex-col items-center pt-10 sm:pt-16">
-      <h1 className="text-5xl font-black mb-8 text-white text-center mt-2">
+      <h1 className="text-6xl md:text-7xl font-black mb-8 text-white text-center mt-2">
         Nuestros <span className="text-yellow-400">Proyectos</span>
       </h1>
       
@@ -237,9 +237,9 @@ export default function Proyectos() {
         <Image
           src="/assets/prod1.png"
           alt="Proyecto destacado"
-          width={900}
-          height={600}
-          className="rounded-xl shadow-lg object-cover w-[95vw] max-w-2xl sm:max-w-3xl h-auto mb-2"
+          width={1200}
+          height={900}
+          className="rounded-xl shadow-lg object-cover w-[95vw] max-w-2xl sm:max-w-3xl h-auto mb-2 scale-[1.5]"
           priority
         />
       </div>

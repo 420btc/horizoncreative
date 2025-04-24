@@ -82,10 +82,10 @@ export default function MoshFunKitchen() {
           <ul className="list-disc list-inside text-gray-200 mb-2 text-left">
             <li>Trabajo conjunto con el equipo de Mosh.</li>
             <li>Ideas creativas sumando valor.</li>
-            <li>Imagen que transmite lo que se vive en el espacio.</li>
+            <li>Mapa y hoja de ruta del proyecto o sesión.</li>
+            
           </ul>
           <p className="text-base text-gray-200 text-center">
-            Potenciamos tu marca gastronómica.
           </p>
         </div>
       </div>

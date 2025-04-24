@@ -17,7 +17,7 @@ export default function SobreNosotros() {
     <div className="bg-black min-h-screen white-line-debug">
       <div className="container mx-auto py-20 px-4 sm:px-6 lg:px-8">
         <motion.h1
-          className="text-5xl font-black mb-12 text-center text-white"
+          className="text-6xl md:text-7xl font-black mb-12 text-center text-white"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
@@ -90,7 +90,7 @@ export default function SobreNosotros() {
               src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/487998197_17866198554358800_5624454380913110215_n.jpg-76zFZEPjxtei5NauowWpqjm6yTgJI1.jpeg"
               alt="Miembro del equipo trabajando en diseños"
               fill
-              className="object-cover"
+              className="object-cover object-center"
             />
           </motion.div>
           <motion.div
@@ -146,7 +146,7 @@ export default function SobreNosotros() {
               src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/488404776_17866198545358800_1740268853361836082_n.jpg-69VdKQwOVG6bFFXkjjsfUeXII5kCTq.jpeg"
               alt="Equipo colaborando en proyectos"
               fill
-              className="object-cover"
+              className="object-cover object-left-top"
             />
           </motion.div>
         </div>
@@ -158,7 +158,7 @@ export default function SobreNosotros() {
                 src="/assets/studio1.jpg"
                 alt="Eric en el estudio"
                 fill
-                className="object-cover object-center"
+                className="object-cover object-left-top"
                 priority
               />
             </div>
@@ -180,7 +180,7 @@ export default function SobreNosotros() {
             <img src="/assets/telescopio.png" alt="Telescopio" className="w-[400px] max-w-full h-auto" />
           </div>
           <div className="flex flex-col justify-center items-center md:justify-end md:items-start gap-2 mt-[-20px] md:-ml-8 md:mt-[-40px] max-w-xl w-full md:pr-4">
-            <p className="text-xl text-gray-300 text-center md:text-left w-full">
+            <p className="text-2xl md:text-3xl text-gray-300 text-center md:text-left w-full">
               <span className="text-yellow-400 font-bold">Horizon Creative</span>, surgida de la amistad, conecta marcas con audiencias mediante creatividad, colaboración, autenticidad e innovación, impulsando su <span className="text-yellow-400 font-bold">crecimiento digital</span>.
             </p>
           </div>
