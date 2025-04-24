@@ -17,7 +17,7 @@ export default function SobreNosotros() {
     <div className="bg-black min-h-screen white-line-debug">
       <div className="container mx-auto py-20 px-4 sm:px-6 lg:px-8">
         <motion.h1
-          className="text-6xl md:text-7xl font-black mb-12 text-center text-white"
+          className="text-7xl md:text-8xl font-black mb-12 text-center text-white"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
@@ -26,7 +26,7 @@ export default function SobreNosotros() {
         </motion.h1>
 
         <motion.h2
-          className="text-3xl font-bold mb-6 text-center text-white"
+          className="text-4xl font-bold mb-6 text-center text-white"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.1 }}
@@ -36,11 +36,11 @@ export default function SobreNosotros() {
 
         <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
           <motion.div initial={{ opacity: 0, x: -50 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }}>
-            <p className="text-gray-300 mb-6">
+            <p className="text-lg text-gray-300 mb-6">
               Hemos trabajado con diversas empresas, desde startups pequeñas hasta marcas consolidadas, adaptando
               nuestras estrategias a sus necesidades particulares y potenciando su crecimiento en el mercado digital.
             </p>
-            <p className="text-gray-300">
+            <p className="text-lg text-gray-300">
               La idea de Horizon nació de la amistad y la energía que compartimos. Juntos decidimos combinar nuestras
               habilidades para ayudar a otras marcas a conectarse con su audiencia de manera efectiva.
             </p>
@@ -61,7 +61,7 @@ export default function SobreNosotros() {
         </div>
 
         <motion.h2
-          className="text-3xl font-bold mb-6 text-center text-white"
+          className="text-4xl font-bold mb-6 text-center text-white"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
@@ -70,7 +70,7 @@ export default function SobreNosotros() {
         </motion.h2>
 
         <motion.p
-          className="text-center text-gray-300 mb-12 max-w-3xl mx-auto"
+          className="text-lg text-center text-gray-300 mb-12 max-w-3xl mx-auto"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
@@ -100,16 +100,16 @@ export default function SobreNosotros() {
             transition={{ duration: 0.8, delay: 0.6 }}
           >
             <div className="mb-8">
-              <h4 className="text-2xl font-bold mb-2 text-white">Creatividad</h4>
-              <p className="text-gray-300">
+              <h4 className="text-3xl font-bold mb-2 text-white">Creatividad</h4>
+              <p className="text-lg text-gray-300">
                 Fomentamos un ambiente donde la innovación y la originalidad prosperan, brindando soluciones únicas que
                 destacan a cada cliente en su mercado.
               </p>
             </div>
 
             <div className="mb-8">
-              <h4 className="text-2xl font-bold mb-2 text-white">Colaboración</h4>
-              <p className="text-gray-300">
+              <h4 className="text-3xl font-bold mb-2 text-white">Colaboración</h4>
+              <p className="text-lg text-gray-300">
                 Trabajamos como un equipo cohesionado, valorando la comunicación y la participación de todos, lo que
                 resulta en un rendimiento óptimo en nuestros proyectos.
               </p>
@@ -124,13 +124,13 @@ export default function SobreNosotros() {
             transition={{ duration: 0.8, delay: 0.7 }}
           >
             <div>
-              <h4 className="text-2xl font-bold mb-2 text-white">Autenticidad</h4>
-              <p className="text-gray-300 mb-6">
+              <h4 className="text-3xl font-bold mb-2 text-white">Autenticidad</h4>
+              <p className="text-lg text-gray-300 mb-6">
                 Creemos en la transparencia y la honestidad en cada interacción, construyendo relaciones sólidas y de
                 confianza con nuestros clientes y colaboradores.
               </p>
-              <h4 className="text-2xl font-bold mb-2 text-white">Innovación</h4>
-              <p className="text-gray-300">
+              <h4 className="text-3xl font-bold mb-2 text-white">Innovación</h4>
+              <p className="text-lg text-gray-300">
                 Estamos constantemente explorando nuevas tendencias y tecnologías para ofrecer soluciones de vanguardia
                 que impulsen el crecimiento de nuestros clientes.
               </p>
