@@ -417,6 +417,16 @@ export default function Portfolio() {
                 )}
               </button>
             ))}
+            {/* Botón circular + */}
+            <motion.button
+              type="button"
+              onClick={() => router.push('/proyectos')}
+              className="flex items-center justify-center rounded-full bg-primary text-black font-bold text-2xl w-12 h-12 shadow-md border-2 border-black hover:bg-yellow-300 focus:outline-none active:scale-95 transition-all"
+              whileTap={{ scale: 0.92 }}
+              aria-label="Ver todos los proyectos"
+            >
+              <span className="flex items-center justify-center w-full h-full">+</span>
+            </motion.button>
           </div>
         </div>
 
