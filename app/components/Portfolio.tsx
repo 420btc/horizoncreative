@@ -307,7 +307,45 @@ export default function Portfolio() {
   const [hoveredItem, setHoveredItem] = useState<number | null>(null)
   const [carouselIndex, setCarouselIndex] = useState(0);
 
-  const filteredItems = portfolioItems.filter((item) => item.category === activeCategory);
+  const filteredItems = activeCategory === "Diseño Web/Apps"
+  ? [
+      {
+        id: 101,
+        title: "Hospital Web",
+        description: "Web corporativa para hospital privado.",
+        image: "/assets/hospital1.png",
+        category: "Diseño Web/Apps",
+      },
+      {
+        id: 102,
+        title: "Proyecto Web 1",
+        description: "Landing para inmobiliaria.",
+        image: "/assets/pr1.png",
+        category: "Diseño Web/Apps",
+      },
+      {
+        id: 103,
+        title: "Proyecto Web 2",
+        description: "Web para restaurante.",
+        image: "/assets/pr2.png",
+        category: "Diseño Web/Apps",
+      },
+      {
+        id: 104,
+        title: "Tenis App",
+        description: "App móvil de reservas para club de tenis.",
+        image: "/assets/tenismovil.png",
+        category: "Diseño Web/Apps",
+      },
+      {
+        id: 105,
+        title: "Golf App",
+        description: "App móvil para golfistas.",
+        image: "/assets/golfmovil.png",
+        category: "Diseño Web/Apps",
+      },
+    ]
+  : portfolioItems.filter((item) => item.category === activeCategory);
   const itemsPerPage = 6;
   const totalPages = Math.ceil(filteredItems.length / itemsPerPage);
   const currentItems = filteredItems.slice(carouselIndex * itemsPerPage, (carouselIndex + 1) * itemsPerPage);
@@ -330,7 +368,7 @@ export default function Portfolio() {
           <div className="flex justify-start items-end ml-0 sm:ml-[9rem]">
             <h1 className="text-5xl md:text-6xl font-extrabold text-white leading-tight text-left relative inline-block">
               <span className="block sm:hidden text-white text-center w-full">Transformamos<br /><span className="text-white">tu</span></span>
-<span className="hidden sm:inline text-white">Transformamos tu</span>
+              <span className="hidden sm:inline text-white">Transformamos tu</span>
               <span
                 className="block mt-2 sm:mt-0 sm:inline sm:absolute sm:left-full sm:top-0 sm:ml-[0.25ch] sm:whitespace-nowrap text-center sm:text-left w-full sm:w-auto"
                 style={{ height: '100%', display: 'inline-block' }}
@@ -444,110 +482,189 @@ export default function Portfolio() {
             </div>
           )}
           {/* Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-8">
-            {currentItems.map((item, idx) => (
-              <AnimatedSection key={item.id} direction={idx % 2 === 0 ? "up" : "right"} delay={0.1 * idx}>
-                <motion.div
-                  className="group relative rounded-xl overflow-hidden shadow-lg h-80"
-                  whileHover={{ scale: 1.03 }}
-                  onMouseEnter={() => setHoveredItem(item.id)}
-                  onMouseLeave={() => setHoveredItem(null)}
-                >
-                  {item.image.endsWith('.mp4') ? (
-                    <video
-                      src={item.image}
-                      autoPlay
-                      muted
-                      loop
-                      playsInline
-                      className="object-contain rounded-xl transition-transform duration-500 group-hover:scale-105 cursor-zoom-in bg-black absolute inset-0 w-full h-full"
-                      style={{ backgroundColor: 'black' }}
-                    />
-                  ) : (
-                    <Image
-                      src={item.image || "/placeholder.svg"}
-                      alt={item.title}
-                      fill
-                      className="object-contain rounded-xl transition-transform duration-500 group-hover:scale-105 cursor-zoom-in bg-black"
-                      style={{ backgroundColor: 'black' }}
-                    />
-                  )}
-                  {/* Área invisible para capturar el click, debajo del overlay */}
-                  <div
-                    className="absolute inset-0 z-10 cursor-zoom-in"
-                    style={{ pointerEvents: 'auto' }}
-                    onClick={e => {
-                      e.stopPropagation();
-                      setModalImage(item.image);
-                    }}
-                  />
-
+          <div className={`grid gap-4 md:gap-8 ${activeCategory === 'Diseño Web/Apps' ? 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3' : 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3'}`}>
+            {activeCategory === 'Diseño Web/Apps' && currentItems.length === 5 ? (
+              <>
+                {/* Primera fila: 3 imágenes */}
+                <div className="col-span-3 flex flex-row gap-4 md:gap-8 justify-center">
+                  {currentItems.slice(0, 3).map((item: any, idx: number) => (
+                    <div key={item.id} className="flex-1 max-w-xs">
+                      <AnimatedSection direction={idx % 2 === 0 ? "up" : "right"} delay={0.1 * idx}>
+                        <motion.div
+                          className="group relative rounded-xl overflow-hidden shadow-lg h-80"
+                          whileHover={{ scale: 1.03 }}
+                          onMouseEnter={() => setHoveredItem(item.id)}
+                          onMouseLeave={() => setHoveredItem(null)}
+                        >
+                          <Image
+                            src={item.image}
+                            alt={item.title}
+                            fill
+                            className="object-contain rounded-xl transition-transform duration-500 group-hover:scale-105 cursor-zoom-in bg-black"
+                            style={{ backgroundColor: 'black' }}
+                          />
+                          <div
+                            className="absolute inset-0 z-10 cursor-zoom-in"
+                            style={{ pointerEvents: 'auto' }}
+                            onClick={e => {
+                              e.stopPropagation();
+                              setModalImage(item.image);
+                            }}
+                          />
+                          <motion.div
+                            className="absolute inset-0 bg-primary/20 pointer-events-none"
+                            initial={{ opacity: 0 }}
+                            animate={{
+                              opacity: hoveredItem === item.id ? 0.2 : 0,
+                            }}
+                            transition={{ duration: 0.3 }}
+                          />
+                        </motion.div>
+                      </AnimatedSection>
+                    </div>
+                  ))}
+                </div>
+                {/* Segunda fila: 2 imágenes */}
+                <div className="col-span-3 flex flex-row gap-4 md:gap-8 justify-center mt-4">
+                  {currentItems.slice(3, 5).map((item: any, idx: number) => (
+                    <div key={item.id} className="flex-1 max-w-xs">
+                      <AnimatedSection direction={idx % 2 === 0 ? "up" : "right"} delay={0.1 * (idx + 3)}>
+                        <motion.div
+                          className="group relative rounded-xl overflow-hidden shadow-lg h-80"
+                          whileHover={{ scale: 1.03 }}
+                          onMouseEnter={() => setHoveredItem(item.id)}
+                          onMouseLeave={() => setHoveredItem(null)}
+                        >
+                          <Image
+                            src={item.image}
+                            alt={item.title}
+                            fill
+                            className="object-contain rounded-xl transition-transform duration-500 group-hover:scale-105 cursor-zoom-in bg-black"
+                            style={{ backgroundColor: 'black' }}
+                          />
+                          <div
+                            className="absolute inset-0 z-10 cursor-zoom-in"
+                            style={{ pointerEvents: 'auto' }}
+                            onClick={e => {
+                              e.stopPropagation();
+                              setModalImage(item.image);
+                            }}
+                          />
+                          <motion.div
+                            className="absolute inset-0 bg-primary/20 pointer-events-none"
+                            initial={{ opacity: 0 }}
+                            animate={{
+                              opacity: hoveredItem === item.id ? 0.2 : 0,
+                            }}
+                            transition={{ duration: 0.3 }}
+                          />
+                        </motion.div>
+                      </AnimatedSection>
+                    </div>
+                  ))}
+                </div>
+              </>
+            ) : (
+              currentItems.map((item: any, idx: number) => (
+                <AnimatedSection key={item.id} direction={idx % 2 === 0 ? "up" : "right"} delay={0.1 * idx}>
                   <motion.div
-                    className="absolute inset-0 bg-primary/20 pointer-events-none"
-                    initial={{ opacity: 0 }}
-                    animate={{
-                      opacity: hoveredItem === item.id ? 0.2 : 0,
-                    }}
-                    transition={{ duration: 0.3 }}
-                  />
-                </motion.div>
-              </AnimatedSection>
-            ))}
+                    className="group relative rounded-xl overflow-hidden shadow-lg h-80"
+                    whileHover={{ scale: 1.03 }}
+                    onMouseEnter={() => setHoveredItem(item.id)}
+                    onMouseLeave={() => setHoveredItem(null)}
+                  >
+                    {item.image.endsWith('.mp4') ? (
+                      <video
+                        src={item.image}
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                        className="object-contain rounded-xl transition-transform duration-500 group-hover:scale-105 cursor-zoom-in bg-black absolute inset-0 w-full h-full"
+                        style={{ backgroundColor: 'black' }}
+                      />
+                    ) : (
+                      <Image
+                        src={item.image || "/placeholder.svg"}
+                        alt={item.title}
+                        fill
+                        className="object-contain rounded-xl transition-transform duration-500 group-hover:scale-105 cursor-zoom-in bg-black"
+                        style={{ backgroundColor: 'black' }}
+                      />
+                    )}
+                    {/* Área invisible para capturar el click, debajo del overlay */}
+                    <div
+                      className="absolute inset-0 z-10 cursor-zoom-in"
+                      style={{ pointerEvents: 'auto' }}
+                      onClick={e => {
+                        e.stopPropagation();
+                        setModalImage(item.image);
+                      }}
+                    />
 
-{/* Modal de imagen ampliada */}
-{modalImage && (
-  <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm" onClick={() => setModalImage(null)}>
-    <div className="relative max-w-2xl w-full mx-4" onClick={e => e.stopPropagation()}>
-      <button
-        className="absolute top-2 right-2 z-10 bg-black/70 text-white rounded-full w-8 h-8 flex items-center justify-center hover:bg-black/90 transition-colors"
-        onClick={() => setModalImage(null)}
-        aria-label="Cerrar"
-      >
-        ×
-      </button>
-      <div className="w-full aspect-[3/4] bg-black flex items-center justify-center rounded-xl overflow-hidden">
-        <Image
-          src={modalImage}
-          alt="Foto ampliada"
-          fill
-          className="object-contain"
-          style={{ background: 'black' }}
-        />
-      </div>
-    </div>
-  </div>
-)}
+                    <motion.div
+                      className="absolute inset-0 bg-primary/20 pointer-events-none"
+                      initial={{ opacity: 0 }}
+                      animate={{
+                        opacity: hoveredItem === item.id ? 0.2 : 0,
+                      }}
+                      transition={{ duration: 0.3 }}
+                    />
+                  </motion.div>
+                </AnimatedSection>
+              ))
+            )}
           </div>
-
         </div>
-
+        {modalImage && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm" onClick={() => setModalImage(null)}>
+            <div className="relative max-w-2xl w-full mx-4" onClick={e => e.stopPropagation()}>
+              <button
+                className="absolute top-2 right-2 z-10 bg-black/70 text-white rounded-full w-8 h-8 flex items-center justify-center hover:bg-black/90 transition-colors"
+                onClick={() => setModalImage(null)}
+                aria-label="Cerrar"
+              >
+                ×
+              </button>
+              <div className="w-full aspect-[3/4] bg-black flex items-center justify-center rounded-xl overflow-hidden">
+                <Image
+                  src={modalImage || "/placeholder.svg"}
+                  alt="Foto ampliada"
+                  fill
+                  className="object-contain"
+                  style={{ background: 'black' }}
+                />
+              </div>
+            </div>
+          </div>
+        )}
         <div className="text-center mt-12 flex flex-col sm:flex-row gap-4 justify-center items-center">
-  <motion.button
-    type="button"
-    className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-primary text-black font-medium hover:bg-primary/90 transition-colors focus:outline-none"
-    initial={{ scale: 1, opacity: 1 }}
-    animate={buttonAnimating ? { scale: 0.7, opacity: 0, transition: { duration: 0.32 } } : { scale: 1, opacity: 1 }}
-    whileTap={{ scale: 0.92 }}
-    onClick={() => setButtonAnimating(true)}
-    onAnimationComplete={() => {
-      if (buttonAnimating) router.push('/proyectos');
-    }}
-    style={{ pointerEvents: buttonAnimating ? 'none' : 'auto' }}
-    aria-label="Ver todos los proyectos"
-  >
-    Ver todos los Proyectos
-  </motion.button>
-  <motion.button
-    type="button"
-    className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-black border-2 border-primary text-primary font-medium hover:bg-primary hover:text-black transition-colors focus:outline-none"
-    initial={{ scale: 1, opacity: 1 }}
-    whileTap={{ scale: 0.92 }}
-    onClick={() => router.push('/servicios')}
-    aria-label="Ver todos los servicios"
-  >
-    Ver todos los Servicios
-  </motion.button>
-</div>
+          <motion.button
+            type="button"
+            className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-primary text-black font-medium hover:bg-primary/90 transition-colors focus:outline-none"
+            initial={{ scale: 1, opacity: 1 }}
+            animate={buttonAnimating ? { scale: 0.7, opacity: 0, transition: { duration: 0.32 } } : { scale: 1, opacity: 1 }}
+            whileTap={{ scale: 0.92 }}
+            onClick={() => setButtonAnimating(true)}
+            onAnimationComplete={() => {
+              if (buttonAnimating) router.push('/proyectos');
+            }}
+            style={{ pointerEvents: buttonAnimating ? 'none' : 'auto' }}
+            aria-label="Ver todos los proyectos"
+          >
+            Ver todos los Proyectos
+          </motion.button>
+          <motion.button
+            type="button"
+            className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-black border-2 border-primary text-primary font-medium hover:bg-primary hover:text-black transition-colors focus:outline-none"
+            initial={{ scale: 1, opacity: 1 }}
+            whileTap={{ scale: 0.92 }}
+            onClick={() => router.push('/servicios')}
+            aria-label="Ver todos los servicios"
+          >
+            Ver todos los Servicios
+          </motion.button>
+        </div>
       </div>
     </section>
   );

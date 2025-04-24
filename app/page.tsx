@@ -1,5 +1,6 @@
 import Hero from "./components/Hero"
 import Portfolio from "./components/Portfolio"
+import WhatWeDoSection from "./components/WhatWeDoSection"
 import InspirationTag from "./components/InspirationTag"
 
 export default function Home() {
@@ -7,6 +8,7 @@ export default function Home() {
     <div className="min-h-screen bg-black">
       <Hero />
       <Portfolio />
+      <WhatWeDoSection />
       <div className="w-full flex justify-center my-2 bg-black border-0 shadow-none">
         <img
           src="/assets/logomano.png"

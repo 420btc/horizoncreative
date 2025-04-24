@@ -75,7 +75,7 @@ export default function Footer() {
               >
                 <button className="absolute top-2 right-3 text-black text-xl font-bold" onClick={() => setShowNewsletter(false)} aria-label="Cerrar">&times;</button>
                 <div className="mb-2 text-center text-black font-bold text-lg">¡Suscríbete al Newsletter!</div>
-                <div className="mb-3 text-black text-sm">Recibe ideas creativas y novedades exclusivas.</div>
+                <div className="mb-3 text-black text-sm">Recibe ideas creativas y novedades exclusivas 1 vez a la semana.</div>
                 <form className="flex flex-col gap-2 w-full" onSubmit={handleNewsletterSubmit}>
                   <input
                     type="email"
