@@ -114,6 +114,18 @@ export default function MoshFunKitchen() {
         <span className="inline-block mt-2 text-base font-bold text-yellow-400">¡Contáctanos!</span>
       </div>
 
+      {/* Imagen restaurante (rest.png) */}
+      <div className="w-full flex justify-center">
+        <Image
+          src="/assets/rest.png"
+          alt="Restaurante Mosh Fun Kitchen"
+          width={600}
+          height={400}
+          className="rounded-2xl shadow-xl object-cover w-full max-w-xl h-auto"
+          priority={false}
+        />
+      </div>
+
     </div>
   );
 }
