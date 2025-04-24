@@ -36,7 +36,7 @@ const defaultTestimonials = [
     text:
       "La agencia creó un sitio web increíble y contenido para redes sociales que conectó con nuestra audiencia. Superaron nuestras expectativas con gran profesionalismo.",
     canDelete: false,
-    date: randomDate(),
+    date: "2024-11-09", // 9/11/2024
   },
   {
     id: "default-2",
@@ -44,7 +44,7 @@ const defaultTestimonials = [
     text:
       "Desarrollaron una app funcional y gestionaron nuestras redes con creatividad, aumentando nuestro alcance. Un trabajo excelente y puntual.",
     canDelete: false,
-    date: randomDate(),
+    date: "2025-02-02", // 2/2/25
   },
 ]
 
