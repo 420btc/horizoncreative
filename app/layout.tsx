@@ -1,4 +1,5 @@
 import "./globals.css"
+import "../styles/footer-override.css"
 import "./forced-light.css"
 import { Inter } from "next/font/google"
 import { ThemeProvider } from "@/components/theme-provider"

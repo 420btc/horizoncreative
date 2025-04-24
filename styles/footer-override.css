@@ -1,0 +1,13 @@
+/* Fuerza color amarillo en hover para los enlaces del footer, incluso si hay extensiones como DarkReader */
+footer a,
+footer p {
+  transition: color 0.2s;
+}
+footer a:hover,
+footer a:focus,
+footer a:active,
+footer p:hover,
+footer p:focus,
+footer p:active {
+  color: #FFD600 !important;
+}

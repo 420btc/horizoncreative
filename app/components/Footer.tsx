@@ -5,6 +5,8 @@ import AnimatedSection from "./AnimatedSection"
 
 import { useState } from "react"
 
+
+
 export default function Footer() {
   const [showNewsletter, setShowNewsletter] = useState(false)
   function handleNewsletterSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -37,9 +39,9 @@ export default function Footer() {
                 { label: "Aviso Legal", href: "/aviso-legal" },
               ];
               return [
-                ...links.slice(0, 3).map(({ label, href }) => (
+                links.slice(0, 3).map(({ label, href }) => (
                   <div key={label} className="pb-2 sm:pb-6">
-                    <Link href={href} className="text-sm leading-6 text-gray-400 hover:text-white">
+                    <Link href={href} className="text-sm leading-6 text-white dark:text-white hover:text-yellow-400 focus:text-yellow-400 active:text-yellow-400 transition-colors">
                       {label}
                     </Link>
                   </div>
@@ -54,9 +56,9 @@ export default function Footer() {
                     Newsletter
                   </button>
                 </div>,
-                ...links.slice(3).map(({ label, href }) => (
+                links.slice(3).map(({ label, href }) => (
                   <div key={label} className="pb-2 sm:pb-6">
-                    <Link href={href} className="text-sm leading-6 text-gray-400 hover:text-white">
+                    <Link href={href} className="text-sm leading-6 text-white dark:text-white hover:text-yellow-400 focus:text-yellow-400 active:text-yellow-400 transition-colors">
                       {label}
                     </Link>
                   </div>
@@ -93,9 +95,11 @@ export default function Footer() {
               </div>
             </div>
           )}
-          <p className="text-center text-xs sm:text-sm leading-5 text-gray-400 mt-2 lg:mt-1">
-            &copy; {new Date().getFullYear()} Horizon Creative. Todos los derechos reservados.
-          </p>
+          
+
+<p className="text-center text-xs sm:text-sm leading-5 text-white dark:text-white hover:text-yellow-400 focus:text-yellow-400 active:text-yellow-400 transition-colors mt-2 lg:mt-1">
+  &copy; 2025 Horizon Creative. Todos los derechos reservados.
+</p>
         </AnimatedSection>
       </div>
     </footer>
