@@ -86,7 +86,7 @@ export default function WhatWeDoSection() {
           className="flex flex-row whitespace-nowrap gap-x-14"
           style={{ width: 'max-content', paddingLeft: '12vw', paddingRight: '12vw' }}
           animate={{ x: ["0%", "-50%"] }}
-          transition={{ repeat: Infinity, duration: 140, ease: "linear" }}
+          transition={{ repeat: Infinity, duration: 130, ease: "linear" }}
         >
           {[...wordsRow1, ...wordsRow1, ...wordsRow1].map((h, i) => (
             <span
@@ -103,7 +103,7 @@ export default function WhatWeDoSection() {
           className="flex flex-row whitespace-nowrap gap-x-14"
           style={{ width: 'max-content', paddingLeft: '12vw', paddingRight: '12vw' }}
           animate={{ x: ["0%", "50%"] }}
-          transition={{ repeat: Infinity, duration: 140, ease: "linear" }}
+          transition={{ repeat: Infinity, duration: 130, ease: "linear" }}
         >
           {[...wordsRow2, ...wordsRow2, ...wordsRow2].map((h, i) => (
             <span
