@@ -54,7 +54,7 @@ export default function CarouselGallery({ images }: CarouselGalleryProps) {
       </div>
       {/* Grid 2x3 o 1x3 */}
       <div
-        className={`grid ${pageImages.length > 3 ? "grid-cols-3 grid-rows-2" : "grid-cols-3 grid-rows-1"} gap-6 justify-items-center`}
+        className={`grid grid-cols-1 sm:grid-cols-3 gap-6 justify-items-center` }
       >
         {pageImages.map((img, idx) => (
           <div
@@ -67,7 +67,7 @@ export default function CarouselGallery({ images }: CarouselGalleryProps) {
               alt={img.alt}
               width={400}
               height={260}
-              className="rounded-2xl shadow-xl object-cover w-full h-56 sm:h-60 md:h-52 lg:h-56 bg-black group-hover:brightness-75"
+              className="rounded-2xl shadow-xl object-cover w-full h-60 sm:h-64 md:h-72 lg:h-80 bg-black group-hover:brightness-75 transition-all duration-300"
               style={{ objectPosition: "center" }}
             />
             {/* Overlay lupa en hover */}

@@ -168,7 +168,7 @@ export default function TennisClubMarbella() {
       </div>
       {/* Galería de imágenes */}
       <div className="w-full max-w-3xl mx-auto px-2 mb-16">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
           {t.gallery.map((img, i) => (
             <Image
               key={i}
@@ -176,7 +176,7 @@ export default function TennisClubMarbella() {
               alt={img.alt}
               width={600}
               height={400}
-              className="rounded-xl shadow-xl object-cover w-full h-auto"
+              className="rounded-2xl shadow-xl object-cover w-full h-60 sm:h-64 md:h-72 lg:h-80"
             />
           ))}
         </div>
