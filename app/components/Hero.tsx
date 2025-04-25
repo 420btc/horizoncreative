@@ -70,6 +70,26 @@ export default function Hero() {
   const [morphing, setMorphing] = useState(false);
   const [hasAnimatedIn, setHasAnimatedIn] = useState(false); // Para no romper animación inicial
   const morphTimeout = useRef<NodeJS.Timeout | null>(null);
+  const [morphCount, setMorphCount] = useState(0);
+  const [canMorph, setCanMorph] = useState(true);
+
+  // --- Control de repeticiones y persistencia ---
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const now = Date.now();
+    const lastMorph = parseInt(localStorage.getItem('hc_lastMorph') || '0', 10);
+    const storedCount = parseInt(localStorage.getItem('hc_morphCount') || '0', 10);
+    if (now - lastMorph > 10 * 60 * 1000) {
+      // Más de 10 minutos, resetear
+      localStorage.setItem('hc_morphCount', '0');
+      setMorphCount(0);
+      setCanMorph(true);
+      localStorage.setItem('hc_lastMorph', now.toString());
+    } else {
+      setMorphCount(storedCount);
+      setCanMorph(storedCount < 1);
+    }
+  }, []);
 
   // Detectar scroll
   useEffect(() => {
@@ -92,9 +112,9 @@ export default function Hero() {
     return () => clearTimeout(timer);
   }, []);
 
-  // Morphing: cuando isScrolled y animación inicial terminada
+  // Morphing: cuando isScrolled y animación inicial terminada y permitido
   useEffect(() => {
-    if (isScrolled && hasAnimatedIn) {
+    if (isScrolled && hasAnimatedIn && canMorph) {
       setMorphing(true);
       // Borrar Horizon letra a letra
       let h = 'Horizon';
@@ -121,17 +141,39 @@ export default function Hero() {
             c = c + 'r';
             setCreativeText(c);
           }
+          // Al terminar, dejar el título estático en "Crear" y bloquear morph hasta el reset
+          setTimeout(() => {
+            setMorphCount(prev => {
+              const next = prev + 1;
+              if (typeof window !== 'undefined') {
+                localStorage.setItem('hc_morphCount', next.toString());
+                localStorage.setItem('hc_lastMorph', Date.now().toString());
+              }
+              setCanMorph(false);
+              setMorphing(false);
+              setHorizonText('');
+              setCreativeText('Crear');
+              return next;
+            });
+          }, 700);
         }
       };
       eraseHorizon();
     } else {
-      // Si el usuario vuelve arriba, restaurar instantáneamente
-      setMorphing(false);
-      setHorizonText('Horizon');
-      setCreativeText('Creative');
-      if (morphTimeout.current) clearTimeout(morphTimeout.current);
+      // Si el usuario vuelve arriba, mantener el título estático si ya se ha hecho morph
+      if (!canMorph) {
+        setMorphing(false);
+        setHorizonText('');
+        setCreativeText('Crear');
+        if (morphTimeout.current) clearTimeout(morphTimeout.current);
+      } else {
+        setMorphing(false);
+        setHorizonText('Horizon');
+        setCreativeText('Creative');
+        if (morphTimeout.current) clearTimeout(morphTimeout.current);
+      }
     }
-  }, [isScrolled, hasAnimatedIn]);
+  }, [isScrolled, hasAnimatedIn, canMorph]);
 
   // --- Internacionalización ---
   const [lang, setLang] = useState<'es'|'en'>(typeof window !== 'undefined' && (window as any).__contactLang === 'en' ? 'en' : 'es');
