@@ -285,15 +285,58 @@ export default function Portfolio() {
   const [buttonAnimating, setButtonAnimating] = useState(false);
   // const buttonRef = useRef<HTMLButtonElement>(null); // Not needed unless focusing or measuring
 
-  const palabrasClave = [
-    "presencia digital",
-    "éxito online",
-    "impacto digital",
-    "marca virtual",
-    "visibilidad web",
-    "negocio digital",
-    "audiencia online"
-  ];
+  // --- Internacionalización ---
+  const [lang, setLang] = useState<'es'|'en'>(typeof window !== 'undefined' && (window as any).__contactLang === 'en' ? 'en' : 'es');
+  useEffect(() => {
+    function syncLang() {
+      setLang(typeof window !== 'undefined' && (window as any).__contactLang === 'en' ? 'en' : 'es');
+    }
+    window.addEventListener('click', syncLang);
+    return () => window.removeEventListener('click', syncLang);
+  }, []);
+
+  const t = {
+    title: lang === 'en' ? 'Our Portfolio' : 'Nuestro Portfolio',
+    desc: lang === 'en'
+      ? 'Discover some of our most outstanding projects, where we combine creativity and strategy to achieve exceptional results.'
+      : 'Descubre algunos de nuestros proyectos más destacados, donde combinamos creatividad y estrategia para lograr resultados excepcionales.',
+    categories: lang === 'en'
+      ? ["Marketing", "Photography", "Web/App Design"]
+      : ["Marketing", "Fotografía", "Diseño Web/Apps"],
+    seeAllProjects: lang === 'en' ? 'See all Projects' : 'Ver todos los Proyectos',
+    seeAllServices: lang === 'en' ? 'See all Services' : 'Ver todos los Servicios',
+  };
+
+
+
+
+  useEffect(() => {
+    function syncLang() {
+      setLang(typeof window !== 'undefined' && (window as any).__contactLang === 'en' ? 'en' : 'es');
+    }
+    window.addEventListener('click', syncLang);
+    return () => window.removeEventListener('click', syncLang);
+  }, []);
+
+  const palabrasClave = lang === 'en'
+    ? [
+        "digital presence",
+        "online success",
+        "digital impact",
+        "virtual brand",
+        "web visibility",
+        "digital business",
+        "online audience"
+      ]
+    : [
+        "presencia digital",
+        "éxito online",
+        "impacto digital",
+        "marca virtual",
+        "visibilidad web",
+        "negocio digital",
+        "audiencia online"
+      ];
   const [palabraIndex, setPalabraIndex] = useState(0);
 
   useEffect(() => {
@@ -367,12 +410,14 @@ export default function Portfolio() {
         <div className="w-full flex justify-start items-center mt-4 mb-6">
           <div className="flex justify-start items-end ml-0 sm:ml-[9rem]">
             <h1 className="text-5xl md:text-6xl font-extrabold text-white leading-tight text-left relative inline-block">
-              <span className="block sm:hidden text-white text-center w-full">Transformamos<br /><span className="text-white">tu</span></span>
-              <span className="hidden sm:inline text-white">Transformamos tu</span>
-              <span
-                className="block mt-2 sm:mt-0 sm:inline sm:absolute sm:left-full sm:top-0 sm:ml-[0.25ch] sm:whitespace-nowrap text-center sm:text-left w-full sm:w-auto"
-                style={{ height: '100%', display: 'inline-block' }}
-              >
+              <span className="block sm:hidden text-white text-center w-full">
+                {lang === 'en' ? 'We transform' : 'Transformamos'}<br />
+                <span className="text-white">{lang === 'en' ? 'your' : 'tu'}</span>
+              </span>
+              <span className="hidden sm:inline text-white">
+                {lang === 'en' ? 'We transform your' : 'Transformamos tu'}
+              </span>
+              <span className="block mt-2 sm:mt-0 sm:inline sm:absolute sm:left-full sm:top-0 sm:ml-[0.25ch] sm:whitespace-nowrap text-center sm:text-left w-full sm:w-auto" style={{height: '100%', display: 'inline-block'}}>
                 <AnimatePresence mode="wait">
                   <motion.span
                     key={palabraIndex}
@@ -396,23 +441,20 @@ export default function Portfolio() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl mt-4 md:mt-12 mb-4 md:mb-8">Nuestro Portfolio</h2>
-          <p className="text-lg text-white mb-8 max-w-2xl mx-auto text-center">
-            Descubre algunos de nuestros proyectos más destacados, donde combinamos creatividad y estrategia para lograr
-            resultados excepcionales.
-          </p>
+          <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl mt-4 md:mt-12 mb-4 md:mb-8">{t.title}</h2>
+          <p className="text-lg text-white mb-8 max-w-2xl mx-auto text-center">{t.desc}</p>
         </motion.div>
 
         <div className="flex justify-center mb-10">
           <div className="flex flex-wrap gap-2 justify-center">
-            {categories.map((category) => (
+            {t.categories.map((category, idx) => (
               <button
                 key={category}
-                onClick={() => setActiveCategory(category)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors bg-primary text-black active:scale-95 ${activeCategory === category ? 'font-bold shadow-[0_0_12px_4px_rgba(255,255,0,0.7),0_0_32px_8px_rgba(255,255,0,0.5)]' : 'border-2 border-black'} w-auto min-w-[110px] text-center` }
+                onClick={() => setActiveCategory(categories[idx])}
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors bg-primary text-black active:scale-95 ${activeCategory === categories[idx] ? 'font-bold shadow-[0_0_12px_4px_rgba(255,255,0,0.7),0_0_32px_8px_rgba(255,255,0,0.5)]' : 'border-2 border-black'} w-auto min-w-[110px] text-center`}
               >
                 {category}
-                {activeCategory === category && (
+                {activeCategory === categories[idx] && (
                   <span className="sr-only">(seleccionado)</span>
                 )}
               </button>
@@ -662,7 +704,7 @@ export default function Portfolio() {
             style={{ pointerEvents: buttonAnimating ? 'none' : 'auto' }}
             aria-label="Ver todos los proyectos"
           >
-            Ver todos los Proyectos
+            {t.seeAllProjects}
           </motion.button>
           <motion.button
             type="button"
@@ -670,9 +712,9 @@ export default function Portfolio() {
             initial={{ scale: 1, opacity: 1 }}
             whileTap={{ scale: 0.92 }}
             onClick={() => router.push('/servicios')}
-            aria-label="Ver todos los servicios"
+            aria-label={t.seeAllServices}
           >
-            Ver todos los Servicios
+            {t.seeAllServices}
           </motion.button>
         </div>
       </div>

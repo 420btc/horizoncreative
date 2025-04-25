@@ -133,6 +133,24 @@ export default function Hero() {
     }
   }, [isScrolled, hasAnimatedIn]);
 
+  // --- Internacionalización ---
+  const [lang, setLang] = useState<'es'|'en'>(typeof window !== 'undefined' && (window as any).__contactLang === 'en' ? 'en' : 'es');
+  useEffect(() => {
+    function syncLang() {
+      setLang(typeof window !== 'undefined' && (window as any).__contactLang === 'en' ? 'en' : 'es');
+    }
+    window.addEventListener('click', syncLang);
+    return () => window.removeEventListener('click', syncLang);
+  }, []);
+
+  const t = {
+    subtitle: lang === 'en'
+      ? 'Online marketing agency specialized in digital strategies that drive your business growth.'
+      : 'Agencia de marketing online especializada en estrategias digitales que impulsan el crecimiento de tu negocio.',
+    contact: lang === 'en' ? 'Contact Us' : 'Contáctanos',
+    services: lang === 'en' ? 'Our Services' : 'Nuestros Servicios',
+  };
+
   return (
     <div
       className="relative isolate w-full h-screen lg:h-[63vh] overflow-hidden overflow-x-hidden bg-black"
@@ -253,7 +271,7 @@ export default function Hero() {
           <div className="mt-6 text-lg leading-8 text-gray-300 h-24">
             <span style={{ textShadow: '0 2px 12px rgba(0,0,0,0.85), 0 1px 2px #000' }}>
               <TypewriterText
-                text="Agencia de marketing online especializada en estrategias digitales que impulsan el crecimiento de tu negocio."
+                text={t.subtitle}
                 delay={30}
               />
             </span>
@@ -263,10 +281,10 @@ export default function Hero() {
               href="#contact"
               className="rounded-full bg-primary px-6 py-3 text-sm font-semibold text-black shadow-sm hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary"
             >
-              Contáctanos
+              {t.contact}
             </a>
             <a href="/servicios" className="text-sm font-semibold leading-6 text-white mt-2 sm:mt-0">
-              Nuestros Servicios <span aria-hidden="true">→</span>
+              {t.services} <span aria-hidden="true">→</span>
             </a>
           </div>
         </div>
