@@ -90,26 +90,26 @@ export default function Hero() {
             <motion.span
               className="text-primary text-7xl md:text-8xl mb-0 block hero-blur-text"
               style={{
-                textShadow: '0 8px 36px rgba(0,0,0,0.85), 0 2px 8px #FFD600aa, 0 1px 0 #fff8',
+                textShadow: '0 10px 48px rgba(0,0,0,0.88), 0 2px 14px #6c560022, 0 1px 0 #fff8',
                 mixBlendMode: 'lighten',
-                filter: 'brightness(1.08) drop-shadow(0 2px 16px #FFD60044)'
+                filter: 'brightness(1.08)'
               }}
-              initial={{ x: '-120vw', opacity: 0 }}
+              initial={{ x: '-90vw', opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
-              transition={{ type: 'spring', stiffness: 90, damping: 14, delay: 0.1 }}
+              transition={{ type: 'spring', stiffness: 60, damping: 19, mass: 1.2, delay: 0.2 }}
             >
               Horizon
             </motion.span>
             <motion.span
               className="text-primary text-7xl md:text-8xl block hero-blur-text"
               style={{
-                textShadow: '0 8px 36px rgba(0,0,0,0.85), 0 2px 8px #FFD600aa, 0 1px 0 #fff8',
+                textShadow: '0 10px 48px rgba(0,0,0,0.88), 0 2px 14px #6c560022, 0 1px 0 #fff8',
                 mixBlendMode: 'lighten',
-                filter: 'brightness(1.08) drop-shadow(0 2px 16px #FFD60044)'
+                filter: 'brightness(1.08)'
               }}
-              initial={{ x: '120vw', opacity: 0 }}
+              initial={{ x: '90vw', opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
-              transition={{ type: 'spring', stiffness: 110, damping: 16, delay: 0.5 }}
+              transition={{ type: 'spring', stiffness: 60, damping: 21, mass: 1.2, delay: 0.95 }}
             >
               Creative
             </motion.span>
