@@ -3,13 +3,20 @@
 import React, { useState } from "react";
 import Image from "next/image";
 
-function MetodoInteractivo() {
-  const points = [
+function MetodoInteractivo({ lang }: { lang: 'es' | 'en' }) {
+  const pointsES = [
     "Análisis y estrategia digital",
     "Gestión de campañas y contenido",
     "Optimización y analítica",
     "Resultados y escalado"
   ];
+  const pointsEN = [
+    "Digital analysis and strategy",
+    "Campaign and content management",
+    "Optimization and analytics",
+    "Results and scaling"
+  ];
+  const points = lang === 'en' ? pointsEN : pointsES;
   const [activeIdx, setActiveIdx] = useState(0);
   const [autoPlay, setAutoPlay] = useState(true);
 
@@ -51,20 +58,37 @@ function MetodoInteractivo() {
 }
 
 export default function MarketingDigitalGaleria() {
+  const [lang, setLang] = useState<'es'|'en'>(typeof window !== 'undefined' && (window as any).__contactLang === 'en' ? 'en' : 'es');
+  React.useEffect(() => {
+    function syncLang() {
+      setLang(typeof window !== 'undefined' && (window as any).__contactLang === 'en' ? 'en' : 'es');
+    }
+    window.addEventListener('click', syncLang);
+    return () => window.removeEventListener('click', syncLang);
+  }, []);
+
+  const t = {
+    title: lang === 'en' ? 'Digital Marketing' : 'Marketing Digital',
+    bannerTitle: lang === 'en' ? 'Digital Marketing Specialists' : 'Especialistas en Marketing Digital',
+    bannerText: lang === 'en'
+      ? 'We boost your online presence and generate measurable results through customized digital strategies. Our team masters SEO, SEM, social media, email marketing, and web analytics to take your brand to the next level.'
+      : 'Impulsamos tu presencia online y generamos resultados medibles a través de estrategias digitales personalizadas. Nuestro equipo domina SEO, SEM, redes sociales, email marketing y analítica web para llevar tu marca al siguiente nivel.'
+  };
+
   return (
     <section className="w-full min-h-screen bg-black">
-      <h1 className="text-4xl md:text-5xl font-extrabold mb-6 text-center text-white pt-10">Marketing Digital</h1>
+      <h1 className="text-4xl md:text-5xl font-extrabold mb-6 text-center text-white pt-10">{t.title}</h1>
       {/* Primera foto */}
       <div className="w-full max-w-7xl mx-auto px-0 md:px-8">
         <div className="overflow-hidden rounded-none md:rounded-3xl shadow-2xl">
-          <Image src="/assets/mkdigital.jpg" alt="Marketing Digital" width={1920} height={900} className="object-cover w-full h-[260px] md:h-[430px] lg:h-[520px] transition-all duration-500" priority />
+          <Image src="/assets/mkdigital.jpg" alt={lang === 'en' ? 'Digital Marketing' : 'Marketing Digital'} width={1920} height={900} className="object-cover w-full h-[260px] md:h-[430px] lg:h-[520px] transition-all duration-500" priority />
         </div>
       </div>
       {/* Banner informativo */}
       <div className="w-full bg-black py-10 md:py-14 px-4 md:px-0 flex flex-col items-center border-y border-gray-800">
         <div className="max-w-3xl text-center">
-          <h2 className="text-2xl md:text-3xl font-bold text-[#FFD600] mb-2">Especialistas en Marketing Digital</h2>
-          <p className="text-base md:text-lg text-gray-900 dark:text-gray-200">Impulsamos tu presencia online y generamos resultados medibles a través de estrategias digitales personalizadas. Nuestro equipo domina SEO, SEM, redes sociales, email marketing y analítica web para llevar tu marca al siguiente nivel.</p>
+          <h2 className="text-2xl md:text-3xl font-bold text-[#FFD600] mb-2">{t.bannerTitle}</h2>
+          <p className="text-base md:text-lg text-gray-900 dark:text-gray-200">{t.bannerText}</p>
         </div>
       </div>
       {/* Banner divisor con línea y metodología */}
@@ -77,14 +101,14 @@ export default function MarketingDigitalGaleria() {
               <div className="h-1 w-full bg-[#FFD600]" style={{height:2}} />
             </div>
             {/* Puntos y frases interactivos */}
-            <MetodoInteractivo />
+            <MetodoInteractivo lang={lang} />
           </div>
         </div>
       </div>
       {/* Segunda foto */}
       <div className="w-full max-w-7xl mx-auto px-0 md:px-8 mt-8 md:mt-14">
         <div className="overflow-hidden rounded-none md:rounded-3xl shadow-2xl">
-          <Image src="/assets/mkdigital2.jpg" alt="Campaña Digital" width={1920} height={900} className="object-cover w-full h-[260px] md:h-[430px] lg:h-[520px] transition-all duration-500 rounded-none md:rounded-3xl md:object-bottom" />
+          <Image src="/assets/mkdigital2.jpg" alt={lang === 'en' ? 'Digital Campaign' : 'Campaña Digital'} width={1920} height={900} className="object-cover w-full h-[260px] md:h-[430px] lg:h-[520px] transition-all duration-500 rounded-none md:rounded-3xl md:object-bottom" />
         </div>
       </div>
       {/* Sección final: Foto full display y texto a la izquierda */}
@@ -92,15 +116,17 @@ export default function MarketingDigitalGaleria() {
         {/* Bloque de texto sobre fondo blanco */}
         <div className="w-full md:w-1/2 bg-white flex items-center justify-center p-6 md:p-12 rounded-t-xl md:rounded-l-3xl md:rounded-tr-none">
           <div>
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">Soluciones de Marketing Digital</h2>
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">{lang === 'en' ? 'Digital Marketing Solutions' : 'Soluciones de Marketing Digital'}</h2>
             <p className="text-gray-700 text-base md:text-lg leading-relaxed max-w-md">
-              Creamos campañas digitales integrales, orientadas a resultados y adaptadas a tus objetivos de negocio. Desde la planificación hasta la ejecución y el análisis, te acompañamos en cada paso para maximizar tu alcance y conversión.
+              {lang === 'en'
+                ? 'We create comprehensive digital campaigns, results-oriented and tailored to your business objectives. From planning to execution and analysis, we accompany you every step to maximize your reach and conversion.'
+                : 'Creamos campañas digitales integrales, orientadas a resultados y adaptadas a tus objetivos de negocio. Desde la planificación hasta la ejecución y el análisis, te acompañamos en cada paso para maximizar tu alcance y conversión.'}
             </p>
           </div>
         </div>
         {/* Imagen full display */}
         <div className="w-full md:w-1/2 rounded-b-xl md:rounded-r-3xl md:rounded-bl-none overflow-hidden">
-          <Image src="/assets/mkdigital3.jpg" alt="Marketing Digital Ejemplo" width={1920} height={900} className="object-cover w-full h-[260px] md:h-full lg:h-[520px] transition-all duration-500 rounded-b-xl md:rounded-r-3xl md:rounded-bl-none" />
+          <Image src="/assets/mkdigital3.jpg" alt={lang === 'en' ? 'Digital Marketing Example' : 'Marketing Digital Ejemplo'} width={1920} height={900} className="object-cover object-center w-full h-[260px] md:h-full lg:h-[520px] transition-all duration-500 rounded-b-xl md:rounded-r-3xl md:rounded-bl-none" />
         </div>
       </div>
     </section>

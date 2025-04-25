@@ -21,19 +21,15 @@ function LangSwitchButton() {
   return (
     <button
       aria-label="Cambiar idioma"
-      className="relative p-0 bg-transparent focus:outline-none"
-      style={{ width: 48, height: 48, overflow: 'visible' }}
+      className="flex items-center justify-center w-[57.6px] h-[57.6px] md:w-[57.6px] md:h-[57.6px] p-2.5 bg-transparent rounded-full focus:outline-none transition-all duration-200 -ml-2"
       onClick={handleToggle}
+      style={{ overflow: 'hidden' }}
     >
-      <span
-        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 md:w-10 md:h-10 border-2 border-yellow-400 rounded-full z-0 pointer-events-none"
-        aria-hidden="true"
-      ></span>
       <img
         src="/assets/traductor.png"
         alt="Traducir"
-        className={`w-20 h-20 object-contain absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none ${lang === 'en' ? 'opacity-100 scale-110' : 'opacity-80'} transition-all duration-200`}
-        style={{ zIndex: 1 }}
+        className={`w-[38.4px] h-[38.4px] md:w-[38.4px] md:h-[38.4px] object-contain transition-all duration-200 ${lang === 'en' ? 'opacity-100 scale-110' : 'opacity-80'}`}
+        style={{ display: 'block', margin: '0 auto' }}
       />
     </button>
   );
