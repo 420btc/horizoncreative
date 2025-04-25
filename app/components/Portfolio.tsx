@@ -391,7 +391,24 @@ export default function Portfolio() {
   : portfolioItems.filter((item) => item.category === activeCategory);
   const itemsPerPage = 6;
   const totalPages = Math.ceil(filteredItems.length / itemsPerPage);
-  const currentItems = filteredItems.slice(carouselIndex * itemsPerPage, (carouselIndex + 1) * itemsPerPage);
+  // Si la categoría activa es 'Marketing', invertimos el orden de las páginas
+let currentItems: PortfolioItem[];
+if (activeCategory === "Marketing") {
+  // Obtenemos solo los items de marketing
+  const marketingItems = filteredItems;
+  // Si hay al menos dos páginas, intercambiamos las páginas
+  if (marketingItems.length > itemsPerPage) {
+    const firstPage = marketingItems.slice(0, itemsPerPage);
+    const secondPage = marketingItems.slice(itemsPerPage, itemsPerPage * 2);
+    // Creamos un array con las páginas invertidas
+    const reordered = [...secondPage, ...firstPage];
+    currentItems = reordered.slice(carouselIndex * itemsPerPage, (carouselIndex + 1) * itemsPerPage);
+  } else {
+    currentItems = marketingItems;
+  }
+} else {
+  currentItems = filteredItems.slice(carouselIndex * itemsPerPage, (carouselIndex + 1) * itemsPerPage);
+}
 
   const handlePrev = () => {
     setCarouselIndex((prev) => Math.max(prev - 1, 0));
