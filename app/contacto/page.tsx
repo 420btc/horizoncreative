@@ -183,6 +183,21 @@ export default function Contacto() {
         Esta página ha sido creada con todo el amor y pasión por <span className="text-yellow-400 font-bold">Carlos</span> Pastor <span className="text-yellow-400 font-bold">Freire</span> y la colaboración de LLMs.<br/>
         <span className="block mt-4">¡Espero que te guste!</span>
       </p>
+      <a
+        href="https://www.instagram.com/carlosfreire1/"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="mt-8 flex flex-col items-center group"
+        style={{ textDecoration: 'none' }}
+      >
+        <img
+          src="/assets/logoig.png"
+          alt="Instagram Carlos Freire"
+          className="w-16 h-16 md:w-20 md:h-20 rounded-full shadow-lg border-2 border-primary group-hover:scale-110 transition-transform duration-200"
+          style={{ background: 'white', padding: '7px', marginBottom: '6px' }}
+        />
+        <span className="text-white text-base md:text-lg font-semibold group-hover:text-primary transition-colors duration-200">Sígueme en Instagram</span>
+      </a>
     </div>
   </div>
 )}
