@@ -115,10 +115,12 @@ export default function Hero() {
             </motion.span>
           </h1>
           <div className="mt-6 text-lg leading-8 text-gray-300 h-24">
-            <TypewriterText
-              text="Agencia de marketing online especializada en estrategias digitales que impulsan el crecimiento de tu negocio."
-              delay={30}
-            />
+            <span style={{ textShadow: '0 2px 12px rgba(0,0,0,0.85), 0 1px 2px #000' }}>
+              <TypewriterText
+                text="Agencia de marketing online especializada en estrategias digitales que impulsan el crecimiento de tu negocio."
+                delay={30}
+              />
+            </span>
           </div>
           <div className="mt-10 mb-2 sm:mt-8 md:mt-10 flex flex-col sm:flex-row items-center gap-2 sm:gap-x-6">
             <a
