@@ -22,6 +22,7 @@ export default function BrandingServicio() {
         <h1 className="text-[2.5rem] sm:text-[3.5rem] font-black mb-4 text-foreground text-center">
           Branding <span className="text-yellow-400">Horizon</span>
         </h1>
+        
         <div className="w-full flex flex-col items-center mb-8">
           <motion.div
             className="w-full flex justify-center mb-6"
@@ -69,6 +70,10 @@ export default function BrandingServicio() {
             <path d="M 50 20 Q 150 4 300 4 Q 450 4 550 20" stroke="#fff" strokeWidth="4" fill="none" strokeLinecap="round" />
           </svg>
         </motion.div>
+        {/* Banner inferior */}
+        <div className="w-full bg-yellow-400 text-black rounded-xl shadow-md py-4 px-6 mt-8 text-center font-semibold text-lg sm:text-xl">
+  "Construimos marcas que inspiran confianza y mueven emociones."
+</div>
       </div>
     </div>
   );
