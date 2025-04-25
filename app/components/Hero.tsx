@@ -63,6 +63,76 @@ export default function Hero() {
   }, []);
 
 
+  // --- Scroll y morphing ---
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [horizonText, setHorizonText] = useState('Horizon');
+  const [creativeText, setCreativeText] = useState('Creative');
+  const [morphing, setMorphing] = useState(false);
+  const [hasAnimatedIn, setHasAnimatedIn] = useState(false); // Para no romper animación inicial
+  const morphTimeout = useRef<NodeJS.Timeout | null>(null);
+
+  // Detectar scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      if (scrollY > 30) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Detectar fin de animación inicial para permitir morphing
+  useEffect(() => {
+    // Espera a que acaben las animaciones iniciales (~2.5s)
+    const timer = setTimeout(() => setHasAnimatedIn(true), 2600);
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Morphing: cuando isScrolled y animación inicial terminada
+  useEffect(() => {
+    if (isScrolled && hasAnimatedIn) {
+      setMorphing(true);
+      // Borrar Horizon letra a letra
+      let h = 'Horizon';
+      let c = 'Creative';
+      let i = 0;
+      const eraseHorizon = () => {
+        if (h.length > 0) {
+          setHorizonText(h.slice(0, -1));
+          h = h.slice(0, -1);
+          morphTimeout.current = setTimeout(eraseHorizon, 70);
+        } else {
+          // Cuando Horizon está vacío, borrar "tive" de Creative
+          eraseTive();
+        }
+      };
+      const eraseTive = () => {
+        if (c.endsWith('tive')) {
+          c = c.slice(0, -4);
+          setCreativeText(c);
+          morphTimeout.current = setTimeout(eraseTive, 100);
+        } else {
+          // Añadir la "r" final
+          if (!c.endsWith('r')) {
+            c = c + 'r';
+            setCreativeText(c);
+          }
+        }
+      };
+      eraseHorizon();
+    } else {
+      // Si el usuario vuelve arriba, restaurar instantáneamente
+      setMorphing(false);
+      setHorizonText('Horizon');
+      setCreativeText('Creative');
+      if (morphTimeout.current) clearTimeout(morphTimeout.current);
+    }
+  }, [isScrolled, hasAnimatedIn]);
+
   return (
     <div
       className="relative isolate w-full h-screen lg:h-[63vh] overflow-hidden overflow-x-hidden bg-black"
@@ -87,71 +157,98 @@ export default function Hero() {
         {/* Bloque de texto y botones */}
         <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-lg lg:flex-shrink-0 relative z-20 mt-8 md:mt-12">
           <h1 className="font-black text-5xl md:text-8xl leading-none text-white mb-2 md:mb-3 flex flex-col gap-0">
-            <motion.span
-              className="text-primary text-7xl md:text-8xl mb-0 block hero-blur-text"
-              style={{
-                textShadow: '0 10px 48px rgba(0,0,0,0.88), 0 2px 14px #6c560022, 0 1px 0 #fff8',
-                mixBlendMode: 'lighten',
-                filter: 'brightness(1.08)'
-              }}
-              initial={{ x: '-90vw', opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              transition={{ type: 'spring', stiffness: 60, damping: 19, mass: 1.2, delay: 0.2 }}
-            >
-              {['H','o','r','i','z','o','n'].map((char, idx) => {
-                // Animate only the second 'o' (index 5 in 'Horizon')
-                if (char === 'o' && idx === 5) {
-                  return (
-                    <motion.span
-                      key={char + idx}
-                      style={{ display: 'inline-block' }}
-                      initial={{ rotate: 0 }}
-                      animate={{ rotate: 360 }}
-                      transition={{
-                        duration: 2.1,
-                        ease: 'easeInOut',
-                        delay: 0.32 // after the word starts animating in
-                      }}
-                    >
-                      {char}
-                    </motion.span>
-                  );
-                }
-                return <span key={char + idx}>{char}</span>;
-              })}
-            </motion.span>
-            <motion.span
-              className="text-primary text-7xl md:text-8xl block hero-blur-text"
-              style={{
-                textShadow: '0 10px 48px rgba(0,0,0,0.88), 0 2px 14px #6c560022, 0 1px 0 #fff8',
-                mixBlendMode: 'lighten',
-                filter: 'brightness(1.08)'
-              }}
-              initial={{ x: '90vw', opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              transition={{ type: 'spring', stiffness: 60, damping: 21, mass: 1.2, delay: 0.95 }}
-            >
-              {['C','r','e','a','t','i','v','e'].map((char, idx) => {
-                if (char === 'e' && idx === 2) {
-                  return (
-                    <motion.span
-                      key={char + idx}
-                      style={{ display: 'inline-block' }}
-                      initial={{ rotate: 0 }}
-                      animate={{ rotate: 360 }}
-                      transition={{
-                        duration: 2.1,
-                        ease: 'easeInOut',
-                        delay: 1.05
-                      }}
-                    >
-                      {char}
-                    </motion.span>
-                  );
-                }
-                return <span key={char + idx}>{char}</span>;
-              })}
-            </motion.span>
+            {/* Branding normal si no está morphing, morphing si procede */}
+            {!morphing ? (
+              <>
+                <motion.span
+                  className="text-primary text-7xl md:text-8xl mb-0 block hero-blur-text"
+                  style={{
+                    textShadow: '0 10px 48px rgba(0,0,0,0.88), 0 2px 14px #6c560022, 0 1px 0 #fff8',
+                    mixBlendMode: 'lighten',
+                    filter: 'brightness(1.08)'
+                  }}
+                  initial={{ x: '-90vw', opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  transition={{ type: 'spring', stiffness: 60, damping: 19, mass: 1.2, delay: 0.2 }}
+                >
+                  {['H','o','r','i','z','o','n'].map((char, idx) => {
+                    if (char === 'o' && idx === 5) {
+                      return (
+                        <motion.span
+                          key={char + idx}
+                          style={{ display: 'inline-block', transformOrigin: '50% 50%' }}
+                          initial={{ rotate: 0 }}
+                          animate={{ rotate: 360 }}
+                          transition={{
+                            duration: 2.1,
+                            ease: 'easeInOut',
+                            delay: 0.32
+                          }}
+                        >
+                          {char}
+                        </motion.span>
+                      );
+                    }
+                    return <span key={char + idx}>{char}</span>;
+                  })}
+                </motion.span>
+                <motion.span
+                  className="text-primary text-7xl md:text-8xl block hero-blur-text"
+                  style={{
+                    textShadow: '0 10px 48px rgba(0,0,0,0.88), 0 2px 14px #6c560022, 0 1px 0 #fff8',
+                    mixBlendMode: 'lighten',
+                    filter: 'brightness(1.08)'
+                  }}
+                  initial={{ x: '90vw', opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  transition={{ type: 'spring', stiffness: 60, damping: 21, mass: 1.2, delay: 0.95 }}
+                >
+                  {['C','r','e','a','t','i','v','e'].map((char, idx) => {
+                    if (char === 'e' && idx === 2) {
+                      return (
+                        <motion.span
+                          key={char + idx}
+                          style={{ display: 'inline-block', transformOrigin: '50% 50%' }}
+                          initial={{ rotate: 0 }}
+                          animate={{ rotate: 360 }}
+                          transition={{
+                            duration: 2.1,
+                            ease: 'easeInOut',
+                            delay: 1.05
+                          }}
+                        >
+                          {char}
+                        </motion.span>
+                      );
+                    }
+                    return <span key={char + idx}>{char}</span>;
+                  })}
+                </motion.span>
+              </>
+            ) : (
+              <>
+                <span
+                  className="text-primary text-7xl md:text-8xl mb-0 block hero-blur-text"
+                  style={{
+                    textShadow: '0 10px 48px rgba(0,0,0,0.88), 0 2px 14px #6c560022, 0 1px 0 #fff8',
+                    mixBlendMode: 'lighten',
+                    filter: 'brightness(1.08)'
+                  }}
+                >
+                  {horizonText}
+                </span>
+                <span
+                  className="text-primary text-7xl md:text-8xl block hero-blur-text"
+                  style={{
+                    textShadow: '0 10px 48px rgba(0,0,0,0.88), 0 2px 14px #6c560022, 0 1px 0 #fff8',
+                    mixBlendMode: 'lighten',
+                    filter: 'brightness(1.08)'
+                  }}
+                >
+                  {creativeText}
+                </span>
+              </>
+            )}
           </h1>
           <div className="mt-6 text-lg leading-8 text-gray-300 h-24">
             <span style={{ textShadow: '0 2px 12px rgba(0,0,0,0.85), 0 1px 2px #000' }}>
