@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import React, { useState } from "react";
+import { useTheme } from "next-themes";
 import { motion } from "framer-motion";
 
 function MetodoInteractivoRedes({ lang }: { lang: 'es' | 'en' }) {
@@ -71,6 +72,7 @@ function MetodoInteractivoRedes({ lang }: { lang: 'es' | 'en' }) {
 }
 
 export default function GestionRedesSocialesGaleria() {
+  const { theme } = useTheme();
   const [lang, setLang] = useState<'es'|'en'>(typeof window !== 'undefined' && (window as any).__contactLang === 'en' ? 'en' : 'es');
   React.useEffect(() => {
     function syncLang() {

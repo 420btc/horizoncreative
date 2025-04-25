@@ -1,8 +1,10 @@
 "use client";
 
 import Image from "next/image";
+import { useTheme } from "next-themes";
 
 export default function DesarrolloWebGaleria() {
+  const { theme } = useTheme();
   return (
     <section className="py-16 px-4 max-w-4xl mx-auto">
       <h1 className="text-4xl font-bold mb-8 text-center text-white">Desarrollo Web - Galería</h1>

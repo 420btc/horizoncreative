@@ -27,7 +27,7 @@ export default function RootLayout({
         <link rel="icon" href="/logohorizon.png" type="image/png" sizes="32x32" />
       </head>
       <body className={`${inter.className} min-h-screen bg-background text-foreground`}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
           <Header />
           <main>{children}</main>
           <Footer />

@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { useTheme } from "next-themes";
 import Image from "next/image";
 
 function MetodoInteractivo({ lang }: { lang: 'es' | 'en' }) {
@@ -45,7 +46,7 @@ function MetodoInteractivo({ lang }: { lang: 'es' | 'en' }) {
             tabIndex={0}
           />
           <span
-            className={`text-gray-900 dark:text-gray-200 text-xs md:text-sm text-center break-words leading-tight max-w-[9.5rem] md:max-w-[11rem] transition-all duration-300 ${activeIdx === idx ? 'text-xl md:text-2xl font-bold scale-110 text-[#FFD600] drop-shadow-lg' : ''}`}
+            className={`text-black dark:text-white text-xs md:text-sm text-center break-words leading-tight max-w-[9.5rem] md:max-w-[11rem] transition-all duration-300 ${activeIdx === idx ? 'text-xl md:text-2xl font-bold scale-110 text-[#FFD600] drop-shadow-lg' : ''}`}
             style={{cursor:'pointer'}}
             onClick={() => handleClick(idx)}
           >
@@ -58,6 +59,7 @@ function MetodoInteractivo({ lang }: { lang: 'es' | 'en' }) {
 }
 
 export default function MarketingDigitalGaleria() {
+  const { theme } = useTheme();
   const [lang, setLang] = useState<'es'|'en'>(typeof window !== 'undefined' && (window as any).__contactLang === 'en' ? 'en' : 'es');
   React.useEffect(() => {
     function syncLang() {
@@ -77,7 +79,7 @@ export default function MarketingDigitalGaleria() {
 
   return (
     <section className="w-full min-h-screen bg-black">
-      <h1 className="text-4xl md:text-5xl font-extrabold mb-6 text-center text-white pt-10">{t.title}</h1>
+      <h1 className="text-4xl md:text-5xl font-extrabold mb-6 text-center pt-10 text-black dark:text-white">{t.title}</h1>
       {/* Primera foto */}
       <div className="w-full max-w-7xl mx-auto px-0 md:px-8">
         <div className="overflow-hidden rounded-none md:rounded-3xl shadow-2xl">
@@ -88,7 +90,7 @@ export default function MarketingDigitalGaleria() {
       <div className="w-full bg-black py-10 md:py-14 px-4 md:px-0 flex flex-col items-center border-y border-gray-800">
         <div className="max-w-3xl text-center">
           <h2 className="text-2xl md:text-3xl font-bold text-[#FFD600] mb-2">{t.bannerTitle}</h2>
-          <p className="text-base md:text-lg text-gray-900 dark:text-gray-200">{t.bannerText}</p>
+          <p className="text-base md:text-lg text-black dark:text-white">{t.bannerText}</p>
         </div>
       </div>
       {/* Banner divisor con línea y metodología */}
@@ -114,10 +116,11 @@ export default function MarketingDigitalGaleria() {
       {/* Sección final: Foto full display y texto a la izquierda */}
       <div className="w-full mt-8 md:mt-14 flex flex-col md:flex-row items-stretch rounded-xl md:rounded-3xl overflow-hidden shadow-2xl min-h-[180px]">
         {/* Bloque de texto sobre fondo blanco */}
-        <div className="w-full md:w-1/2 bg-white flex items-center justify-center p-6 md:p-12 rounded-t-xl md:rounded-l-3xl md:rounded-tr-none">
+         <div className="w-full md:w-1/2 bg-white text-black dark:bg-black dark:text-white flex items-center justify-center p-6 md:p-12 rounded-t-xl md:rounded-l-3xl md:rounded-tr-none">
           <div>
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">{lang === 'en' ? 'Digital Marketing Solutions' : 'Soluciones de Marketing Digital'}</h2>
-            <p className="text-gray-700 text-base md:text-lg leading-relaxed max-w-md">
+            <h2 className="text-2xl md:text-3xl font-bold text-black dark:text-white mb-4">{lang === 'en' ? 'Digital Marketing Solutions' : 'Soluciones de Marketing Digital'}</h2>
+            <p className="text-base md:text-lg text-black dark:text-white mb-2">{lang === 'en' ? 'SEO, SEM, content marketing, social media, email marketing, analytics and more.' : 'SEO, SEM, marketing de contenidos, redes sociales, email marketing, analítica y más.'}</p>
+            <p className="text-base md:text-lg text-black dark:text-white leading-relaxed max-w-md">
               {lang === 'en'
                 ? 'We create comprehensive digital campaigns, results-oriented and tailored to your business objectives. From planning to execution and analysis, we accompany you every step to maximize your reach and conversion.'
                 : 'Creamos campañas digitales integrales, orientadas a resultados y adaptadas a tus objetivos de negocio. Desde la planificación hasta la ejecución y el análisis, te acompañamos en cada paso para maximizar tu alcance y conversión.'}

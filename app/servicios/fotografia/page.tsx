@@ -2,21 +2,22 @@
 
 import Image from "next/image";
 import React, { useState } from "react";
+import { useTheme } from "next-themes";
 
 function MetodoInteractivoFoto({ lang }: { lang: 'es' | 'en' }) {
-  const pointsES = [
-    "Briefing y concepto visual",
-    "Planificación y pre-producción",
-    "Sesión de fotos/video profesional",
-    "Edición, entrega y optimización"
-  ];
-  const pointsEN = [
-    "Briefing and visual concept",
-    "Planning and pre-production",
-    "Professional photo/video session",
-    "Editing, delivery and optimization"
-  ];
-  const points = lang === 'en' ? pointsEN : pointsES;
+  const points = lang === 'en'
+    ? [
+      "Briefing and visual concept",
+      "Planning and pre-production",
+      "Professional photo/video session",
+      "Editing, delivery and optimization"
+    ]
+    : [
+      "Briefing y concepto visual",
+      "Planificación y pre-producción",
+      "Sesión de fotos/video profesional",
+      "Edición, entrega y optimización"
+    ];
   const [activeIdx, setActiveIdx] = useState(0);
   const [autoPlay, setAutoPlay] = useState(true);
 
@@ -45,7 +46,7 @@ function MetodoInteractivoFoto({ lang }: { lang: 'es' | 'en' }) {
             tabIndex={0}
           />
           <span
-            className={`text-gray-900 dark:text-gray-200 text-xs md:text-sm text-center break-words leading-tight max-w-[9.5rem] md:max-w-[11rem] transition-all duration-300 ${activeIdx === idx ? 'text-xl md:text-2xl font-bold scale-110 text-[#FFD600] drop-shadow-lg' : ''}`}
+            className={`text-black dark:text-white text-xs md:text-sm text-center break-words leading-tight max-w-[9.5rem] md:max-w-[11rem] transition-all duration-300 ${activeIdx === idx ? 'text-xl md:text-2xl font-bold scale-110 text-[#FFD600] drop-shadow-lg' : ''}`}
             style={{cursor:'pointer'}}
             onClick={() => handleClick(idx)}
           >
@@ -59,6 +60,10 @@ function MetodoInteractivoFoto({ lang }: { lang: 'es' | 'en' }) {
 
 
 export default function FotografiaGaleria() {
+  const { theme: themeRaw } = useTheme();
+  const [mounted, setMounted] = useState(false);
+  React.useEffect(() => { setMounted(true); }, []);
+  const theme = themeRaw || 'light';
   const [lang, setLang] = useState<'es'|'en'>(typeof window !== 'undefined' && (window as any).__contactLang === 'en' ? 'en' : 'es');
   React.useEffect(() => {
     function syncLang() {
@@ -82,7 +87,7 @@ export default function FotografiaGaleria() {
 
   return (
     <section className="w-full min-h-screen bg-black">
-      <h1 className="text-4xl md:text-5xl font-extrabold mb-6 text-center text-white pt-10">{t.title}</h1>
+      <h1 className="text-4xl md:text-5xl font-extrabold mb-6 text-center pt-10 text-black bg-white dark:text-white dark:bg-black">{t.title}</h1>
       {/* Primera foto */}
       <div className="w-full max-w-7xl mx-auto px-0 md:px-8">
         <div className="overflow-hidden rounded-none md:rounded-3xl shadow-2xl">
@@ -93,7 +98,7 @@ export default function FotografiaGaleria() {
       <div className="w-full bg-black py-10 md:py-14 px-4 md:px-0 flex flex-col items-center border-y border-gray-800">
         <div className="max-w-3xl text-center">
           <h2 className="text-2xl md:text-3xl font-bold text-[#FFD600] mb-2">{t.bannerTitle}</h2>
-          <p className="text-base md:text-lg text-gray-900 dark:text-gray-200">{t.bannerText}</p>
+          <p className="text-base md:text-lg text-white">{t.bannerText}</p>
         </div>
       </div>
       {/* Banner divisor con línea y metodología */}
@@ -122,8 +127,8 @@ export default function FotografiaGaleria() {
         {/* Bloque de texto sobre fondo blanco */}
         <div className="w-full md:w-1/2 bg-white flex items-center justify-center p-6 md:p-12 rounded-t-xl md:rounded-l-3xl md:rounded-tr-none">
           <div>
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">{t.sectionTitle}</h2>
-            <p className="text-gray-700 text-base md:text-lg leading-relaxed max-w-md">
+            <h2 className={`text-2xl md:text-3xl font-bold mb-4 ${theme === 'dark' ? 'text-white' : 'text-black'}`}>{t.sectionTitle}</h2>
+            <p className={`${theme === 'dark' ? 'text-gray-200' : 'text-gray-900'} text-base md:text-lg leading-relaxed max-w-md`}>
               {t.sectionText}
             </p>
           </div>

@@ -66,8 +66,8 @@ const getServicios = (lang: 'es' | 'en') => [
 ]
 
 export default function Servicios() {
+  const { theme } = useTheme();
   const [mounted, setMounted] = useState(false)
-  const { theme } = useTheme()
   const [carouselIndex, setCarouselIndex] = useState(0);
   const [buttonAnimatingMobile, setButtonAnimatingMobile] = useState(false);
   const [buttonAnimatingDesktop, setButtonAnimatingDesktop] = useState(false);
