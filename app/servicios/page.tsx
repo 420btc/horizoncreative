@@ -62,6 +62,19 @@ const getServicios = (lang: 'es' | 'en') => [
       ? 'Boost your brand on social media with engaging content and personalized strategies. We manage your profiles, create campaigns, and connect with your audience to ensure your brand’s growth and reputation.'
       : 'Impulsa tu marca en redes sociales con contenido atractivo y estrategias personalizadas. Gestionamos tus perfiles, creamos campañas y conectamos con tu audiencia para asegurar el crecimiento y la reputación de tu marca.',
     slug: "gestion-redes-sociales",
+  },
+  {
+    icon: (
+      <svg xmlns="http://www.w3.org/2000/svg" className="w-12 h-12 text-primary" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="10" y="10" width="28" height="28" rx="6" fill="none" stroke="currentColor"/>
+        <path d="M18 24h12M18 28h12" stroke="currentColor"/>
+      </svg>
+    ),
+    title: lang === 'en' ? 'Branding' : 'Branding',
+    description: lang === 'en'
+      ? 'We help you build a strong, memorable brand identity that stands out in your market. From logo design to complete brand strategy.'
+      : 'Te ayudamos a construir una identidad de marca fuerte y memorable que destaque en tu mercado. Desde el diseño de logotipo hasta la estrategia de marca completa.',
+    slug: "branding",
   }
 ]
 
@@ -249,33 +262,44 @@ export default function Servicios() {
               </Link>
             ))}
           </div>
-          {/* Tercera fila: una tarjeta centrada */}
-          <div className="flex justify-center w-full">
-            <Link
-              key={servicios[4].title}
-              href={`/servicios/${servicios[4].slug}`}
-              className="group relative rounded-xl p-5 shadow-lg border border-primary/20 min-h-[180px] w-full max-w-2xl mx-auto flex flex-col justify-between outline-none focus-visible:ring-2 focus-visible:ring-yellow-400 transition-all duration-300"
-              tabIndex={0}
-            >
-              {/* Glow/Neón animado */}
-              <span className="pointer-events-none absolute inset-0 rounded-xl z-0 overflow-hidden">
-  <Image src="/assets/fondo5.JPG" alt="Fondo servicio" fill className="absolute inset-0 w-full h-full object-cover rounded-xl scale-105" style={{ opacity: 0.22, filter: 'blur(1px)' }} sizes="100vw" priority={false} />
-  <span className="absolute inset-0 rounded-xl z-10 transition-all duration-500 group-hover:shadow-[0_0_24px_8px_#FFD600,0_0_0_4px_#FFD600] group-focus-visible:shadow-[0_0_24px_8px_#FFD600,0_0_0_4px_#FFD600] after:content-[''] after:absolute after:inset-0 after:rounded-xl after:border-2 after:border-yellow-400 after:opacity-0 group-hover:after:opacity-100 group-hover:after:animate-glow-border group-focus-visible:after:opacity-100 group-focus-visible:after:animate-glow-border"></span>
-</span>
-              <div className="flex items-center mb-4 relative z-10">
-                {servicios[4].icon}
-                <h3 className="text-2xl font-bold ml-4 text-black dark:text-white">{servicios[4].title}</h3>
-              </div>
-              <p className="mb-4 relative z-10 text-black dark:text-white">{servicios[4].description}</p>
-              <div className="mt-6 flex items-center justify-center relative z-10">
-                <span className="flex items-center justify-center w-9 h-9 rounded-full bg-primary text-black group-hover:bg-primary/80 transition-colors shadow-lg">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
-                    <circle cx="10" cy="10" r="9" fill="none" />
-                    <path d="M10 6v8M6 10h8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                  </svg>
-                </span>
-              </div>
-            </Link>
+          {/* Tercera fila: dos tarjetas */}
+          <div className="md:grid md:grid-cols-2 md:gap-9 md:gap-y-8 flex flex-col gap-8 w-full">
+            {[servicios[4], servicios[5]].map((service, index) => (
+              <Link
+                key={service.title}
+                href={`/servicios/${service.slug}`}
+                className="group relative rounded-xl p-5 shadow-lg border border-primary/20 min-h-[180px] w-full max-w-sm md:max-w-full mx-auto flex flex-col justify-between outline-none focus-visible:ring-2 focus-visible:ring-yellow-400 transition-all duration-300"
+                tabIndex={0}
+              >
+                {/* Fondo para Gestión de Redes Sociales */}
+                {service.slug === 'gestion-redes-sociales' && (
+                  <span className="pointer-events-none absolute inset-0 rounded-xl z-0 overflow-hidden">
+                    <Image src="/assets/fondo5.JPG" alt="Fondo servicio" fill className="absolute inset-0 w-full h-full object-cover rounded-xl scale-105" style={{ opacity: 0.22, filter: 'blur(1px)' }} sizes="100vw" priority={false} />
+                    <span className="absolute inset-0 rounded-xl z-10 transition-all duration-500 group-hover:shadow-[0_0_24px_8px_#FFD600,0_0_0_4px_#FFD600] group-focus-visible:shadow-[0_0_24px_8px_#FFD600,0_0_0_4px_#FFD600] after:content-[''] after:absolute after:inset-0 after:rounded-xl after:border-2 after:border-yellow-400 after:opacity-0 group-hover:after:opacity-100 group-hover:after:animate-glow-border group-focus-visible:after:opacity-100 group-focus-visible:after:animate-glow-border"></span>
+                  </span>
+                )}
+                {/* Fondo para Branding */}
+                {service.slug === 'branding' && (
+                  <span className="pointer-events-none absolute inset-0 rounded-xl z-0 overflow-hidden">
+                    <Image src="/assets/branding2.jpg" alt="Fondo Branding" fill className="absolute inset-0 w-full h-full object-cover rounded-xl scale-105" style={{ opacity: 0.22, filter: 'blur(1px)' }} sizes="100vw" priority={false} />
+                    <span className="absolute inset-0 rounded-xl z-10 transition-all duration-500 group-hover:shadow-[0_0_24px_8px_#FFD600,0_0_0_4px_#FFD600] group-focus-visible:shadow-[0_0_24px_8px_#FFD600,0_0_0_4px_#FFD600] after:content-[''] after:absolute after:inset-0 after:rounded-xl after:border-2 after:border-yellow-400 after:opacity-0 group-hover:after:opacity-100 group-hover:after:animate-glow-border group-focus-visible:after:opacity-100 group-focus-visible:after:animate-glow-border"></span>
+                  </span>
+                )}
+                <div className="flex items-center mb-4 relative z-10">
+                  {service.icon}
+                  <h3 className="text-2xl font-bold ml-4 text-foreground">{service.title}</h3>
+                </div>
+                <p className="mb-4 relative z-10 text-foreground">{service.description}</p>
+                <div className="mt-6 flex items-center justify-center relative z-10">
+                  <span className="flex items-center justify-center w-9 h-9 rounded-full bg-primary text-black group-hover:bg-primary/80 transition-colors shadow-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
+                      <circle cx="10" cy="10" r="9" fill="none" />
+                      <path d="M10 6v8M6 10h8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                    </svg>
+                  </span>
+                </div>
+              </Link>
+            ))}
           </div>
         </div>
 
