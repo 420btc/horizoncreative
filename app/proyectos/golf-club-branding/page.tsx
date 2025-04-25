@@ -79,9 +79,9 @@ export default function BrandingClubGolf() {
       : 'En Horizon convertimos tu club en una marca memorable.\nDescubre cómo podemos ayudarte a destacar.',
     contact: lang === 'en' ? 'Contact us!' : '¡Contáctanos!',
     gallery: [
-      { src: "/assets/golfclub-1.jpg", alt: lang === 'en' ? 'Golf Club Branding Example 1' : 'Golf Club 1' },
-      { src: "/assets/golfclub-2.jpg", alt: lang === 'en' ? 'Golf Club Branding Example 2' : 'Golf Club 2' },
       { src: "/assets/golfclub-3.jpg", alt: lang === 'en' ? 'Golf Club Branding Example 3' : 'Golf Club 3' },
+      { src: "/assets/golfnueva.jpeg", alt: lang === 'en' ? 'Golf Club Branding New' : 'Golf Nueva' },
+      { src: "/assets/golfclub-4.jpg", alt: lang === 'en' ? 'Golf Club Branding Example 4' : 'Golf Club 4' },
     ],
   };
 
