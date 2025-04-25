@@ -77,7 +77,11 @@ export default function TennisClubMarbella() {
       ? 'At Horizon, we turn your club into a memorable brand.\nDiscover how we can help you stand out.'
       : 'En Horizon convertimos tu club en una marca memorable.\nDescubre cómo podemos ayudarte a destacar.',
     contact: lang === 'en' ? 'Contact us!' : '¡Contáctanos!',
-    gallery: [],
+    gallery: [
+      { src: "/assets/golfclub-1.jpg", alt: lang === 'en' ? 'Golf Club Branding Example 1' : 'Golf Club 1' },
+      { src: "/assets/tennisnueva.jpeg", alt: lang === 'en' ? 'Tennis Club Marbella New' : 'Tennis Nueva' },
+      { src: "/assets/tennis3.jpeg", alt: lang === 'en' ? 'Tennis Club Marbella 3' : 'Tennis 3' },
+    ],
     galleryAlt: lang === 'en' ? 'Tennis Club Marbella gallery image' : 'Imagen galería Tennis Club Marbella',
   };
 
@@ -162,10 +166,19 @@ export default function TennisClubMarbella() {
         </p>
         <span className="inline-block mt-2 text-base font-bold text-yellow-400">{t.contact}</span>
       </div>
-      {/* Galería de imágenes (puedes agregar imágenes aquí si las tienes) */}
+      {/* Galería de imágenes */}
       <div className="w-full max-w-3xl mx-auto px-2 mb-16">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-          {/* Galería vacía por ahora, alt preparado: {t.galleryAlt} */}
+          {t.gallery.map((img, i) => (
+            <Image
+              key={i}
+              src={img.src}
+              alt={img.alt}
+              width={600}
+              height={400}
+              className="rounded-xl shadow-xl object-cover w-full h-auto"
+            />
+          ))}
         </div>
       </div>
     </div>
