@@ -98,7 +98,27 @@ export default function Hero() {
               animate={{ x: 0, opacity: 1 }}
               transition={{ type: 'spring', stiffness: 60, damping: 19, mass: 1.2, delay: 0.2 }}
             >
-              Horizon
+              {['H','o','r','i','z','o','n'].map((char, idx) => {
+                // Animate only the second 'o' (index 5 in 'Horizon')
+                if (char === 'o' && idx === 5) {
+                  return (
+                    <motion.span
+                      key={char + idx}
+                      style={{ display: 'inline-block' }}
+                      initial={{ rotate: 0 }}
+                      animate={{ rotate: 360 }}
+                      transition={{
+                        duration: 2.1,
+                        ease: 'easeInOut',
+                        delay: 0.32 // after the word starts animating in
+                      }}
+                    >
+                      {char}
+                    </motion.span>
+                  );
+                }
+                return <span key={char + idx}>{char}</span>;
+              })}
             </motion.span>
             <motion.span
               className="text-primary text-7xl md:text-8xl block hero-blur-text"
@@ -111,7 +131,26 @@ export default function Hero() {
               animate={{ x: 0, opacity: 1 }}
               transition={{ type: 'spring', stiffness: 60, damping: 21, mass: 1.2, delay: 0.95 }}
             >
-              Creative
+              {['C','r','e','a','t','i','v','e'].map((char, idx) => {
+                if (char === 'e' && idx === 2) {
+                  return (
+                    <motion.span
+                      key={char + idx}
+                      style={{ display: 'inline-block' }}
+                      initial={{ rotate: 0 }}
+                      animate={{ rotate: 360 }}
+                      transition={{
+                        duration: 2.1,
+                        ease: 'easeInOut',
+                        delay: 1.05
+                      }}
+                    >
+                      {char}
+                    </motion.span>
+                  );
+                }
+                return <span key={char + idx}>{char}</span>;
+              })}
             </motion.span>
           </h1>
           <div className="mt-6 text-lg leading-8 text-gray-300 h-24">
