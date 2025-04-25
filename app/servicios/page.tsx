@@ -281,14 +281,23 @@ export default function Servicios() {
 
         {/* Línea amarilla animada y metodología (versión especial servicios, con pulso automático) */}
         {(() => {
-          const puntos = [
-            "Descubrimiento",
-            "Estrategia",
-            "Creatividad",
-            "Desarrollo",
-            "Lanzamiento",
-            "Soporte"
-          ];
+          const puntos = lang === 'en'
+  ? [
+      "Discovery",
+      "Strategy",
+      "Creativity",
+      "Development",
+      "Launch",
+      "Support"
+    ]
+  : [
+      "Descubrimiento",
+      "Estrategia",
+      "Creatividad",
+      "Desarrollo",
+      "Lanzamiento",
+      "Soporte"
+    ];
           const [activeIdx, setActiveIdx] = useState(0);
           useEffect(() => {
             const interval = setInterval(() => {
