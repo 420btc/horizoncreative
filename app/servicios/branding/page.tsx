@@ -30,7 +30,7 @@ export default function BrandingServicio() {
             transition={{ duration: 1 }}
           >
             <svg className="w-[90%] h-8" width="90%" height="32" viewBox="0 0 900 32" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ pointerEvents: 'none' }}>
-              <path d="M 80 28 Q 180 8 300 8 Q 450 8 450 8 Q 600 8 600 8 Q 720 8 820 28" stroke="#facc15" strokeWidth="6" fill="none" strokeLinecap="round" />
+              <path d="M 80 28 Q 180 8 300 8 Q 450 8 450 8 Q 600 8 600 8 Q 720 8 820 28" stroke="#fff" strokeWidth="6" fill="none" strokeLinecap="round" />
             </svg>
           </motion.div>
           {/* Imagen branding debajo de la línea amarilla */}
@@ -66,7 +66,7 @@ export default function BrandingServicio() {
           transition={{ duration: 1 }}
         >
           <svg className="w-[60%] h-6" width="60%" height="24" viewBox="0 0 600 24" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ pointerEvents: 'none' }}>
-            <path d="M 50 20 Q 150 4 300 4 Q 450 4 550 20" stroke="#facc15" strokeWidth="4" fill="none" strokeLinecap="round" />
+            <path d="M 50 20 Q 150 4 300 4 Q 450 4 550 20" stroke="#fff" strokeWidth="4" fill="none" strokeLinecap="round" />
           </svg>
         </motion.div>
       </div>
