@@ -227,61 +227,64 @@ const handleDelete = (id: string) => {
               <PaperAirplaneIcon className="w-6 h-6" />
             </button>
           </form>
-        <div className="flex flex-col gap-4 w-full md:grid md:grid-cols-2 md:gap-4">
-          {testimonials.map((t, i) => (
-            <motion.div
-              key={t.id}
-              className="relative rounded-xl p-4 pr-10 pb-8 flex flex-col w-full min-h-[120px] md:min-w-0 border border-primary bg-black/60 shadow-2xl transition-transform hover:scale-[1.03] hover:shadow-yellow-400/40"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.1, type: 'spring', bounce: 0.2, duration: 0.7 }}
-            >
-              <span className="font-bold text-primary text-lg mb-1">{t.name}</span>
-              <div className="flex-1 flex flex-col">
-                <span className="text-base leading-snug flex-1">
-                  <span className="text-primary">“</span>
-                  <span className="text-white">{t.text}</span>
-                  <span className="text-primary">”</span>
-                </span>
-              </div>
-              <FechaTestimonio dateStr={t.date} />
-              {t.canDelete === false ? (
-                <span
-                  className="absolute top-2 right-2 rounded-full p-1 w-7 h-7 flex items-center justify-center bg-neutral-700 text-neutral-400 cursor-not-allowed"
-                  title="No se puede borrar"
-                  tabIndex={-1}
+          <div className="flex flex-col gap-4 w-full md:grid md:grid-cols-2 md:gap-4">
+            <>
+              {testimonials.map((t, i) => (
+                <motion.div
+                  key={t.id}
+                  className="relative rounded-xl p-4 pr-10 pb-8 flex flex-col w-full min-h-[120px] md:min-w-0 border border-primary bg-black/60 shadow-2xl transition-transform hover:scale-[1.03] hover:shadow-yellow-400/40"
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.1, type: 'spring', bounce: 0.2, duration: 0.7 }}
                 >
-                  <XMarkIcon className="w-4 h-4" />
-                </span>
-              ) : (
-                <button
-                  className={`absolute top-2 right-2 rounded-full p-1 w-7 h-7 flex items-center justify-center bg-primary text-black hover:bg-primary/90`}
-                  title="Borrar opinión"
-                  onClick={() => {
-                    if (t.canDelete === userToken.current) {
-                      handleDelete(t.id)
-                    } else {
-                      setErrorMsg("Solo puedes borrar tus propios testimonios")
-                      setShowError(true)
-                    }
-                  }}
-                  tabIndex={0}
-                >
-                  <XMarkIcon className="w-4 h-4" />
-                </button>
+                  <span className="font-bold text-primary text-lg mb-1">{t.name}</span>
+                  <div className="flex-1 flex flex-col">
+                    <span className="text-base leading-snug flex-1">
+                      <span className="text-primary">“</span>
+                      <span className="text-white">{t.text}</span>
+                      <span className="text-primary">”</span>
+                    </span>
+                  </div>
+                  <FechaTestimonio dateStr={t.date} />
+                  {t.canDelete === false ? (
+                    <span
+                      className="absolute top-2 right-2 rounded-full p-1 w-7 h-7 flex items-center justify-center bg-neutral-700 text-neutral-400 cursor-not-allowed"
+                      title="No se puede borrar"
+                      tabIndex={-1}
+                    >
+                      <XMarkIcon className="w-4 h-4" />
+                    </span>
+                  ) : (
+                    <button
+                      className={`absolute top-2 right-2 rounded-full p-1 w-7 h-7 flex items-center justify-center bg-primary text-black hover:bg-primary/90`}
+                      title="Borrar opinión"
+                      onClick={() => {
+                        if (t.canDelete === userToken.current) {
+                          handleDelete(t.id)
+                        } else {
+                          setErrorMsg("Solo puedes borrar tus propios testimonios")
+                          setShowError(true)
+                        }
+                      }}
+                      tabIndex={0}
+                    >
+                      <XMarkIcon className="w-4 h-4" />
+                    </button>
+                  )}
+                </motion.div>
+              ))}
+
+              {showError && (
+                <div className="fixed inset-0 flex items-center justify-center z-50">
+                  <div className="bg-black bg-opacity-60 fixed inset-0" onClick={() => setShowError(false)} />
+                  <div className="relative bg-red-700 text-white rounded-xl px-8 py-6 shadow-2xl flex flex-col items-center z-10">
+                    <span className="font-bold text-lg mb-2">{errorMsg}</span>
+                    <button onClick={() => setShowError(false)} className="mt-2 px-4 py-1 rounded bg-white text-red-700 font-semibold">Cerrar</button>
+                  </div>
+                </div>
               )}
-            </motion.div>
-          ))}
-          {showError && (
-            <div className="fixed inset-0 flex items-center justify-center z-50">
-              <div className="bg-black bg-opacity-60 fixed inset-0" onClick={() => setShowError(false)} />
-              <div className="relative bg-red-700 text-white rounded-xl px-8 py-6 shadow-2xl flex flex-col items-center z-10">
-                <span className="font-bold text-lg mb-2">{errorMsg}</span>
-                <button onClick={() => setShowError(false)} className="mt-2 px-4 py-1 rounded bg-white text-red-700 font-semibold">Cerrar</button>
-              </div>
-            </div>
-          )}
-        </div>
+            </>
+          </div>
         </motion.div>
       </div>
     </section>
