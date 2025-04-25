@@ -10,8 +10,50 @@ import { useEffect, useState } from "react"
 export default function SobreNosotros() {
   const [mounted, setMounted] = useState(false)
   const { theme } = useTheme()
+  const [lang, setLang] = useState<'es'|'en'>(typeof window !== 'undefined' && (window as any).__contactLang === 'en' ? 'en' : 'es');
 
   useEffect(() => setMounted(true), [])
+  useEffect(() => {
+    function syncLang() {
+      setLang(typeof window !== 'undefined' && (window as any).__contactLang === 'en' ? 'en' : 'es');
+    }
+    window.addEventListener('click', syncLang);
+    return () => window.removeEventListener('click', syncLang);
+  }, []);
+
+  const t = {
+    title: lang === 'en' ? (<><span>About </span><span className="text-yellow-400">Us</span></>) : (<><span>Sobre </span><span className="text-yellow-400">Nosotros</span></>),
+    subtitle: lang === 'en' ? 'The story behind Horizon' : 'La historia detrás de Horizon',
+    p1: lang === 'en'
+      ? 'We have worked with diverse companies, from small startups to established brands, adapting our strategies to their unique needs and boosting their growth in the digital market.'
+      : 'Hemos trabajado con diversas empresas, desde startups pequeñas hasta marcas consolidadas, adaptando nuestras estrategias a sus necesidades particulares y potenciando su crecimiento en el mercado digital.',
+    p2: lang === 'en'
+      ? 'The idea for Horizon was born from the friendship and energy we share. Together, we decided to combine our skills to help other brands connect with their audience effectively.'
+      : 'La idea de Horizon nació de la amistad y la energía que compartimos. Juntos decidimos combinar nuestras habilidades para ayudar a otras marcas a conectarse con su audiencia de manera efectiva.',
+    teamTitle: lang === 'en' ? (<>Our <span className="text-yellow-400">Creative</span> Team</>) : (<>Nuestro <span className="text-yellow-400">Equipo</span> Creativo</>),
+    teamDesc: lang === 'en'
+      ? 'We are a team of professionals passionate about design and digital marketing, committed to excellence and innovation.'
+      : 'Somos un equipo de profesionales apasionados por el diseño y el marketing digital, comprometidos con la excelencia y la innovación.',
+    creativity: lang === 'en' ? 'Creativity' : 'Creatividad',
+    creativityDesc: lang === 'en'
+      ? 'We foster an environment where innovation and originality thrive, providing unique solutions that make each client stand out in their market.'
+      : 'Fomentamos un ambiente donde la innovación y la originalidad prosperan, brindando soluciones únicas que destacan a cada cliente en su mercado.',
+    collaboration: lang === 'en' ? 'Collaboration' : 'Colaboración',
+    collaborationDesc: lang === 'en'
+      ? 'We work as a cohesive team, valuing communication and everyone’s participation, resulting in optimal performance in our projects.'
+      : 'Trabajamos como un equipo cohesionado, valorando la comunicación y la participación de todos, lo que resulta en un rendimiento óptimo en nuestros proyectos.',
+    authenticity: lang === 'en' ? 'Authenticity' : 'Autenticidad',
+    authenticityDesc: lang === 'en'
+      ? 'We believe in transparency and honesty in every interaction, building strong and trustworthy relationships with our clients and collaborators.'
+      : 'Creemos en la transparencia y la honestidad en cada interacción, construyendo relaciones sólidas y de confianza con nuestros clientes y colaboradores.',
+    innovation: lang === 'en' ? 'Innovation' : 'Innovación',
+    innovationDesc: lang === 'en'
+      ? 'We are constantly exploring new trends and technologies to offer cutting-edge solutions that drive our clients’ growth.'
+      : 'Estamos constantemente explorando nuevas tendencias y tecnologías para ofrecer soluciones de vanguardia que impulsen el crecimiento de nuestros clientes.',
+    horizonDesc: lang === 'en'
+      ? (<><span className="text-yellow-400 font-bold">Horizon Creative</span>, born from friendship, connects brands with audiences through creativity, collaboration, authenticity, and innovation, driving their <span className="text-yellow-400 font-bold">digital growth</span>.</>)
+      : (<><span className="text-yellow-400 font-bold">Horizon Creative</span>, surgida de la amistad, conecta marcas con audiencias mediante creatividad, colaboración, autenticidad e innovación, impulsando su <span className="text-yellow-400 font-bold">crecimiento digital</span>.</>),
+  };
 
   return (
     <div className="bg-black min-h-screen white-line-debug">
@@ -22,7 +64,7 @@ export default function SobreNosotros() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          Sobre <span className="text-yellow-400">Nosotros</span>
+          {t.title}
         </motion.h1>
 
         <motion.h2
@@ -31,18 +73,16 @@ export default function SobreNosotros() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.1 }}
         >
-          La historia detrás de Horizon
+          {t.subtitle}
         </motion.h2>
 
         <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
           <motion.div initial={{ opacity: 0, x: -50 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }}>
             <p className="text-lg text-gray-300 mb-6">
-              Hemos trabajado con diversas empresas, desde startups pequeñas hasta marcas consolidadas, adaptando
-              nuestras estrategias a sus necesidades particulares y potenciando su crecimiento en el mercado digital.
+              {t.p1}
             </p>
             <p className="text-lg text-gray-300">
-              La idea de Horizon nació de la amistad y la energía que compartimos. Juntos decidimos combinar nuestras
-              habilidades para ayudar a otras marcas a conectarse con su audiencia de manera efectiva.
+              {t.p2}
             </p>
           </motion.div>
           <motion.div
@@ -66,7 +106,7 @@ export default function SobreNosotros() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
         >
-          Nuestro <span className="text-yellow-400">Equipo</span> Creativo
+          {t.teamTitle}
         </motion.h2>
 
         <motion.p
@@ -75,8 +115,7 @@ export default function SobreNosotros() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
         >
-          Somos un equipo de profesionales apasionados por el diseño y el marketing digital, comprometidos con la
-          excelencia y la innovación.
+          {t.teamDesc}
         </motion.p>
 
         <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
@@ -100,18 +139,16 @@ export default function SobreNosotros() {
             transition={{ duration: 0.8, delay: 0.6 }}
           >
             <div className="mb-8">
-              <h4 className="text-3xl font-bold mb-2 text-white">Creatividad</h4>
+              <h4 className="text-3xl font-bold mb-2 text-white">{t.creativity}</h4>
               <p className="text-lg text-gray-300">
-                Fomentamos un ambiente donde la innovación y la originalidad prosperan, brindando soluciones únicas que
-                destacan a cada cliente en su mercado.
+                {t.creativityDesc}
               </p>
             </div>
 
             <div className="mb-8">
-              <h4 className="text-3xl font-bold mb-2 text-white">Colaboración</h4>
+              <h4 className="text-3xl font-bold mb-2 text-white">{t.collaboration}</h4>
               <p className="text-lg text-gray-300">
-                Trabajamos como un equipo cohesionado, valorando la comunicación y la participación de todos, lo que
-                resulta en un rendimiento óptimo en nuestros proyectos.
+                {t.collaborationDesc}
               </p>
             </div>
           </motion.div>
@@ -124,15 +161,13 @@ export default function SobreNosotros() {
             transition={{ duration: 0.8, delay: 0.7 }}
           >
             <div>
-              <h4 className="text-3xl font-bold mb-2 text-white">Autenticidad</h4>
+              <h4 className="text-3xl font-bold mb-2 text-white">{t.authenticity}</h4>
               <p className="text-lg text-gray-300 mb-6">
-                Creemos en la transparencia y la honestidad en cada interacción, construyendo relaciones sólidas y de
-                confianza con nuestros clientes y colaboradores.
+                {t.authenticityDesc}
               </p>
-              <h4 className="text-3xl font-bold mb-2 text-white">Innovación</h4>
+              <h4 className="text-3xl font-bold mb-2 text-white">{t.innovation}</h4>
               <p className="text-lg text-gray-300">
-                Estamos constantemente explorando nuevas tendencias y tecnologías para ofrecer soluciones de vanguardia
-                que impulsen el crecimiento de nuestros clientes.
+                {t.innovationDesc}
               </p>
             </div>
           </motion.div>
@@ -181,7 +216,7 @@ export default function SobreNosotros() {
           </div>
           <div className="flex flex-col justify-center items-center md:justify-end md:items-start gap-2 mt-[-20px] md:-ml-8 md:mt-[-40px] max-w-xl w-full md:pr-4">
             <p className="text-2xl md:text-3xl text-gray-300 text-center md:text-left w-full">
-              <span className="text-yellow-400 font-bold">Horizon Creative</span>, surgida de la amistad, conecta marcas con audiencias mediante creatividad, colaboración, autenticidad e innovación, impulsando su <span className="text-yellow-400 font-bold">crecimiento digital</span>.
+              {t.horizonDesc}
             </p>
           </div>
         </div>

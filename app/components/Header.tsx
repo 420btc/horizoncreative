@@ -9,6 +9,36 @@ import AnimatedSection from "./AnimatedSection"
 import { MoonIcon, SunIcon } from "lucide-react"
 import Image from "next/image"
 
+import { useState as useReactState } from "react";
+function LangSwitchButton() {
+  const [lang, setLang] = useReactState<'es'|'en'>("es");
+  function handleToggle() {
+    setLang(l => l === 'es' ? 'en' : 'es');
+    if (typeof window !== 'undefined') {
+      (window as any).__contactLang = lang === 'es' ? 'en' : 'es';
+    }
+  }
+  return (
+    <button
+      aria-label="Cambiar idioma"
+      className="relative p-0 bg-transparent focus:outline-none"
+      style={{ width: 48, height: 48, overflow: 'visible' }}
+      onClick={handleToggle}
+    >
+      <span
+        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 md:w-10 md:h-10 border-2 border-yellow-400 rounded-full z-0 pointer-events-none"
+        aria-hidden="true"
+      ></span>
+      <img
+        src="/assets/traductor.png"
+        alt="Traducir"
+        className={`w-20 h-20 object-contain absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none ${lang === 'en' ? 'opacity-100 scale-110' : 'opacity-80'} transition-all duration-200`}
+        style={{ zIndex: 1 }}
+      />
+    </button>
+  );
+}
+
 export default function Header() {
   const pathname = usePathname();
   const [mounted, setMounted] = useState(false)
@@ -121,11 +151,11 @@ onAnimationEnd={e => {
             <Link href="/contacto" className={`py-2 text-base font-semibold w-full text-center transition-colors ${pathname === '/contacto' ? 'text-white hover:text-[#FFD600] focus:text-[#FFD600] active:text-[#FFD600]' : 'text-white hover:text-[#FFD600] focus:text-[#FFD600] active:text-[#FFD600]'}`} onClick={() => setMenuOpen(false)}>Contacto</Link>
           </div>
         )}
-        <div className="flex flex-1 justify-end items-center">
+        <div className="flex flex-1 justify-end items-center gap-8 pr-4">
           {/* Botón luna/sol modo claro forzado */}
           <button
             aria-label="Forzar modo claro"
-            className="ml-4 p-2 rounded-full border-2 border-[#FFD600] bg-black flex items-center justify-center transition-colors hover:bg-[#222]"
+            className="p-2 rounded-full border-2 border-[#FFD600] bg-black flex items-center justify-center transition-colors hover:bg-[#222]"
             onClick={() => {
               const html = document.documentElement;
               const forced = html.classList.contains('forced-light');
@@ -149,6 +179,8 @@ onAnimationEnd={e => {
               <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="#FFD600" strokeWidth="2"><path stroke="#FFD600" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 12.79A9 9 0 1111.21 3a7 7 0 109.79 9.79z"/></svg>
             )}
           </button>
+          {/* Botón idioma: SIEMPRE visible y más grande */}
+          <LangSwitchButton />
         </div>
       </nav>
     </motion.header>

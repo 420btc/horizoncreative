@@ -8,23 +8,29 @@ import Link from "next/link"
 import Image from "next/image"
 // Si usas TypeScript, asegúrate de tener instalado @types/react para evitar errores de JSX.
 
-const servicios = [
+const getServicios = (lang: 'es' | 'en') => [
   {
     icon: <svg xmlns="http://www.w3.org/2000/svg" className="lucide lucide-camera w-12 h-12 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"></path><circle cx="12" cy="13" r="3"></circle></svg>,
-    title: "Fotografía y Video",
-    description: "Creamos contenido visual de alta calidad, con imágenes y videos diseñados para contar tu historia de manera auténtica, conectar con tu audiencia y fortalecer tu presencia en el mercado.",
+    title: lang === 'en' ? 'Photography & Video' : 'Fotografía y Video',
+    description: lang === 'en'
+      ? 'We create high-quality visual content, with images and videos designed to tell your story authentically, connect with your audience, and strengthen your market presence.'
+      : 'Creamos contenido visual de alta calidad, con imágenes y videos diseñados para contar tu historia de manera auténtica, conectar con tu audiencia y fortalecer tu presencia en el mercado.',
     slug: "fotografia",
   },
   {
     icon: <svg xmlns="http://www.w3.org/2000/svg" className="lucide lucide-megaphone w-12 h-12 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 11l18-5v12L3 13v-2z"></path><path d="M11.6 16.8a2 2 0 1 1-3.2-2.6"></path></svg>,
-    title: "Marketing Digital",
-    description: "Potenciamos tu marca con marketing digital estratégico. Creamos campañas efectivas optimizando tu presencia en línea y utilizando las tendencias más recientes.",
+    title: lang === 'en' ? 'Digital Marketing' : 'Marketing Digital',
+    description: lang === 'en'
+      ? 'We boost your brand with strategic digital marketing. We create effective campaigns, optimizing your online presence and leveraging the latest trends.'
+      : 'Potenciamos tu marca con marketing digital estratégico. Creamos campañas efectivas optimizando tu presencia en línea y utilizando las tendencias más recientes.',
     slug: "marketing-digital",
   },
   {
     icon: <svg xmlns="http://www.w3.org/2000/svg" className="lucide lucide-smartphone w-12 h-12 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="14" height="20" x="5" y="2" rx="2" /><path d="M12 18h.01" /></svg>,
-    title: "Diseño & Desarrollo de App",
-    description: "Diseñamos y desarrollamos aplicaciones móviles a medida, modernas y funcionales, para destacar en el mercado digital.",
+    title: lang === 'en' ? 'App Design & Development' : 'Diseño & Desarrollo de App',
+    description: lang === 'en'
+      ? 'We design and develop custom, modern, and functional mobile applications to help you stand out in the digital market.'
+      : 'Diseñamos y desarrollamos aplicaciones móviles a medida, modernas y funcionales, para destacar en el mercado digital.',
     slug: "aplicaciones-moviles",
   },
   {
@@ -35,8 +41,10 @@ const servicios = [
     <path d="M14 36V32a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v4" stroke="currentColor"/>
   </svg>
 ),
-    title: "Diseño Web",
-    description: "Creamos sitios web modernos, atractivos y funcionales, adaptados a tu marca y objetivos de negocio.",
+    title: lang === 'en' ? 'Web Design' : 'Diseño Web',
+    description: lang === 'en'
+      ? 'We create modern, attractive, and functional websites tailored to your brand and business goals.'
+      : 'Creamos sitios web modernos, atractivos y funcionales, adaptados a tu marca y objetivos de negocio.',
     slug: "diseno-web",
   },
   {
@@ -49,8 +57,10 @@ const servicios = [
         <circle cx="36" cy="12" r="4" fill="#FFD600" stroke="none"/>
       </svg>
     ),
-    title: "Gestión de Redes Sociales",
-    description: "Impulsa tu marca en redes sociales con contenido atractivo y estrategias personalizadas. Gestionamos tus perfiles, creamos campañas y conectamos con tu audiencia para asegurar el crecimiento y la reputación de tu marca.",
+    title: lang === 'en' ? 'Social Media Management' : 'Gestión de Redes Sociales',
+    description: lang === 'en'
+      ? 'Boost your brand on social media with engaging content and personalized strategies. We manage your profiles, create campaigns, and connect with your audience to ensure your brand’s growth and reputation.'
+      : 'Impulsa tu marca en redes sociales con contenido atractivo y estrategias personalizadas. Gestionamos tus perfiles, creamos campañas y conectamos con tu audiencia para asegurar el crecimiento y la reputación de tu marca.',
     slug: "gestion-redes-sociales",
   }
 ]
@@ -62,8 +72,26 @@ export default function Servicios() {
   const [buttonAnimatingMobile, setButtonAnimatingMobile] = useState(false);
   const [buttonAnimatingDesktop, setButtonAnimatingDesktop] = useState(false);
   const router = useRouter();
+  const [lang, setLang] = useState<'es'|'en'>(typeof window !== 'undefined' && (window as any).__contactLang === 'en' ? 'en' : 'es');
 
   useEffect(() => setMounted(true), [])
+  useEffect(() => {
+    function syncLang() {
+      setLang(typeof window !== 'undefined' && (window as any).__contactLang === 'en' ? 'en' : 'es');
+    }
+    window.addEventListener('click', syncLang);
+    return () => window.removeEventListener('click', syncLang);
+  }, []);
+
+  const t = {
+    title: lang === 'en' ? (<span>Our <span className="text-yellow-400">Services</span></span>) : (<span>Nuestros <span className="text-yellow-400">Servicios</span></span>),
+    subtitle: lang === 'en' ? 'Discover Our Featured Services' : 'Descubre Nuestros Servicios Destacados',
+    desc: lang === 'en'
+      ? <>At <span className="text-yellow-400">Horizon</span>, we offer personalized solutions to boost <span className="text-yellow-400">your digital presence</span> and truly connect with your audience.</>
+      : <>En <span className="text-yellow-400">Horizon</span>, ofrecemos soluciones personalizadas para impulsar <span className="text-yellow-400">tu presencia digital</span> y conectar realmente con tu audiencia.</>,
+  };
+
+  const servicios = getServicios(lang);
 
   return (
     <div className="min-h-screen relative bg-background">
@@ -100,16 +128,15 @@ export default function Servicios() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h1 className="text-5xl font-black mb-4 text-foreground">Nuestros <span className="text-yellow-400">Servicios</span></h1>
+          <h1 className="text-5xl font-black mb-4 text-foreground">{t.title}</h1>
           {/* Imagen flyer tipo pegatina, solo visible en md+ */}
 
                     <div className="max-w-3xl mx-auto">
             <h2 className="text-3xl font-bold mb-4 text-foreground">
-              Descubre Nuestros Servicios Destacados
+              {t.subtitle}
             </h2>
             <p className="text-lg text-foreground">
-              En <span className="text-yellow-400">Horizon</span>, ofrecemos soluciones personalizadas para impulsar <span className="text-yellow-400">tu presencia digital</span> y conectar realmente
-              con tu audiencia.
+              {t.desc}
             </p>
           </div>
         </motion.div>
@@ -185,19 +212,19 @@ export default function Servicios() {
     tabIndex={0}
   >
     {/* Fondo solo para Diseño & Desarrollo de App */}
-    {service.title === 'Diseño & Desarrollo de App' && (
+    {service.slug === 'aplicaciones-moviles' && (
       <span className="pointer-events-none absolute inset-0 rounded-xl z-0 overflow-hidden">
         <Image src="/assets/fondo3.JPG" alt="Fondo servicio" fill className="absolute inset-0 w-full h-full object-cover rounded-xl scale-105" style={{ opacity: 0.22, filter: 'blur(1px)' }} sizes="100vw" priority={false} />
         <span className="absolute inset-0 rounded-xl z-10 transition-all duration-500 group-hover:shadow-[0_0_24px_8px_#FFD600,0_0_0_4px_#FFD600] group-focus-visible:shadow-[0_0_24px_8px_#FFD600,0_0_0_4px_#FFD600] after:content-[''] after:absolute after:inset-0 after:rounded-xl after:border-2 after:border-yellow-400 after:opacity-0 group-hover:after:opacity-100 group-hover:after:animate-glow-border group-focus-visible:after:opacity-100 group-focus-visible:after:animate-glow-border"></span>
       </span>
     )}
-    {service.title === 'Diseño Web' && (
+    {service.slug === 'diseno-web' && (
       <span className="pointer-events-none absolute inset-0 rounded-xl z-0 overflow-hidden">
         <Image src="/assets/fondo4.JPG" alt="Fondo servicio" fill className="absolute inset-0 w-full h-full object-cover rounded-xl scale-105" style={{ opacity: 0.22, filter: 'blur(1px)' }} sizes="100vw" priority={false} />
         <span className="absolute inset-0 rounded-xl z-10 transition-all duration-500 group-hover:shadow-[0_0_24px_8px_#FFD600,0_0_0_4px_#FFD600] group-focus-visible:shadow-[0_0_24px_8px_#FFD600,0_0_0_4px_#FFD600] after:content-[''] after:absolute after:inset-0 after:rounded-xl after:border-2 after:border-yellow-400 after:opacity-0 group-hover:after:opacity-100 group-hover:after:animate-glow-border group-focus-visible:after:opacity-100 group-focus-visible:after:animate-glow-border"></span>
       </span>
     )}
-    {service.title === 'Gestión de Redes Sociales' && (
+    {service.slug === 'gestion-redes-sociales' && (
       <span className="pointer-events-none absolute inset-0 rounded-xl z-0 overflow-hidden">
         <Image src="/assets/fondo5.JPG" alt="Fondo servicio" fill className="absolute inset-0 w-full h-full object-cover rounded-xl scale-105" style={{ opacity: 0.22, filter: 'blur(1px)' }} sizes="100vw" priority={false} />
         <span className="absolute inset-0 rounded-xl z-10 transition-all duration-500 group-hover:shadow-[0_0_24px_8px_#FFD600,0_0_0_4px_#FFD600] group-focus-visible:shadow-[0_0_24px_8px_#FFD600,0_0_0_4px_#FFD600] after:content-[''] after:absolute after:inset-0 after:rounded-xl after:border-2 after:border-yellow-400 after:opacity-0 group-hover:after:opacity-100 group-hover:after:animate-glow-border group-focus-visible:after:opacity-100 group-focus-visible:after:animate-glow-border"></span>
