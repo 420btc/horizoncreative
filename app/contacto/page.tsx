@@ -240,7 +240,7 @@ export default function Contacto() {
       {/* Hero Section */}
       <div className="relative">
         <div className="absolute inset-0 bg-gradient-to-r from-black to-transparent z-10"></div>
-        <div className="container mx-auto relative z-20 py-20 px-4 sm:px-6 lg:px-8">
+        <div className="container mx-auto relative z-20 py-8 px-4 sm:px-6 lg:px-8">
 
           <motion.div
             className="max-w-3xl"
@@ -278,7 +278,7 @@ export default function Contacto() {
       </div>
 
       {/* Main Content */}
-      <div className="container mx-auto py-0 px-3 sm:px-3 lg:px-6">
+      <div className="container mx-auto mt-0 pt-0 px-3 sm:px-3 lg:px-6">
         <div className="grid md:grid-cols-2 gap-4 md:gap-6 min-h-[300px] items-stretch">
           {/* Contact Info */}
           <motion.div initial={{ opacity: 0, x: -50 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }}>
