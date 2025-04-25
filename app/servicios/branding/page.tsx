@@ -34,12 +34,12 @@ export default function BrandingServicio() {
             </svg>
           </motion.div>
           {/* Imagen branding debajo de la línea amarilla */}
-          <div className="relative w-full max-w-3xl mb-8">
+          <div className="relative w-full max-w-6xl mb-8">
             <Image
               src="/assets/brandingo2.png"
               alt="Branding Horizon"
               width={1200}
-              height={400}
+              height={600}
               className="w-full h-auto object-contain"
               priority
             />
