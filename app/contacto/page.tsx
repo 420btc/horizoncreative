@@ -241,14 +241,7 @@ export default function Contacto() {
       <div className="relative">
         <div className="absolute inset-0 bg-gradient-to-r from-black to-transparent z-10"></div>
         <div className="container mx-auto relative z-20 py-20 px-4 sm:px-6 lg:px-8">
-          <motion.h2
-            className="text-4xl font-bold mb-8 text-center !text-white"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            {t.title}
-          </motion.h2>
+
           <motion.div
             className="max-w-3xl"
             initial={{ opacity: 0, y: 20 }}
