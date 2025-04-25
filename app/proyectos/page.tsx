@@ -2,61 +2,93 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const proyectos = [
   {
     href: "/proyectos/golf-club-branding",
     image: "/assets/por1.jpeg",
-    alt: "Golf Club Marbella Branding",
-    title: "Golf Club Branding",
-    desc: "Branding y personaje de Club de Golf, Marbella.",
+    alt: { es: "Golf Club Marbella Branding", en: "Golf Club Marbella Branding" },
+    title: { es: "Golf Club Branding", en: "Golf Club Branding" },
+    desc: {
+      es: "Branding y personaje de Club de Golf, Marbella.",
+      en: "Branding and mascot for Golf Club, Marbella."
+    },
   },
   {
     href: "/proyectos/vacation-benalmadena",
     image: "/assets/vacationproject.jpeg",
-    alt: "Vacation Benalmádena Social Media y Web",
-    title: "Vacation Benalmádena",
-    desc: "Gestión de red social y web, Vacation Benalmádena.",
+    alt: { es: "Vacation Benalmádena Social Media y Web", en: "Vacation Benalmádena Social Media & Web" },
+    title: { es: "Vacation Benalmádena", en: "Vacation Benalmádena" },
+    desc: {
+      es: "Gestión de red social y web, Vacation Benalmádena.",
+      en: "Social media and website management for Vacation Benalmádena."
+    },
   },
   {
     href: "/proyectos/tennis-club-marbella",
     image: "/assets/por2.jpeg",
-    alt: "Tennis Club Marbella Branding",
-    title: "Tennis Club Marbella",
-    desc: "Branding y publicidad de Club de Tennis, Marbella.",
+    alt: { es: "Tennis Club Marbella Branding", en: "Tennis Club Marbella Branding" },
+    title: { es: "Tennis Club Marbella", en: "Tennis Club Marbella" },
+    desc: {
+      es: "Branding y publicidad de Club de Tennis, Marbella.",
+      en: "Branding and advertising for Tennis Club, Marbella."
+    },
   },
-  // Nueva tarjeta: Enboca Gastrobar
   {
     href: "/proyectos/enboca-gastrobar",
     image: "/assets/enboca.jpg",
-    alt: "Enboca Gastrobar Proyecto",
-    title: "Enboca Gastrobar",
-    desc: "Branding y comunicación digital para Enboca Gastrobar.",
+    alt: { es: "Enboca Gastrobar Proyecto", en: "Enboca Gastrobar Project" },
+    title: { es: "Enboca Gastrobar", en: "Enboca Gastrobar" },
+    desc: {
+      es: "Branding y comunicación digital para Enboca Gastrobar.",
+      en: "Branding and digital communication for Enboca Gastrobar."
+    },
   },
-  // Nuevo proyecto: Hospital Virgen de la Victoria x Horizon
   {
     href: "/proyectos/hospital-virgen-victoria",
     image: "/assets/hospital.jpeg",
-    alt: "UAC – Hospital Virgen de la Victoria",
-    title: "UAC – Hospital Virgen de la Victoria",
-    desc: "Desarrollo de app UAC y branding para el Hospital Virgen de la Victoria.",
+    alt: { es: "UAC – Hospital Virgen de la Victoria", en: "UAC – Virgen de la Victoria Hospital" },
+    title: { es: "UAC – Hospital Virgen de la Victoria", en: "UAC – Virgen de la Victoria Hospital" },
+    desc: {
+      es: "Desarrollo de app UAC y branding para el Hospital Virgen de la Victoria.",
+      en: "UAC app development and branding for Virgen de la Victoria Hospital."
+    },
   },
-  // Nuevo proyecto: Mosh Fun Kitchen
   {
     href: "/proyectos/mosh-fun-kitchen",
     image: "/assets/mosh.jpeg",
-    alt: "Mosh Fun Kitchen",
-    title: "Mosh Fun Kitchen",
-    desc: "Sesión creativa y fotografía gastronómica para Mosh Fun Kitchen.",
+    alt: { es: "Mosh Fun Kitchen", en: "Mosh Fun Kitchen" },
+    title: { es: "Mosh Fun Kitchen", en: "Mosh Fun Kitchen" },
+    desc: {
+      es: "Sesión creativa y fotografía gastronómica para Mosh Fun Kitchen.",
+      en: "Creative session and food photography for Mosh Fun Kitchen."
+    },
   },
 ];
 
 export default function Proyectos() {
+  // Detecta idioma desde window o por defecto 'es'
+  const [lang, setLang] = useState<'es'|'en'>(typeof window !== 'undefined' && (window as any).__contactLang === 'en' ? 'en' : 'es');
+  // Sincroniza idioma si cambia globalmente
+  useEffect(() => {
+    function syncLang() {
+      setLang(typeof window !== 'undefined' && (window as any).__contactLang === 'en' ? 'en' : 'es');
+    }
+    window.addEventListener('click', syncLang);
+    return () => window.removeEventListener('click', syncLang);
+  }, []);
+  const t = {
+    title: lang === 'en' ? 'Our ' : 'Nuestros ',
+    projects: lang === 'en' ? 'Projects' : 'Proyectos',
+    seeProject: lang === 'en' ? 'See project →' : 'Ver proyecto →',
+    soon: lang === 'en' ? 'Coming soon' : 'Próximamente',
+  };
   return (
     <div className="min-h-screen bg-black flex flex-col items-center pt-10 sm:pt-16">
       <h1 className="text-6xl md:text-7xl font-black mb-8 text-white text-center mt-2">
-        Nuestros <span className="text-yellow-400">Proyectos</span>
+        {t.title}
+        <span className="text-yellow-400">{t.projects}</span>
       </h1>
       
       {/* Tarjetas de proyectos únicas para esta página */}
@@ -116,7 +148,7 @@ export default function Proyectos() {
                 {proy.image ? (
                   <Image
                     src={proy.image}
-                    alt={proy.alt}
+                    alt={proy.alt[lang]}
                     width={410}
                     height={240}
                     className="w-full h-[233px] object-cover object-center rounded-t-3xl group-hover:scale-105 transition-transform duration-300"
@@ -124,18 +156,18 @@ export default function Proyectos() {
                   />
                 ) : (
                   <div className="w-full h-[233px] flex items-center justify-center bg-[#000] rounded-t-3xl">
-                    <span className="text-gray-300 text-lg">Próximamente</span>
+                    <span className="text-gray-300 text-lg">{t.soon}</span>
                   </div>
                 )}
                 <div className="relative z-20 p-6 flex flex-col justify-between h-[160px]">
                   <h2 className="text-2xl font-bold mb-2 text-white group-hover:text-yellow-400 transition-colors">
-                    {proy.title}
+                    {proy.title[lang]}
                   </h2>
                   <p className="text-gray-200 text-base mb-1">
-                    {proy.desc}
+                    {proy.desc[lang]}
                   </p>
                   <span className="inline-block mt-2 text-sm font-semibold text-yellow-600 dark:text-yellow-400 group-hover:underline">
-                    Ver proyecto →
+                    {t.seeProject}
                   </span>
                 </div>
               </motion.div>
@@ -197,7 +229,7 @@ export default function Proyectos() {
                 {proy.image ? (
                   <Image
                     src={proy.image}
-                    alt={proy.alt}
+                    alt={proy.alt[lang]}
                     width={410}
                     height={240}
                     className="w-full h-[233px] object-cover object-center rounded-t-3xl group-hover:scale-105 transition-transform duration-300"
@@ -205,18 +237,18 @@ export default function Proyectos() {
                   />
                 ) : (
                   <div className="w-full h-[233px] flex items-center justify-center bg-[#000] rounded-t-3xl">
-                    <span className="text-gray-300 text-lg">Próximamente</span>
+                    <span className="text-gray-300 text-lg">{t.soon}</span>
                   </div>
                 )}
                 <div className="relative z-20 p-6 flex flex-col justify-between h-[160px]">
                   <h2 className="text-2xl font-bold mb-2 text-white group-hover:text-yellow-400 transition-colors">
-                    {proy.title}
+                    {proy.title[lang]}
                   </h2>
                   <p className="text-gray-200 text-base mb-1">
-                    {proy.desc}
+                    {proy.desc[lang]}
                   </p>
                   <span className="inline-block mt-2 text-sm font-semibold text-yellow-600 dark:text-yellow-400 group-hover:underline">
-                    Ver proyecto →
+                    {t.seeProject}
                   </span>
                 </div>
               </motion.div>

@@ -16,8 +16,10 @@ export default function CarouselGallery({ images }: CarouselGalleryProps) {
   const imagesPerPage = 6;
   const totalPages = Math.ceil(images.length / imagesPerPage);
 
+  // Invertir el orden de las imágenes para que la segunda página aparezca primero
+  const reversedImages = [...images].reverse();
   // Saca las imágenes de la página actual
-  const pageImages = images.slice(currentPage * imagesPerPage, (currentPage + 1) * imagesPerPage);
+  const pageImages = reversedImages.slice(currentPage * imagesPerPage, (currentPage + 1) * imagesPerPage);
 
   const goPrev = () => setCurrentPage((prev) => (prev === 0 ? totalPages - 1 : prev - 1));
   const goNext = () => setCurrentPage((prev) => (prev === totalPages - 1 ? 0 : prev + 1));

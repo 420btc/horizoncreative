@@ -13,7 +13,7 @@ const inter = Inter({ subsets: ["latin"] })
 export const metadata = {
   title: "Horizon Creative",
   description: "Agencia de marketing online",
-    generator: 'v0.dev'
+  generator: 'v0.dev'
 }
 
 export default function RootLayout({
@@ -37,6 +37,4 @@ export default function RootLayout({
     </html>
   )
 }
-
-
 import './globals.css'

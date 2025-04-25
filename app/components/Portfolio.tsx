@@ -558,7 +558,7 @@ if (activeCategory === "Marketing") {
                 <div className="col-span-3 flex flex-row gap-4 md:gap-8 justify-center">
                   {currentItems.slice(0, 3).map((item: any, idx: number) => (
                     <div key={item.id} className="flex-1 max-w-xs">
-                      <AnimatedSection direction={idx % 2 === 0 ? "up" : "right"} delay={0.1 * idx}>
+                      <AnimatedSection direction={idx % 2 === 0 ? "up" : "right"} delay={0.25 * idx}>
                         <motion.div
                           className="group relative rounded-xl overflow-hidden shadow-lg h-80"
                           whileHover={{ scale: 1.03 }}
@@ -569,7 +569,7 @@ if (activeCategory === "Marketing") {
                             src={item.image}
                             alt={item.title}
                             fill
-                            className="object-contain rounded-xl transition-transform duration-500 group-hover:scale-105 cursor-zoom-in bg-black"
+                            className="object-contain transition-transform duration-500 group-hover:scale-105 cursor-zoom-in bg-black"
                             style={{ backgroundColor: 'black' }}
                           />
                           <div
@@ -597,7 +597,7 @@ if (activeCategory === "Marketing") {
                 <div className="col-span-3 flex flex-row gap-4 md:gap-8 justify-center mt-4">
                   {currentItems.slice(3, 5).map((item: any, idx: number) => (
                     <div key={item.id} className="flex-1 max-w-xs">
-                      <AnimatedSection direction={idx % 2 === 0 ? "up" : "right"} delay={0.1 * (idx + 3)}>
+                      <AnimatedSection direction={idx % 2 === 0 ? "up" : "right"} delay={0.25 * (idx + 3)}>
                         <motion.div
                           className="group relative rounded-xl overflow-hidden shadow-lg h-80"
                           whileHover={{ scale: 1.03 }}
@@ -608,7 +608,7 @@ if (activeCategory === "Marketing") {
                             src={item.image}
                             alt={item.title}
                             fill
-                            className="object-contain rounded-xl transition-transform duration-500 group-hover:scale-105 cursor-zoom-in bg-black"
+                            className="object-contain transition-transform duration-500 group-hover:scale-105 cursor-zoom-in bg-black"
                             style={{ backgroundColor: 'black' }}
                           />
                           <div
@@ -635,7 +635,7 @@ if (activeCategory === "Marketing") {
               </>
             ) : (
               currentItems.map((item: any, idx: number) => (
-                <AnimatedSection key={item.id} direction={idx % 2 === 0 ? "up" : "right"} delay={0.1 * idx}>
+                <AnimatedSection key={item.id} direction={idx % 2 === 0 ? "up" : "right"} delay={0.25 * idx}>
                   <motion.div
                     className="group relative rounded-xl overflow-hidden shadow-lg h-80"
                     whileHover={{ scale: 1.03 }}
@@ -657,7 +657,7 @@ if (activeCategory === "Marketing") {
                         src={item.image || "/placeholder.svg"}
                         alt={item.title}
                         fill
-                        className="object-contain rounded-xl transition-transform duration-500 group-hover:scale-105 cursor-zoom-in bg-black"
+                        className="object-contain transition-transform duration-500 group-hover:scale-105 cursor-zoom-in bg-black"
                         style={{ backgroundColor: 'black' }}
                       />
                     )}
