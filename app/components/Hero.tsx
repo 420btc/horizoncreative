@@ -87,7 +87,7 @@ export default function Hero() {
       localStorage.setItem('hc_lastMorph', now.toString());
     } else {
       setMorphCount(storedCount);
-      setCanMorph(storedCount < 1);
+      setCanMorph(storedCount < 2);
     }
   }, []);
 
@@ -149,7 +149,7 @@ export default function Hero() {
                 localStorage.setItem('hc_morphCount', next.toString());
                 localStorage.setItem('hc_lastMorph', Date.now().toString());
               }
-              setCanMorph(false);
+              if (next >= 2) setCanMorph(false);
               setMorphing(false);
               setHorizonText('');
               setCreativeText('Crear');
