@@ -122,8 +122,8 @@ export default function AplicacionesMovilesGaleria() {
         {/* Bloque de texto sobre fondo blanco */}
         <div className="w-full md:w-1/2 bg-white flex items-center justify-center p-6 md:p-12 rounded-t-xl md:rounded-l-3xl md:rounded-tr-none">
           <div>
-            <h2 className={`text-2xl md:text-3xl font-bold mb-4 ${theme === 'dark' ? 'text-white' : 'text-black'}`}>{t.sectionTitle}</h2>
-            <p className={`${theme === 'dark' ? 'text-gray-200' : 'text-gray-900'} text-base md:text-lg leading-relaxed max-w-md`}>
+            <h2 className={`text-2xl md:text-3xl font-bold mb-4 ${theme === 'dark' ? 'text-black' : 'text-black'}`}>{t.sectionTitle}</h2>
+            <p className={`${theme === 'dark' ? 'text-black' : 'text-black'} text-base md:text-lg leading-relaxed max-w-md`}>
               {t.sectionText}
             </p>
           </div>

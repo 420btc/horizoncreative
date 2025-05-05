@@ -444,7 +444,7 @@ export default function Contacto() {
 
       <Testimonials />
       {/* Banner amarillo */}
-      <motion.div
+      {/* <motion.div
         className="bg-primary py-2 sm:py-6 px-2 sm:px-8 mt-8 sm:mt-14 border-t-0"
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
@@ -458,7 +458,7 @@ export default function Contacto() {
             {t.bannerDesc}
           </p>
         </div>
-      </motion.div>
+      </motion.div> */}
     </div>
   )
 }
