@@ -1,4 +1,4 @@
-.forced-light,
+/*.forced-light,
 .forced-light body {
   background: #fff !important;
   color: #222 !important;
@@ -17,5 +17,4 @@
 .forced-light .border-gray-700,
 .forced-light .border-neutral-800 {
   border-color: #ddd !important;
-}
-/* Puedes añadir aquí más overrides según lo que observes en tu web */
+} */
