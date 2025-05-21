@@ -65,7 +65,7 @@ creative-agency-portfolio/
    ```
 2. Instala las dependencias:
    ```bash
-   npm install
+   npm install o npm install con legacy peer deeps (buscar comando si hace falta) 
    ```
 3. Inicia el servidor de desarrollo:
    ```bash

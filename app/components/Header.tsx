@@ -138,7 +138,7 @@ onAnimationEnd={e => {
         )}
         <div className="flex flex-1 justify-end items-center gap-8 pr-4">
           {/* Botón luna/sol modo claro/oscuro */}
-          <button
+          {/* <button
             aria-label="Cambiar tema"
             className="p-2 rounded-full border-2 border-[#FFD600] bg-black flex items-center justify-center transition-colors hover:bg-[#222]"
             onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
@@ -148,7 +148,7 @@ onAnimationEnd={e => {
             ) : (
               <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="#FFD600" strokeWidth="2"><path stroke="#FFD600" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 12.79A9 9 0 1111.21 3a7 7 0 109.79 9.79z"/></svg>
             )}
-          </button>
+          </button> */}
           {/* Botón idioma: SIEMPRE visible y más grande */}
           <LangSwitchButton />
         </div>
