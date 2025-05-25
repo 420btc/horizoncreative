@@ -5,9 +5,7 @@ import InspirationTag from "./components/InspirationTag"
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-black relative">
-      {/* Overlay blanco que cubre toda la pantalla */}
-      <div className="fixed inset-0 bg-white z-50"></div>
+    <div className="min-h-screen bg-black">
       <Hero />
       <Portfolio />
       <WhatWeDoSection />
@@ -21,7 +19,6 @@ export default function Home() {
       </div>
       
       <InspirationTag />
-      {/* Fin del overlay */}
     </div>
   );
 }
