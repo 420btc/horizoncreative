@@ -427,7 +427,7 @@ if (activeCategory === "Marketing") {
         <div className="w-full flex justify-start items-center mt-4 mb-6">
           <div className="flex justify-start items-end ml-0 sm:ml-[9rem]">
             <h1 className="text-5xl md:text-6xl font-extrabold text-white leading-tight text-left relative inline-block">
-              <span className="block sm:hidden text-white text-center w-full">
+              <span className="block sm:hidden text-white text-center w-full" style={{marginLeft: '-10px'}}>
                 {lang === 'en' ? 'We transform' : 'Transformamos'}<br />
                 <span className="text-white">{lang === 'en' ? 'your' : 'tu'}</span>
               </span>
