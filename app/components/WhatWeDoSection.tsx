@@ -155,7 +155,7 @@ export default function WhatWeDoSection() {
             className="flex flex-row whitespace-nowrap gap-x-14"
             style={{ width: 'max-content' }}
             animate={{ x: ["0%", "-50%"] }}
-            transition={{ repeat: Infinity, duration: 60, ease: "linear" }}
+            transition={{ repeat: Infinity, duration: 22, ease: "linear" }}
           >
             {[...t.wordsRow1, ...t.wordsRow1, ...t.wordsRow1].map((h, i) => (
               <span
@@ -174,7 +174,7 @@ export default function WhatWeDoSection() {
             className="flex flex-row whitespace-nowrap gap-x-14"
             style={{ width: 'max-content' }}
             animate={{ x: ["-50%", "0%"] }}
-            transition={{ repeat: Infinity, duration: 60, ease: "linear" }}
+            transition={{ repeat: Infinity, duration: 30, ease: "linear" }}
           >
             {[...t.wordsRow2, ...t.wordsRow2, ...t.wordsRow2].map((h, i) => (
               <span
