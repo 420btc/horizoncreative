@@ -495,9 +495,8 @@ if (activeCategory === "Marketing") {
             <button
               onClick={handlePrev}
               disabled={carouselIndex === 0}
-              className={`hidden md:flex items-center justify-center absolute left-0 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-primary text-black font-bold shadow transition-colors border-2 border-primary disabled:opacity-50 disabled:cursor-not-allowed`}
+              className={`hidden md:flex items-center justify-center absolute left-2 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-primary text-black font-bold shadow transition-colors border-2 border-primary disabled:opacity-50 disabled:cursor-not-allowed`}
               aria-label="Anterior"
-              style={{ marginLeft: '-20px' }}
             >
               {/* SVG flecha izquierda, más fina */}
               <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -510,9 +509,8 @@ if (activeCategory === "Marketing") {
             <button
               onClick={handleNext}
               disabled={carouselIndex === totalPages - 1}
-              className={`hidden md:flex items-center justify-center absolute right-0 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-primary text-black font-bold shadow transition-colors border-2 border-primary disabled:opacity-50 disabled:cursor-not-allowed`}
+              className={`hidden md:flex items-center justify-center absolute right-2 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-primary text-black font-bold shadow transition-colors border-2 border-primary disabled:opacity-50 disabled:cursor-not-allowed`}
               aria-label="Siguiente"
-              style={{ marginRight: '-20px' }}
             >
               {/* SVG flecha derecha, más fina */}
               <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">

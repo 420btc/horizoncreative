@@ -210,7 +210,7 @@ export default function Hero() {
       {/* Imagen color encima, se revela con máscara animada */}
       <ColorRevealMask />
       {/* Logo móvil */}
-      <div className="mx-auto max-w-7xl px-6 pt-8 pb-0 sm:pb-4 lg:pb-2 md:py-12 lg:flex lg:items-center lg:gap-x-10 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 pt-8 pb-0 sm:pb-4 lg:pb-2 md:py-12 lg:flex lg:items-center lg:gap-x-10 lg:px-8">
         <div className="flex items-center justify-center lg:hidden mb-2 mt-2 pt-[64px] relative z-10 w-full min-h-[180px] h-[42vw] sm:h-[180px] overflow-visible">
           
         </div>
@@ -227,9 +227,15 @@ export default function Hero() {
                     mixBlendMode: 'lighten',
                     filter: 'brightness(1.08)'
                   }}
-                  initial={{ x: '-90vw', opacity: 0 }}
-                  animate={{ x: 0, opacity: 1 }}
-                  transition={{ type: 'spring', stiffness: 60, damping: 19, mass: 1.2, delay: 0.2 }}
+                  initial={{ x: '-100%', opacity: 0 }}
+                  animate={{
+                    x: hasAnimatedIn ? (isScrolled ? '-100%' : '0%') : '0%',
+                    opacity: hasAnimatedIn ? (isScrolled ? 0 : 1) : 1,
+                  }}
+                  transition={{
+                    x: { duration: hasAnimatedIn ? 0.8 : 1.2, ease: 'easeOut' },
+                    opacity: { duration: hasAnimatedIn ? 0.6 : 1.2, ease: 'easeOut' },
+                  }}
                 >
                   {['H','o','r','i','z','o','n'].map((char, idx) => {
                     if (char === 'o' && idx === 5) {
@@ -259,9 +265,15 @@ export default function Hero() {
                     mixBlendMode: 'lighten',
                     filter: 'brightness(1.08)'
                   }}
-                  initial={{ x: '90vw', opacity: 0 }}
-                  animate={{ x: 0, opacity: 1 }}
-                  transition={{ type: 'spring', stiffness: 60, damping: 21, mass: 1.2, delay: 0.95 }}
+                  initial={{ x: '100%', opacity: 0 }}
+                  animate={{
+                    x: hasAnimatedIn ? (isScrolled ? '100%' : '0%') : '0%',
+                    opacity: hasAnimatedIn ? (isScrolled ? 0 : 1) : 1,
+                  }}
+                  transition={{
+                    x: { duration: hasAnimatedIn ? 0.8 : 1.2, ease: 'easeOut' },
+                    opacity: { duration: hasAnimatedIn ? 0.6 : 1.2, ease: 'easeOut' },
+                  }}
                 >
                   {['C','r','e','a','t','i','v','e'].map((char, idx) => {
                     if (char === 'e' && idx === 2) {

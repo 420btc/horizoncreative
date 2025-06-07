@@ -69,13 +69,13 @@ export default function ProductShowcase() {
             </motion.div>
           </AnimatePresence>
           <button
-            className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-black p-2 rounded-full shadow-lg"
+            className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black p-2 rounded-full shadow-lg"
             onClick={prevProduct}
           >
             ←
           </button>
           <button
-            className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-black p-2 rounded-full shadow-lg"
+            className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black p-2 rounded-full shadow-lg"
             onClick={nextProduct}
           >
             →

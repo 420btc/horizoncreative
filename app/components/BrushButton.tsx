@@ -4,7 +4,7 @@ export default function BrushButton({ onClick, active }: { onClick: () => void; 
   return (
     <button
       onClick={onClick}
-      className={`fixed bottom-7 right-7 z-50 w-16 h-16 rounded-full bg-yellow-400 shadow-lg flex items-center justify-center transition-transform duration-200 hover:scale-110 border-4 border-white ${active ? 'ring-4 ring-yellow-300' : ''}`}
+      className={`fixed bottom-7 right-4 z-50 w-16 h-16 rounded-full bg-yellow-400 shadow-lg flex items-center justify-center transition-transform duration-200 hover:scale-110 border-4 border-white ${active ? 'ring-4 ring-yellow-300' : ''}`}
       style={{ boxShadow: '0 4px 32px #FFD60077' }}
       aria-label="Activar pincel"
     >

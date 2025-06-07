@@ -69,7 +69,7 @@ export default function InspirationTag() {
         }
         .inspiration-tag-horizontal {
   position: fixed;
-  right: 0;
+  right: 8px;
   bottom: 48px;
   z-index: 1000;
   background: #FFD600;
@@ -77,18 +77,16 @@ export default function InspirationTag() {
   font-weight: 700;
   font-size: 1.08rem;
   letter-spacing: 0.03em;
-  padding: 0.38rem 1.3rem 0.38rem 1.05rem;
-  border-radius: 0.38rem 0 0 0.38rem;
+  padding: 0.38rem 0.7rem 0.38rem 0.6rem;
+  border-radius: 0.38rem;
   box-shadow: 0 2px 10px rgba(0,0,0,0.10);
   border: 1.5px solid #FFD600;
-  border-right: none;
   transition: opacity 0.6s, transform 0.6s;
   opacity: 0;
   pointer-events: none;
   transform: translateY(30px);
   min-width: 90px;
-  max-width: 60vw;
-  padding: 0.38rem 0.7rem 0.38rem 0.6rem;
+  max-width: calc(100vw - 24px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -109,8 +107,9 @@ export default function InspirationTag() {
     padding: 0.32rem 0.7rem 0.32rem 0.5rem;
     height: 1.7rem;
     bottom: 12px;
-    right: 0;
-    border-radius: 0.32rem 0 0 0.32rem;
+    right: 8px;
+    border-radius: 0.32rem;
+    max-width: calc(100vw - 16px);
   }
 }
       `}</style>

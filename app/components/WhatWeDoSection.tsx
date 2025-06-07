@@ -150,39 +150,43 @@ export default function WhatWeDoSection() {
       {/* Tiras animadas tipo tren/marquee, dos filas, bucle infinito */}
       <div className="w-full flex flex-col items-center gap-y-6 mb-14 select-none overflow-hidden">
         {/* Fila superior: izquierda a derecha */}
-        <motion.div
-          className="flex flex-row whitespace-nowrap gap-x-14"
-          style={{ width: 'max-content', paddingLeft: '12vw', paddingRight: '12vw' }}
-          animate={{ x: ["0%", "-50%"] }}
-          transition={{ repeat: Infinity, duration: 240, ease: "linear" }}
-        >
-          {[...t.wordsRow1, ...t.wordsRow1, ...t.wordsRow1].map((h, i) => (
-            <span
-              key={h.text + i}
-              className={`text-5xl md:text-6xl font-black ${h.color} drop-shadow-lg text-center px-4`}
-              style={{ lineHeight: '1.08' }}
-            >
-              {h.text}
-            </span>
-          ))}
-        </motion.div>
+        <div className="w-full overflow-hidden">
+          <motion.div
+            className="flex flex-row whitespace-nowrap gap-x-14"
+            style={{ width: 'max-content' }}
+            animate={{ x: ["0%", "-50%"] }}
+            transition={{ repeat: Infinity, duration: 240, ease: "linear" }}
+          >
+            {[...t.wordsRow1, ...t.wordsRow1, ...t.wordsRow1].map((h, i) => (
+              <span
+                key={h.text + i}
+                className={`text-4xl md:text-5xl lg:text-6xl font-black ${h.color} drop-shadow-lg text-center px-2 md:px-4`}
+                style={{ lineHeight: '1.08' }}
+              >
+                {h.text}
+              </span>
+            ))}
+          </motion.div>
+        </div>
         {/* Fila inferior: derecha a izquierda */}
-        <motion.div
-          className="flex flex-row whitespace-nowrap gap-x-14"
-          style={{ width: 'max-content', paddingLeft: '12vw', paddingRight: '12vw' }}
-          animate={{ x: ["0%", "50%"] }}
-          transition={{ repeat: Infinity, duration: 240, ease: "linear" }}
-        >
-          {[...t.wordsRow2, ...t.wordsRow2, ...t.wordsRow2].map((h, i) => (
-            <span
-              key={h.text + i}
-              className={`text-5xl md:text-6xl font-black ${h.color} drop-shadow-lg text-center px-4`}
-              style={{ lineHeight: '1.08' }}
-            >
-              {h.text}
-            </span>
-          ))}
-        </motion.div>
+        <div className="w-full overflow-hidden">
+          <motion.div
+            className="flex flex-row whitespace-nowrap gap-x-14"
+            style={{ width: 'max-content' }}
+            animate={{ x: ["0%", "50%"] }}
+            transition={{ repeat: Infinity, duration: 240, ease: "linear" }}
+          >
+            {[...t.wordsRow2, ...t.wordsRow2, ...t.wordsRow2].map((h, i) => (
+              <span
+                key={h.text + i}
+                className={`text-4xl md:text-5xl lg:text-6xl font-black ${h.color} drop-shadow-lg text-center px-2 md:px-4`}
+                style={{ lineHeight: '1.08' }}
+              >
+                {h.text}
+              </span>
+            ))}
+          </motion.div>
+        </div>
 
         {/* Botón de contacto */}
         <div className="w-full flex justify-center mt-20">

@@ -21,7 +21,7 @@ function LangSwitchButton() {
   return (
     <button
       aria-label="Cambiar idioma"
-      className="flex items-center justify-center w-[57.6px] h-[57.6px] md:w-[57.6px] md:h-[57.6px] p-2.5 bg-transparent rounded-full focus:outline-none transition-all duration-200 -ml-2"
+      className="flex items-center justify-center w-[57.6px] h-[57.6px] md:w-[57.6px] md:h-[57.6px] p-2.5 bg-transparent rounded-full focus:outline-none transition-all duration-200"
       onClick={handleToggle}
       style={{ overflow: 'hidden' }}
     >
@@ -55,7 +55,7 @@ const [logoFlip, setLogoFlip] = useState(false);
       animate={{ y: 0 }}
       transition={{ duration: 0.6 }}
     >
-      <nav className="mx-auto flex max-w-7xl items-center justify-between p-3 sm:p-4 md:p-6 lg:px-8" aria-label="Global">
+      <nav className="mx-auto flex max-w-7xl items-center justify-between p-2 sm:p-4 md:p-6 lg:px-8" aria-label="Global">
         <div className="flex lg:flex-1">
           <Link href="/" className="-m-1.5 p-1.5">
             <span className="sr-only">Horizon Creative</span>
@@ -113,7 +113,7 @@ onAnimationEnd={e => {
         <div className="md:hidden flex items-center">
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="inline-flex items-center justify-center p-2 ml-4 focus:outline-none"
+            className="inline-flex items-center justify-center p-2 ml-2 focus:outline-none"
             aria-label="Abrir menú"
             style={{ background: 'none', border: 'none', boxShadow: 'none' }}
           >
@@ -136,7 +136,7 @@ onAnimationEnd={e => {
             <Link href="/contacto" className={`py-2 text-base font-semibold w-full text-center transition-colors ${pathname === '/contacto' ? 'text-white hover:text-[#FFD600] focus:text-[#FFD600] active:text-[#FFD600]' : 'text-white hover:text-[#FFD600] focus:text-[#FFD600] active:text-[#FFD600]'}`} onClick={() => setMenuOpen(false)}>Contacto</Link>
           </div>
         )}
-        <div className="flex flex-1 justify-end items-center gap-8 pr-4">
+        <div className="flex flex-1 justify-end items-center gap-2 pr-2">
           {/* Botón luna/sol modo claro/oscuro */}
           {/* <button
             aria-label="Cambiar tema"

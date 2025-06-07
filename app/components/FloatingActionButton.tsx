@@ -31,7 +31,7 @@ export default function FloatingActionButton() {
     <AnimatePresence>
       {isVisible && (
         <motion.button
-          className="fixed bottom-8 right-8 bg-gray-900 text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg z-50"
+          className="fixed bottom-8 right-4 bg-gray-900 text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg z-50"
           onClick={scrollToTop}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
