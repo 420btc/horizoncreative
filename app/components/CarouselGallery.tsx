@@ -54,12 +54,12 @@ export default function CarouselGallery({ images }: CarouselGalleryProps) {
       </div>
       {/* Grid 2x3 o 1x3 */}
       <div
-        className={`grid grid-cols-1 sm:grid-cols-3 gap-6 justify-items-center` }
+        className={`grid grid-cols-2 sm:grid-cols-3 gap-6 justify-items-center` }
       >
         {pageImages.map((img, idx) => (
           <div
             key={img.src}
-            className="group relative cursor-zoom-in w-full max-w-xs"
+            className="group relative cursor-zoom-in w-full max-w-none sm:max-w-xs"
             onClick={() => setModalImg(img.src)}
           >
             <Image

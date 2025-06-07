@@ -549,7 +549,7 @@ if (activeCategory === "Marketing") {
             </div>
           )}
           {/* Grid */}
-          <div className={`grid gap-4 md:gap-8 ${activeCategory === 'Diseño Web/Apps' ? 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3' : 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3'}`}>
+          <div className={`grid gap-4 md:gap-8 ${activeCategory === 'Diseño Web/Apps' ? 'grid-cols-2 sm:grid-cols-2 md:grid-cols-3' : 'grid-cols-2 sm:grid-cols-2 md:grid-cols-3'}`}>
             {activeCategory === 'Diseño Web/Apps' && currentItems.length === 5 ? (
               <>
                 {/* Primera fila: 3 imágenes */}
@@ -558,7 +558,7 @@ if (activeCategory === "Marketing") {
                     <div key={item.id} className="flex-1 max-w-xs">
                       <AnimatedSection direction={idx % 2 === 0 ? "up" : "right"} delay={0.25 * idx}>
                         <motion.div
-                          className="group relative rounded-xl overflow-hidden shadow-lg h-80"
+                          className="group relative shadow-lg h-80"
                           whileHover={{ scale: 1.03 }}
                           onMouseEnter={() => setHoveredItem(item.id)}
                           onMouseLeave={() => setHoveredItem(null)}
@@ -567,7 +567,7 @@ if (activeCategory === "Marketing") {
                             src={item.image}
                             alt={item.title}
                             fill
-                            className="object-contain transition-transform duration-500 group-hover:scale-105 cursor-zoom-in bg-black"
+                            className="object-contain transition-transform duration-500 group-hover:scale-105 cursor-zoom-in bg-black rounded-2xl"
                             style={{ backgroundColor: 'black' }}
                           />
                           <div
@@ -597,7 +597,7 @@ if (activeCategory === "Marketing") {
                     <div key={item.id} className="flex-1 max-w-xs">
                       <AnimatedSection direction={idx % 2 === 0 ? "up" : "right"} delay={0.25 * (idx + 3)}>
                         <motion.div
-                          className="group relative rounded-xl overflow-hidden shadow-lg h-80"
+                          className="group relative shadow-lg h-80"
                           whileHover={{ scale: 1.03 }}
                           onMouseEnter={() => setHoveredItem(item.id)}
                           onMouseLeave={() => setHoveredItem(null)}
@@ -606,7 +606,7 @@ if (activeCategory === "Marketing") {
                             src={item.image}
                             alt={item.title}
                             fill
-                            className="object-contain transition-transform duration-500 group-hover:scale-105 cursor-zoom-in bg-black"
+                            className="object-contain transition-transform duration-500 group-hover:scale-105 cursor-zoom-in bg-black rounded-2xl"
                             style={{ backgroundColor: 'black' }}
                           />
                           <div
@@ -635,7 +635,7 @@ if (activeCategory === "Marketing") {
               currentItems.map((item: any, idx: number) => (
                 <AnimatedSection key={item.id} direction={idx % 2 === 0 ? "up" : "right"} delay={0.25 * idx}>
                   <motion.div
-                    className="group relative rounded-xl overflow-hidden shadow-lg h-80"
+                    className="group relative shadow-lg h-80"
                     whileHover={{ scale: 1.03 }}
                     onMouseEnter={() => setHoveredItem(item.id)}
                     onMouseLeave={() => setHoveredItem(null)}
@@ -647,17 +647,17 @@ if (activeCategory === "Marketing") {
                         muted
                         loop
                         playsInline
-                        className="object-contain rounded-xl transition-transform duration-500 group-hover:scale-105 cursor-zoom-in bg-black absolute inset-0 w-full h-full"
+                        className="object-cover rounded-2xl transition-transform duration-500 group-hover:scale-105 cursor-zoom-in bg-black absolute inset-0 w-full h-full"
                         style={{ backgroundColor: 'black' }}
                       />
                     ) : (
                       <Image
-                        src={item.image || "/placeholder.svg"}
-                        alt={item.title}
-                        fill
-                        className="object-contain transition-transform duration-500 group-hover:scale-105 cursor-zoom-in bg-black"
-                        style={{ backgroundColor: 'black' }}
-                      />
+                          src={item.image || "/placeholder.svg"}
+                          alt={item.title}
+                          fill
+                          className="object-cover transition-transform duration-500 group-hover:scale-105 cursor-zoom-in bg-black rounded-2xl"
+                          style={{ backgroundColor: 'black' }}
+                        />
                     )}
                     {/* Área invisible para capturar el click, debajo del overlay */}
                     <div
