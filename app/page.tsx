@@ -1,6 +1,7 @@
 import Hero from "./components/Hero"
 import Portfolio from "./components/Portfolio"
 import WhatWeDoSection from "./components/WhatWeDoSection"
+import StatisticsSection from "./components/StatisticsSection"
 import InspirationTag from "./components/InspirationTag"
 
 export default function Home() {
@@ -9,6 +10,7 @@ export default function Home() {
       <Hero />
       <Portfolio />
       <WhatWeDoSection />
+      <StatisticsSection lang="es" />
       <div className="w-full flex justify-center my-2 bg-black border-0 shadow-none px-4">
         <img
 src="/assets/logomano.png"

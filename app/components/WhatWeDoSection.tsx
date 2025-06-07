@@ -187,18 +187,19 @@ export default function WhatWeDoSection() {
             ))}
           </motion.div>
         </div>
-
-        {/* Botón de contacto */}
-        <div className="w-full flex justify-center mt-20">
-          <a
-            href="/contacto"
-            className="bg-yellow-400 hover:bg-yellow-300 text-black font-bold py-3 px-8 rounded-full shadow-md transition-colors duration-200 text-lg md:text-xl"
-          >
-            {t.contact}
-          </a>
-        </div>
       </div>
 
+
+
+      {/* Botón de contacto */}
+      <div className="w-full flex justify-center mt-20">
+        <a
+          href="/contacto"
+          className="bg-yellow-400 hover:bg-yellow-300 text-black font-bold py-3 px-8 rounded-full shadow-md transition-colors duration-200 text-lg md:text-xl"
+        >
+          {t.contact}
+        </a>
+      </div>
 
     </section>
   );
