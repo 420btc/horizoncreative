@@ -122,13 +122,13 @@ export default function StatisticsSection({ lang }: StatisticsSectionProps) {
                   <span className="text-lg font-semibold text-white">
                     {lang === 'en' ? 'Organic Traffic' : 'Tráfico Orgánico'}
                   </span>
-                  <span className="text-lg font-bold text-yellow-400">+285%</span>
+                  <span className="text-lg font-bold text-yellow-400">+85%</span>
                 </div>
-                <div className="w-full bg-gray-800 rounded-full h-4 overflow-hidden">
+                <div className="w-full bg-black rounded-full h-4 overflow-hidden">
                   <motion.div
                     className="bg-yellow-400 h-4 rounded-full shadow-sm"
                     initial={{ width: 0 }}
-                    animate={animateSkills ? { width: "85%" } : {}}
+                    animate={animateSkills ? { width: "65%" } : {}}
                     transition={{ duration: 1.8, delay: 1, ease: "easeOut" }}
                   />
                 </div>
@@ -140,13 +140,13 @@ export default function StatisticsSection({ lang }: StatisticsSectionProps) {
                   <span className="text-lg font-semibold text-white">
                     {lang === 'en' ? 'Conversion Rate' : 'Tasa de Conversión'}
                   </span>
-                  <span className="text-lg font-bold text-yellow-400">+180%</span>
+                  <span className="text-lg font-bold text-yellow-400">+65%</span>
                 </div>
-                <div className="w-full bg-gray-800 rounded-full h-4 overflow-hidden">
+                <div className="w-full bg-black rounded-full h-4 overflow-hidden">
                   <motion.div
                     className="bg-yellow-400 h-4 rounded-full shadow-sm"
                     initial={{ width: 0 }}
-                    animate={animateSkills ? { width: "72%" } : {}}
+                    animate={animateSkills ? { width: "55%" } : {}}
                     transition={{ duration: 1.8, delay: 1.2, ease: "easeOut" }}
                   />
                 </div>
@@ -158,13 +158,13 @@ export default function StatisticsSection({ lang }: StatisticsSectionProps) {
                   <span className="text-lg font-semibold text-white">
                     {lang === 'en' ? 'Brand Recognition' : 'Reconocimiento de Marca'}
                   </span>
-                  <span className="text-lg font-bold text-yellow-400">+320%</span>
+                  <span className="text-lg font-bold text-yellow-400">+120%</span>
                 </div>
-                <div className="w-full bg-gray-800 rounded-full h-4 overflow-hidden">
+                <div className="w-full bg-black rounded-full h-4 overflow-hidden">
                   <motion.div
                     className="bg-yellow-400 h-4 rounded-full shadow-sm"
                     initial={{ width: 0 }}
-                    animate={animateSkills ? { width: "90%" } : {}}
+                    animate={animateSkills ? { width: "75%" } : {}}
                     transition={{ duration: 1.8, delay: 1.4, ease: "easeOut" }}
                   />
                 </div>
@@ -176,13 +176,13 @@ export default function StatisticsSection({ lang }: StatisticsSectionProps) {
                   <span className="text-lg font-semibold text-white">
                     {lang === 'en' ? 'Social Engagement' : 'Engagement Social'}
                   </span>
-                  <span className="text-lg font-bold text-yellow-400">+240%</span>
+                  <span className="text-lg font-bold text-yellow-400">+95%</span>
                 </div>
-                <div className="w-full bg-gray-800 rounded-full h-4 overflow-hidden">
+                <div className="w-full bg-black rounded-full h-4 overflow-hidden">
                   <motion.div
                     className="bg-yellow-400 h-4 rounded-full shadow-sm"
                     initial={{ width: 0 }}
-                    animate={animateSkills ? { width: "78%" } : {}}
+                    animate={animateSkills ? { width: "68%" } : {}}
                     transition={{ duration: 1.8, delay: 1.6, ease: "easeOut" }}
                   />
                 </div>
