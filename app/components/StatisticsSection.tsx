@@ -219,7 +219,7 @@ export default function StatisticsSection({ lang }: StatisticsSectionProps) {
               animate={animateSkills ? { opacity: 1, scale: 1 } : {}}
               transition={{ duration: 0.6, delay: 2 }}
             >
-              15+
+              7+
             </motion.div>
             <p className="text-sm text-white font-medium">
               {lang === 'en' ? 'Happy Clients' : 'Clientes Satisfechos'}
