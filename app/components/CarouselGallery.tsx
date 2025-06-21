@@ -11,6 +11,7 @@ export default function CarouselGallery({ images }: CarouselGalleryProps) {
   if (!images || images.length === 0) return null;
 
   const [modalImg, setModalImg] = useState<string | null>(null);
+  const [isHovered, setIsHovered] = useState(false);
   // currentPage es el índice de la "página" de 6 imágenes (0, 1, ...)
   const [currentPage, setCurrentPage] = useState(0);
   const imagesPerPage = 6;
@@ -25,70 +26,137 @@ export default function CarouselGallery({ images }: CarouselGalleryProps) {
   const goNext = () => setCurrentPage((prev) => (prev === totalPages - 1 ? 0 : prev + 1));
 
   return (
-    <div className="relative w-full">
-      <div className="flex items-center justify-center mb-2">
-        {/* Solo muestra navegación si hay más de una página */}
+    <div className="relative w-full max-w-6xl mx-auto px-4">
+      {/* Contenedor principal con espacio para los botones a los lados */}
+      <div className="relative flex items-center">
+        {/* Botón anterior - Izquierda */}
         {totalPages > 1 && (
           <button
-            className="p-2 rounded-full bg-black/60 hover:bg-yellow-400 hover:text-black text-yellow-400 mr-2 transition"
+            className="absolute left-0 -translate-x-12 top-1/2 -translate-y-1/2 p-3 rounded-full bg-black/60 hover:bg-yellow-400 hover:text-black text-yellow-400 transition z-10 flex-shrink-0"
             onClick={goPrev}
             aria-label="Anterior"
           >
-            <svg className="w-7 h-7" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+            <svg className="w-8 h-8" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
             </svg>
           </button>
         )}
-        <div className="flex-1" />
+
+        {/* Contenido del carrusel */}
+        <div className="w-full">
+          {/* Grid 2x3 o 1x3 */}
+          <div className={`grid grid-cols-2 sm:grid-cols-3 gap-6 justify-items-center`}>
+            {pageImages.map((img, idx) => (
+              <div
+                key={img.src}
+                className="group relative cursor-zoom-in w-full max-w-none sm:max-w-xs"
+                onMouseEnter={() => {
+                  setIsHovered(true);
+                  setModalImg(img.src);
+                }}
+                onMouseLeave={() => {
+                  setIsHovered(false);
+                  // Pequeño retraso para permitir que el mouse se mueva al modal
+                  setTimeout(() => {
+                    if (!isHovered) {
+                      setModalImg(null);
+                    }
+                  }, 100);
+                }}
+              >
+                <Image
+                  src={img.src}
+                  alt={img.alt}
+                  width={400}
+                  height={260}
+                  className="rounded-2xl shadow-xl object-cover w-full h-60 sm:h-64 md:h-72 lg:h-80 bg-black group-hover:brightness-75 transition-all duration-300"
+                  style={{ objectPosition: "center" }}
+                />
+                {/* Overlay lupa en hover */}
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition bg-black/20 rounded-2xl">
+                  <svg className="w-12 h-12 text-yellow-400" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                    <circle cx="11" cy="11" r="8" />
+                    <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                  </svg>
+                </div>
+              </div>
+            ))}
+            {/* Si hay menos de 6 imágenes, rellena los huecos para mantener el grid */}
+            {Array.from({ length: imagesPerPage - pageImages.length }).map((_, i) => (
+              <div key={`empty-${i}`} />
+            ))}
+          </div>
+        </div>
+
+        {/* Contenido del carrusel */}
+        <div className="w-full">
+          {/* Grid 2x3 o 1x3 */}
+          <div className={`grid grid-cols-2 sm:grid-cols-3 gap-6 justify-items-center w-full`}>
+            {pageImages.map((img, idx) => (
+              <div
+                key={img.src}
+                className="group relative cursor-zoom-in w-full max-w-none sm:max-w-xs"
+                onMouseEnter={() => {
+                  setIsHovered(true);
+                  setModalImg(img.src);
+                }}
+                onMouseLeave={() => {
+                  setIsHovered(false);
+                  // Pequeño retraso para permitir que el mouse se mueva al modal
+                  setTimeout(() => {
+                    if (!isHovered) {
+                      setModalImg(null);
+                    }
+                  }, 100);
+                }}
+              >
+                <Image
+                  src={img.src}
+                  alt={img.alt}
+                  width={400}
+                  height={260}
+                  className="rounded-2xl shadow-xl object-cover w-full h-60 sm:h-64 md:h-72 lg:h-80 bg-black group-hover:brightness-75 transition-all duration-300"
+                  style={{ objectPosition: "center" }}
+                />
+                {/* Overlay lupa en hover */}
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition bg-black/20 rounded-2xl">
+                  <svg className="w-12 h-12 text-yellow-400" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                    <circle cx="11" cy="11" r="8" />
+                    <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                  </svg>
+                </div>
+              </div>
+            ))}
+            {/* Si hay menos de 6 imágenes, rellena los huecos para mantener el grid */}
+            {Array.from({ length: imagesPerPage - pageImages.length }).map((_, i) => (
+              <div key={`empty-${i}`} />
+            ))}
+          </div>
+        </div>
+
+        {/* Botón siguiente - Derecha */}
         {totalPages > 1 && (
           <button
-            className="p-2 rounded-full bg-black/60 hover:bg-yellow-400 hover:text-black text-yellow-400 ml-2 transition"
+            className="absolute right-0 translate-x-12 top-1/2 -translate-y-1/2 p-3 rounded-full bg-black/60 hover:bg-yellow-400 hover:text-black text-yellow-400 transition z-10 flex-shrink-0"
             onClick={goNext}
             aria-label="Siguiente"
           >
-            <svg className="w-7 h-7" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+            <svg className="w-8 h-8" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
             </svg>
           </button>
         )}
       </div>
-      {/* Grid 2x3 o 1x3 */}
-      <div
-        className={`grid grid-cols-2 sm:grid-cols-3 gap-6 justify-items-center` }
-      >
-        {pageImages.map((img, idx) => (
-          <div
-            key={img.src}
-            className="group relative cursor-zoom-in w-full max-w-none sm:max-w-xs"
-            onClick={() => setModalImg(img.src)}
-          >
-            <Image
-              src={img.src}
-              alt={img.alt}
-              width={400}
-              height={260}
-              className="rounded-2xl shadow-xl object-cover w-full h-60 sm:h-64 md:h-72 lg:h-80 bg-black group-hover:brightness-75 transition-all duration-300"
-              style={{ objectPosition: "center" }}
-            />
-            {/* Overlay lupa en hover */}
-            <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition bg-black/20 rounded-2xl">
-              <svg className="w-12 h-12 text-yellow-400" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                <circle cx="11" cy="11" r="8" />
-                <line x1="21" y1="21" x2="16.65" y2="16.65" />
-              </svg>
-            </div>
-          </div>
-        ))}
-        {/* Si hay menos de 6 imágenes, rellena los huecos para mantener el grid */}
-        {Array.from({ length: imagesPerPage - pageImages.length }).map((_, i) => (
-          <div key={`empty-${i}`} />
-        ))}
-      </div>
+      
       {/* Modal de imagen (lupa) */}
       {modalImg && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm"
           onClick={() => setModalImg(null)}
+          onMouseEnter={() => {
+            setModalImg(null);
+            setIsHovered(false);
+          }}
         >
           <div className="relative max-w-3xl w-full flex flex-col items-center" onClick={e => e.stopPropagation()}>
             <button

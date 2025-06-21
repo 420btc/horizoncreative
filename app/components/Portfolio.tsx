@@ -489,35 +489,43 @@ if (activeCategory === "Marketing") {
           </div>
         </div>
 
-        <div className="relative">
-          {/* Carousel Controls - Left */}
-          {filteredItems.length > itemsPerPage && (
-            <button
-              onClick={handlePrev}
-              disabled={carouselIndex === 0}
-              className={`hidden md:flex items-center justify-center absolute left-2 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-primary text-black font-bold shadow transition-colors border-2 border-primary disabled:opacity-50 disabled:cursor-not-allowed`}
-              aria-label="Anterior"
-            >
-              {/* SVG flecha izquierda, más fina */}
-              <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M14 5L8 11L14 17" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </button>
-          )}
-          {/* Carousel Controls - Right */}
-          {filteredItems.length > itemsPerPage && (
-            <button
-              onClick={handleNext}
-              disabled={carouselIndex === totalPages - 1}
-              className={`hidden md:flex items-center justify-center absolute right-2 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-primary text-black font-bold shadow transition-colors border-2 border-primary disabled:opacity-50 disabled:cursor-not-allowed`}
-              aria-label="Siguiente"
-            >
-              {/* SVG flecha derecha, más fina */}
-              <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M8 5L14 11L8 17" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </button>
-          )}
+        <div className="relative w-full py-8">
+          <div className="relative max-w-7xl mx-auto px-4">
+            <div className="relative">
+              {/* Botón Anterior */}
+              {filteredItems.length > itemsPerPage && (
+                <button
+                  onClick={handlePrev}
+                  disabled={carouselIndex === 0}
+                  className="hidden md:flex items-center justify-center absolute left-0 -translate-x-36 top-1/2 -translate-y-1/2 z-20 w-12 h-46 rounded-full bg-yellow-400 text-black font-bold shadow transition-colors border-2 border-yellow-400 hover:bg-yellow-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                  aria-label="Anterior"
+                >
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M15 19L8 12L15 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </button>
+              )}
+              
+              {/* Contenido del carrusel */}
+              <div className="w-full">
+                {/* El contenido del carrusel se mantiene igual */}
+              </div>
+              
+              {/* Botón Siguiente */}
+              {filteredItems.length > itemsPerPage && (
+                <button
+                  onClick={handleNext}
+                  disabled={carouselIndex === totalPages - 1}
+                  className="hidden md:flex items-center justify-center absolute right-0 translate-x-36 top-1/2 -translate-y-1/2 z-20 w-12 h-46 rounded-full bg-yellow-400 text-black font-bold shadow transition-colors border-2 border-yellow-400 hover:bg-yellow-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                  aria-label="Siguiente"
+                >
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9 5L15 12L9 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </button>
+              )}
+            </div>
+          </div>
           {/* Carousel Controls - Mobile (bottom center) */}
           {filteredItems.length > itemsPerPage && (
             <div className="flex md:hidden justify-center items-center gap-3 mt-2 mb-4">
