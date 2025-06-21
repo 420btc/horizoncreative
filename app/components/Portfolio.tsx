@@ -497,7 +497,7 @@ if (activeCategory === "Marketing") {
                 <button
                   onClick={handlePrev}
                   disabled={carouselIndex === 0}
-                  className="hidden md:flex items-center justify-center absolute left-0 -translate-x-36 top-1/2 -translate-y-1/2 z-20 w-12 h-46 rounded-full bg-yellow-400 text-black font-bold shadow transition-colors border-2 border-yellow-400 hover:bg-yellow-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="hidden md:flex items-center justify-center absolute left-0 -translate-x-36 top-[300px] z-20 w-12 h-12 rounded-full bg-yellow-400 text-black font-bold shadow transition-colors border-2 border-yellow-400 hover:bg-yellow-300 disabled:opacity-50 disabled:cursor-not-allowed"
                   aria-label="Anterior"
                 >
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -516,7 +516,7 @@ if (activeCategory === "Marketing") {
                 <button
                   onClick={handleNext}
                   disabled={carouselIndex === totalPages - 1}
-                  className="hidden md:flex items-center justify-center absolute right-0 translate-x-36 top-1/2 -translate-y-1/2 z-20 w-12 h-46 rounded-full bg-yellow-400 text-black font-bold shadow transition-colors border-2 border-yellow-400 hover:bg-yellow-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="hidden md:flex items-center justify-center absolute right-0 translate-x-36 top-[300px] z-20 w-12 h-12 rounded-full bg-yellow-400 text-black font-bold shadow transition-colors border-2 border-yellow-400 hover:bg-yellow-300 disabled:opacity-50 disabled:cursor-not-allowed"
                   aria-label="Siguiente"
                 >
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
