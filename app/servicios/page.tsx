@@ -243,7 +243,7 @@ export default function Servicios() {
         <div className="flex flex-col gap-8 w-full">
           {/* Primera fila: dos tarjetas */}
           <div className="md:grid md:grid-cols-2 md:gap-9 md:gap-y-8 flex flex-col gap-8 w-full">
-            {servicios.slice(0,2).map((service, index) => (
+            {servicios.slice(0, 2).map((service, index) => (
   <Link
     key={service.title}
     href={`/servicios/${service.slug}`}
@@ -302,7 +302,7 @@ export default function Servicios() {
           </div>
           {/* Segunda fila: dos tarjetas */}
           <div className="md:grid md:grid-cols-2 md:gap-9 md:gap-y-8 flex flex-col gap-8 w-full">
-            {servicios.slice(2,4).map((service, index) => (
+            {servicios.slice(2, 4).map((service, index) => (
   <Link
     key={service.title}
     href={`/servicios/${service.slug}`}
@@ -387,76 +387,6 @@ export default function Servicios() {
             ))}
           </div>
         </div>
-
-        {/* Línea amarilla animada y metodología (versión especial servicios, con pulso automático) */}
-        {(() => {
-          const puntos = lang === 'en'
-  ? [
-      "Discovery",
-      "Strategy",
-      "Creativity",
-      "Development",
-      "Launch",
-      "Support"
-    ]
-  : [
-      "Descubrimiento",
-      "Estrategia",
-      "Creatividad",
-      "Desarrollo",
-      "Lanzamiento",
-      "Soporte"
-    ];
-          const [activeIdx, setActiveIdx] = useState(0);
-          useEffect(() => {
-            const interval = setInterval(() => {
-              setActiveIdx((prev: number) => (prev + 1) % puntos.length);
-            }, 5000);
-            return () => clearInterval(interval);
-          }, [puntos.length]);
-          return (
-            <div className="w-full flex flex-col items-center py-16 bg-transparent mb-10 md:mb-16 mt-10 md:mt-16">
-              <div className="max-w-5xl w-full flex flex-col items-center">
-                <div className="relative w-full flex flex-col gap-8 md:gap-12">
-                  {/* Línea amarilla animada fina y más marcada */}
-                  <motion.div
-                    className="absolute z-0 left-[3.5%] right-[3.5%] top-4 hidden md:block"
-                    initial={{ width: 0 }}
-                    animate={{ width: '93%' }}
-                    transition={{ duration: 1 }}
-                    style={{ height: 2 }}
-                  >
-                    <div className="h-[2px] w-full bg-[#FFD600]" style={{filter: 'drop-shadow(0 0 12px #FFD600) drop-shadow(0 0 24px #FFD600AA)'}} />
-                  </motion.div>
-                  {/* Puntos y frases */}
-                  <div className="relative w-full flex flex-col md:flex-row items-center justify-between z-10">
-                    {puntos.map((txt, idx) => (
-  <div
-    key={idx}
-    className="flex flex-col items-center group md:w-1/6 w-full gap-0 mb-6 md:mb-0 last:mb-0 md:last:mb-0"
-    style={{ gap: 0 }}
-  >
-    {/* Bola con glow sutil y pulso automático */}
-    <motion.div
-      className="w-6 h-6 md:w-7 md:h-7 rounded-full bg-[#FFD600] border-4 border-black shadow-[0_0_8px_2px_#FFD600,0_0_12px_4px_#FFD60044]"
-      style={{ boxShadow: '0 0 8px 2px #FFD600, 0 0 12px 4px #FFD60044' }}
-      animate={activeIdx === idx ? { scale: 1.25, boxShadow: '0 0 16px 6px #FFD600, 0 0 24px 10px #FFD60044' } : { scale: 1, boxShadow: '0 0 8px 2px #FFD600, 0 0 12px 4px #FFD60044' }}
-      transition={{ type: 'spring', stiffness: 350, damping: 18 }}
-    />
-    <span
-      className={`text-xs md:text-sm text-center break-words leading-tight max-w-[6.5rem] md:max-w-[8rem] text-black dark:text-gray-200 md:font-semibold mt-3 md:mt-2 drop-shadow-md ${activeIdx === idx ? 'text-yellow-300 scale-110 font-bold' : ''}`}
-    >
-      {txt}
-    </span>
-  </div>
-))}
-                  </div>
-                </div>
-              </div>
-            </div>
-          );
-        })()}
-
 
         {/* Sección de Planes de Suscripción */}
         <div className="w-full flex flex-col items-center justify-center mt-16 mb-12">
@@ -850,6 +780,66 @@ export default function Servicios() {
           </div>
         )}
       </div>
+
+      {/* Línea amarilla animada y metodología (versión especial servicios, con pulso automático) */}
+      {(() => {
+      const puntos = lang === 'en'
+? [
+    "Discovery",
+    "Strategy",
+    "Creativity",
+    "Development",
+    "Launch",
+    "Support"
+  ]
+: [
+    "Descubrimiento",
+    "Estrategia",
+    "Creatividad",
+    "Desarrollo",
+    "Lanzamiento",
+    "Soporte"
+  ];
+      const [activeIdx, setActiveIdx] = useState(0);
+      useEffect(() => {
+        const interval = setInterval(() => {
+          setActiveIdx((prev: number) => (prev + 1) % puntos.length);
+        }, 5000);
+        return () => clearInterval(interval);
+      }, [puntos.length]);
+      return (
+        <div className="w-full flex flex-col items-center py-16 bg-transparent mb-10 md:mb-16 mt-10 md:mt-16">
+          <div className="max-w-5xl w-full flex flex-col items-center">
+            <div className="relative w-full flex flex-col gap-8 md:gap-12">
+
+              {/* Puntos y frases */}
+              <div className="relative w-full flex flex-col md:flex-row items-center justify-between z-10">
+                {puntos.map((txt, idx) => (
+<div
+  key={idx}
+  className="flex flex-col items-center group md:w-1/6 w-full gap-0 mb-6 md:mb-0 last:mb-0 md:last:mb-0"
+  style={{ gap: 0 }}
+>
+  {/* Bola con glow sutil y pulso automático */}
+  <motion.div
+    className="w-6 h-6 md:w-7 md:h-7 rounded-full bg-[#FFD600] border-4 border-black shadow-[0_0_8px_2px_#FFD600,0_0_12px_4px_#FFD60044]"
+    style={{ boxShadow: '0 0 8px 2px #FFD600, 0 0 12px 4px #FFD60044' }}
+    animate={activeIdx === idx ? { scale: 1.25, boxShadow: '0 0 16px 6px #FFD600, 0 0 24px 10px #FFD60044' } : { scale: 1, boxShadow: '0 0 8px 2px #FFD600, 0 0 12px 4px #FFD60044' }}
+    transition={{ type: 'spring', stiffness: 350, damping: 18 }}
+  />
+  <span
+    className={`text-xs md:text-sm text-center break-words leading-tight max-w-[6.5rem] md:max-w-[8rem] text-black dark:text-gray-200 md:font-semibold mt-3 md:mt-2 drop-shadow-md ${activeIdx === idx ? 'text-yellow-300 scale-110 font-bold' : ''}`}
+  >
+    {txt}
+  </span>
+</div>
+))}
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    })()}
     </div>
   );
 }
