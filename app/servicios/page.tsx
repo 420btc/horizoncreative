@@ -6,7 +6,22 @@ import React, { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
 import Image from "next/image"
+import { useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
+import * as z from "zod"
+import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
+import { Button } from "@/components/ui/button"
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
+import { Send, X } from "lucide-react"
+import emailjs from '@emailjs/browser'
 // Si usas TypeScript, asegúrate de tener instalado @types/react para evitar errores de JSX.
+
+const formSchema = z.object({
+  name: z.string().min(2, { message: "El nombre debe tener al menos 2 caracteres." }),
+  email: z.string().email({ message: "Por favor, introduce un correo electrónico válido." }),
+  message: z.string().min(10, { message: "El mensaje debe tener al menos 10 caracteres." }),
+})
 
 const getServicios = (lang: 'es' | 'en') => [
   {
@@ -86,6 +101,19 @@ export default function Servicios() {
   const [buttonAnimatingDesktop, setButtonAnimatingDesktop] = useState(false);
   const router = useRouter();
   const [lang, setLang] = useState<'es'|'en'>(typeof window !== 'undefined' && (window as any).__contactLang === 'en' ? 'en' : 'es');
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [selectedPlan, setSelectedPlan] = useState<string>('')
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<'success' | 'error' | null>(null)
+
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      message: "",
+    },
+  })
 
   useEffect(() => setMounted(true), [])
   useEffect(() => {
@@ -95,6 +123,63 @@ export default function Servicios() {
     window.addEventListener('click', syncLang);
     return () => window.removeEventListener('click', syncLang);
   }, []);
+
+  const openModal = (planName: string) => {
+    setSelectedPlan(planName)
+    setIsModalOpen(true)
+    setSubmitStatus(null)
+    form.reset()
+  }
+
+  const closeModal = () => {
+    setIsModalOpen(false)
+    setSelectedPlan('')
+    setSubmitStatus(null)
+    form.reset()
+  }
+
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    setIsSubmitting(true)
+    setSubmitStatus(null)
+
+    try {
+      // Enviar email al cliente
+      await emailjs.send(
+        'service_06mwro7',
+        'template_fbh9vyx',
+        {
+          from_name: values.name,
+          from_email: values.email,
+          message: `Solicitud de información para el plan ${selectedPlan}:\n\n${values.message}`,
+          to_name: 'Cliente',
+        },
+        'crT-xgI3BjGddLEgY'
+      )
+
+      // Enviar email a la empresa
+      await emailjs.send(
+        'service_06mwro7',
+        'template_o8x6wug',
+        {
+          from_name: values.name,
+          from_email: values.email,
+          message: `Solicitud de información para el plan ${selectedPlan}:\n\n${values.message}`,
+          to_name: 'Horizon Team',
+        },
+        'crT-xgI3BjGddLEgY'
+      )
+
+      setSubmitStatus('success')
+      setTimeout(() => {
+        closeModal()
+      }, 2000)
+    } catch (error) {
+      console.error('Error sending email:', error)
+      setSubmitStatus('error')
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
 
   const t = {
     title: lang === 'en' ? (<span>Our <span className="text-yellow-400">Services</span></span>) : (<span>Nuestros <span className="text-yellow-400">Servicios</span></span>),
@@ -373,6 +458,204 @@ export default function Servicios() {
         })()}
 
 
+        {/* Sección de Planes de Suscripción */}
+        <div className="w-full flex flex-col items-center justify-center mt-16 mb-12">
+          <motion.div
+            className="text-center mb-12"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <h2 className="text-4xl font-black mb-4 text-foreground">
+              {lang === 'en' ? (
+                <span>Choose Your <span className="text-yellow-400">Plan</span></span>
+              ) : (
+                <span>Elige Tu <span className="text-yellow-400">Plan</span></span>
+              )}
+            </h2>
+            <p className="text-lg text-foreground max-w-2xl mx-auto">
+              {lang === 'en'
+                ? 'Select the perfect subscription plan that fits your business needs and budget.'
+                : 'Selecciona el plan de suscripción perfecto que se adapte a las necesidades y presupuesto de tu negocio.'}
+            </p>
+          </motion.div>
+
+          {/* Tarjetas de Planes */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl w-full px-4">
+            {/* Plan ECO */}
+            <motion.div
+              className="bg-yellow-400 text-black rounded-2xl p-8 relative overflow-hidden shadow-xl"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+            >
+              <div className="relative z-10">
+                <h3 className="text-3xl font-black mb-6">ECO</h3>
+                <div className="space-y-4 mb-8">
+                  <div className="flex items-center gap-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/>
+                      <circle cx="12" cy="13" r="3"/>
+                    </svg>
+                    <span className="font-semibold">
+                      {lang === 'en' ? 'Business Photography' : 'Fotografía del negocio'}
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M16 4v12l-4-2-4 2V4"/>
+                      <path d="M6 2h12v2H6z"/>
+                    </svg>
+                    <span className="font-semibold">
+                      {lang === 'en' ? 'Social Media' : 'Redes sociales'}
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                      <path d="M2 17l10 5 10-5"/>
+                      <path d="M2 12l10 5 10-5"/>
+                    </svg>
+                    <span className="font-semibold">Branding</span>
+                  </div>
+                  {/* Espaciador para alinear con otros planes */}
+                  <div className="h-16"></div>
+                </div>
+                <button 
+                  onClick={() => openModal('ECO')}
+                  className="w-full bg-black text-yellow-400 font-bold py-3 px-6 rounded-full hover:bg-gray-800 transition-colors"
+                >
+                  {lang === 'en' ? 'REQUEST' : 'SOLICITAR'}
+                </button>
+              </div>
+            </motion.div>
+
+            {/* Plan MEDIO */}
+            <motion.div
+              className="bg-yellow-400 text-black rounded-2xl p-8 relative overflow-hidden shadow-xl"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              <div className="relative z-10">
+                <h3 className="text-3xl font-black mb-6">MEDIO</h3>
+                <div className="space-y-4 mb-8">
+                  <div className="flex items-center gap-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/>
+                      <circle cx="12" cy="13" r="3"/>
+                    </svg>
+                    <span className="font-semibold">
+                      {lang === 'en' ? 'Business Photography' : 'Fotografía del negocio'}
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M16 4v12l-4-2-4 2V4"/>
+                      <path d="M6 2h12v2H6z"/>
+                    </svg>
+                    <span className="font-semibold">
+                      {lang === 'en' ? 'Social Media' : 'Redes sociales'}
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <rect width="18" height="14" x="3" y="3" rx="2"/>
+                      <path d="M9 12l2 2 4-4"/>
+                    </svg>
+                    <span className="font-semibold">
+                      {lang === 'en' ? 'Video' : 'Video'}
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                      <path d="M2 17l10 5 10-5"/>
+                      <path d="M2 12l10 5 10-5"/>
+                    </svg>
+                    <span className="font-semibold">Branding</span>
+                  </div>
+                  {/* Espaciador para alinear con plan premium */}
+                  <div className="h-6"></div>
+                </div>
+                <button 
+                  onClick={() => openModal('MEDIO')}
+                  className="w-full bg-black text-yellow-400 font-bold py-3 px-6 rounded-full hover:bg-gray-800 transition-colors"
+                >
+                  {lang === 'en' ? 'REQUEST' : 'SOLICITAR'}
+                </button>
+              </div>
+            </motion.div>
+
+            {/* Plan PREMIUM */}
+            <motion.div
+              className="bg-yellow-400 text-black rounded-2xl p-8 relative overflow-hidden shadow-xl"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+            >
+              <div className="relative z-10">
+                <h3 className="text-3xl font-black mb-6">PREMIUM</h3>
+                <div className="space-y-4 mb-8">
+                  <div className="flex items-center gap-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/>
+                      <circle cx="12" cy="13" r="3"/>
+                    </svg>
+                    <span className="font-semibold">
+                      {lang === 'en' ? 'Business Photography' : 'Fotografía del negocio'}
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <rect width="18" height="14" x="3" y="3" rx="2"/>
+                      <path d="M9 12l2 2 4-4"/>
+                    </svg>
+                    <span className="font-semibold">
+                      {lang === 'en' ? 'Social Video' : 'Video sociales'}
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <circle cx="12" cy="12" r="3"/>
+                      <path d="M12 1v6m0 6v6"/>
+                      <path d="m21 12-6-3-6 3-6-3"/>
+                    </svg>
+                    <span className="font-semibold">
+                      {lang === 'en' ? 'FPV Drones' : 'Drones FPV'}
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                      <path d="M9 9h6v6H9z"/>
+                      <path d="M21 12h-3M6 12H3M12 21v-3M12 6V3"/>
+                    </svg>
+                    <span className="font-semibold">
+                      {lang === 'en' ? 'Premium Web Development' : 'Desarrollo Web Premium'}
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M3 3v18h18"/>
+                      <path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14.3"/>
+                    </svg>
+                    <span className="font-semibold">
+                      {lang === 'en' ? 'Advanced Analytics' : 'Analíticas Avanzadas'}
+                    </span>
+                  </div>
+                </div>
+                <button 
+                  onClick={() => openModal('PREMIUM')}
+                  className="w-full bg-black text-yellow-400 font-bold py-3 px-6 rounded-full hover:bg-gray-800 transition-colors"
+                >
+                  {lang === 'en' ? 'REQUEST' : 'SOLICITAR'}
+                </button>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+
         {/* Botón de contacto adaptativo */}
         <div className="w-full flex flex-col items-center justify-center mt-12 mb-2">
           {/* Botón SOLO para móvil */}
@@ -415,6 +698,158 @@ export default function Servicios() {
             Contáctanos
           </motion.a>
         </div>
+
+        {/* Modal de solicitud de plan */}
+        {isModalOpen && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+            <motion.div
+              className="bg-yellow-400 text-black rounded-2xl p-8 max-w-md w-full max-h-[90vh] overflow-y-auto relative"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              transition={{ duration: 0.3 }}
+            >
+              {/* Botón de cerrar */}
+              <button
+                onClick={closeModal}
+                className="absolute top-4 right-4 text-black hover:text-gray-700 transition-colors"
+              >
+                <X className="w-6 h-6" />
+              </button>
+
+              {/* Título del modal */}
+              <h2 className="text-3xl font-black mb-6">
+                {lang === 'en' ? `Request ${selectedPlan} Plan` : `Solicitar Plan ${selectedPlan}`}
+              </h2>
+
+              {/* Descripción del plan */}
+              <div className="mb-6">
+                <p className="text-lg font-semibold mb-4">
+                  {lang === 'en' 
+                    ? `You are requesting information about our ${selectedPlan} plan. Please fill out the form below and we will contact you shortly.`
+                    : `Estás solicitando información sobre nuestro plan ${selectedPlan}. Por favor completa el formulario y nos pondremos en contacto contigo pronto.`
+                  }
+                </p>
+              </div>
+
+              {/* Formulario */}
+              <Form {...form}>
+                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                  <FormField
+                    control={form.control}
+                    name="name"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-black font-semibold">
+                          {lang === 'en' ? 'Name' : 'Nombre'}
+                        </FormLabel>
+                        <FormControl>
+                          <Input
+                            placeholder={lang === 'en' ? 'Your name' : 'Tu nombre'}
+                            className="bg-white text-black border-gray-300 focus:border-black"
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage className="text-red-600" />
+                      </FormItem>
+                    )}
+                  />
+
+                  <FormField
+                    control={form.control}
+                    name="email"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-black font-semibold">
+                          {lang === 'en' ? 'Email' : 'Correo electrónico'}
+                        </FormLabel>
+                        <FormControl>
+                          <Input
+                            type="email"
+                            placeholder={lang === 'en' ? 'your@email.com' : 'tu@email.com'}
+                            className="bg-white text-black border-gray-300 focus:border-black"
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage className="text-red-600" />
+                      </FormItem>
+                    )}
+                  />
+
+                  <FormField
+                    control={form.control}
+                    name="message"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-black font-semibold">
+                          {lang === 'en' ? 'Message' : 'Mensaje'}
+                        </FormLabel>
+                        <FormControl>
+                          <Textarea
+                            placeholder={lang === 'en' 
+                              ? `Tell us more about your project and how the ${selectedPlan} plan can help you...`
+                              : `Cuéntanos más sobre tu proyecto y cómo el plan ${selectedPlan} puede ayudarte...`
+                            }
+                            className="min-h-[120px] bg-white text-black border-gray-300 focus:border-black"
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage className="text-red-600" />
+                      </FormItem>
+                    )}
+                  />
+
+                  {/* Mensajes de estado */}
+                  {submitStatus === 'success' && (
+                    <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded">
+                      {lang === 'en' 
+                        ? 'Message sent successfully! We will contact you soon.'
+                        : '¡Mensaje enviado exitosamente! Nos pondremos en contacto contigo pronto.'
+                      }
+                    </div>
+                  )}
+
+                  {submitStatus === 'error' && (
+                    <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
+                      {lang === 'en' 
+                        ? 'Error sending message. Please try again.'
+                        : 'Error al enviar el mensaje. Por favor intenta de nuevo.'
+                      }
+                    </div>
+                  )}
+
+                  {/* Botones */}
+                  <div className="flex gap-4">
+                    <Button
+                      type="button"
+                      onClick={closeModal}
+                      className="flex-1 bg-gray-600 text-white hover:bg-gray-700"
+                      disabled={isSubmitting}
+                    >
+                      {lang === 'en' ? 'Cancel' : 'Cancelar'}
+                    </Button>
+                    <Button
+                      type="submit"
+                      className="flex-1 bg-black text-yellow-400 hover:bg-gray-800 flex items-center justify-center"
+                      disabled={isSubmitting}
+                    >
+                      {isSubmitting ? (
+                        lang === 'en' ? 'Sending...' : 'Enviando...'
+                      ) : (
+                        <>
+                          <span className="mr-2">
+                            {lang === 'en' ? 'Send' : 'Enviar'}
+                          </span>
+                          <Send className="h-4 w-4" />
+                        </>
+                      )}
+                    </Button>
+                  </div>
+                </form>
+              </Form>
+            </motion.div>
+          </div>
+        )}
       </div>
     </div>
   );
