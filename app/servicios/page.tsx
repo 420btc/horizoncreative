@@ -608,8 +608,9 @@ export default function Servicios() {
                   </div>
                   <div className="flex items-center gap-3">
                     <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <rect width="18" height="14" x="3" y="3" rx="2"/>
-                      <path d="M9 12l2 2 4-4"/>
+                      <path d="M23 7l-7 5 7 5V7z"/>
+                      <rect width="15" height="9" x="1" y="7.5" rx="2" ry="2"/>
+                      <path d="M8 12h.01"/>
                     </svg>
                     <span className="font-semibold">
                       {lang === 'en' ? 'Social Video' : 'Video sociales'}
@@ -617,9 +618,7 @@ export default function Servicios() {
                   </div>
                   <div className="flex items-center gap-3">
                     <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <circle cx="12" cy="12" r="3"/>
-                      <path d="M12 1v6m0 6v6"/>
-                      <path d="m21 12-6-3-6 3-6-3"/>
+                      <path d="M17.8 19.2 16 11l3.5-3.5C21 6 21 4 19 4c-2 0-4 0-5.5 1.5L11 8 4.2 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.9c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/>
                     </svg>
                     <span className="font-semibold">
                       {lang === 'en' ? 'FPV Drones' : 'Drones FPV'}
