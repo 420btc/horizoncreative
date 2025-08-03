@@ -396,7 +396,7 @@ export default function Servicios() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-4xl font-black mb-4 text-foreground">
+            <h2 className="text-5xl font-black mb-4 text-foreground">
               {lang === 'en' ? (
                 <span>Choose Your <span className="text-yellow-400">Plan</span></span>
               ) : (
