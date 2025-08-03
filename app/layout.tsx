@@ -5,6 +5,7 @@ import { Inter } from "next/font/google"
 import { ThemeProvider } from "@/components/theme-provider"
 import Header from "./components/Header"
 import Footer from "./components/Footer"
+import ChatBot from "./components/ChatBot"
 import type React from "react"
 import { Analytics } from "@vercel/analytics/react"
 
@@ -31,6 +32,7 @@ export default function RootLayout({
           <Header />
           <main>{children}</main>
           <Footer />
+          <ChatBot />
           <Analytics />
         </ThemeProvider>
       </body>
