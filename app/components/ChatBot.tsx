@@ -31,7 +31,7 @@ export default function ChatBot({ className = '' }: ChatBotProps) {
   const [messages, setMessages] = useState<Message[]>([
     {
       role: 'assistant',
-      content: '¡Hola! Soy Horix, el asistente virtual de Horizon Creative. ¿En qué puedo ayudarte hoy? Puedo contarte sobre nuestros servicios de branding, diseño web, fotografía y marketing digital.',
+      content: '¡Hola! Soy Horix, el asistente virtual de Horizon Creative. ¿En qué puedo ayudarte hoy?',
       timestamp: new Date()
     }
   ]);
