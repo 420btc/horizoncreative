@@ -69,7 +69,7 @@ export default function InspirationTag() {
         }
         .inspiration-tag-horizontal {
   position: fixed;
-  right: 8px;
+  left: 8px;
   bottom: 48px;
   z-index: 1000;
   background: #FFD600;
@@ -107,7 +107,7 @@ export default function InspirationTag() {
     padding: 0.32rem 0.7rem 0.32rem 0.5rem;
     height: 1.7rem;
     bottom: 12px;
-    right: 8px;
+    left: 8px;
     border-radius: 0.32rem;
     max-width: calc(100vw - 16px);
   }
