@@ -808,7 +808,7 @@ export default function Servicios() {
         return () => clearInterval(interval);
       }, [puntos.length]);
       return (
-        <div className="w-full flex flex-col items-center py-16 bg-transparent mb-10 md:mb-16 mt-10 md:mt-16">
+        <div className="w-full flex flex-col items-center py-16 bg-transparent mb-10 md:mb-16 mt-10 md:mt-16 hidden md:block">
           <div className="max-w-5xl w-full flex flex-col items-center">
             <div className="relative w-full flex flex-col gap-8 md:gap-12">
 
