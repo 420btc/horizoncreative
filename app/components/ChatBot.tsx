@@ -1,7 +1,8 @@
 'use client';
 
 import React, { useState, useRef, useEffect } from 'react';
-import { MessageCircle, X, Send, Minimize2 } from 'lucide-react';
+import { X, Send, Minimize2 } from 'lucide-react';
+import { LiaRocketchat } from 'react-icons/lia';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -189,7 +190,7 @@ export default function ChatBot({ className = '' }: ChatBotProps) {
           className="h-14 w-14 rounded-full bg-yellow-400 hover:bg-yellow-500 text-black shadow-lg transition-all duration-300 hover:scale-110"
           size="icon"
         >
-          <MessageCircle className="h-6 w-6" />
+          <LiaRocketchat className="h-6 w-6" />
         </Button>
       )}
 
@@ -199,8 +200,8 @@ export default function ChatBot({ className = '' }: ChatBotProps) {
           {/* Header */}
           <div className="bg-yellow-400 text-black p-4 flex items-center justify-between">
             <div className="flex items-center space-x-2">
-              <MessageCircle className="h-5 w-5" />
-              <span className="font-semibold">Horizon Chat</span>
+              <LiaRocketchat className="h-6 w-6" />
+              <span className="font-semibold">Horizon IA Chat</span>
             </div>
             <div className="flex items-center space-x-2">
               <Button
