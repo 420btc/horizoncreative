@@ -61,7 +61,7 @@ export default function CitaModal({ isOpen, onClose }: CitaModalProps) {
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-2xl w-full max-w-md max-h-[90vh] overflow-y-auto">
+      <div className="bg-black border border-gray-600 rounded-lg shadow-2xl w-full max-w-md max-h-[90vh] overflow-y-auto">
         {/* Header */}
         <div className="bg-yellow-500 text-black p-4 flex items-center justify-between rounded-t-lg">
           <div className="flex items-center space-x-2">
@@ -85,17 +85,17 @@ export default function CitaModal({ isOpen, onClose }: CitaModalProps) {
               <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Calendar className="h-8 w-8 text-green-600" />
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">
+              <h3 className="text-lg font-semibold text-white mb-2">
                 ¡Solicitud Enviada!
               </h3>
-              <p className="text-gray-600">
+              <p className="text-gray-300">
                 Nos pondremos en contacto contigo pronto para confirmar tu cita.
               </p>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <Label htmlFor="nombre" className="flex items-center space-x-2 mb-2">
+                <Label htmlFor="nombre" className="flex items-center space-x-2 mb-2 text-white">
                   <User className="h-4 w-4" />
                   <span>Nombre completo</span>
                 </Label>
@@ -107,11 +107,12 @@ export default function CitaModal({ isOpen, onClose }: CitaModalProps) {
                   onChange={handleInputChange}
                   required
                   placeholder="Tu nombre completo"
+                  className="bg-gray-800 border-gray-600 text-white placeholder:text-gray-400"
                 />
               </div>
 
               <div>
-                <Label htmlFor="email" className="flex items-center space-x-2 mb-2">
+                <Label htmlFor="email" className="flex items-center space-x-2 mb-2 text-white">
                   <Mail className="h-4 w-4" />
                   <span>Email</span>
                 </Label>
@@ -123,11 +124,12 @@ export default function CitaModal({ isOpen, onClose }: CitaModalProps) {
                   onChange={handleInputChange}
                   required
                   placeholder="tu@email.com"
+                  className="bg-gray-800 border-gray-600 text-white placeholder:text-gray-400"
                 />
               </div>
 
               <div>
-                <Label htmlFor="telefono" className="flex items-center space-x-2 mb-2">
+                <Label htmlFor="telefono" className="flex items-center space-x-2 mb-2 text-white">
                   <Phone className="h-4 w-4" />
                   <span>Teléfono</span>
                 </Label>
@@ -139,12 +141,13 @@ export default function CitaModal({ isOpen, onClose }: CitaModalProps) {
                   onChange={handleInputChange}
                   required
                   placeholder="+34 123 456 789"
+                  className="bg-gray-800 border-gray-600 text-white placeholder:text-gray-400"
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <Label htmlFor="fecha" className="block mb-2">
+                  <Label htmlFor="fecha" className="block mb-2 text-white">
                     Fecha preferida
                   </Label>
                   <Input
@@ -155,10 +158,11 @@ export default function CitaModal({ isOpen, onClose }: CitaModalProps) {
                     onChange={handleInputChange}
                     required
                     min={new Date().toISOString().split('T')[0]}
+                    className="bg-gray-800 border-gray-600 text-white placeholder:text-gray-400"
                   />
                 </div>
                 <div>
-                  <Label htmlFor="hora" className="block mb-2">
+                  <Label htmlFor="hora" className="block mb-2 text-white">
                     Hora preferida
                   </Label>
                   <Input
@@ -168,12 +172,13 @@ export default function CitaModal({ isOpen, onClose }: CitaModalProps) {
                     value={formData.hora}
                     onChange={handleInputChange}
                     required
+                    className="bg-gray-800 border-gray-600 text-white placeholder:text-gray-400"
                   />
                 </div>
               </div>
 
               <div>
-                <Label htmlFor="mensaje" className="flex items-center space-x-2 mb-2">
+                <Label htmlFor="mensaje" className="flex items-center space-x-2 mb-2 text-white">
                   <MessageSquare className="h-4 w-4" />
                   <span>Mensaje (opcional)</span>
                 </Label>
@@ -184,6 +189,7 @@ export default function CitaModal({ isOpen, onClose }: CitaModalProps) {
                   onChange={handleInputChange}
                   placeholder="Cuéntanos más sobre lo que necesitas..."
                   rows={3}
+                  className="bg-gray-800 border-gray-600 text-white placeholder:text-gray-400"
                 />
               </div>
 
@@ -192,7 +198,7 @@ export default function CitaModal({ isOpen, onClose }: CitaModalProps) {
                   type="button"
                   variant="outline"
                   onClick={onClose}
-                  className="flex-1"
+                  className="flex-1 border-gray-600 text-white hover:bg-gray-800"
                   disabled={isSubmitting}
                 >
                   Cancelar

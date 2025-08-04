@@ -82,7 +82,7 @@ export default function ServicioModal({ isOpen, onClose }: ServicioModalProps) {
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto">
+      <div className="bg-black border border-gray-600 rounded-lg shadow-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto">
         {/* Header */}
         <div className="bg-yellow-500 text-black p-4 flex items-center justify-between rounded-t-lg">
           <div className="flex items-center space-x-2">
@@ -106,17 +106,17 @@ export default function ServicioModal({ isOpen, onClose }: ServicioModalProps) {
               <div className="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Briefcase className="h-8 w-8 text-yellow-600" />
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">
+              <h3 className="text-lg font-semibold text-white mb-2">
                 ¡Solicitud Enviada!
               </h3>
-              <p className="text-gray-600">
+              <p className="text-gray-300">
                 Nos pondremos en contacto contigo pronto para discutir tu proyecto.
               </p>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <Label htmlFor="nombre" className="flex items-center space-x-2 mb-2">
+                <Label htmlFor="nombre" className="flex items-center space-x-2 mb-2 text-white">
                   <User className="h-4 w-4" />
                   <span>Nombre completo</span>
                 </Label>
@@ -128,11 +128,12 @@ export default function ServicioModal({ isOpen, onClose }: ServicioModalProps) {
                   onChange={handleInputChange}
                   required
                   placeholder="Tu nombre completo"
+                  className="bg-gray-800 border-gray-600 text-white placeholder-gray-400"
                 />
               </div>
 
               <div>
-                <Label htmlFor="email" className="flex items-center space-x-2 mb-2">
+                <Label htmlFor="email" className="flex items-center space-x-2 mb-2 text-white">
                   <Mail className="h-4 w-4" />
                   <span>Email</span>
                 </Label>
@@ -144,11 +145,12 @@ export default function ServicioModal({ isOpen, onClose }: ServicioModalProps) {
                   onChange={handleInputChange}
                   required
                   placeholder="tu@email.com"
+                  className="bg-gray-800 border-gray-600 text-white placeholder-gray-400"
                 />
               </div>
 
               <div>
-                <Label htmlFor="telefono" className="flex items-center space-x-2 mb-2">
+                <Label htmlFor="telefono" className="flex items-center space-x-2 mb-2 text-white">
                   <Phone className="h-4 w-4" />
                   <span>Teléfono</span>
                 </Label>
@@ -160,11 +162,12 @@ export default function ServicioModal({ isOpen, onClose }: ServicioModalProps) {
                   onChange={handleInputChange}
                   required
                   placeholder="+34 123 456 789"
+                  className="bg-gray-800 border-gray-600 text-white placeholder-gray-400"
                 />
               </div>
 
               <div>
-                <Label htmlFor="empresa" className="flex items-center space-x-2 mb-2">
+                <Label htmlFor="empresa" className="flex items-center space-x-2 mb-2 text-white">
                   <Building className="h-4 w-4" />
                   <span>Empresa (opcional)</span>
                 </Label>
@@ -175,11 +178,12 @@ export default function ServicioModal({ isOpen, onClose }: ServicioModalProps) {
                   value={formData.empresa}
                   onChange={handleInputChange}
                   placeholder="Nombre de tu empresa"
+                  className="bg-gray-800 border-gray-600 text-white placeholder-gray-400"
                 />
               </div>
 
               <div>
-                <Label htmlFor="servicio" className="flex items-center space-x-2 mb-2">
+                <Label htmlFor="servicio" className="flex items-center space-x-2 mb-2 text-white">
                   <Briefcase className="h-4 w-4" />
                   <span>Servicio de interés</span>
                 </Label>
@@ -198,7 +202,7 @@ export default function ServicioModal({ isOpen, onClose }: ServicioModalProps) {
               </div>
 
               <div>
-                <Label htmlFor="presupuesto" className="block mb-2">
+                <Label htmlFor="presupuesto" className="block mb-2 text-white">
                   Presupuesto aproximado (opcional)
                 </Label>
                 <Select onValueChange={(value) => handleSelectChange('presupuesto', value)}>
@@ -216,7 +220,7 @@ export default function ServicioModal({ isOpen, onClose }: ServicioModalProps) {
               </div>
 
               <div>
-                <Label htmlFor="mensaje" className="flex items-center space-x-2 mb-2">
+                <Label htmlFor="mensaje" className="flex items-center space-x-2 mb-2 text-white">
                   <MessageSquare className="h-4 w-4" />
                   <span>Descripción del proyecto</span>
                 </Label>
@@ -228,6 +232,7 @@ export default function ServicioModal({ isOpen, onClose }: ServicioModalProps) {
                   required
                   placeholder="Cuéntanos más sobre tu proyecto, objetivos, plazos, etc..."
                   rows={4}
+                  className="bg-gray-800 border-gray-600 text-white placeholder-gray-400"
                 />
               </div>
 
