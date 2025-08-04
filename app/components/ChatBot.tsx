@@ -196,12 +196,14 @@ export default function ChatBot({ className = '' }: ChatBotProps) {
 
       {/* Chat Window */}
       {isOpen && (
-        <div className="bg-black rounded-lg shadow-2xl border border-gray-600 w-80 h-96 flex flex-col overflow-hidden">
+        <div className={`bg-black rounded-lg shadow-2xl border border-gray-600 w-80 flex flex-col overflow-hidden ${
+          isMinimized ? 'h-auto' : 'h-96'
+        }`}>
           {/* Header */}
           <div className="bg-yellow-400 text-black p-4 flex items-center justify-between">
             <div className="flex items-center space-x-2">
               <LiaRocketchat className="h-6 w-6" />
-              <span className="font-semibold">Horizon IA Chat</span>
+              <span className="font-semibold">Horizon Chat</span>
             </div>
             <div className="flex items-center space-x-2">
               <Button
