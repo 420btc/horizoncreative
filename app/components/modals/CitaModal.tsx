@@ -6,6 +6,21 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
+import emailjs from '@emailjs/browser';
+
+const citaSchema = z.object({
+  nombre: z.string().min(1, 'El nombre es requerido'),
+  email: z.string().email('Email inválido'),
+  telefono: z.string().min(1, 'El teléfono es requerido'),
+  fecha: z.string().min(1, 'La fecha es requerida'),
+  hora: z.string().min(1, 'La hora es requerida'),
+  mensaje: z.string().optional()
+});
+
+type CitaFormData = z.infer<typeof citaSchema>;
 
 interface CitaModalProps {
   isOpen: boolean;
@@ -13,48 +28,66 @@ interface CitaModalProps {
 }
 
 export default function CitaModal({ isOpen, onClose }: CitaModalProps) {
-  const [formData, setFormData] = useState({
-    nombre: '',
-    email: '',
-    telefono: '',
-    fecha: '',
-    hora: '',
-    mensaje: ''
-  });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset
+  } = useForm<CitaFormData>({
+    resolver: zodResolver(citaSchema)
+  });
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const onSubmit = async (data: CitaFormData) => {
     setIsSubmitting(true);
 
-    // Simular envío del formulario
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
-    setSubmitted(true);
-    setIsSubmitting(false);
-    
-    // Cerrar modal después de 2 segundos
-    setTimeout(() => {
-      onClose();
-      setSubmitted(false);
-      setFormData({
-        nombre: '',
-        email: '',
-        telefono: '',
-        fecha: '',
-        hora: '',
-        mensaje: ''
-      });
-    }, 2000);
+    try {
+      // Enviar email al usuario
+      await emailjs.send(
+        'service_06mwro7',
+        'template_fbh9vyx',
+        {
+          to_name: data.nombre,
+          to_email: data.email,
+          from_name: 'Agencia Creativa',
+          message: `Hemos recibido tu solicitud de cita para el ${data.fecha} a las ${data.hora}. Te contactaremos pronto para confirmar.`,
+          reply_to: data.email
+        },
+        'crT-xgI3BjGddLEgY'
+      );
+
+      // Enviar email a la empresa
+      await emailjs.send(
+        'service_06mwro7',
+        'template_o8x6wug',
+        {
+          from_name: data.nombre,
+          from_email: data.email,
+          phone: data.telefono,
+          fecha: data.fecha,
+          hora: data.hora,
+          message: data.mensaje || 'Sin mensaje adicional',
+          reply_to: data.email
+        },
+        'crT-xgI3BjGddLEgY'
+      );
+
+      setSubmitted(true);
+      
+      // Cerrar modal después de 2 segundos
+      setTimeout(() => {
+        onClose();
+        setSubmitted(false);
+        reset();
+      }, 2000);
+    } catch (error) {
+      console.error('Error al enviar el email:', error);
+      alert('Error al enviar la solicitud. Por favor, inténtalo de nuevo.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   if (!isOpen) return null;
@@ -93,7 +126,7 @@ export default function CitaModal({ isOpen, onClose }: CitaModalProps) {
               </p>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
               <div>
                 <Label htmlFor="nombre" className="flex items-center space-x-2 mb-2 text-white">
                   <User className="h-4 w-4" />
@@ -101,14 +134,14 @@ export default function CitaModal({ isOpen, onClose }: CitaModalProps) {
                 </Label>
                 <Input
                   id="nombre"
-                  name="nombre"
                   type="text"
-                  value={formData.nombre}
-                  onChange={handleInputChange}
-                  required
+                  {...register('nombre')}
                   placeholder="Tu nombre completo"
                   className="bg-gray-800 border-gray-600 text-white placeholder:text-gray-400"
                 />
+                {errors.nombre && (
+                  <p className="text-red-400 text-sm mt-1">{errors.nombre.message}</p>
+                )}
               </div>
 
               <div>
@@ -118,14 +151,14 @@ export default function CitaModal({ isOpen, onClose }: CitaModalProps) {
                 </Label>
                 <Input
                   id="email"
-                  name="email"
                   type="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  required
+                  {...register('email')}
                   placeholder="tu@email.com"
                   className="bg-gray-800 border-gray-600 text-white placeholder:text-gray-400"
                 />
+                {errors.email && (
+                  <p className="text-red-400 text-sm mt-1">{errors.email.message}</p>
+                )}
               </div>
 
               <div>
@@ -135,14 +168,14 @@ export default function CitaModal({ isOpen, onClose }: CitaModalProps) {
                 </Label>
                 <Input
                   id="telefono"
-                  name="telefono"
                   type="tel"
-                  value={formData.telefono}
-                  onChange={handleInputChange}
-                  required
+                  {...register('telefono')}
                   placeholder="+34 123 456 789"
                   className="bg-gray-800 border-gray-600 text-white placeholder:text-gray-400"
                 />
+                {errors.telefono && (
+                  <p className="text-red-400 text-sm mt-1">{errors.telefono.message}</p>
+                )}
               </div>
 
               <div className="grid grid-cols-2 gap-4">
@@ -152,14 +185,14 @@ export default function CitaModal({ isOpen, onClose }: CitaModalProps) {
                   </Label>
                   <Input
                     id="fecha"
-                    name="fecha"
                     type="date"
-                    value={formData.fecha}
-                    onChange={handleInputChange}
-                    required
+                    {...register('fecha')}
                     min={new Date().toISOString().split('T')[0]}
                     className="bg-gray-800 border-gray-600 text-white placeholder:text-gray-400"
                   />
+                  {errors.fecha && (
+                    <p className="text-red-400 text-sm mt-1">{errors.fecha.message}</p>
+                  )}
                 </div>
                 <div>
                   <Label htmlFor="hora" className="block mb-2 text-white">
@@ -167,13 +200,13 @@ export default function CitaModal({ isOpen, onClose }: CitaModalProps) {
                   </Label>
                   <Input
                     id="hora"
-                    name="hora"
                     type="time"
-                    value={formData.hora}
-                    onChange={handleInputChange}
-                    required
+                    {...register('hora')}
                     className="bg-gray-800 border-gray-600 text-white placeholder:text-gray-400"
                   />
+                  {errors.hora && (
+                    <p className="text-red-400 text-sm mt-1">{errors.hora.message}</p>
+                  )}
                 </div>
               </div>
 
@@ -184,9 +217,7 @@ export default function CitaModal({ isOpen, onClose }: CitaModalProps) {
                 </Label>
                 <Textarea
                   id="mensaje"
-                  name="mensaje"
-                  value={formData.mensaje}
-                  onChange={handleInputChange}
+                  {...register('mensaje')}
                   placeholder="Cuéntanos más sobre lo que necesitas..."
                   rows={3}
                   className="bg-gray-800 border-gray-600 text-white placeholder:text-gray-400"

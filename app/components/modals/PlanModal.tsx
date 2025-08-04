@@ -6,6 +6,20 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
+import emailjs from '@emailjs/browser';
+
+const planSchema = z.object({
+  nombre: z.string().min(1, 'El nombre es requerido'),
+  email: z.string().email('Email inválido'),
+  telefono: z.string().min(1, 'El teléfono es requerido'),
+  empresa: z.string().min(1, 'La empresa es requerida'),
+  mensaje: z.string().optional()
+});
+
+type PlanFormData = z.infer<typeof planSchema>;
 
 interface PlanModalProps {
   isOpen: boolean;
@@ -53,48 +67,69 @@ const planDetails = {
 };
 
 export default function PlanModal({ isOpen, onClose, planType }: PlanModalProps) {
-  const [formData, setFormData] = useState({
-    nombre: '',
-    email: '',
-    telefono: '',
-    empresa: '',
-    mensaje: ''
-  });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
   const plan = planDetails[planType];
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset
+  } = useForm<PlanFormData>({
+    resolver: zodResolver(planSchema)
+  });
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const onSubmit = async (data: PlanFormData) => {
     setIsSubmitting(true);
 
-    // Simular envío del formulario
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
-    setSubmitted(true);
-    setIsSubmitting(false);
-    
-    // Cerrar modal después de 2 segundos
-    setTimeout(() => {
-      onClose();
-      setSubmitted(false);
-      setFormData({
-        nombre: '',
-        email: '',
-        telefono: '',
-        empresa: '',
-        mensaje: ''
-      });
-    }, 2000);
+    try {
+      // Enviar email al usuario
+      await emailjs.send(
+        'service_06mwro7',
+        'template_fbh9vyx',
+        {
+          to_name: data.nombre,
+          to_email: data.email,
+          from_name: 'Agencia Creativa',
+          message: `Hemos recibido tu solicitud para contratar el ${plan.name}. Te contactaremos pronto para proceder con la activación.`,
+          reply_to: data.email
+        },
+        'crT-xgI3BjGddLEgY'
+      );
+
+      // Enviar email a la empresa
+      await emailjs.send(
+        'service_06mwro7',
+        'template_o8x6wug',
+        {
+          from_name: data.nombre,
+          from_email: data.email,
+          phone: data.telefono,
+          empresa: data.empresa,
+          plan: plan.name,
+          precio: plan.price,
+          message: data.mensaje || 'Sin mensaje adicional',
+          reply_to: data.email
+        },
+        'crT-xgI3BjGddLEgY'
+      );
+
+      setSubmitted(true);
+      
+      // Cerrar modal después de 2 segundos
+      setTimeout(() => {
+        onClose();
+        setSubmitted(false);
+        reset();
+      }, 2000);
+    } catch (error) {
+      console.error('Error al enviar el email:', error);
+      alert('Error al enviar la solicitud. Por favor, inténtalo de nuevo.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   if (!isOpen) return null;
@@ -151,7 +186,7 @@ export default function PlanModal({ isOpen, onClose, planType }: PlanModalProps)
               </div>
 
               {/* Form */}
-              <form onSubmit={handleSubmit} className="space-y-4">
+              <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
                 <div>
                   <Label htmlFor="nombre" className="flex items-center space-x-2 mb-2 text-white">
                     <User className="h-4 w-4" />
@@ -159,14 +194,14 @@ export default function PlanModal({ isOpen, onClose, planType }: PlanModalProps)
                   </Label>
                   <Input
                     id="nombre"
-                    name="nombre"
                     type="text"
-                    value={formData.nombre}
-                    onChange={handleInputChange}
-                    required
+                    {...register('nombre')}
                     placeholder="Tu nombre completo"
                     className="bg-gray-800 border-gray-600 text-white placeholder:text-gray-400"
                   />
+                  {errors.nombre && (
+                    <p className="text-red-400 text-sm mt-1">{errors.nombre.message}</p>
+                  )}
                 </div>
 
                 <div>
@@ -176,14 +211,14 @@ export default function PlanModal({ isOpen, onClose, planType }: PlanModalProps)
                   </Label>
                   <Input
                     id="email"
-                    name="email"
                     type="email"
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    required
+                    {...register('email')}
                     placeholder="tu@email.com"
                     className="bg-gray-800 border-gray-600 text-white placeholder:text-gray-400"
                   />
+                  {errors.email && (
+                    <p className="text-red-400 text-sm mt-1">{errors.email.message}</p>
+                  )}
                 </div>
 
                 <div>
@@ -193,14 +228,14 @@ export default function PlanModal({ isOpen, onClose, planType }: PlanModalProps)
                   </Label>
                   <Input
                     id="telefono"
-                    name="telefono"
                     type="tel"
-                    value={formData.telefono}
-                    onChange={handleInputChange}
-                    required
+                    {...register('telefono')}
                     placeholder="+34 123 456 789"
                     className="bg-gray-800 border-gray-600 text-white placeholder:text-gray-400"
                   />
+                  {errors.telefono && (
+                    <p className="text-red-400 text-sm mt-1">{errors.telefono.message}</p>
+                  )}
                 </div>
 
                 <div>
@@ -210,14 +245,14 @@ export default function PlanModal({ isOpen, onClose, planType }: PlanModalProps)
                   </Label>
                   <Input
                     id="empresa"
-                    name="empresa"
                     type="text"
-                    value={formData.empresa}
-                    onChange={handleInputChange}
-                    required
+                    {...register('empresa')}
                     placeholder="Nombre de tu empresa"
                     className="bg-gray-800 border-gray-600 text-white placeholder:text-gray-400"
                   />
+                  {errors.empresa && (
+                    <p className="text-red-400 text-sm mt-1">{errors.empresa.message}</p>
+                  )}
                 </div>
 
                 <div>
@@ -227,9 +262,7 @@ export default function PlanModal({ isOpen, onClose, planType }: PlanModalProps)
                   </Label>
                   <Textarea
                     id="mensaje"
-                    name="mensaje"
-                    value={formData.mensaje}
-                    onChange={handleInputChange}
+                    {...register('mensaje')}
                     placeholder="Cuéntanos más sobre tu proyecto..."
                     rows={3}
                     className="bg-gray-800 border-gray-600 text-white placeholder:text-gray-400"
