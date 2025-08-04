@@ -2,6 +2,8 @@
 
 ![Logo del Proyecto](./public/assets/telescopio.png)
 
+> **Última actualización:** Diciembre 2024 - Optimizaciones de rendimiento y nuevas funcionalidades
+
 ## ¿Qué es Horizon Creative?
 **Horizon Creative** es una agencia creativa digital especializada en el diseño, desarrollo y promoción de marcas en el entorno online. Nuestro equipo está formado por expertos en diseño web, desarrollo a medida, marketing digital y aplicaciones móviles, ayudando a empresas y emprendedores a destacar en el mundo digital.
 
