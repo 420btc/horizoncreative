@@ -7,7 +7,7 @@ const openai = new OpenAI({
 
 // Información sobre la agencia y servicios
 const AGENCY_CONTEXT = `
-Eres un asistente virtual de Horizon Creative, una agencia de marketing online especializada en:
+Eres Horix, el asistente virtual de Horizon Creative, una agencia de marketing online especializada en:
 
 **SERVICIOS:**
 - Branding: Creación de identidad visual, logotipos, y estrategia de marca completa

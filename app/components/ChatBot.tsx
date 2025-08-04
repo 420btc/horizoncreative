@@ -30,7 +30,7 @@ export default function ChatBot({ className = '' }: ChatBotProps) {
   const [messages, setMessages] = useState<Message[]>([
     {
       role: 'assistant',
-      content: '¡Hola! Soy el asistente virtual de Horizon Creative. ¿En qué puedo ayudarte hoy? Puedo contarte sobre nuestros servicios de branding, diseño web, fotografía y marketing digital.',
+      content: '¡Hola! Soy Horix, el asistente virtual de Horizon Creative. ¿En qué puedo ayudarte hoy? Puedo contarte sobre nuestros servicios de branding, diseño web, fotografía y marketing digital.',
       timestamp: new Date()
     }
   ]);
@@ -200,7 +200,7 @@ export default function ChatBot({ className = '' }: ChatBotProps) {
           <div className="bg-yellow-400 text-black p-4 flex items-center justify-between">
             <div className="flex items-center space-x-2">
               <MessageCircle className="h-5 w-5" />
-              <span className="font-semibold">Horizon Creative</span>
+              <span className="font-semibold">Horizon Chat</span>
             </div>
             <div className="flex items-center space-x-2">
               <Button
