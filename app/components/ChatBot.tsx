@@ -13,6 +13,7 @@ interface Message {
   role: 'user' | 'assistant';
   content: string;
   timestamp: Date;
+  responseTime?: number; // tiempo en segundos
   actionButton?: {
     type: string;
     label: string;
@@ -71,6 +72,8 @@ export default function ChatBot({ className = '' }: ChatBotProps) {
     setMessages(prev => [...prev, userMessage]);
     setInputMessage('');
     setIsLoading(true);
+    
+    const startTime = Date.now();
 
     try {
       const response = await fetch('/api/chat', {
@@ -89,11 +92,14 @@ export default function ChatBot({ className = '' }: ChatBotProps) {
       }
 
       const data = await response.json();
+      const endTime = Date.now();
+      const responseTime = (endTime - startTime) / 1000; // convertir a segundos
       
       const assistantMessage: Message = {
         role: 'assistant',
         content: data.message,
         timestamp: new Date(),
+        responseTime: responseTime,
         actionButton: data.actionButton
       };
 
@@ -101,10 +107,14 @@ export default function ChatBot({ className = '' }: ChatBotProps) {
       setConversationHistory(data.conversationHistory || []);
     } catch (error) {
       console.error('Error sending message:', error);
+      const endTime = Date.now();
+      const responseTime = (endTime - startTime) / 1000;
+      
       const errorMessage: Message = {
         role: 'assistant',
         content: 'Lo siento, hubo un error al procesar tu mensaje. Por favor, inténtalo de nuevo.',
-        timestamp: new Date()
+        timestamp: new Date(),
+        responseTime: responseTime
       };
       setMessages(prev => [...prev, errorMessage]);
     } finally {
@@ -160,13 +170,23 @@ export default function ChatBot({ className = '' }: ChatBotProps) {
     });
   };
 
+  const getResponseTimeColor = (responseTime: number) => {
+    if (responseTime <= 2) return 'text-green-400';
+    if (responseTime <= 5) return 'text-orange-400';
+    return 'text-red-400';
+  };
+
+  const formatResponseTime = (responseTime: number) => {
+    return `${responseTime.toFixed(1)}s`;
+  };
+
   return (
     <div className={`fixed bottom-4 right-4 z-50 ${className}`}>
       {/* Chat Button */}
       {!isOpen && (
         <Button
           onClick={toggleChat}
-          className="h-14 w-14 rounded-full bg-yellow-500 hover:bg-yellow-600 text-black shadow-lg transition-all duration-300 hover:scale-110"
+          className="h-14 w-14 rounded-full bg-yellow-400 hover:bg-yellow-500 text-black shadow-lg transition-all duration-300 hover:scale-110"
           size="icon"
         >
           <MessageCircle className="h-6 w-6" />
@@ -177,7 +197,7 @@ export default function ChatBot({ className = '' }: ChatBotProps) {
       {isOpen && (
         <div className="bg-black rounded-lg shadow-2xl border border-gray-600 w-80 h-96 flex flex-col overflow-hidden">
           {/* Header */}
-          <div className="bg-yellow-500 text-black p-4 flex items-center justify-between">
+          <div className="bg-yellow-400 text-black p-4 flex items-center justify-between">
             <div className="flex items-center space-x-2">
               <MessageCircle className="h-5 w-5" />
               <span className="font-semibold">Horizon Creative</span>
@@ -187,7 +207,7 @@ export default function ChatBot({ className = '' }: ChatBotProps) {
                 onClick={minimizeChat}
                 variant="ghost"
                 size="icon"
-                className="h-6 w-6 text-black hover:bg-yellow-600"
+                className="h-6 w-6 text-black hover:bg-yellow-500"
               >
                 <Minimize2 className="h-4 w-4" />
               </Button>
@@ -195,7 +215,7 @@ export default function ChatBot({ className = '' }: ChatBotProps) {
                 onClick={toggleChat}
                 variant="ghost"
                 size="icon"
-                className="h-6 w-6 text-black hover:bg-yellow-600"
+                className="h-6 w-6 text-black hover:bg-yellow-500"
               >
                 <X className="h-4 w-4" />
               </Button>
@@ -216,19 +236,26 @@ export default function ChatBot({ className = '' }: ChatBotProps) {
                         <div
                           className={`max-w-[80%] rounded-lg p-3 ${
                             message.role === 'user'
-                              ? 'bg-yellow-500 text-black'
+                              ? 'bg-yellow-400 text-black'
                               : 'bg-gray-800 text-white'
                           }`}
                         >
                           <p className="text-sm whitespace-pre-wrap">{message.content}</p>
-                          <p className="text-xs opacity-70 mt-1">
-                            {formatTime(message.timestamp)}
-                          </p>
+                          <div className="flex justify-between items-center mt-1">
+                            <p className="text-xs opacity-70">
+                              {formatTime(message.timestamp)}
+                            </p>
+                            {message.role === 'assistant' && message.responseTime && (
+                              <p className={`text-xs ${getResponseTimeColor(message.responseTime)}`}>
+                                {formatResponseTime(message.responseTime)}
+                              </p>
+                            )}
+                          </div>
                         </div>
                         {message.actionButton && message.role === 'assistant' && (
                           <Button
                             onClick={() => handleActionButtonClick(message.actionButton!.type)}
-                            className="bg-yellow-500 hover:bg-yellow-600 text-black text-xs py-1 px-3 h-auto max-w-[80%]"
+                            className="bg-yellow-400 hover:bg-yellow-500 text-black text-xs py-1 px-3 h-auto max-w-[80%]"
                             size="sm"
                           >
                             {message.actionButton.label}
@@ -262,12 +289,12 @@ export default function ChatBot({ className = '' }: ChatBotProps) {
                     onKeyPress={handleKeyPress}
                     placeholder="Escribe tu mensaje..."
                     disabled={isLoading}
-                    className="flex-1 bg-yellow-500 text-black placeholder:text-gray-700 border-yellow-500 focus:border-yellow-400"
+                    className="flex-1 bg-yellow-400 text-black placeholder:text-gray-700 border-yellow-400 focus:border-yellow-300"
                   />
                   <Button
                     onClick={sendMessage}
                     disabled={isLoading || !inputMessage.trim()}
-                    className="bg-yellow-500 hover:bg-yellow-600 text-black"
+                    className="bg-yellow-400 hover:bg-yellow-500 text-black"
                     size="icon"
                   >
                     <Send className="h-4 w-4" />
