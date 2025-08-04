@@ -56,7 +56,10 @@ export default function ChatBot({ className = '' }: ChatBotProps) {
   }, [messages]);
 
   useEffect(() => {
-    if (isOpen && !isMinimized && inputRef.current) {
+    // Solo hacer focus automático en desktop, no en móvil
+    // Verificar tanto el ancho de pantalla como si es un dispositivo táctil
+    const isMobile = window.innerWidth <= 768 || 'ontouchstart' in window;
+    if (isOpen && !isMinimized && inputRef.current && !isMobile) {
       inputRef.current.focus();
     }
   }, [isOpen, isMinimized]);
@@ -293,6 +296,10 @@ export default function ChatBot({ className = '' }: ChatBotProps) {
                     placeholder="Escribe tu mensaje..."
                     disabled={isLoading}
                     className="flex-1 bg-yellow-400 text-black placeholder:text-gray-700 border-yellow-400 focus:border-yellow-300"
+                    autoComplete="off"
+                    autoCorrect="off"
+                    autoCapitalize="off"
+                    spellCheck="false"
                   />
                   <Button
                     onClick={sendMessage}
