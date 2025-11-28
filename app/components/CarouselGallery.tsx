@@ -45,57 +45,11 @@ export default function CarouselGallery({ images }: CarouselGalleryProps) {
         {/* Contenido del carrusel */}
         <div className="w-full">
           {/* Grid 2x3 o 1x3 */}
-          <div className={`grid grid-cols-2 sm:grid-cols-3 gap-6 justify-items-center`}>
-            {pageImages.map((img, idx) => (
-              <div
-                key={img.src}
-                className="group relative cursor-zoom-in w-full max-w-none sm:max-w-xs"
-                onMouseEnter={() => {
-                  setIsHovered(true);
-                  setModalImg(img.src);
-                }}
-                onMouseLeave={() => {
-                  setIsHovered(false);
-                  // Pequeño retraso para permitir que el mouse se mueva al modal
-                  setTimeout(() => {
-                    if (!isHovered) {
-                      setModalImg(null);
-                    }
-                  }, 100);
-                }}
-              >
-                <Image
-                  src={img.src}
-                  alt={img.alt}
-                  width={400}
-                  height={260}
-                  className="rounded-2xl shadow-xl object-cover w-full h-60 sm:h-64 md:h-72 lg:h-80 bg-black group-hover:brightness-75 transition-all duration-300"
-                  style={{ objectPosition: "center" }}
-                />
-                {/* Overlay lupa en hover */}
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition bg-black/20 rounded-2xl">
-                  <svg className="w-12 h-12 text-yellow-400" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                    <circle cx="11" cy="11" r="8" />
-                    <line x1="21" y1="21" x2="16.65" y2="16.65" />
-                  </svg>
-                </div>
-              </div>
-            ))}
-            {/* Si hay menos de 6 imágenes, rellena los huecos para mantener el grid */}
-            {Array.from({ length: imagesPerPage - pageImages.length }).map((_, i) => (
-              <div key={`empty-${i}`} />
-            ))}
-          </div>
-        </div>
-
-        {/* Contenido del carrusel */}
-        <div className="w-full">
-          {/* Grid 2x3 o 1x3 */}
           <div className={`grid grid-cols-2 sm:grid-cols-3 gap-6 justify-items-center w-full`}>
             {pageImages.map((img, idx) => (
               <div
                 key={img.src}
-                className="group relative cursor-zoom-in w-full max-w-none sm:max-w-xs"
+                className="group relative cursor-zoom-in w-full aspect-[4/3] overflow-hidden rounded-2xl shadow-xl bg-black"
                 onMouseEnter={() => {
                   setIsHovered(true);
                   setModalImg(img.src);
@@ -113,10 +67,9 @@ export default function CarouselGallery({ images }: CarouselGalleryProps) {
                 <Image
                   src={img.src}
                   alt={img.alt}
-                  width={400}
-                  height={260}
-                  className="rounded-2xl shadow-xl object-cover w-full h-60 sm:h-64 md:h-72 lg:h-80 bg-black group-hover:brightness-75 transition-all duration-300"
-                  style={{ objectPosition: "center" }}
+                  fill
+                  sizes="(max-width: 640px) 50vw, 33vw"
+                  className="object-cover group-hover:brightness-75 transition-all duration-300"
                 />
                 {/* Overlay lupa en hover */}
                 <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition bg-black/20 rounded-2xl">
