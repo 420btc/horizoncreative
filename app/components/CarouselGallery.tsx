@@ -11,7 +11,6 @@ export default function CarouselGallery({ images }: CarouselGalleryProps) {
   if (!images || images.length === 0) return null;
 
   const [modalImg, setModalImg] = useState<string | null>(null);
-  const [isHovered, setIsHovered] = useState(false);
   // currentPage es el índice de la "página" de 6 imágenes (0, 1, ...)
   const [currentPage, setCurrentPage] = useState(0);
   const imagesPerPage = 6;
@@ -50,19 +49,7 @@ export default function CarouselGallery({ images }: CarouselGalleryProps) {
               <div
                 key={img.src}
                 className="group relative cursor-zoom-in w-full aspect-[4/3] overflow-hidden rounded-2xl shadow-xl bg-black"
-                onMouseEnter={() => {
-                  setIsHovered(true);
-                  setModalImg(img.src);
-                }}
-                onMouseLeave={() => {
-                  setIsHovered(false);
-                  // Pequeño retraso para permitir que el mouse se mueva al modal
-                  setTimeout(() => {
-                    if (!isHovered) {
-                      setModalImg(null);
-                    }
-                  }, 100);
-                }}
+                onClick={() => setModalImg(img.src)}
               >
                 <Image
                   src={img.src}
@@ -106,10 +93,6 @@ export default function CarouselGallery({ images }: CarouselGalleryProps) {
         <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm"
           onClick={() => setModalImg(null)}
-          onMouseEnter={() => {
-            setModalImg(null);
-            setIsHovered(false);
-          }}
         >
           <div className="relative max-w-3xl w-full flex flex-col items-center" onClick={e => e.stopPropagation()}>
             <button
