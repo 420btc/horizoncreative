@@ -781,65 +781,135 @@ export default function Servicios() {
         )}
       </div>
 
-      {/* Línea amarilla animada y metodología (versión especial servicios, con pulso automático) */}
+      {/* Línea conectada y metodología moderna */}
       {(() => {
-      const puntos = lang === 'en'
-? [
-    "Discovery",
-    "Strategy",
-    "Creativity",
-    "Development",
-    "Launch",
-    "Support"
-  ]
-: [
-    "Descubrimiento",
-    "Estrategia",
-    "Creatividad",
-    "Desarrollo",
-    "Lanzamiento",
-    "Soporte"
-  ];
-      const [activeIdx, setActiveIdx] = useState(0);
-      useEffect(() => {
-        const interval = setInterval(() => {
-          setActiveIdx((prev: number) => (prev + 1) % puntos.length);
-        }, 5000);
-        return () => clearInterval(interval);
-      }, [puntos.length]);
-      return (
-        <div className="w-full hidden md:flex md:flex-col md:items-center py-16 bg-transparent mb-10 md:mb-16 mt-10 md:mt-16">
-          <div className="max-w-5xl w-full flex flex-col items-center">
-            <div className="relative w-full flex flex-col gap-8 md:gap-12">
+        const puntos = lang === 'en'
+          ? [
+              { title: "Discovery", desc: "Understanding your needs" },
+              { title: "Strategy", desc: "Planning the path" },
+              { title: "Creativity", desc: "Designing solutions" },
+              { title: "Development", desc: "Building the product" },
+              { title: "Launch", desc: "Going live" },
+              { title: "Support", desc: "Growing together" }
+            ]
+          : [
+              { title: "Descubrimiento", desc: "Entendiendo tus necesidades" },
+              { title: "Estrategia", desc: "Planificando el camino" },
+              { title: "Creatividad", desc: "Diseñando soluciones" },
+              { title: "Desarrollo", desc: "Construyendo el producto" },
+              { title: "Lanzamiento", desc: "Saliendo al mundo" },
+              { title: "Soporte", desc: "Creciendo juntos" }
+            ];
+        
+        const [activeIdx, setActiveIdx] = useState(0);
+        
+        useEffect(() => {
+          const interval = setInterval(() => {
+            setActiveIdx((prev) => (prev + 1) % puntos.length);
+          }, 3000);
+          return () => clearInterval(interval);
+        }, [puntos.length]);
 
-              {/* Puntos y frases */}
-              <div className="relative w-full flex flex-col md:flex-row items-center justify-between z-10">
-                {puntos.map((txt, idx) => (
-<div
-  key={idx}
-  className="flex flex-col items-center group md:w-1/6 w-full gap-0 mb-6 md:mb-0 last:mb-0 md:last:mb-0"
-  style={{ gap: 0 }}
->
-  {/* Bola con glow sutil y pulso automático */}
-  <motion.div
-    className="w-6 h-6 md:w-7 md:h-7 rounded-full bg-[#FFD600] border-4 border-black shadow-[0_0_8px_2px_#FFD600,0_0_12px_4px_#FFD60044]"
-    style={{ boxShadow: '0 0 8px 2px #FFD600, 0 0 12px 4px #FFD60044' }}
-    animate={activeIdx === idx ? { scale: 1.25, boxShadow: '0 0 16px 6px #FFD600, 0 0 24px 10px #FFD60044' } : { scale: 1, boxShadow: '0 0 8px 2px #FFD600, 0 0 12px 4px #FFD60044' }}
-    transition={{ type: 'spring', stiffness: 350, damping: 18 }}
-  />
-  <span
-    className={`text-xs md:text-sm text-center break-words leading-tight max-w-[6.5rem] md:max-w-[8rem] text-black dark:text-gray-200 md:font-semibold mt-3 md:mt-2 drop-shadow-md ${activeIdx === idx ? 'text-yellow-300 scale-110 font-bold' : ''}`}
-  >
-    {txt}
-  </span>
-</div>
-))}
+        return (
+          <div className="w-full hidden md:flex flex-col items-center pt-24 pb-48 bg-transparent mb-10 mt-10 overflow-visible">
+            <div className="max-w-7xl w-full px-8 relative">
+              {/* Título de sección opcional */}
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="text-center mb-20"
+              >
+                <h3 className="text-2xl font-bold text-foreground opacity-80">
+                  {lang === 'en' ? 'Our Process' : 'Nuestro Proceso'}
+                </h3>
+              </motion.div>
+
+              <div className="relative flex items-center justify-between w-full px-12">
+                {/* Línea base */}
+                <div className="absolute top-1/2 left-0 w-full h-[2px] bg-gray-200 dark:bg-gray-800 -translate-y-1/2" />
+                
+                {/* Línea de progreso animada */}
+                <motion.div 
+                  className="absolute top-1/2 left-0 h-[2px] bg-yellow-400 -translate-y-1/2 origin-left"
+                  initial={{ scaleX: 0 }}
+                  animate={{ scaleX: activeIdx / (puntos.length - 1) }}
+                  transition={{ duration: 0.5, ease: "easeInOut" }}
+                  style={{ width: '100%' }}
+                />
+
+                {/* Puntos */}
+                {puntos.map((item, idx) => {
+                  const isActive = idx === activeIdx;
+                  const isPast = idx < activeIdx;
+
+                  return (
+                    <div 
+                      key={idx} 
+                      className="relative flex flex-col items-center z-10 group cursor-pointer"
+                      onClick={() => setActiveIdx(idx)}
+                    >
+                      {/* Círculo indicador */}
+                      <motion.div
+                        className={`w-4 h-4 rounded-full border-2 transition-all duration-500 flex items-center justify-center ${
+                          isActive || isPast ? "bg-yellow-400 border-yellow-400" : "bg-background border-gray-300 dark:border-gray-700"
+                        }`}
+                        animate={{
+                          scale: isActive ? 1.5 : 1,
+                          boxShadow: isActive ? "0 0 0 8px rgba(250, 204, 21, 0.15)" : "none"
+                        }}
+                      >
+                        {isActive && (
+                          <motion.div 
+                            layoutId="activeIndicator"
+                            className="w-2 h-2 bg-white rounded-full"
+                          />
+                        )}
+                      </motion.div>
+
+                      {/* Texto Título y Descripción (Estilo Bocadillo) */}
+                      <motion.div
+                        className="absolute top-12 flex flex-col items-center w-48 z-20"
+                        initial={{ opacity: 0.6, scale: 1 }}
+                        animate={{
+                          y: isActive ? 0 : 0,
+                          opacity: isActive ? 1 : 0.6,
+                          scale: isActive ? 1.1 : 1,
+                          zIndex: isActive ? 30 : 20
+                        }}
+                      >
+                        <span className={`text-sm md:text-base font-bold transition-colors duration-300 mb-3 ${
+                          isActive ? "text-yellow-400" : "text-foreground"
+                        }`}>
+                          {item.title}
+                        </span>
+                        
+                        {/* Bocadillo descriptivo (Tooltip) */}
+                        <motion.div 
+                          initial={{ opacity: 0, y: -10, scale: 0.9 }}
+                          animate={{ 
+                            opacity: isActive ? 1 : 0,
+                            y: isActive ? 0 : -10,
+                            scale: isActive ? 1 : 0.9
+                          }}
+                          className="relative bg-white dark:bg-zinc-800 text-black dark:text-white px-4 py-2 rounded-lg shadow-xl border border-gray-200 dark:border-zinc-700 w-max max-w-[200px]"
+                        >
+                          {/* Triángulo del bocadillo */}
+                          <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-b-[8px] border-b-white dark:border-b-zinc-800"></div>
+                          
+                          <span className="text-xs font-medium block text-center whitespace-normal leading-relaxed">
+                            {item.desc}
+                          </span>
+                        </motion.div>
+                      </motion.div>
+                    </div>
+                  );
+                })}
               </div>
             </div>
           </div>
-        </div>
-      );
-    })()}
+        );
+      })()}
     </div>
   );
 }
