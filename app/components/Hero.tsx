@@ -187,8 +187,8 @@ export default function Hero() {
 
   const t = {
     subtitle: lang === 'en'
-      ? 'Online marketing agency specialized in digital strategies that drive your business growth.'
-      : 'Agencia de marketing online especializada en estrategias digitales que impulsan el crecimiento de tu negocio.',
+      ? 'Online marketing agency in Malaga specialized in digital strategies that drive your business growth.'
+      : 'Agencia de marketing online en Málaga especializada en estrategias digitales que impulsan el crecimiento de tu negocio.',
     contact: lang === 'en' ? 'Contact Us' : 'Contáctanos',
     services: lang === 'en' ? 'Our Services' : 'Nuestros Servicios',
   };
