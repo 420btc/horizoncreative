@@ -25,7 +25,7 @@ const formSchema = z.object({
 
 const getServicios = (lang: 'es' | 'en') => [
   {
-    icon: <svg xmlns="http://www.w3.org/2000/svg" className="lucide lucide-camera w-12 h-12 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"></path><circle cx="12" cy="13" r="3"></circle></svg>,
+    icon: <svg xmlns="http://www.w3.org/2000/svg" className="lucide lucide-camera w-12 h-12 text-yellow-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"></path><circle cx="12" cy="13" r="3"></circle></svg>,
     title: lang === 'en' ? 'Photography & Video' : 'Fotografía y Video',
     description: lang === 'en'
       ? 'We create high-quality visual content, with images and videos designed to tell your story authentically, connect with your audience, and strengthen your market presence.'
@@ -33,7 +33,7 @@ const getServicios = (lang: 'es' | 'en') => [
     slug: "fotografia",
   },
   {
-    icon: <svg xmlns="http://www.w3.org/2000/svg" className="lucide lucide-megaphone w-12 h-12 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 11l18-5v12L3 13v-2z"></path><path d="M11.6 16.8a2 2 0 1 1-3.2-2.6"></path></svg>,
+    icon: <svg xmlns="http://www.w3.org/2000/svg" className="lucide lucide-megaphone w-12 h-12 text-yellow-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 11l18-5v12L3 13v-2z"></path><path d="M11.6 16.8a2 2 0 1 1-3.2-2.6"></path></svg>,
     title: lang === 'en' ? 'Digital Marketing' : 'Marketing Digital',
     description: lang === 'en'
       ? 'We boost your brand with strategic digital marketing. We create effective campaigns, optimizing your online presence and leveraging the latest trends.'
@@ -41,7 +41,7 @@ const getServicios = (lang: 'es' | 'en') => [
     slug: "marketing-digital",
   },
   {
-    icon: <svg xmlns="http://www.w3.org/2000/svg" className="lucide lucide-smartphone w-12 h-12 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="14" height="20" x="5" y="2" rx="2" /><path d="M12 18h.01" /></svg>,
+    icon: <svg xmlns="http://www.w3.org/2000/svg" className="lucide lucide-smartphone w-12 h-12 text-yellow-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="14" height="20" x="5" y="2" rx="2" /><path d="M12 18h.01" /></svg>,
     title: lang === 'en' ? 'App Design & Development' : 'Diseño & Desarrollo de App',
     description: lang === 'en'
       ? 'We design and develop custom, modern, and functional mobile applications to help you stand out in the digital market.'
@@ -50,7 +50,7 @@ const getServicios = (lang: 'es' | 'en') => [
   },
   {
     icon: (
-  <svg xmlns="http://www.w3.org/2000/svg" className="w-12 h-12 text-primary" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+  <svg xmlns="http://www.w3.org/2000/svg" className="w-12 h-12 text-yellow-400" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
     <rect x="11" y="14" width="26" height="18" rx="2.5" fill="none" stroke="currentColor"/>
     <rect x="8" y="36" width="32" height="4" rx="1.5" fill="none" stroke="currentColor"/>
     <path d="M14 36V32a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v4" stroke="currentColor"/>
@@ -64,7 +64,7 @@ const getServicios = (lang: 'es' | 'en') => [
   },
   {
     icon: (
-      <svg xmlns="http://www.w3.org/2000/svg" className="w-12 h-12 text-primary" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+      <svg xmlns="http://www.w3.org/2000/svg" className="w-12 h-12 text-yellow-400" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
         <rect x="8" y="8" width="32" height="32" rx="8" fill="none" stroke="currentColor"/>
         <path d="M16 20h16M16 24h16M16 28h10" stroke="currentColor"/>
         <circle cx="36" cy="36" r="4" fill="#FFD600" stroke="none"/>
@@ -80,7 +80,7 @@ const getServicios = (lang: 'es' | 'en') => [
   },
   {
     icon: (
-      <svg xmlns="http://www.w3.org/2000/svg" className="w-12 h-12 text-primary" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+      <svg xmlns="http://www.w3.org/2000/svg" className="w-12 h-12 text-yellow-400" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
         <rect x="10" y="10" width="28" height="28" rx="6" fill="none" stroke="currentColor"/>
         <path d="M18 24h12M18 28h12" stroke="currentColor"/>
       </svg>
@@ -192,7 +192,7 @@ export default function Servicios() {
   const servicios = getServicios(lang);
 
   return (
-    <div className="min-h-screen relative bg-background">
+    <div className="min-h-screen relative bg-black">
       {/* Mano esquina inferior izquierda */}
       <Image
         src="/assets/esquina.png"
@@ -226,14 +226,14 @@ export default function Servicios() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h1 className="text-5xl font-black mb-4 text-foreground">{t.title}</h1>
+          <h1 className="text-5xl font-black mb-4 text-white">{t.title}</h1>
           {/* Imagen flyer tipo pegatina, solo visible en md+ */}
 
                     <div className="max-w-3xl mx-auto">
-            <h2 className="text-3xl font-bold mb-4 text-foreground">
+            <h2 className="text-3xl font-bold mb-4 text-white">
               {t.subtitle}
             </h2>
-            <p className="text-lg text-foreground">
+            <p className="text-lg text-white">
               {t.desc}
             </p>
           </div>
@@ -286,9 +286,9 @@ export default function Servicios() {
 ) }
                 <div className="flex items-center mb-4 relative z-10">
                   {service.icon}
-                  <h3 className="text-2xl font-bold ml-4 text-foreground">{service.title}</h3>
+                  <h3 className="text-2xl font-bold ml-4 text-white">{service.title}</h3>
                 </div>
-                <p className="mb-4 relative z-10 text-foreground">{service.description}</p>
+                <p className="mb-4 relative z-10 text-white">{service.description}</p>
                 <div className="mt-6 flex items-center justify-center relative z-10">
                   <span className="flex items-center justify-center w-9 h-9 rounded-full bg-primary text-black group-hover:bg-primary/80 transition-colors shadow-lg">
                     <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
@@ -333,9 +333,9 @@ export default function Servicios() {
     )}
                 <div className="flex items-center mb-4 relative z-10">
                   {service.icon}
-                  <h3 className="text-2xl font-bold ml-4 text-foreground">{service.title}</h3>
+                  <h3 className="text-2xl font-bold ml-4 text-white">{service.title}</h3>
                 </div>
-                <p className="mb-4 relative z-10 text-foreground">{service.description}</p>
+                <p className="mb-4 relative z-10 text-white">{service.description}</p>
                 <div className="mt-6 flex items-center justify-center relative z-10">
                   <span className="flex items-center justify-center w-9 h-9 rounded-full bg-primary text-black group-hover:bg-primary/80 transition-colors shadow-lg">
                     <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
@@ -372,9 +372,9 @@ export default function Servicios() {
                 )}
                 <div className="flex items-center mb-4 relative z-10">
                   {service.icon}
-                  <h3 className="text-2xl font-bold ml-4 text-foreground">{service.title}</h3>
+                  <h3 className="text-2xl font-bold ml-4 text-white">{service.title}</h3>
                 </div>
-                <p className="mb-4 relative z-10 text-foreground">{service.description}</p>
+                <p className="mb-4 relative z-10 text-white">{service.description}</p>
                 <div className="mt-6 flex items-center justify-center relative z-10">
                   <span className="flex items-center justify-center w-9 h-9 rounded-full bg-primary text-black group-hover:bg-primary/80 transition-colors shadow-lg">
                     <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
@@ -396,14 +396,14 @@ export default function Servicios() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-5xl font-black mb-4 text-foreground">
+            <h2 className="text-5xl font-black mb-4 text-white">
               {lang === 'en' ? (
                 <span>Choose Your <span className="text-yellow-400">Plan</span></span>
               ) : (
                 <span>Elige Tu <span className="text-yellow-400">Plan</span></span>
               )}
             </h2>
-            <p className="text-lg text-foreground max-w-2xl mx-auto">
+            <p className="text-lg text-white max-w-2xl mx-auto">
               {lang === 'en'
                 ? 'Select the perfect subscription plan that fits your business needs and budget.'
                 : 'Selecciona el plan de suscripción perfecto que se adapte a las necesidades y presupuesto de tu negocio.'}
@@ -811,7 +811,7 @@ export default function Servicios() {
         }, [puntos.length]);
 
         return (
-          <div className="w-full hidden md:flex flex-col items-center pt-24 pb-48 bg-transparent mb-10 mt-10 overflow-visible">
+          <div className="w-full hidden md:flex flex-col items-center pt-24 pb-32 bg-black overflow-visible">
             <div className="max-w-7xl w-full px-8 relative">
               {/* Título de sección opcional */}
               <motion.div 
@@ -820,14 +820,14 @@ export default function Servicios() {
                 viewport={{ once: true }}
                 className="text-center mb-20"
               >
-                <h3 className="text-2xl font-bold text-foreground opacity-80">
+                <h3 className="text-2xl font-bold text-white opacity-80">
                   {lang === 'en' ? 'Our Process' : 'Nuestro Proceso'}
                 </h3>
               </motion.div>
 
               <div className="relative flex items-center justify-between w-full px-12">
                 {/* Línea base */}
-                <div className="absolute top-1/2 left-0 w-full h-[2px] bg-gray-200 dark:bg-gray-800 -translate-y-1/2" />
+                <div className="absolute top-1/2 left-0 w-full h-[2px] bg-gray-800 -translate-y-1/2" />
                 
                 {/* Línea de progreso animada */}
                 <motion.div 
@@ -852,7 +852,7 @@ export default function Servicios() {
                       {/* Círculo indicador */}
                       <motion.div
                         className={`w-4 h-4 rounded-full border-2 transition-all duration-500 flex items-center justify-center ${
-                          isActive || isPast ? "bg-yellow-400 border-yellow-400" : "bg-background border-gray-300 dark:border-gray-700"
+                          isActive || isPast ? "bg-yellow-400 border-yellow-400" : "bg-black border-gray-700"
                         }`}
                         animate={{
                           scale: isActive ? 1.5 : 1,
@@ -879,7 +879,7 @@ export default function Servicios() {
                         }}
                       >
                         <span className={`text-sm md:text-base font-bold transition-colors duration-300 mb-3 ${
-                          isActive ? "text-yellow-400" : "text-foreground"
+                          isActive ? "text-yellow-400" : "text-white"
                         }`}>
                           {item.title}
                         </span>
@@ -892,10 +892,10 @@ export default function Servicios() {
                             y: isActive ? 0 : -10,
                             scale: isActive ? 1 : 0.9
                           }}
-                          className="relative bg-white dark:bg-zinc-800 text-black dark:text-white px-4 py-2 rounded-lg shadow-xl border border-gray-200 dark:border-zinc-700 w-max max-w-[200px]"
+                          className="relative bg-zinc-800 text-white px-4 py-2 rounded-lg shadow-xl border border-zinc-700 w-max max-w-[200px]"
                         >
                           {/* Triángulo del bocadillo */}
-                          <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-b-[8px] border-b-white dark:border-b-zinc-800"></div>
+                          <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-b-[8px] border-b-zinc-800"></div>
                           
                           <span className="text-xs font-medium block text-center whitespace-normal leading-relaxed">
                             {item.desc}

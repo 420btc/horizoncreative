@@ -46,7 +46,7 @@ function MetodoInteractivoFoto({ lang }: { lang: 'es' | 'en' }) {
             tabIndex={0}
           />
           <span
-            className={`text-black dark:text-white text-xs md:text-sm text-center break-words leading-tight max-w-[9.5rem] md:max-w-[11rem] transition-all duration-300 ${activeIdx === idx ? 'text-xl md:text-2xl font-bold scale-110 text-[#FFD600] drop-shadow-lg' : ''}`}
+            className={`text-white text-xs md:text-sm text-center break-words leading-tight max-w-[9.5rem] md:max-w-[11rem] transition-all duration-300 ${activeIdx === idx ? 'text-xl md:text-2xl font-bold scale-110 text-[#FFD600] drop-shadow-lg' : ''}`}
             style={{cursor:'pointer'}}
             onClick={() => handleClick(idx)}
           >
@@ -87,7 +87,7 @@ export default function FotografiaGaleria() {
 
   return (
     <section className="w-full min-h-screen bg-black">
-      <h1 className="text-4xl md:text-5xl font-extrabold mb-6 text-center pt-10 text-black bg-white dark:text-white dark:bg-black">{t.title}</h1>
+      <h1 className="text-4xl md:text-5xl font-extrabold mb-6 text-center pt-10 text-white bg-black">{t.title}</h1>
       {/* Primera foto */}
       <div className="w-full max-w-7xl mx-auto px-0 md:px-8">
         <div className="overflow-hidden rounded-none md:rounded-3xl shadow-2xl">

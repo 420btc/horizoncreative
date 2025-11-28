@@ -17,9 +17,9 @@ export default function BrandingServicio() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background flex flex-col items-center pt-10 sm:pt-16">
+    <div className="min-h-screen bg-black flex flex-col items-center pt-10 sm:pt-16">
       <div className="w-full max-w-3xl flex flex-col items-center mb-10">
-        <h1 className="text-[2.5rem] sm:text-[3.5rem] font-black mb-4 text-foreground text-center">
+        <h1 className="text-[2.5rem] sm:text-[3.5rem] font-black mb-4 text-white text-center">
           Branding <span className="text-yellow-400">Horizon</span>
         </h1>
         
@@ -45,17 +45,17 @@ export default function BrandingServicio() {
               priority
             />
           </div>
-          <p className="text-lg text-foreground text-center mb-6">
+          <p className="text-lg text-white text-center mb-6">
             <span className="text-yellow-400 font-semibold">En Horizon</span>, no solo diseñamos marcas, <span className="text-yellow-400 font-semibold">las construimos para destacar</span>.<br /><br />
             Creemos que una marca poderosa va más allá de un <span className="text-yellow-400 font-semibold">logo bonito</span>: es una historia coherente, una experiencia memorable y una identidad visual que conecta.<br /><br />
             A través de nuestro <span className="text-yellow-400 font-semibold">enfoque estratégico y creativo</span>, ayudamos a empresas a:
           </p>
-          <ul className="mb-6 text-foreground text-base list-disc list-inside text-left max-w-xl mx-auto">
+          <ul className="mb-6 text-white text-base list-disc list-inside text-left max-w-xl mx-auto">
             <li><span className="text-yellow-400 font-semibold">Definir su esencia</span>, encontrando aquello que las hace únicas en su mercado.</li>
             <li><span className="text-yellow-400 font-semibold">Comunicar con claridad y emoción</span>, para que sus audiencias no solo las recuerden, sino que las elijan.</li>
             <li><span className="text-yellow-400 font-semibold">Diferenciarse en un mar de ruido</span>, creando una imagen sólida y coherente que se destaca a primera vista.</li>
           </ul>
-          <p className="text-lg text-foreground text-center">
+          <p className="text-lg text-white text-center">
             Desde <span className="text-yellow-400 font-semibold">startups</span> hasta marcas consolidadas, en <span className="text-yellow-400 font-semibold">Horizon</span> desarrollamos branding con visión, propósito y estética impecable.<br />
             Porque cuando <span className="text-yellow-400 font-semibold">tu marca habla claro</span>, tu negocio crece.
           </p>

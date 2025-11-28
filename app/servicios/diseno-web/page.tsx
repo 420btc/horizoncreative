@@ -43,7 +43,7 @@ export default function DisenoWebGaleria() {
       <div className="w-full bg-black py-10 md:py-14 px-4 md:px-0 flex flex-col items-center border-y border-gray-800">
         <div className="max-w-3xl text-center">
           <h2 className="text-2xl md:text-3xl font-bold text-[#FFD600] mb-2">{t.bannerTitle}</h2>
-          <p className="text-base md:text-lg text-gray-900 dark:text-gray-200">{t.bannerText}</p>
+          <p className="text-base md:text-lg text-white">{t.bannerText}</p>
         </div>
       </div>
       {/* Línea amarilla animada y metodología */}
@@ -130,7 +130,7 @@ function MetodoInteractivoDisenoWeb({ lang }: { lang: 'es' | 'en' }) {
             transition={{ type: 'spring', stiffness: 300, damping: 20 }}
           />
           <span
-            className={`text-gray-900 dark:text-gray-200 text-xs md:text-sm text-center break-words leading-tight max-w-[9.5rem] md:max-w-[11rem] transition-all duration-300 ${activeIdx === idx ? 'text-xl md:text-2xl font-bold scale-110 text-[#FFD600] drop-shadow-lg' : ''}`}
+            className={`text-white text-xs md:text-sm text-center break-words leading-tight max-w-[9.5rem] md:max-w-[11rem] transition-all duration-300 ${activeIdx === idx ? 'text-xl md:text-2xl font-bold scale-110 text-[#FFD600] drop-shadow-lg' : ''}`}
             style={{ cursor: 'pointer' }}
             onClick={() => handleClick(idx)}
           >
