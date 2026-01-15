@@ -19,12 +19,12 @@ export const metadata: Metadata = {
     template: "%s | Horizon Creative"
   },
   description: "Agencia digital en Málaga y Costa del Sol. Expertos en marketing online, fotografía, diseño web y branding. Impulsa tu negocio con Horizon Creative.",
-  keywords: ["Agencia de Marketing Málaga", "Fotografía Costa del Sol", "Diseño Web Benalmádena", "Branding", "Redes Sociales", "Horizon Creative"],
+  keywords: ["Agencia de Marketing Málaga", "Fotografía Costa del Sol", "Diseño Web Benalmádena", "Branding", "Redes Sociales", "Horizon Creative", "Marketing para Restaurantes", "Marketing Inmobiliario", "Grabación con Drones Málaga", "Gestión de Redes Sociales", "Creación de Contenido", "Video Marketing", "Marketing Gastronómico"],
   authors: [{ name: "Horizon Creative" }],
   creator: "Horizon Creative",
   openGraph: {
-    title: "Horizon Creative | Agencia de Marketing y Fotografía",
-    description: "Tu agencia digital en la Costa del Sol. Marketing, Foto, Web y más.",
+    title: "Horizon Creative | Agencia de Marketing y Contenido Digital",
+    description: "Impulsa tu negocio con estrategias de contenido, redes sociales, fotografía y video con drones. Especialistas en restaurantes e inmobiliarias en Málaga.",
     url: "https://www.horizoncreative.es",
     siteName: "Horizon Creative",
     locale: "es_ES",
@@ -82,7 +82,42 @@ export default function RootLayout({
     },
     "sameAs": [
       "https://www.instagram.com/horizoncreative.agency/"
-    ]
+    ],
+    "priceRange": "$$",
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Servicios de Marketing y Contenido",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Gestión de Redes Sociales"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Grabación con Drones y Fotografía"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Marketing para Restaurantes e Inmobiliarias"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Diseño y Desarrollo Web"
+          }
+        }
+      ]
+    }
   }
 
   return (

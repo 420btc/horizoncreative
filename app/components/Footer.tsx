@@ -32,14 +32,14 @@ export default function Footer() {
             {(() => {
               const links = [
                 { label: "Inicio", href: "/" },
-                { label: "Sobre Nosotros", href: "/sobre-nosotros" },
-                { label: "Nuestros Servicios", href: "/servicios" },
+                { label: "Servicios", href: "/servicios" },
+                { label: "Restaurantes", href: "/sectores/restaurantes" },
+                { label: "Inmobiliarias", href: "/sectores/inmobiliarias" },
                 { label: "Contacto", href: "/contacto" },
-                { label: "Privacidad", href: "/privacidad" },
-                { label: "Aviso Legal", href: "/aviso-legal" },
+                { label: "Sobre Nosotros", href: "/sobre-nosotros" },
               ];
               return [
-                links.slice(0, 3).map(({ label, href }) => (
+                links.slice(0, 4).map(({ label, href }) => (
                   <div key={label} className="pb-2 sm:pb-6">
                     <Link href={href} className="text-sm leading-6 text-white dark:text-white hover:text-yellow-400 focus:text-yellow-400 active:text-yellow-400 transition-colors">
                       {label}
@@ -56,7 +56,7 @@ export default function Footer() {
                     Newsletter
                   </button>
                 </div>,
-                links.slice(3).map(({ label, href }) => (
+                links.slice(4).map(({ label, href }) => (
                   <div key={label} className="pb-2 sm:pb-6">
                     <Link href={href} className="text-sm leading-6 text-white dark:text-white hover:text-yellow-400 focus:text-yellow-400 active:text-yellow-400 transition-colors">
                       {label}
